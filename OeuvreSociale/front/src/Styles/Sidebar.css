@@ -1,0 +1,292 @@
+body {
+    margin: 0;
+    padding: 0;
+  
+   
+  }
+  
+  .sidemenu {
+    /* padding:6px,8px,6px,16px; */
+    height: 100%;
+    width: 18%;
+    position: fixed;
+    z-index: 1;
+    top:0;
+    left: 0;
+    overflow: hidden;
+    background-color: #00194F; 
+    color: #fff;
+
+    /* position: fixed;
+    display: flex;
+    flex-direction: column; 
+    height: 100vh;
+    width: 18%;
+    background-color: #00194F; 
+    color: #fff;  */
+    
+    
+    
+  }
+  
+  .inactive {
+    
+    /* display: flex;
+    flex-direction: column; 
+    width:86px;
+    height: 100%;
+    background-color: #00194F; 
+    color: #fff;
+    transition: width 0.5s ease-in-out; */
+    height: 100%;
+    width: 6%;
+    position: fixed;
+    z-index: 1;
+    top:0;
+    left: 0;
+    overflow: hidden;
+    background-color: #00194F; 
+    color: #fff;
+    
+  }
+  .inactive  span{
+    display: none;
+   
+  }
+ 
+  
+  .top-section {
+    background-color: #00194F; /* Adjust the top section color */
+    color: #fff;
+    
+    text-align: center;
+  }
+  
+  .toggle-menu-btn {
+    margin-top: 7px;
+    margin-left: 160px;
+    cursor: pointer;
+    font-size: 27px;
+    background-color: #00194F;
+  }  .toggle-menu-btn svg{
+    background-color: transparent;
+  }
+  .toggle-menu-btn2 {
+    margin-top: 7px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 30px;
+    background-color: #00194F;
+  }  .toggle-menu-btn2 svg{
+    background-color: transparent;
+  }
+  
+
+
+
+  .mainmenu {
+    
+   
+
+    margin: 0;
+    
+    width: 100%;
+   
+    background-color: #00194F; 
+    
+   
+  }
+  
+  .menuitem {
+    display: flex;
+    align-items: center;
+    
+    color: #fff;
+    text-decoration: none;
+    background-color: #00194F;
+    
+    
+   
+  }
+  
+  .menuicon {
+  
+    background-color: #00194F;
+
+  }.menuicon svg{
+    background-color: transparent;
+    padding:15px;
+   
+  }
+  
+  .link-taxt {
+    
+
+    font-weight: 400;
+    background-color: #00194F;
+  }
+
+
+
+
+
+
+
+
+
+
+
+  
+  .submenu {
+    list-style: none;
+    padding :0px;
+    margin: 0;
+    background-color: #00194F;
+    
+    
+  }
+  
+  .ayhaja {
+    padding:8px 8px;
+    color:#fff;
+    background-color: #00194F;
+    display:inline-block;
+    
+    text-decoration: none;
+    display: flex;
+    
+     
+    
+  } .ai{
+    display: none;
+  }
+
+  .ayhaja:hover{
+     display: flex;
+     text-decoration: none;
+     display: flex;
+     
+      background-color: #EAEDEF;
+      color:#00194F;
+   
+  }.ayhaja:hover a{
+    background-color: #EAEDEF;
+  }.ayhaja.active{
+    
+      background-color: #EAEDEF;
+      color:#00194F;
+    
+  } 
+  
+  
+  
+  .ayhaja.active a{
+   
+    background-color: #EAEDEF;
+    color:#00194F;
+  }.ayhaja.active span{
+   
+    background-color: #EAEDEF;
+    color:#00194F;
+  }
+
+
+
+
+
+  ul{
+   display: inline;
+    list-style-type: none;
+    background-color: #00194F;
+    text-decoration: none;
+   
+  }
+
+  .ayhaja a{
+    background-color: #00194F;
+    display:inline-block;
+    text-decoration: none;
+   
+  } .ayhaja svg {
+    padding: 10px;
+    background-color: transparent;
+  }.ayhaja:hover span{
+    display:inline-block;
+    text-decoration: none;
+    background-color: #EAEDEF;
+  } 
+  
+  
+  
+   .ayhaja:hover .menuicon {
+    background-color: #EAEDEF;
+    color:#00194F;
+   
+  }
+
+
+
+   a svg {
+    padding: 10px;
+    background-color: transparent;
+  }.menuitem:hover{
+    background-color: #EAEDEF;
+    color:#00194F;
+  }.menuitem:hover span{
+    
+    background-color: #EAEDEF;
+  } 
+  
+  
+  
+  .menuitem:hover .menuicon {
+    background-color: #EAEDEF;
+    color:#00194F;
+   
+  }
+a{
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  li{
+   
+    text-align: left;
+    list-style: none;
+    font-size: 22px;
+  
+
+   
+  }
+  a.active{
+    background-color: #EAEDEF;
+    color:#00194F;
+  }.active .menuicon {
+    background-color: #EAEDEF;
+    color:#00194F;
+  }.active .link-taxt{
+    background-color: #EAEDEF;
+    color:#00194F;
+  }
+  .subicon{
+    position: relative;
+   
+   font-size: 22px;
+  }
+
+   
+  
+  

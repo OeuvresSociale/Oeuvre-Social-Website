@@ -1,0 +1,89 @@
+.motifwrapper{
+
+    width:100vw;
+    height:100vh;
+    background-color: rgba(0,0,0,0.5);
+    position:fixed;
+    top:0;
+    left:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+
+
+
+}.motif{
+background-color: #fff;
+border-radius:15px ;
+width: 535px;
+height: 355px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding:30px;
+position: relative;
+
+
+
+}.motif p{
+font-weight: 500;
+font-size: 30px;
+background-color: #fff;
+color:#1E2648;
+}
+
+.resizable-textarea{
+background-color: #F7F7F7;
+border: none;
+width: 480px;
+
+height:167px;
+
+border-radius: 5px;
+
+padding: 25px;
+outline: none;
+font-size: 23px;
+font-weight: 400;
+resize: none; /* Allow both vertical and horizontal resizing */
+  overflow: auto;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  
+
+
+}
+
+.motifbtns{
+margin-left: 320px;
+padding-top: 40px;
+background-color: #fff;
+display: flex;
+gap: 8px;
+
+
+}.motifcancel{
+    width:77px;
+    height:35px;
+    border-color: #999999;
+    border-radius: 7px;
+    border-width: 1px;
+    background-color: #F7F7F7;
+    font-size: 15px;
+    font-weight: 600;
+    color:#999999;
+    cursor: pointer;
+  }.motifenvoyer{
+    width:100px;
+    height:35px;
+    
+    border-radius: 7px;
+   
+    background-color: #EE0A0A;
+    color:#fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+  }

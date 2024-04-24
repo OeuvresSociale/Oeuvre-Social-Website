@@ -1,0 +1,133 @@
+.mod{
+    width: 100vw;
+    height:100vh;
+    position:fixed;
+    top:0;
+    left:0;
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+
+    
+    
+}
+.formulairemodefy{
+    justify-self: center;
+   background-color: #F7F7F7;
+    position: absolute;
+  
+   
+   
+    width: 1100px;
+    height: 400px;
+    padding: 40px 50px ;
+    border-width: 2px;
+   border-style: solid;
+    border-color: #D9D9D9;    ;
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+   
+   
+  }.f3{
+    display: flex;
+    flex-direction: row;
+    background-color: #F7F7F7;
+  } 
+  
+  
+  
+  
+  
+  .f4{
+    border-color: #999999;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 2px;
+    outline:none;
+    background-color: #F7F7F7;
+    position: relative;
+ 
+   
+  }.f4 span{
+    transform: translateX(10px) translateY(-12px);
+   background-color: #F7F7F7;
+   padding: 0px 10px;
+   position: absolute;
+   left: 0;
+   font-weight: 500;
+   font-size: 15px;
+   
+   
+  
+    }
+  
+  .f4 input{
+    text-decoration: none;
+   border:none;
+    outline:none;
+    margin-top: 15px;
+    margin-left: 30px;
+    background-color: transparent;
+    
+    font-weight: 500;
+    font-size: 15px;
+
+  }
+  .btnsm{
+    display: flex;
+    
+    gap :8px;
+   
+    background-color: #F7F7F7 ;
+    position:absolute;
+    right:0;
+    margin-right: 75px;
+  }.cancelm{
+    width:100px;
+    height:35px;
+    border-color: #999999;
+    border-radius: 5px;
+    border-width: 1px;
+    background-color: #F7F7F7;
+    font-size: 15px;
+    font-weight: 600;
+    color:#999999;
+    cursor: pointer;
+  }.addm{
+    width:120px;
+    height:35px;
+    border-color: #999999;
+    border-radius: 5px;
+    border-width: 1px;
+    background-color: #148582;
+    color:#fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .select-container{
+    background-color: #F7F7F7;
+    
+
+  }
+  
+ .select-container select{
+    
+    display: inline-block;
+    outline:none;
+    border:none;
+    margin-top: 15px;
+    
+   
+    background-color: #F7F7F7;
+   
+    font-weight: 500;
+    
+    font-size: 15px;
+    
+  }
+
+ 

@@ -1,0 +1,54 @@
+:root {
+    --conwidth: 82%; /* Default value */
+  }.formulsrapper{
+    position: absolute;
+    width: var(--conwidth);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:8%;
+    background-color: #EAEDEF;
+
+   
+
+
+    
+}
+.linkwrapper{
+
+width:90%;
+height:15%;
+background-color: #fff; 
+display: flex;
+
+justify-content: left;   
+align-items:center;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+border-radius: 7px;
+text-decoration: none;
+padding-left: 4%;
+position: relative;
+
+color: #1E2648;
+
+}.linkwrapper:hover {
+   
+    background-color: #1E2648;
+}
+.linkwrapper:hover .linktodem{
+    color: #fff;
+    background-color: #1E2648;
+}
+.linktodem{
+    position: absolute;
+    color: #1E2648;
+   
+    font-weight: 400;
+    font-size: 150%;
+    text-decoration: none;
+    display:inline-block;
+   
+
+}

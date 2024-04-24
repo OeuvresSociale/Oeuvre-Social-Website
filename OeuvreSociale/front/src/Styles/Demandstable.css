@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700 &display=swap');
+.dtwrapper{
+  width:78% ;
+  height: 73%;
+  
+  
+ 
+  background-color: #fff;
+  position: absolute;
+ margin:30px;
+ 
+  border-radius: 7px;
+ 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+
+}
+.demands{
+    width:90%;
+    /* border-collapse: collapse; */
+    margin-top: 10px;
+    position:absolute;
+    top: 10%;
+   align-items: center;
+    display:flex; 
+    align-items:center;
+    padding: 60px;
+    
+    border-radius: 5px;
+    
+  }
+  
+  .demands th,
+  .demands td {
+    padding: 20px;
+  
+    text-align: left;
+    margin-right: 100px;
+  }
+  .demands th{
+    color: #138582;
+    ;
+  }
+  .filter {
+    position:absolute;
+    top:7%;
+   
+    right:3%;
+    /* padding: 10px 20px; */
+    border: none; 
+   
+    text-decoration: none; 
+    /* cursor: pointer; */
+
+  }
+  
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-select select {
+  display: none; 
+}
+
+.tabl {
+  width: 100%;
+
+}
+.status-accepted {
+  color: #00bb00;
+}
+
+.status-refused {
+  color: #ff3939; 
+}
+
+.status-pending {
+  color: #f7f702; 
+}
+
+
+
+

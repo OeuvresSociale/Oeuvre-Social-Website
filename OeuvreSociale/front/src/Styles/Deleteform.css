@@ -1,0 +1,83 @@
+.del{
+    width:100vw;
+    height:100vh;
+    background-color: rgba(0,0,0,0.5);
+    position:fixed;
+    top:0;
+    left:0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    
+    
+    
+    }.vv{
+    
+    font-size: 22px;
+    background-color: #fff;
+    margin: 50px 25px;
+    
+    
+    }
+    
+    
+    .btnsd{
+       display: flex;
+       flex-direction: column;
+        width:535px;
+        height:240px;
+        background-color: #fff;
+        border-radius: 10px;
+      position: relative;
+    
+    
+    
+      
+      }.bi{
+        background-color: #fff;
+        display: flex;
+       
+        margin:30px;
+       gap: 10px;
+        position: absolute;
+        right:0;
+        bottom: 0;
+    
+    
+      }
+      
+      
+      
+      
+      
+      .b1{
+        width:80px;
+        height:35px;
+        border-color: #999999;
+        border-radius: 7px;
+        border-width: 1px;
+        background-color: #F7F7F7;
+        font-size: 15px;
+        font-weight: 600;
+        color:#999999;
+        cursor: pointer;
+        
+       
+      
+      }.b2{
+        width:100px;
+        height:35px;
+        border-color: #999999;
+        border-radius: 7px;
+        border-width: 1px;
+        background-color: #148582;
+        color:#fff;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+       
+       
+      
+      }

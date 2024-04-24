@@ -1,0 +1,86 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700 &display=swap');
+.demands-title {
+  position: absolute;
+  top: 70%;
+  left:4%;
+  font-size: 20px; 
+  color: #00194F;
+}
+
+.demands-line {
+  top:73%;
+  position: absolute;
+  left:10%;
+  border-bottom: 1px  black; 
+  margin: 10px 0; 
+  width: 82%; 
+}
+.demand-history {
+    width: 78.5%;
+    /* border-collapse: collapse; */
+    margin-top: 10px;
+    position:absolute;
+    top: 80%;
+    left:7%; 
+    display:flex; 
+    align-items:center;
+    padding: 60px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    
+  }
+  
+  .demand-history th,
+  .demand-history td {
+    padding: 20px;
+    border: 1px  #000000;
+    text-align: left;
+    margin-right: 100px;
+  }
+  .demand-history th{
+    color: #138582;
+    ;
+  }
+  .filter-container {
+    margin-bottom: 10px;
+    top:6%;
+    position:absolute;
+    right:3%;
+    /* padding: 10px 20px; */
+    border: none; 
+   
+    text-decoration: none; 
+    /* cursor: pointer; */
+
+  }
+  
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-select select {
+  display: none; 
+}
+
+.table {
+  width: 100%;
+
+}
+.status-accepted {
+  color: #00bb00;
+}
+
+.status-refused {
+  color: #ff3939; 
+}
+
+.status-pending {
+  color: #f7f702; 
+}
+
+
+
+

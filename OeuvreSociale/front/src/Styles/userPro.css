@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700 &display=swap');
+.profile-title {
+    position: absolute;
+    top: 10%;
+    left:4%;
+    font-size: 20px; 
+  }
+  
+  .profile-line {
+    top:13%;
+    position: absolute;
+    left:17%;
+    border-bottom: 1px  black; 
+    margin: 10px 0; 
+    width: 75%;
+  }
+.user-profile {
+    margin-top: 10px;
+    position:absolute;
+    top: 20%;
+    left:7%; 
+    width: 85%;
+    display:flex; 
+    align-items:center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  .profile-picture {
+    margin-right: 20px;
+    flex-shrink: 0; 
+  }
+  
+  .profile-picture img {
+    position: absolute;
+    width: 20%;
+    height: 200px;
+    top: 8%;
+    border-radius: 0%;
+    /* object-fit: cover;  */
+  }
+  
+
+.profile-info {
+  position: relative;
+
+  
+   
+    width: 100%; 
+   
+  }
+.left,
+.right {
+ padding:2px;
+  position: relative;
+    width: 30%;
+    display: flex;
+ 
+  }.fir{
+    color:#aaa7a7;
+    font-weight: 500;
+  }
+  
+  .left {
+   left:25%;
+  }.right{
+
+    left:60%;
+   
+  }
+  
+  
+  .profile-info button {
+    position:absolute;
+    top:85%;
+    right:5%;
+    color: #138582; 
+    /* padding: 0px 0px; */
+    border: none; 
+    background-color:transparent;
+    text-decoration: none; 
+    cursor: pointer; 
+  }
+  
+  .profile-info button:hover,
+  .profile-info button:focus {
+    text-decoration: underline; 
+  }
+  
+  

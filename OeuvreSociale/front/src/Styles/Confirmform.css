@@ -1,0 +1,109 @@
+:root {
+    --conwidth: 82%; /* Default value */
+  }.confirmwrapper{
+    position: absolute;
+    width: var(--conwidth);
+    height:100%;
+    display: flex;
+    flex-direction: column;
+ 
+    align-items: center;
+    margin-top: 57px;
+    background-color: #EAEDEF;
+  
+
+
+
+
+
+
+
+
+}.confirmform button{
+    border-radius: 5px;
+    width: 220px;
+    height: 44px;
+    position:absolute;
+   top:56px;
+   right: 0px;
+    font-size: 20px;
+    background-color: #148582; 
+    color: #fff; 
+    border: none;
+    cursor: pointer;
+    font-weight: 400;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin-right: 40px;
+}
+.formdocs{
+    position:absolute;
+    top:120px;
+    width:90%;
+    border-top: #999999 1px solid;
+
+
+}.titlef{
+    background-color: #EAEDEF;
+    color:#00194F;
+    font-size: 28px;
+    font-weight: 400;
+    transform: translateY(-20px);
+    position: absolute;
+ 
+}.adddocs{
+    width:100%;
+    height: 45px;
+    display: flex;
+   
+    align-items: center;
+   
+    background-color: #fff;
+    border-radius: 7px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin:25px 0;
+    position: relative;
+  
+
+}.adddocs svg{
+    background-color: transparent;
+    font-size: 25px;
+    position: absolute;
+    right:2%;
+    color: #999999;
+}.adddocs input{
+    height: 90%;
+    width:92%;
+    outline: none;
+    border:none;
+    font-size: 18px;
+    margin-left: 2%;
+
+
+
+}
+.previewContainer {
+    position: absolute;
+    top:210px;
+
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 7px;
+    width:90%;
+  }
+  
+  .wordBox {
+   border-bottom: #999999 1px solid;
+    padding: 14px;
+    font-size: 18px;
+    font-weight: 500;
+   color:#00194F;
+  }
+  .previewContainer svg{
+    font-size: 25px;
+    position: absolute;
+    right:2%;
+    cursor: pointer;
+
+  }

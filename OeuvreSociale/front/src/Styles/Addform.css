@@ -1,0 +1,133 @@
+:root {
+    --conwidth: 82%; /* Default value */
+  }.addformwrapper{
+    
+    width: var(--conwidth);
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: #EAEDEF;
+   
+
+    
+
+
+}
+.addform{
+    width: 220px;
+    height: 44px;
+  
+   background-color: #148582; 
+   color: #fff; 
+  
+   border-radius: 5px;
+  
+   cursor: pointer;
+   position:absolute;
+top: 56px;
+   right: 0px;
+   text-decoration: none;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+ 
+   display: flex;
+   align-items: center;
+   gap:20px;
+   justify-content: center;
+   padding: 8px 12px; 
+   font-size: 30px;
+   font-weight: 400;
+   margin: 40px;
+  
+   
+
+
+}.addform button{
+    font-size: 20px;
+    background-color: #148582; 
+    color: #fff; 
+    border: none;
+    cursor: pointer;
+    font-weight: 400;
+    
+}.addform svg{
+    background-color: transparent;
+
+}.formulswrapper{
+   margin-top: 190px;
+   background-color: #EAEDEF;
+    width:100%;
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 50px;
+   
+  
+}
+
+
+
+.linkform{
+    width:90%;
+height: 53px;
+background-color: #fff; 
+display: flex;
+
+justify-content: left;   
+align-items:center;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+border-radius: 10px;
+text-decoration: none;
+padding-left: 2%;
+
+
+color: #1E2648;
+font-weight: 400;
+font-size: 20px;
+   
+}.linkform:hover{
+    color: #fff;
+    background-color: #1E2648;
+}.linkform:hover svg{
+
+    color:#fff;
+}
+
+
+
+.addicons{
+    background-color: transparent;
+    font-size: 25px;
+    margin-left: 75%;
+    right:2%;
+    color: #999999;
+    display: flex;
+    gap: 20px;
+}.formulary{
+    width:100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:0;
+}
+.docs{
+
+   
+
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 7px;
+    width:90%;
+}.docname{
+    border-bottom: #999999 1px solid;
+    border-top: #999999 1px solid;
+    padding: 14px;
+    font-size: 18px;
+    font-weight: 500;
+   color:#00194F;
+}
