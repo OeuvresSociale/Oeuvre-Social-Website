@@ -2,56 +2,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700 &display=swap');
 .demands-title {
   position: absolute;
-  top: 70%;
-  left:4%;
-  font-size: 20px; 
+  top:70%;
+  left:10%;
+  font-size:20px; 
   color: #00194F;
 }
 
 .demands-line {
-  top:73%;
+  top:74%;
   position: absolute;
-  left:10%;
+  left:16%;
   border-bottom: 1px  black; 
   margin: 10px 0; 
   width: 82%; 
 }
-.demand-history {
-    width: 78.5%;
-    /* border-collapse: collapse; */
-    margin-top: 10px;
-    position:absolute;
-    top: 80%;
-    left:7%; 
-    display:flex; 
-    align-items:center;
-    padding: 60px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    
-  }
+.demwrapper{
+  position:absolute;
+  top:80%;
+  left:12%; 
+  width: 85%;
+  height:56%;
+  background-color: #ffffff;
+  align-items:center;
+  padding:10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
   
-  .demand-history th,
-  .demand-history td {
+  .th,
+  .lin{
     padding: 20px;
-    border: 1px  #000000;
     text-align: left;
     margin-right: 100px;
+    margin-bottom: 20px;
+    display: block;
+
   }
-  .demand-history th{
-    color: #138582;
-    ;
+  .th{
+    left: 20%;
+    color: rgba(20, 133, 130, 1);
   }
   .filter-container {
     margin-bottom: 10px;
-    top:6%;
+    top:12%;
     position:absolute;
     right:3%;
-    /* padding: 10px 20px; */
     border: none; 
-   
     text-decoration: none; 
-    /* cursor: pointer; */
 
   }
   
@@ -66,19 +63,23 @@
 }
 
 .table {
-  width: 100%;
-
+  position:absolute;
+  width: 85%;
+  top:22%;
 }
 .status-accepted {
-  color: #00bb00;
+  color:rgba(25, 232, 7, 1);
+  ;
 }
 
 .status-refused {
-  color: #ff3939; 
+  color: rgba(255, 74, 74, 1);
+  ; 
 }
 
 .status-pending {
-  color: #f7f702; 
+  color:rgba(255, 187, 54, 1);
+  ; 
 }
 
 

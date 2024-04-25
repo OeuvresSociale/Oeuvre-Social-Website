@@ -14,19 +14,44 @@ function UserPro() {
     salary: 25000000,
     bankAccount: '12345678901234567890',
   });
-  const [isOtpRequestOpen, setIsOtpRequestOpen] = useState(false);
-  const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
-  const [otp, setOtp] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+const [password, setPassword] = useState('');
 
-  // Fetch user data (assuming an API call or data retrieval logic)
+const handlePasswordSubmit = () => {
+  // Here you would check if the entered password is correct
+  // For demonstration, let's assume the password is correct
+  setShowPasswordModal(false);
+  setShowOTPModal(true);
+  
+  // Proceed to the next step (OTP verification)
+};
+const [showOTPModal, setShowOTPModal] = useState(false);
+const [otp, setOTP] = useState('');
+
+const handleOTPSubmit = () => {
+  // Here you would check if the entered OTP is correct
+  // For demonstration, let's assume the OTP is correct
+  setShowOTPModal(false);
+  setShowNewPasswordModal(true);
+  // Proceed to the next step (new password input)
+};
+const [showNewPasswordModal, setShowNewPasswordModal] = useState(false);
+const [newPassword, setNewPassword] = useState('');
+const [confirmNewPassword, setConfirmNewPassword] = useState('');
+
+const handleNewPasswordSubmit = () => {
+  // Here you would handle the submission of the new password
+  // For demonstration, let's assume the new password is updated successfully
+  setShowNewPasswordModal(false);
+  // Reset input values
+  setPassword('');
+  setOTP('');
+  setNewPassword('');
+  setConfirmNewPassword('');
+};
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        // Replace with your API call or data fetching logic
         const response = await fetch('/api/user-data');
         if (response.ok) {
           const data = await response.json();
@@ -41,94 +66,86 @@ function UserPro() {
     fetchUserData();
   }, []);
 
-  const handleRequestOtp = async () => {
-    try {
-      setErrorMessage(''); // Clear any previous error messages
-      const response = await fetch('/api/send-otp', {
-        method: 'POST',
-        body: JSON.stringify({ email: userData.email }),
-      });
-      if (response.ok) {
-        setIsOtpRequestOpen(true);
-      } else {
-        setErrorMessage(await response.text());
-      }
-    } catch (error) {
-      console.error('Error sending OTP:', error);
-      setErrorMessage('An error occurred. Please try again later.');
-    }
-  };
-
-  const handleVerifyOtp = async () => {
-    try {
-      setErrorMessage(''); // Clear any previous error messages
-      const response = await fetch('/api/verify-otp', {
-        method: 'POST',
-        body: JSON.stringify({ email: userData.email, otp }),
-      });
-      if (response.ok) {
-        setIsOtpRequestOpen(false);
-        setIsChangePasswordOpen(true);
-        setOtp(''); // Clear OTP input after verification
-      } else {
-        setErrorMessage(await response.text());
-      }
-    } catch (error) {
-      console.error('Error verifying OTP:', error);
-      setErrorMessage('An error occurred. Please try again later.');
-    }
-  };
-
-  const handleChangePassword = async () => {
-    try {
-      setErrorMessage(''); // Clear any previous error messages
-      if (newPassword !== confirmPassword) {
-        setErrorMessage('Passwords do not match');
-        return;
-      }
-
-      const response = await fetch('/api/change-password', {
-        method: 'POST',
-        body: JSON.stringify({ email: userData.email, newPassword }),
-      });
-      if (response.ok) {
-        setIsChangePasswordOpen(false);
-        setNewPassword('');
-        setConfirmPassword(''); // Clear password inputs after success
-        setSuccessMessage('Password changed successfully');
-      } else {
-        setErrorMessage(await response.text());
-      }
-    } catch (error) {
-      console.error('Error changing password:', error);
-      setErrorMessage('An error occurred. Please try again later.');
-    }
-  };
   return (
     <div className="profile">
-        <h1 className="profile-title">Employee Profile</h1>
-        <hr className="profile-line" /> 
-        <div className="user-profile">
-        <div className="profile-picture">
-        <img src="https://placehold.it/150x150" alt="Profile avatar" />
+      <h1 className="profile-title">Employee Profile</h1>
+      <hr className="profile-line" /> 
+  <div className="userwrapper">
+      <div className="profilepicture">
+          <img src="OIP.png"/>
+       </div>
+              <div className="left">
+            <p>First name:</p>
+            <p>Last name:</p>
+            <p>Email address:</p>
+            <p>Bank account:</p>
+          </div>
+          <div className="Info-left">
+            <p>{userData.firstName}</p>
+            <p>{userData.lastName}</p>
+            <p>{userData.email}</p>
+            <p>{userData.bankAccount}</p>
+          </div>
+          <div className="right">
+            <p>Phone number:</p>
+            <p>Situation familiale:</p>
+            <p>Salary:</p>
+          </div>
+          <div className="Info-right">
+            <p>{userData.phoneNumber}</p>
+            <p>{userData.situationFamiliale}</p>
+            <p>{userData.salary}</p>
+          </div>
         </div>
-      <div className="profile-info">
-        <p className="left"><div className='fir' >First name:</div><div className='var'>{userData.firstName}</div> </p>
-        <p className="right"><div className='fir' >Phone number:</div> {userData.phoneNumber}</p>
-        <p className="left"><div className='fir' >Last name:</div> {userData.lastName}</p>
-        <p className="right"><div className='fir' > familiale:</div> {userData.situationFamiliale}</p>
-        <p className="left"><div className='fir' >Email address: </div>{userData.email}</p>
-        <p className="right"><div className='fir' >Salary:</div> {userData.salary}</p>
-        <p className="left"><div className='fir' >Bank account: </div>{userData.bankAccount}</p>
-        <button className="button">Change Password <FontAwesomeIcon icon={faPen} size="sm" /></button>
-     </div>
- </div>
- </div>
-
+        <button className="button" onClick={() => setShowPasswordModal(true)}>
+      Change Password <FontAwesomeIcon icon={faPen} size="sm" />
+    </button>
+    {showPasswordModal && (
+      <div className="modal">
+        <h2>Enter Your Password</h2>
+        <input
+          type="password"
+          value={password}
+          placeholder='tap your password'
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button onClick={() => setShowPasswordModal(false)}>Cancel</button>
+        <button className="Enter" onClick= {handlePasswordSubmit}>Enter </button>
+      </div>
+    )}
+    {showOTPModal && (
+  <div className="modal">
+    <h2>Enter OTP Sent to Your Email</h2>
+    <input
+      type="text"
+      value={otp}
+      onChange={(e) => setOTP(e.target.value)}
+    />
+    <button onClick={handleOTPSubmit}>Validate</button>
+    <button onClick={() => setShowOTPModal(false)}>Cancel</button>
+  </div>
+)}
+{showNewPasswordModal && (
+  <div className="modal">
+    <h2>Enter New Password</h2>
+    <input
+      type="password"
+      value={newPassword}
+      onChange={(e) => setNewPassword(e.target.value)}
+      placeholder="New Password"
+    />
+    <input
+      type="password"
+      value={confirmNewPassword}
+      onChange={(e) => setConfirmNewPassword(e.target.value)}
+      placeholder="Confirm New Password"
+    />
+    <button onClick={handleNewPasswordSubmit}>Validate</button>
+    <button onClick={() => setShowNewPasswordModal(false)}>Cancel</button>
+  </div>
+)}
+    </div>
   );
 }
 
-
 export default UserPro;
-
-
