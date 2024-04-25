@@ -17,6 +17,9 @@ import Login from './Pages/Login.jsx';
 import Profile from './Pages/Profile.jsx';
 import TableDemands from './Pages/TableDemands.jsx';
 import Modefyformule from './Pages/Modefyformule.jsx';
+import LoanType from './Pages/LoanType.jsx';
+import LoanForm from './Pages/LoanForm.jsx';
+import ModefyLoan from './Pages/ModefyLoan.jsx';
 
 
 
@@ -39,8 +42,10 @@ const App = () => {
  <Route path='/login' element={<Login />} />
  <Route path='/profile' element={<Profile />} />
  <Route path='/tables' element={<TableDemands />} />
- <Route path='/tables' element={<TableDemands />} />
+ <Route path='/tables/loantype' element={<LoanType />} />
  <Route path='/formulaire/formulairedemande/modefyformulaire' element={<Modefyformule />} />
+ <Route path='/formulaire/formulairepret' element={<LoanForm />} />
+ <Route path='/formulaire/formulairepret/modifierpret' element={<ModefyLoan />} />
 
 </Routes>
 
@@ -51,3 +56,8 @@ const App = () => {
 };
 
 export default App;
+
+
+    
+   
+
