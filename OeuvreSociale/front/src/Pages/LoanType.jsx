@@ -8,9 +8,9 @@ import Sidebar from '../Components/Sidebar';
 const Employeelist = () => {
   return (
    
-     <div className="containere"  style={{ backgroundColor: '#EAEDEF' }}>
+     <div className="containerdem"  style={{ backgroundColor: '#EAEDEF' }}>
       <Sidebar />
-      <div className="contente">
+      <div className="contentdem">
         <Header className="header" />
         < Loantype/>
       </div>

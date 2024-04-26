@@ -6,19 +6,18 @@ import Sidebar from '../Components/Sidebar';
 
 const Profile = () => {
   return (
-    <div className='containerdem'>
+    <div>
+  <div className='containerf'>
       <Sidebar/>
-    <div className='contentdem'>
-      <Header/>
-    <div className="profile">
-      <div className="Infos-section">
+    <div className='contentf'>
+        <Header/>
+    <div className='content'>
         <UserPro />
-      </div>
-      <div className="Demand-section">
         <Demands />
+        </div>
       </div>
     </div>
-    </div></div>
+    </div>
   );
 };
 

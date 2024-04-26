@@ -3,24 +3,24 @@ import React, { useState } from 'react';
 const demands = [
   {
     demandId: 1,
+    Employee:"mohammed",
     type: 'Mariage',
     date: new Date(2024, 2, 20),
     status: 'Accepted',
-    motif: 'Needed for application',
   },
   {
     demandId: 2,
     type: 'Advance',
+    Employee:"mohammed",
     date: new Date(2024, 2, 15),
     status: 'Refused',
-    motif: 'Insufficient reason',
   },
   {
     demandId: 3,
+    Employee:"mohammed",
     type: 'Advance',
     date: new Date(2024, 2, 18),
     status: 'Pending',
-    motif: 'Waiting for approval',
   },
 ];
 
@@ -67,21 +67,21 @@ function Demands() {
       <table className='tabl'>
         <thead>
           <tr>
-            <th>#</th>
-            <th>Type</th>
+            <th>N</th>
+            <th>Employee</th>
+            <th>Demande type</th>
             <th>Date</th>
             <th>Status</th>
-            <th>Motif</th>
           </tr>
         </thead>
         <tbody>
           {filteredDemands.map((demand) => (
             <tr key={demand.demandId}>
               <td>{demand.demandId}</td>
+              <td>{demand.Employee}</td>
               <td>{demand.type}</td>
               <td>{demand.date.toLocaleDateString()}</td>
               <td  className={getStatusColor(demand.status)}>{demand.status}</td>
-              <td>{demand.motif}</td>
             </tr>
           ))}
         </tbody>

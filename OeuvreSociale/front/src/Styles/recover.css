@@ -1,9 +1,4 @@
-body{
-    background-color:rgba(217, 217, 217, 1);
-    ;
-}
-
-.loginwrap{
+.recoverwrap{
     width:100vw;
     height:100vh;
     background-color:#fff;
@@ -14,11 +9,8 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-weight: 400;
-    size: 28;
-    line-height: 34.18px;
 }
-.wrapper{
+.rewrapper{
     width: 580px;
     height: 400px;
     background:#fff ;
@@ -28,19 +20,18 @@ body{
     box-shadow: -10 10 30px rgba(255, 255, 255, 1);
     grid-template-columns: 40% 60%; 
 }
-.wrapper h1{
+.rewrapper h2{
     font-size: 42px;
-    font-weight: 800;
-    line-height: 77px;
+    font-weight:400;
     align-self: center;
     position: relative;
-    left: 30%;
-    top: 2%;
+    left: 15%;
+    top: 5%;
     color:rgba(0, 25, 79, 1);
-
+    line-height: 54.93px;
 }
   
-.wrapper .blue-section {
+.rewrapper .bluesection {
     border-radius:3px;
     height: 100%;
     position: relative;
@@ -52,12 +43,11 @@ body{
     box-shadow:-10 10 30px rgba(104, 118, 145, 0.7);
 }
 
-.blue-section .logo {
+.bluesection .logo {
     max-width: 100%; 
     max-height: 100%;
 }
-
-.wrapper .input-box{
+.rewrapper .input-box{
     position: relative;
     top:4% ;
     left: 10%;
@@ -85,20 +75,7 @@ body{
 .input-box :-ms-input-placeholder{
     color:#000000;
 }
-.forget-pass a {
-    position: relative;
-    top:20%;
-    left:68%;  
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 18.05px;
-    color: rgba(128, 123, 123, 0.67);
-    text-decoration: none;
-}
-.forget-pass a:hover {
-    text-decoration: underline;
-}
-.wrapper button {
+.rewrapper button {
     position: relative;
     top:4% ;
     left: 10%;
@@ -113,9 +90,9 @@ body{
     border: none;
     outline:none;
     border-radius:5px;
-    font-size: 30px;
+    font-size: 23px;
     color: rgba(255, 255, 255, 1);
     font-weight: 400;
-    line-height: 36.62px;
+    line-height: 27.67px;
     justify-content: center; 
 }

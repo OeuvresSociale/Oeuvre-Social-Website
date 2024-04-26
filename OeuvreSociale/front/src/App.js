@@ -17,9 +17,15 @@ import Login from './Pages/Login.jsx';
 import Profile from './Pages/Profile.jsx';
 import TableDemands from './Pages/TableDemands.jsx';
 import Modefyformule from './Pages/Modefyformule.jsx';
+
+import Recover from './Pages/Recover.jsx';
+import Otp from './Pages/otp.jsx';
+import New from './Pages/New.jsx';
+
 import LoanType from './Pages/LoanType.jsx';
 import LoanForm from './Pages/LoanForm.jsx';
 import ModefyLoan from './Pages/ModefyLoan.jsx';
+
 
 
 
@@ -39,13 +45,20 @@ const App = () => {
  <Route path='/tables/demandetype' element={<Demandetype />} />
  <Route path='/formulaire' element={<Formul />} />
  <Route path='/formulaire/formulairedemande/confirmformulaire' element={<Confirmformul />} />
- <Route path='/login' element={<Login />} />
+
  <Route path='/profile' element={<Profile />} />
  <Route path='/tables' element={<TableDemands />} />
  <Route path='/tables/loantype' element={<LoanType />} />
  <Route path='/formulaire/formulairedemande/modefyformulaire' element={<Modefyformule />} />
+
+ <Route path='/login' element={<Login />} />
+ <Route path='/recover' element={<Recover />} />
+ <Route path='/otp' element={<Otp />} />
+ <Route path='/new' element={<New />} />
+
  <Route path='/formulaire/formulairepret' element={<LoanForm />} />
  <Route path='/formulaire/formulairepret/modifierpret' element={<ModefyLoan />} />
+
 
 </Routes>
 

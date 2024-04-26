@@ -17,15 +17,15 @@ import React,{useState} from "react"
             <form onSubmit={handleSubmit}>
               <h1>Belink</h1>  
                 <div className="input-box">
-                   <input type="email" onChange={(e)=>setEmail(e.target.value)} value={email} placeholder="youremail@esi-sba.dz" id="email" name="email" required></input>
+                   <input type="email" onChange={(e)=>setEmail(e.target.value)} value={email} placeholder="Username" id="email" name="email" required></input>
                  </div>
                  <div className="input-box">
-                    <input type="password" onChange={(e)=>setPass(e.target.value)} value={pass} placeholder="********" id="password" name="password"></input>
+                    <input type="password" onChange={(e)=>setPass(e.target.value)} value={pass} placeholder="Password" id="password" name="password"></input>
                   </div>
                   <div className="forget-pass">
-                    <a href="#"> Forgot password? </a>
+                    <a href="/Recover"> Forgot password? </a>
                   </div>
-                 <button type="submit"> Log In </button> 
+                 <button type="submit"> Login </button> 
             </form>
         </div></div>
     )
