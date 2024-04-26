@@ -2,10 +2,11 @@ import React , {useState} from "react";
 import '../Styles/Modefyloan.css';
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
+import { Link } from "react-router-dom";
 
 
 
-const Loanform =()=>{
+const Modefyloan =()=>{
   
         const [editorState, setEditorState] = useState(() =>
             EditorState.createEmpty()
@@ -41,13 +42,17 @@ return (
             /></div>
   </div>
   </div>
-     
+  </div>
      
  
-  <div className="bi">
-<button className="b11"    >  Annuler </button>
- <button className="b21"     > Supprimer </button>
-</div>
+  <div className="mlbtns">
+  <Link to='/formulaire/formulairepret'> <button className="mlrefuse"   >Annuler</button></Link>
+            <Link to='/formulaire/formulairepret'> <button className="mlaccepte"   >Modifier</button></Link>
+
+
+
+
+           </div> 
 
    
 
@@ -57,7 +62,7 @@ return (
 
 
 
-</div>
+
 
      
 
@@ -71,4 +76,9 @@ return (
 
 
 }
-export default Loanform;
+export default Modefyloan;
+    
+
+
+
+
