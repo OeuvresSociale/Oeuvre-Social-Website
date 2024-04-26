@@ -6,7 +6,7 @@ const controller =require('../controllers/adminController');
 const {uploadImage} =require('../controllers/img');
 const notification =require('../controllers/notification');
 const {Auth} = require('../middleware/auth.js');//middelware for authentication
-const { localVariables } = require ('../middleware/auth.js');
+//const { localVariables } = require ('../middleware/auth.js');
 const {verifyRole} = require ('../middleware/roles.js');
 //END POINTS for admin interface - for now it is for bith admin and employee
 
@@ -23,17 +23,17 @@ router.route('/uploadImage').post(Auth,uploadImage);
 
 
 /**GET METHODS */
-router.route('/user/:idEmployee').get(Auth,controller.getUser);   //get user with idEmployee
-router.route('/generateOTP').get(Auth,controller.generateOTP);  //generate random OTP
+router.route('/user/:idEmployee').get(controller.getUser);   //get user with idEmployee
+router.route('/generateOTP').get(controller.generateOTP);  //generate random OTP
 router.route('/verifyOTP').get(controller.verifyOTP);   //verify generate OTP
 router.route('/createResetSession').get(controller.createResetSession);  //reset all the variables
-router.route('/logout').get(Auth,controller.logout)
+router.route('/logout').get(controller.logout)
 //router.route('/getImage/:id').get(controlle.getImage)
 
 
 /**PUT METHODS */
-router.route('/updateUser').put(Auth,verifyRole('president'),controller.updateUser);   //update user profile
-router.route('/resetPassword').put(Auth,controller.resetPassword);   //use to reset a password
+router.route('/updateUser').put(controller.updateUser);   //update user profile
+router.route('/resetPassword').put(controller.resetPassword);   //use to reset a password
 
 
 
