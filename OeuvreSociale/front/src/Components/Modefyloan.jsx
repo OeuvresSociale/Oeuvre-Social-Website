@@ -30,9 +30,9 @@ return (
 
 <div className="loaninfs">
    <div className="colloaninf">
-    <div className="loaninf"><div className="loan1">Prix maximal du pret :</div><div className="loan2">2000000000</div></div>
-    <div className="loaninf"><div className="loan1">Mois maximal du remboursement :</div><div className="loan2">12</div></div>
-    <div className="loaninf"><div className="loan1">Pourcentage maximal à rembourser chaque mois :</div><div className="loan2">30%</div></div>
+    <div className="loaninf"><div className="loan1">Prix maximal du pret :</div><div className="loan2"><input  type="text"  placeholder="Valeur" />DA</div></div>
+    <div className="loaninf"><div className="loan1">Mois maximal du remboursement :</div><div className="loan2"><input  type="text"  placeholder="Valeur" /></div></div>
+    <div className="loaninf"><div className="loan1">Pourcentage maximal à rembourser chaque mois :</div><div className="loan2"><input  type="text"  placeholder="Valeur" /></div></div>
     
    </div> 
   <div  className="colloaninf2"> 
