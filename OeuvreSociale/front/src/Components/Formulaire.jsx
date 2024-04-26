@@ -7,11 +7,34 @@ import '../Styles/Formulaire.css';
 import { BsSearch } from "react-icons/bs";
 import Deleteuser from "./Deleteuser";
 import Modefyuser from "./Modefyuser";
+import {  TfiAngleRight , TfiAngleLeft} from "react-icons/tfi";
+import { BiError } from "react-icons/bi";
 import axios from 'axios';
 
 const Formulaire = () => {
   const[openDelete,setOpenDelete]=useState(false);
   const[openModefy,setOpenModefy]=useState(false);
+  const[currentPage,setCurrentPage]=useState('');
+
+  const totalPages = 2; // Example total number of pages
+
+    const renderPaginationButtons = () => {
+        const buttons = [];
+        for (let i = 1; i <= totalPages; i++) {
+            buttons.push(
+                <li key={i}>
+                    <button
+                        className={currentPage === i ? 'pagination-button active2' : 'pagination-button'}
+                        onClick={() => setCurrentPage(i)}
+                    >
+                        {i}
+                    </button>
+                </li>
+            );
+        }
+        return buttons;
+    };
+ 
 
   
   const [inputs, setInputs]=useState({
@@ -77,6 +100,7 @@ useEffect(() => {
   }
   catch(error){
   setErr(error.response.data);
+ 
   
   }
   };
@@ -136,31 +160,31 @@ const handleSearch = () => {
            </div>
 <div className="formulaire">
 <div className="f1">
- <div style={{ width: '50%' }} className="f2" ><input type="text" name="familyName" placeholder="Nom" onChange={handleChange} /></div>
- <div style={{ width: '50%' }} className="f2"  ><input type="text"name="firstName" placeholder="Prénom" onChange={handleChange} /></div>
+ <div style={{ width: '50%' }} className="f2" ><input type="text" name="familyName" placeholder="Nom" onChange={handleChange} required/></div>
+ <div style={{ width: '50%' }} className="f2"  ><input type="text"name="firstName" placeholder="Prénom" onChange={handleChange} required/></div>
 
  </div >
  <div className="f1">
- <div style={{ width: '33%'}} className="f2" ><input type="text"  name="idEmployee" placeholder="ID" onChange={handleChange} /></div>
- <div  style={{ width: '33%'}} className="f2"><input   name="monthlySalary" placeholder="Salaire" onChange={handleChange} /></div>
- <div style={{ width: '33%'}} className="f2"><input  style={{ width: '240px' }}  type="date" name="dateStartJob" placeholder="date de recrutement" onChange={handleChange}/></div>
+ <div style={{ width: '33%'}}><div  className="f2" ><input type="text"  name="idEmployee" placeholder="ID" onChange={handleChange}required /></div></div>
+ <div  style={{ width: '33%'}} className="f2"><input   name="monthlySalary" placeholder="Salaire" onChange={handleChange}required /></div>
+ <div style={{ width: '33%'}} className="f2"><input  style={{ width: '240px' }}  type="date" name="dateStartJob" placeholder="date de recrutement" onChange={handleChange} required/></div>
 
  </div>
  <div className="f1">
  
- <div style={{ width: '50%' }}  className="f2"><input type="text"  name="email" placeholder="address email" onChange={handleChange} /></div>
- <div style={{ width: '50%' }} className="f2"><input  type="text"  name="phoneNumber" placeholder="Phone Number" onChange={handleChange} /></div>
+ <div  style={{ width: '50%' }}><div  className="f2"><input type="text"  name="email" placeholder="address email" onChange={handleChange} required/></div> </div>
+<div style={{ width: '50%' }}><div  className="f2"><input  type="text"  name="phoneNumber" placeholder="Phone Number" onChange={handleChange}required /></div></div>
  </div>
  <div className="f1">
  
- <div  style={{ width: '100%' }} className="f2"><input type="text" name="bankAccount" placeholder="compte bancaire" onChange={handleChange} /></div>
+ <div style={{ width: '100%' }}><div   className="f2"><input type="text" name="bankAccount" placeholder="compte bancaire" onChange={handleChange} required/></div></div>
  </div>
  <div className="f1">
  <div style={{ width: '33%' }} className="f2" >
 
  
       <div className="select-container">
-        <select id="gender" name="gender" value={null} onChange={handleGenderChange}>
+        <select id="gender" name="gender" value={null} onChange={handleGenderChange}required>
         <option value="">sexe</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
@@ -170,7 +194,7 @@ const handleSearch = () => {
       </div>
       <div style={{ width: '33%' }} className="f2" >
       <div className="select-container">
-        <select id="sitfam" name="sitfam" value={null} onChange={handlesitfamChange}>
+        <select id="sitfam" name="sitfam" value={null} onChange={handlesitfamChange}required>
         <option value="">situation familialle</option>
           <option value="Marie">Marié</option>
           <option value="celibataire">célibataire</option>
@@ -181,7 +205,7 @@ const handleSearch = () => {
       <div style={{ width: '33%' }} className="f2" >
       
       <div className="select-container">
-        <select id="role" name="role" value={null} onChange={handleroleChange}>
+        <select id="role" name="role" value={null} onChange={handleroleChange}required>
          
           <option value="president">président</option>
           <option value="tresorerie">trésorerie</option>
@@ -213,7 +237,7 @@ const handleSearch = () => {
  <p>
   { //affiche le message d'erreur
 //errorMessage
-}
+}<p className="error-message">< BiError/>Error message</p>
 </p>
 
 </div>
@@ -280,8 +304,32 @@ const handleSearch = () => {
            {openDelete && selectedEmployee && <Deleteuser  closeDelete={setOpenDelete} selectedEmployee={selectedEmployee} />}
 
 
-
-
+           <div className="pagination-container">
+            {/* Other JSX content */}
+            <ul className="pagination">
+                <li>
+                    <button
+                        className="pagination-button1"
+                        onClick={() => setCurrentPage(currentPage - 1)}
+                        disabled={currentPage === 1}
+                    >
+                        <TfiAngleLeft />
+                    </button>
+                </li>
+                {renderPaginationButtons()}
+                <li>
+                    <button
+                        className="pagination-button1"
+                        onClick={() => setCurrentPage(currentPage + 1)}
+                        disabled={currentPage === totalPages}
+                    >
+                      
+                       <TfiAngleRight/>
+                    </button>
+                </li>
+            </ul>
+        </div>
+          
       </div>
 
 
