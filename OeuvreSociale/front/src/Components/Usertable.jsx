@@ -65,6 +65,7 @@ const fetchEmployeeDetails = async (employeeId) => {
             className="inp"
             type="text"
             placeholder="id , employe nom , role"
+            pattern=''
             value={searchValue}
          onChange={handleChange}
           />
