@@ -1,5 +1,7 @@
 import '../Styles/demands.css';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 const demands = [
   {
     demandId: 1,
@@ -50,8 +52,8 @@ function Demands() {
     <div className="demand">
         <h1 className="demands-title"> History </h1>
         <hr className="demands-line" /> 
-      <div className="demand-history">
-      <div className="filter-container">
+        <div className="demwrapper">
+           <div className="filter-container">
            <select value={filterStatus} onChange={handleFilterChange}>
             <option value="">All</option>
             <option value="Accepted" className="green">Accepted</option>
@@ -72,7 +74,8 @@ function Demands() {
         </thead>
         <tbody>
           {filteredDemands.map((demand) => (
-            <tr key={demand.demandId}>
+          <tr key={demand.demandId}>
+
               <td>{demand.demandId}</td>
               <td>{demand.type}</td>
               <td>{demand.date.toLocaleDateString()}</td>

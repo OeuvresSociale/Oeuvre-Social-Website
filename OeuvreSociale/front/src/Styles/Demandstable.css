@@ -69,7 +69,8 @@
 
 }
 .status-accepted {
-  color: #00bb00;
+  color:rgba(110, 218, 101, 1);
+  ;
 }
 
 .status-refused {
@@ -77,7 +78,7 @@
 }
 
 .status-pending {
-  color: #f7f702; 
+  color:rgba(255, 187, 54, 1);
 }
 
 

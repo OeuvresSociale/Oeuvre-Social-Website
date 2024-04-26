@@ -1,90 +1,126 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700 &display=swap');
 .profile-title {
-    position: absolute;
+    position:absolute;
     top: 10%;
-    left:4%;
+    left:10%;
     font-size: 20px; 
+    color:  rgba(0, 25, 79, 1);
   }
-  
-  .profile-line {
-    top:13%;
+.profile-line {
+    top:14%;
     position: absolute;
-    left:17%;
+    left:23%;
     border-bottom: 1px  black; 
     margin: 10px 0; 
     width: 75%;
   }
-.user-profile {
-    margin-top: 10px;
-    position:absolute;
-    top: 20%;
-    left:7%; 
-    width: 85%;
-    display:flex; 
-    align-items:center;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
+.userwrapper{
+  position:absolute;
+  top:20%;
+  left:12%; 
+  width: 85%;
+  height:40%;
+  background-color: #ffffff;
+  align-items:center;
+  padding:10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
   .profile-picture {
     margin-right: 20px;
     flex-shrink: 0; 
   }
-  
   .profile-picture img {
-    position: absolute;
-    width: 20%;
-    height: 200px;
+    position:relative;
+    width: 90%;
+    height:200px;
     top: 8%;
     border-radius: 0%;
-    /* object-fit: cover;  */
   }
   
 
-.profile-info {
-  position: relative;
-
+.left, .right , .Info-left , .Info-right{
+  position:absolute;
+  width:30%;
+  display:flexbox;
+  font-weight: 500;
+  padding:20px;
+}
+.left{
+  left:25%;
+  color:#aaa7a7;
+}.right{
+  left:60%;
+  color:#aaa7a7;
+}
+.Info-left{
+  left:36%;
+  color:#000000;
+}.Info-right{
+  left:76%;
+  color:#000000;
+} 
   
-   
-    width: 100%; 
-   
-  }
-.left,
-.right {
- padding:2px;
-  position: relative;
-    width: 30%;
-    display: flex;
- 
-  }.fir{
-    color:#aaa7a7;
-    font-weight: 500;
-  }
-  
-  .left {
-   left:25%;
-  }.right{
-
-    left:60%;
-   
-  }
-  
-  
-  .profile-info button {
+  .button {
     position:absolute;
-    top:85%;
+    top:58%;
     right:5%;
-    color: #138582; 
-    /* padding: 0px 0px; */
+    color:rgba(19, 133, 130, 1); 
     border: none; 
     background-color:transparent;
     text-decoration: none; 
-    cursor: pointer; 
   }
   
-  .profile-info button:hover,
-  .profile-info button:focus {
+  .button:hover,
+  .button:focus {
     text-decoration: underline; 
   }
-  
-  
+  /* Modal container */
+.modal {
+  position:fixed;
+  width:25%;
+  height:35%;
+  top: 40%;
+  left:55%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+}
+.modal h2 {
+  position:absolute;
+  top:0.2%;
+  left:20%;
+  font-size: 20px;
+  margin-bottom: 10px; 
+  font-weight: 500;
+  line-height: 48.76px;
+}
+
+.modal input {
+  position: absolute;
+  top:40%;
+  left: 15%;
+  width: 70%;
+  padding:10px;
+  margin-bottom: 15px;
+  border: 1px  #ccc;
+  border-radius: 5px;
+  background-color: rgba(153, 153, 153,0.1);
+}
+.modal button {
+  position:relative;
+  top: 80%;
+  left: 45%;
+  padding: 8px 25px;
+  margin-right:10px;
+  border: none;
+  border-radius: 7px;
+}
+.modal button.Enter {
+  background-color:rgba(19, 133, 130, 1);
+  ;
+}
+.modal button:hover {
+  opacity: 0.8;
+}
