@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { IoPersonAddOutline } from "react-icons/io5";
 import { GoTrash } from "react-icons/go";
 import { MdOutlineModeEditOutline } from "react-icons/md";
@@ -7,34 +7,123 @@ import '../Styles/Formulaire.css';
 import { BsSearch } from "react-icons/bs";
 import Deleteuser from "./Deleteuser";
 import Modefyuser from "./Modefyuser";
-
+import axios from 'axios';
 
 const Formulaire = () => {
   const[openDelete,setOpenDelete]=useState(false);
   const[openModefy,setOpenModefy]=useState(false);
 
-
-    const [selectedGender, setSelectedGender] = useState(''); 
-
-    const handleGenderChange = (e) => {
-      setSelectedGender(e.target.value);
-    };
-
-    const [selectedrole, setSelectedrole] = useState(''); 
-
-    const handleroleChange = (e) => {
-      setSelectedrole(e.target.value);
-    };
-
-    const [selectedsitfam, setSelectedsitfam] = useState(''); 
-
-    const handlesitfamChange = (e) => {
-      setSelectedsitfam(e.target.value);
-    };
-
-    
   
+  const [inputs, setInputs]=useState({
+    idEmployee:"",
+    familyName:"",
+    firstName:"",
+    email:"",
+    phoneNumber: "" ,
+    sexe:"",
+    familysitution:"",
+    numberOfChild:"",
+    bankAccount:"",
+    monthlySalary:"",
+    dateStartJob:"",
+    password:"",
+    role:"",
+    
+    
+  });
+  //set erreur 
+  const [err, setErr]=useState(null);
+  // Effect to update inputs state when gender, role, or sitfam change
+  const handleGenderChange = (e) => {
+    setSelectedGender(e.target.value);
+  };
 
+  const [selectedrole, setSelectedrole] = useState(''); 
+
+  const handleroleChange = (e) => {
+    setSelectedrole(e.target.value);
+  };
+
+  const [selectedsitfam, setSelectedsitfam] = useState(''); 
+
+  const handlesitfamChange = (e) => {
+    setSelectedsitfam(e.target.value);
+  };
+  const handleChange = (e) =>{
+    setInputs((prev)=>({...prev,[e.target.name]:e.target.value}));
+  };
+  const [selectedGender, setSelectedGender] = useState(''); 
+
+  
+  /** */
+    // Effect to update inputs state when gender, role, or sitfam change
+useEffect(() => {
+  setInputs(prevInputs => ({
+    ...prevInputs,
+    sexe: selectedGender,
+    role: selectedrole,
+    familysitution: selectedsitfam
+  }));
+}, [selectedGender, selectedrole, selectedsitfam]);
+
+
+  const handleClick = async (e) => {
+    
+   e.preventDefault();//not refreshing the page 
+  try{
+   
+    await axios.post("http://localhost:8000/api/register",inputs);
+    
+  }
+  catch(error){
+  setErr(error.response.data);
+  
+  }
+  };
+  
+  //const errorMessage = error && error.error ? error.error : ""; 
+//for  user table 
+
+const [employees, setEmployees] = useState([]);
+const [error, setError] = useState(null);
+const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [searchValue, setSearchValue] = useState('');
+useEffect(() => {
+  const fetchEmployees = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8000/api/employees?page=1&search=${searchValue}`, { responseType: 'json', responseEncoding: 'utf8' });
+      setEmployees(response.data); // Assuming response.data is an array of employee objects
+    } catch (error) {
+      console.error('Error fetching employees:', error);
+      setError(error);
+      setEmployees([]);
+    }
+  };
+
+  fetchEmployees();
+  
+}, [searchValue]); // Fetch employees whenever searchValue changes
+
+
+// Function to fetch details of a single employee
+const fetchEmployeeDetails = async (employeeId) => {
+try {
+  const response = await axios.get(`http://localhost:8000/api/employees/${employeeId}`
+ // , { responseType: 'json', responseEncoding: 'utf8' }
+  );
+  setSelectedEmployee(response.data); // Assuming data is an object containing details of the selected employee
+} catch (error) {
+  console.error('Error fetching employee details:', error);
+}
+}
+
+
+
+
+const handleSearch = () => {
+  // Do something with the searchValue, for example, you can log it
+  setSearchValue( searchValue);
+};
 
     return (
       <div className="boxf">
@@ -47,24 +136,24 @@ const Formulaire = () => {
            </div>
 <div className="formulaire">
 <div className="f1">
- <div style={{ width: '50%' }} className="f2" ><input type="text"  placeholder="Nom" /></div>
- <div style={{ width: '50%' }} className="f2"  ><input type="text"placeholder="Prénom" /></div>
+ <div style={{ width: '50%' }} className="f2" ><input type="text" name="familyName" placeholder="Nom" onChange={handleChange} /></div>
+ <div style={{ width: '50%' }} className="f2"  ><input type="text"name="firstName" placeholder="Prénom" onChange={handleChange} /></div>
 
  </div >
  <div className="f1">
- <div style={{ width: '33%'}} className="f2" ><input type="text"  placeholder="ID" /></div>
- <div  style={{ width: '33%'}} className="f2"><input  placeholder="Salaire" /></div>
- <div style={{ width: '33%'}} className="f2"><input  style={{ width: '240px' }}  type="date" placeholder="date de recrutement"/></div>
+ <div style={{ width: '33%'}} className="f2" ><input type="text"  name="idEmployee" placeholder="ID" onChange={handleChange} /></div>
+ <div  style={{ width: '33%'}} className="f2"><input   name="monthlySalary" placeholder="Salaire" onChange={handleChange} /></div>
+ <div style={{ width: '33%'}} className="f2"><input  style={{ width: '240px' }}  type="date" name="dateStartJob" placeholder="date de recrutement" onChange={handleChange}/></div>
 
  </div>
  <div className="f1">
  
- <div style={{ width: '50%' }}  className="f2"><input type="text"  placeholder="address email" /></div>
- <div style={{ width: '50%' }} className="f2"><input  type="text"  placeholder="date recrutement" /></div>
+ <div style={{ width: '50%' }}  className="f2"><input type="text"  name="email" placeholder="address email" onChange={handleChange} /></div>
+ <div style={{ width: '50%' }} className="f2"><input  type="text"  name="phoneNumber" placeholder="Phone Number" onChange={handleChange} /></div>
  </div>
  <div className="f1">
  
- <div  style={{ width: '100%' }} className="f2"><input type="text" placeholder="compte bancaire" /></div>
+ <div  style={{ width: '100%' }} className="f2"><input type="text" name="bankAccount" placeholder="compte bancaire" onChange={handleChange} /></div>
  </div>
  <div className="f1">
  <div style={{ width: '33%' }} className="f2" >
@@ -72,9 +161,9 @@ const Formulaire = () => {
  
       <div className="select-container">
         <select id="gender" name="gender" value={null} onChange={handleGenderChange}>
-          <option value="">sexe</option>
-          <option value="male">homme</option>
-          <option value="female">Femme</option>
+        <option value="">sexe</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
          
         </select>
        </div> 
@@ -82,9 +171,9 @@ const Formulaire = () => {
       <div style={{ width: '33%' }} className="f2" >
       <div className="select-container">
         <select id="sitfam" name="sitfam" value={null} onChange={handlesitfamChange}>
-          <option value="">situation familialle</option>
-          <option value="Marié">Marié</option>
-          <option value="célibataire">célibataire</option>
+        <option value="">situation familialle</option>
+          <option value="Marie">Marié</option>
+          <option value="celibataire">célibataire</option>
          
         </select>
        </div> 
@@ -93,11 +182,11 @@ const Formulaire = () => {
       
       <div className="select-container">
         <select id="role" name="role" value={null} onChange={handleroleChange}>
-          <option value="">role</option>
-          <option value="président">président</option>
-          <option value="trésorerie">trésorerie</option>
+         
+          <option value="president">président</option>
+          <option value="tresorerie">trésorerie</option>
           <option value="membre">membre</option>
-          <option value="employé">employé</option>
+          <option value="employe">employé</option>
          
         </select>
         </div> 
@@ -110,16 +199,22 @@ const Formulaire = () => {
     
 
  </div>
- 
+
  <div className="f1">
- {selectedsitfam === 'Marié' &&(
- <div style={{ width: '200px',  marginLeft: '35%' }}className="f2"><input type="text"  placeholder="nombre d'enfants" /></div> )}
+  
+ {selectedsitfam === 'Marie' &&(
+ <div style={{ width: '200px',  marginLeft: '35%' }}className="f2"><input type="text"  name="numberOfChild" placeholder="nombre d'enfants" onChange={handleChange} /></div> )}
+
 <div className="btns">
     <button className="cancel">Annuler</button> 
-     <button className="add">Ajouter</button>
+     <button className="add" onClick={handleClick}>Ajouter</button>
 </div>
  </div>
-      
+ <p>
+  { //affiche le message d'erreur
+//errorMessage
+}
+</p>
 
 </div>
 
@@ -136,22 +231,13 @@ const Formulaire = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-           <div className="tablef">
+ 
+<div className="tableu">
            <table>
       <thead >
         <tr>
           <th>ID</th>
-          <th>Nom</th>
+          <th>Nom de l'employé</th>
           <th>Email</th>
           <th>Salaire</th>
           <th>Rôle</th>
@@ -160,19 +246,24 @@ const Formulaire = () => {
         </tr>
       </thead>
       <tbody>
-        
-          <tr>
-            <td>123456789</td>
-            <td>Dahoun Manel</td>
-            <td>dahoun@esi-sba.dz</td>
-            <td>40000</td>
-            <td>admin</td>
-            <td className="lastcolumn"><GoTrash   onClick={ () =>{setOpenDelete(true);}}  />
-            <MdOutlineModeEditOutline  onClick={ () =>{setOpenModefy(true);}} /></td>
-          </tr>
-
-        
        
+         
+
+      {employees.map(employee => (
+            <tr key={employee._id}>
+              <td>{employee.idEmployee}</td>
+              <td>{`${employee.familyName} ${employee.firstName}`}</td>
+              <td>{employee.email}</td>
+              <td>{employee.monthlySalary}</td>
+              <td>{employee.role}</td>
+              <td className="lastcolumn">
+                <GoTrash 
+                onClick={ async() => {setOpenDelete(true); await fetchEmployeeDetails(employee._id);}
+                } />
+                <MdOutlineModeEditOutline onClick={async() =>  {setOpenModefy(true); await fetchEmployeeDetails(employee._id);}} />
+              </td>
+            </tr>
+       ))}
       </tbody>
     </table>
 
@@ -182,12 +273,18 @@ const Formulaire = () => {
 
 
            </div>
+           {console.log(selectedEmployee)}
+           {openModefy && selectedEmployee && <Modefyuser closeModefy={setOpenModefy} selectedEmployee={selectedEmployee} />}
+      
 
-           {openModefy && <Modefyuser closeModefy={setOpenModefy } />}
-           {openDelete && <Deleteuser  closeDelete={setOpenDelete} />}
+           {openDelete && selectedEmployee && <Deleteuser  closeDelete={setOpenDelete} selectedEmployee={selectedEmployee} />}
+
+
 
 
       </div>
+
+
         );
     };
     
