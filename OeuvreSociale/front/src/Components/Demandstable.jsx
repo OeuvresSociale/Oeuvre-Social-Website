@@ -1,5 +1,45 @@
 import '../Styles/Demandstable.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'
+
+
+const RequestTable = () => {
+  const [requests, setRequests] = useState([]);
+  const [error, setError] = useState(null);
+  const [selectedRequest, setSelectedRequest] = useState(null);
+  const [searchValue, setSearchValue] = useState('');
+
+  useEffect(() => {
+    const fetchRequests = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/Requests`, { responseType: 'json', responseEncoding: 'utf8' });
+        setRequests(response.data); // Assuming response.data is an array of employee objects
+      } catch (error) {
+        console.error('Error fetching requests:', error);
+        setError(error);
+        setRequests([]);
+      }
+    };
+
+    fetchRequests();
+  }, [searchValue]); // Fetch employees whenever searchValue changes
+
+  // Function to fetch details of a single employee
+  const fetchRequestDetails = async (_id) => {
+    try {
+      const response = await axios.get(`http://localhost:8000/api/Request/${_id}`);
+      setSelectedRequest(response.data); // Assuming data is an object containing details of the selected employee
+    } catch (error) {
+      console.error('Error fetching request details:', error);
+    }
+  };
+
+  // Render the table and other UI elements here
+};
+
+
+
+/////////////////////////////////////////////////////////////////////////
 const demands = [
   {
     demandId: 1,
@@ -46,6 +86,7 @@ function Demands() {
         return ''; 
     }
   }
+/////////////////////////////////////////////////////////////////////////  
   return (
     <div className='dtwrapper'>
   <div className="subbox">
@@ -75,13 +116,13 @@ function Demands() {
           </tr>
         </thead>
         <tbody>
-          {filteredDemands.map((demand) => (
-            <tr key={demand.demandId}>
-              <td>{demand.demandId}</td>
-              <td>{demand.Employee}</td>
-              <td>{demand.type}</td>
-              <td>{demand.date.toLocaleDateString()}</td>
-              <td  className={getStatusColor(demand.status)}>{demand.status}</td>
+          {filteredDemands.map((request) => (
+            <tr key={request._Id}>
+              <td>{request._id}</td>
+              <td>{request.employeeId}</td>
+              <td>{request.requestTypeId}</td>
+              <td>{request.creationDate.toLocaleDateString()}</td>
+              <td  className={getStatusColor(request.state)}>{request.state}</td>
             </tr>
           ))}
         </tbody>

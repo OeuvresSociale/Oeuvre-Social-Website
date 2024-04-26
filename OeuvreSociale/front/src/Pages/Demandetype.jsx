@@ -13,7 +13,7 @@ const Demandetype = () => {
       <div className="contentdem">
         <Header  />
        <Demandetypes  />
-      </div>
+      </div> 
     </div>
  </div> );
 };

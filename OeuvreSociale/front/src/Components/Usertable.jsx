@@ -8,7 +8,7 @@ import axios from 'axios';
 import { BsSearch } from "react-icons/bs";
 import Deleteuser from "./Deleteuser";
 import Modefyuser from "./Modefyuser";
-
+ //useEffect and axios
 
 const Usertable = () => {
   const[openDelete,setOpenDelete]=useState(false);
