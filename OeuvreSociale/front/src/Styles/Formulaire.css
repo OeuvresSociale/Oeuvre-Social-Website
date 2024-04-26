@@ -82,7 +82,7 @@ margin: 23px 0;
 
  margin: 0 2%;
   
-  height:465px;
+  height:420px;
   padding: 40px 50px ;
   border-width: 2px;
  border-style: solid;
@@ -259,24 +259,14 @@ position: absolute;
   font-size: 15px;
   
 }.error-message {
-  width:250px;
-  border-color: red;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 2px;
-  outline:none;
-  background-color: #f4c7c7;
- height: 48px;
+ 
+ 
+
   color: red;
-  font-size: 18px;
+  font-size: 14px;
   margin-top: 2px;
-  display: flex;
-  gap:20px;
-  justify-content: left;
-  align-items: center;
-  padding-left: 20px;
-}.error-message svg{
-  font-size: 28px;
+  
+  
 }
 
 
@@ -287,7 +277,7 @@ position: absolute;
   list-style-type: none;
   padding: 0;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 20%;
   margin-left: 80%;
  
 }

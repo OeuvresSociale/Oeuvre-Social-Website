@@ -150,6 +150,16 @@
   
     background-color: transparent;
   
+  }.pagination-container2 {
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    padding: 0;
+    justify-content: center;
+    margin-top: 34%;
+    margin-left: 80%;
+   
   }
   
   
