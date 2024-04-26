@@ -44,13 +44,13 @@ async function Auth(req, res, next) {
 }
 
 
-// function localVariables(req, res, next){
-//     req.app.locals = {
-//         OTP : null,
-//         resetSession : false
-//     }
-//     next()
-// }
+ function localVariables(req, res, next){
+     req.app.locals = {
+         OTP : null,
+         resetSession : false
+     }
+    next()
+ }
 
 
 
