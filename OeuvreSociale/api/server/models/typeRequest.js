@@ -9,7 +9,7 @@ const typeRequestSchema = new mongoose.Schema({
         //unique: true
     },
     desc: {
-        type: String,
+        type: String, 
         required: false, 
     },
     docs: {

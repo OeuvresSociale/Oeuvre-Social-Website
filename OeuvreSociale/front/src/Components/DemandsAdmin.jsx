@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 const demands = [
   {
     demandId: 1,
-    type: 'Mariage',
+    type: 'Mariage', 
     date: new Date(2024, 2, 20),
     status: 'Accepted',
     motif: 'Needed for application',
