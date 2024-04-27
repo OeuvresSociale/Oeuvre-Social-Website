@@ -61,10 +61,10 @@ const limiter = rateLimit({
 
 
 /**api routes*/
-app.use('/api',limiter,router);
-app.use('/api',limiter,employeeRouter);
-app.use('/api',limiter,typeRequestRouter);
-app.use('/api',limiter,requestRouter);
+app.use('/api',router);
+app.use('/api',employeeRouter);
+app.use('/api',typeRequestRouter);
+app.use('/api',requestRouter);
 
 
 

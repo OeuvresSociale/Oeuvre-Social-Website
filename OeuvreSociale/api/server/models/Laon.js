@@ -18,7 +18,7 @@ const laonSchema = new schema({
     },
     reimburse:{
         type:Number,
-        required:true
+       
     },
     isDone:{
         type:Boolean,
@@ -32,7 +32,7 @@ const laonSchema = new schema({
     },
     requestTypeId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'typeRequest',
+        ref: 'typeloan',
         required: true
     },
     creationDate: {

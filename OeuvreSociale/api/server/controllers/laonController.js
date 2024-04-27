@@ -120,7 +120,7 @@ const suiviLaon = async (req, res) => {
  */ 
     const createLaonRequest = async (req, res) => {
         try {
-            const { employeeId, amount, duration } = req.body;   //duration by default 12 months
+            const { employeeId, amount, duration ,purpose} = req.body;   //duration by default 12 months
           
             // Retrieve user details from the database
             const user = await Employee.findById(employeeId);
