@@ -69,12 +69,14 @@ function Demands() {
           </tr>
         </thead>
         <tbody>
+
           {requests.map((demand) => (
           <tr key={demand._Id}>
               <td>1</td>
               <td>{demand.requestTypeId.title}</td>
               <td>{demand.creationDate}</td>
               <td  className={getStatusColor(demand.state)}>{demand.state}</td>
+
               <td>{demand.motif}</td>
             </tr>
           ))}

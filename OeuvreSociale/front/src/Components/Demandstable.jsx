@@ -18,8 +18,10 @@ function Demands() {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
+
         const response = await axios.get(`http://localhost:8000/api/Requests`, { responseType: 'json', responseEncoding: 'utf8' });
         setRequests(response.data); 
+
       } catch (error) {
         console.error('Error fetching requests:', error);
         setError(error);
