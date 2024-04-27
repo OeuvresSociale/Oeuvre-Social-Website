@@ -39,7 +39,7 @@ const userSchema = new schema ({
     },
     sexe:{
         type:String,
-        required:true,
+        required:true, 
         
     },
     familysitution:{

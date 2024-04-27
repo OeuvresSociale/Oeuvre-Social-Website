@@ -18,7 +18,7 @@ const laonSchema = new schema({
     },
     reimburse:{
         type:Number,
-        required:true
+        required:false
     },
     isDone:{
         type:Boolean,

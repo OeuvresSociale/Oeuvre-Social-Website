@@ -186,7 +186,7 @@ const fetchEmployeeDetails = async (employeeId) => {
 
 
         );
-    };
+      };
     
     export default Usertable ;
       

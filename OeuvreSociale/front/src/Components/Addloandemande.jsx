@@ -1,7 +1,6 @@
 import React , {useState} from "react";
 import '../Styles/Addloandemande.css';
 
-
 const Addloandemande =()=>{
 
     const [text, setText] = useState(''); // State to store textarea content
@@ -9,8 +8,6 @@ const Addloandemande =()=>{
     const handleInputChange = (event) => {
       setText(event.target.value);
     };
-
-    
 
 return (
     <div className="addloandemande">
