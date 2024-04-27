@@ -12,7 +12,7 @@ const RequestTable = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/Requests`, { responseType: 'json', responseEncoding: 'utf8' });
+        const response = await axios.get(`localhost:8000/api/Requests`, { responseType: 'json', responseEncoding: 'utf8' });
         setRequests(response.data); // Assuming response.data is an array of employee objects
       } catch (error) {
         console.error('Error fetching requests:', error);
