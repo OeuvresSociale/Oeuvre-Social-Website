@@ -93,7 +93,7 @@ function Demands() {
           </tr> 
         </thead>
         <tbody>
-          {requests.map((request) => (
+          {filteredDemands.map((request) => (
             <tr key={request._Id}>
               <td>{request._id}</td>
               <td>{request.employeeId}</td>
