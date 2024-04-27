@@ -25,6 +25,7 @@ import New from './Pages/New.jsx';
 import LoanType from './Pages/LoanType.jsx';
 import LoanForm from './Pages/LoanForm.jsx';
 import ModefyLoan from './Pages/ModefyLoan.jsx';
+import Addloandemande from './Components/Addloandemande.jsx';
 
 
 
@@ -58,6 +59,7 @@ const App = () => {
 
  <Route path='/formulaire/formulairepret' element={<LoanForm />} />
  <Route path='/formulaire/formulairepret/modifierpret' element={<ModefyLoan />} />
+ <Route path='/formulairetable/ajouterpret' element={<Addloandemande/>} />
 
 
 </Routes>

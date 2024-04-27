@@ -1,0 +1,124 @@
+.addloandemande{
+    width:100vw;
+height:100vh;
+background-color: rgba(0,0,0,0.5);
+position:fixed;
+top:0;
+left:0;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+   z-index: 1;
+
+}.addloandemwrapp{
+    background-color: #fff;
+border-radius:7px ;
+width: 43%;
+height: 90%;
+display: flex;
+flex-direction: column;
+
+
+position: relative;
+
+
+}.firstbleu{
+    background-color: #00194F;
+    height: 19%;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    gap:20px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+.firstbleu1{
+    font-size: 30px;
+    font-weight: 500;
+    align-items: center;
+}
+.firstbleu2{
+    font-size: 15px;
+    
+}.firstwhite{
+    
+
+   
+    display: flex;
+    flex-direction: column;
+   
+    justify-content: center;
+   padding: 30px;
+    gap:15px;
+    color: #000;
+    font-size: 17px;
+    font-weight: 500;
+
+
+}.firstwhite input{
+    width: 90%;
+}.restextarea{
+    background-color: #fff;
+     border: none; 
+     width: 100%;
+    height:50%;
+    
+    /* height:167px;  */
+    
+   
+    
+    padding: 25px;
+    outline: none;
+    
+    resize: none; /* Allow both vertical and horizontal resizing */
+      overflow: auto;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      
+    
+}.loan3{
+    border-color: #999999;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 2px;
+    outline:none;
+   
+   height: 120px;
+   display: flex;
+    
+   
+    justify-content: left;
+    align-items: center;
+   
+
+
+
+}.loan4{
+    border-color: #999999;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 2px;
+    outline:none;
+   
+   height: 47px;
+   display: flex;
+    
+   
+    justify-content: left;
+    align-items: center;
+    padding-left: 4%;
+  
+    
+}.loan4 input{
+    outline: none;
+    border: none;
+   
+    
+}.aldb{
+    display: flex;
+    gap: 3%;
+    margin-left: 65%;
+
+}
