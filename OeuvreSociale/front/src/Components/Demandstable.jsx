@@ -40,36 +40,13 @@ const RequestTable = () => {
 
 
 /////////////////////////////////////////////////////////////////////////
-const demands = [
-  {
-    demandId: 1,
-    Employee:"mohammed",
-    type: 'Mariage',
-    date: new Date(2024, 2, 20),
-    status: 'Accepted',
-  },
-  {
-    demandId: 2,
-    type: 'Advance',
-    Employee:"mohammed",
-    date: new Date(2024, 2, 15),
-    status: 'Refused',
-  },
-  {
-    demandId: 3,
-    Employee:"mohammed",
-    type: 'Advance',
-    date: new Date(2024, 2, 18),
-    status: 'Pending',
-  },
-];
 
 function Demands() {
   const [filterStatus, setFilterStatus] = useState(null);
 
-  const filteredDemands = filterStatus
-    ? demands.filter((demand) => demand.status === filterStatus)
-    : demands;
+  // const filteredDemands = filterStatus
+  //   ? requests.filter((demand) => demand.status === filterStatus)
+  //   : requests;
 
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);
@@ -113,15 +90,15 @@ function Demands() {
             <th>Demande type</th>
             <th>Date</th>
             <th>Status</th>
-          </tr>
+          </tr> 
         </thead>
         <tbody>
-          {filteredDemands.map((request) => (
+          {requests.map((request) => (
             <tr key={request._Id}>
               <td>{request._id}</td>
               <td>{request.employeeId}</td>
               <td>{request.requestTypeId}</td>
-              <td>{request.creationDate.toLocaleDateString()}</td>
+              <td>{request.creationDate}</td>
               <td  className={getStatusColor(request.state)}>{request.state}</td>
             </tr>
           ))}

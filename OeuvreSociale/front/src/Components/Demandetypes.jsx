@@ -18,7 +18,7 @@ const Demandetypes =()=>{
    const handleRedClick=()=>{
     setbordercolor('red');
     setshowbuttons(false);
-    setpadding(120);
+    setpadding(120); 
   
    };
    const handleGreenClick=()=>{

@@ -67,42 +67,17 @@ app.use('/api',limiter,typeRequestRouter);
 app.use('/api',limiter,requestRouter);
 
 
-//function insertuserData(){
-   // user.insertMany([
-   // {
-      //  idEmployee:"1",
-       // familyName:"meflah",
-       // firstName:"yousra",
-       // password:"esi",
-       // email:"y.meflah@esi.sba.dz",
-       // phoneNumber:"1234",
-       // sexe:"f",
-       // isMarried:false,
-        //numberOfChild
-       // bankAccount:"1234",
-       // monthlySalary:12,
-       // dateStartJob
-        //isCommit:true
-       // role
-       // profilePicture:
-   // },
-   
-   // ])
-    
 
-//} 
+// Assume 'YourModel' is the Mongoose model representing your collection
 
-
-//} 
-
-//insertuserData();
-
-
-
-
-
-
-
+// Yourmodel.deleteMany()
+//   .then((result) => {
+//     console.log(`${result.deletedCount} documents deleted successfully.`);
+//   })
+//   .catch((error) => {
+//     console.error('Error deleting documents:', error);
+//   });
+ 
 
 
 

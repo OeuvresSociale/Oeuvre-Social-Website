@@ -9,7 +9,7 @@ const laonSchema = new schema({
     },
     amount:{
         type:Number,
-        required:true
+        required:true 
     },
     duration:{
         type:Number,
