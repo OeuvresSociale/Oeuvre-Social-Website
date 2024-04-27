@@ -53,10 +53,10 @@ app.use(helmet()); /**Use the helmet middleware to set secure HTTP headers,
 
 
 // Define the rate limiter
-const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes: This value is used to define the duration of the time window during which the rate limit is enforced
-    max: 100, // limit each IP to 100 requests per window
-  });
+// const limiter = rateLimit({
+//     windowMs: 15 * 60 * 1000, // 15 minutes: This value is used to define the duration of the time window during which the rate limit is enforced
+//     max: 100, // limit each IP to 100 requests per window
+//   });
   
 
 

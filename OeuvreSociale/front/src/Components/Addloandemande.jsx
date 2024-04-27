@@ -44,6 +44,7 @@ const Addloandemande = () => {
                 requestTypeId:loanType._id// to get loan id 
             });
 
+
             const data = response.data;
             setMessage(data.message);
             setMaxAllowedRepayment(data.maxAllowedRepaymentPerMonth);

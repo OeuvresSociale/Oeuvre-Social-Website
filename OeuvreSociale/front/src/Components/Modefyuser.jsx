@@ -16,7 +16,7 @@ const Modefyuser   = ({ closeModefy, selectedEmployee }) => {
       sexe: '',
       phoneNumber: "" ,
       familysitution:"",
-      bankAccount:"",
+      bankAccount:"", 
       dateStartJob:"",
       numberOfChildren: ''
   });
