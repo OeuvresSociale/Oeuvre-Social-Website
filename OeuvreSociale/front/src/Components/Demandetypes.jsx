@@ -27,7 +27,7 @@ const Demandetypes =()=>{
     setpadding(120);
    };
 
-   
+    
    return(
 <div style={{ borderColor: bordercolor, borderStyle: 'solid',borderWidth:'1px' ,paddingBottom:padding}} className= 'demandetype'>
        <div className="return">

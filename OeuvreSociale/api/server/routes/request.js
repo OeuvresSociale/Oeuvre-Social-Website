@@ -9,10 +9,11 @@ const router=express.Router();
 // type request laon
 router.get("/Requests",getallRequests);//
 router.get("/Request/:id",getRequest);//
-router.get("/MyRequests/:employeeId",Auth,getMyRequests);//
+router.get("/MyRequests/:employeeId",getMyRequests);//
 router.post("/Requests",upload().array('files', 10),createRequest);
-router.put("/Requests/:id",Auth,suiviRequest);//
+router.put("/Requests/:id",suiviRequest);//
 
 //Loan request routes
 router.post('/LaonRequest',createLaonRequest);
+
 module.exports=router;

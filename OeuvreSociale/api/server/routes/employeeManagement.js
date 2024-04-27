@@ -20,5 +20,4 @@ router.delete("/employee/:id",deleteEmployee);
 //router.put("/employee/:id",Auth,verifyRole('president'),updateEmpolyee);
 //router.delete("/employee/:id",Auth,verifyRole('president'),deleteEmpolyee);
 
-
 module.exports=router;
