@@ -78,7 +78,7 @@ function Demands() {
 
               <td>{demand.demandId}</td>
               <td>{demand.type}</td>
-              <td>{demand.date.toLocaleDateString()}</td>
+              <td>{demand.CreationDate}</td>
               <td  className={getStatusColor(demand.status)}>{demand.status}</td>
               <td>{demand.motif}</td>
             </tr>

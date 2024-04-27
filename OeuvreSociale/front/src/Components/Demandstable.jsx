@@ -12,7 +12,7 @@ const RequestTable = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/Requests`, { responseType: 'json', responseEncoding: 'utf8' });
+        const response = await axios.get(`localhost:8000/api/Requests`, { responseType: 'json', responseEncoding: 'utf8' });
         setRequests(response.data); // Assuming response.data is an array of employee objects
       } catch (error) {
         console.error('Error fetching requests:', error);
@@ -121,7 +121,7 @@ function Demands() {
               <td>{request._id}</td>
               <td>{request.employeeId}</td>
               <td>{request.requestTypeId}</td>
-              <td>{request.creationDate.toLocaleDateString()}</td>
+              <td>{request.creationDate}</td>
               <td  className={getStatusColor(request.state)}>{request.state}</td>
             </tr>
           ))}
