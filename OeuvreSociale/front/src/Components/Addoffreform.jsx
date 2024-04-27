@@ -1,8 +1,9 @@
-import React , {useState} from "react";
+import React , {useState ,  useRef }from "react";
 import '../Styles/Addoffreform.css';
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import { Link } from "react-router-dom";
+import { MdOutlineImage } from "react-icons/md";
 
 
 
@@ -16,6 +17,37 @@ const Addoffreform =()=>{
         const handleEditorChange = (newEditorState) => {
             setEditorState(newEditorState);
         };
+        const fileInputRef = useRef(null);
+  const [image, setImage] = useState(null);
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    handleImageUpload(file);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    handleImageUpload(file);
+  };
+
+  const handleImageUpload = (file) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setImage(reader.result);
+    };
+
+    reader.readAsDataURL(file);
+  };
 
 return (
     
@@ -28,7 +60,46 @@ return (
          </div> 
 
 <div className="addoffrewrapp2"> 
-<div className="ddimg"> Télécharger un image :</div>
+<div className="ddimg"> <div>Télécharger un image :</div>
+
+
+      <div
+        className="drop-zone"
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+      >
+        {image ? (
+          <img src={image} alt="Dropped" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        ) : (
+            <button onClick={handleButtonClick}
+            style={{
+              height:'100%',
+              width:'100%',
+              backgroundColor: 'rgba(0,0,0,0.2)', // Blue background color
+              borderRadius: '7px',
+              fontSize :'100px',
+              color:'#999999',// Rounded corners
+              border: 'none', // No border
+              cursor: 'pointer', // Pointer cursor on hover
+              marginTop: '10px', // Space from drop zone
+            }}><MdOutlineImage /></button>
+        )}
+      </div>
+      
+      <input
+        type="file"
+        ref={fileInputRef}
+        accept="image/*"
+        onChange={handleFileChange}
+        style={{ display: 'none' }}
+      />
+    
+      
+   
+
+
+
+</div>
 
 <div className="loaninfst">
    <div className="colloaninft">
@@ -59,6 +130,11 @@ return (
 }
 export default Addoffreform;
     
+
+
+
+
+
 
 
 
