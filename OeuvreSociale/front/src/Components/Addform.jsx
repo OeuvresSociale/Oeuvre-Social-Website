@@ -45,7 +45,7 @@ const Addform = () => {
       };
 
       fetchFormularies();
-  }, []);
+  }, [formularies]);
 
   const toggleExpand = (id) => {
     setFormularies((prevFormularies) =>
