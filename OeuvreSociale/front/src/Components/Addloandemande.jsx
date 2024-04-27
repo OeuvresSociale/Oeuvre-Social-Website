@@ -41,7 +41,7 @@ const Addloandemande = () => {
                 amount: formData.amount,
                 duration: formData.duration,
                 purpose: formData.purpose,
-                requestTypeId:requestTypeId
+                requestTypeId:loanType._id// to get loan id 
             });
 
             const data = response.data;
