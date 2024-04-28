@@ -8,6 +8,8 @@ import { BsSearch } from "react-icons/bs";
 import Deleteuser from "./Deleteuser";
 import Modefyuser from "./Modefyuser";
 import {  TfiAngleRight , TfiAngleLeft} from "react-icons/tfi";
+import { BiError } from "react-icons/bi";
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import axios from 'axios';
 
 const Formulaire = () => {
@@ -327,6 +329,9 @@ const handleSearch = () => {
                 </li>
             </ul>
         </div>
+         <div className="errorm"> <div className="error1" > <BiError />message d'erreur</div>
+     <div className="error2" > <IoMdCheckmarkCircleOutline />message d'erreur</div></div> 
+          
           
       </div>
 
