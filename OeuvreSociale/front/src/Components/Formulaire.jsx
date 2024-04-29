@@ -178,7 +178,9 @@ const handleSearch = () => {
  </div>
  <div className="f1">
  
+
  <div style={{ width: '100%' }}><div   className="f2"><input type="text" name="bankAccount" placeholder="compte bancaire" onChange={handleChange} required/></div></div>
+
  </div>
  <div className="f1">
  <div style={{ width: '33%' }} className="f2" >
@@ -330,8 +332,10 @@ const handleSearch = () => {
             </ul>
         </div>
 
+
        <div className="errorm"> <div className="error1" > <BiError />message d'erreur</div>
      <div className="error2" > <IoMdCheckmarkCircleOutline />message d'erreur</div></div> 
+
           
       </div>
 
