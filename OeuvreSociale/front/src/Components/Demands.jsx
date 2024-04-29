@@ -1,37 +1,41 @@
 import '../Styles/demands.css';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState , useEffect } from 'react';
+import axios from 'axios';
+import { Link ,useParams} from 'react-router-dom';
 
-const demands = [
-  {
-    demandId: 1,
-    type: 'Mariage',
-    date: new Date(2024, 2, 20), 
-    status: 'Accepted',
-    motif: 'Needed for application',
-  },
-  {
-    demandId: 2,
-    type: 'Advance',
-    date: new Date(2024, 2, 15),
-    status: 'Refused',
-    motif: 'Insufficient reason',
-  },
-  {
-    demandId: 3,
-    type: 'Advance',
-    date: new Date(2024, 2, 18),
-    status: 'Pending',
-    motif: 'Waiting for approval',
-  },
-];
+// table des demnade d'nu employee en his profile
 
 function Demands() {
-  const [filterStatus, setFilterStatus] = useState(null);
+  const [filterStatus, setFilterStatus] = useState(null); 
+  const [requests, setRequests] = useState([]);
+  const [error, setError] = useState(null);
 
+  //const {id}=useParams();
+ 
+
+  useEffect(() => {
+    
+    const fetchRequests = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/MyRequests/`, { responseType: 'json', responseEncoding: 'utf8' });
+        setRequests(response.data); 
+      } catch (error) {
+        console.error('Error fetching requests:', error);
+        setError(error);
+        setRequests([]);
+      } 
+    };
+
+    fetchRequests(); 
+   
+   
+  },[]); 
+
+  console.log("requests",requests);
   const filteredDemands = filterStatus
-    ? demands.filter((demand) => demand.status === filterStatus)
-    : demands;
+
+    ? requests.filter((demand) => demand.state === filterStatus)
+    : requests;
 
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);
@@ -73,13 +77,12 @@ function Demands() {
           </tr>
         </thead>
         <tbody>
-          {filteredDemands.map((demand) => (
-          <tr key={demand.demandId}>
-
-              <td>{demand.demandId}</td>
-              <td>{demand.type}</td>
-              <td>{demand.date.toLocaleDateString()}</td>
-              <td  className={getStatusColor(demand.status)}>{demand.status}</td>
+          {requests.map((demand) => (
+          <tr key={demand._id}>
+              <td>1</td>
+              <td>{demand.requestTypeId.title}</td>
+              <td>{demand.creationDate}</td>
+              <td  className={getStatusColor(demand.state)}>{demand.state}</td>
               <td>{demand.motif}</td>
             </tr>
           ))}

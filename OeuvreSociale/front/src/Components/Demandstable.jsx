@@ -1,19 +1,25 @@
 import '../Styles/Demandstable.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
+import { MdOutlineModeEditOutline } from "react-icons/md";
+import Demandetypes from './Demandetypes';
+import {Link} from 'react-router-dom';
+// les tables de demandes partie admin
+  
+ 
 
-
-const RequestTable = () => {
+function Demands() {
+  const[openModefy,setOpenModefy]=useState(false);
   const [requests, setRequests] = useState([]);
   const [error, setError] = useState(null);
-  const [selectedRequest, setSelectedRequest] = useState(null);
   const [searchValue, setSearchValue] = useState('');
+  const [selectedRequest, setSelectedRequest] = useState(null);
 
   useEffect(() => {
     const fetchRequests = async () => {
       try {
         const response = await axios.get(`http://localhost:8000/api/Requests`, { responseType: 'json', responseEncoding: 'utf8' });
-        setRequests(response.data); // Assuming response.data is an array of employee objects
+        setRequests(response.data); 
       } catch (error) {
         console.error('Error fetching requests:', error);
         setError(error);
@@ -22,60 +28,21 @@ const RequestTable = () => {
     };
 
     fetchRequests();
-  }, [searchValue]); // Fetch employees whenever searchValue changes
+  },[]); // Fetch employees whenever searchValue changes
 
-  // Function to fetch details of a single employee
-  const fetchRequestDetails = async (_id) => {
-    try {
-      const response = await axios.get(`http://localhost:8000/api/Request/${_id}`);
-      setSelectedRequest(response.data); // Assuming data is an object containing details of the selected employee
-    } catch (error) {
-      console.error('Error fetching request details:', error);
-    }
-  };
+console.log("data :",requests);
 
-  // Render the table and other UI elements here
-};
-
-
-
-/////////////////////////////////////////////////////////////////////////
-const demands = [
-  {
-    demandId: 1,
-    Employee:"mohammed",
-    type: 'Mariage',
-    date: new Date(2024, 2, 20),
-    status: 'Accepted',
-  },
-  {
-    demandId: 2,
-    type: 'Advance',
-    Employee:"mohammed",
-    date: new Date(2024, 2, 15),
-    status: 'Refused',
-  },
-  {
-    demandId: 3,
-    Employee:"mohammed",
-    type: 'Advance',
-    date: new Date(2024, 2, 18),
-    status: 'Pending',
-  },
-];
-
-function Demands() {
   const [filterStatus, setFilterStatus] = useState(null);
 
   const filteredDemands = filterStatus
-    ? demands.filter((demand) => demand.status === filterStatus)
-    : demands;
+    ? requests.filter((demand) => demand.status === filterStatus)
+    : requests;
 
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);
   };
-  function getStatusColor(status) {
-    switch (status) {
+  function getStatusColor(state) {
+    switch (state) {
       case 'Accepted':
         return 'status-accepted'; 
       case 'Refused':
@@ -113,23 +80,32 @@ function Demands() {
             <th>Demande type</th>
             <th>Date</th>
             <th>Status</th>
+            <th></th>
           </tr> 
         </thead>
         <tbody>
-          {filteredDemands.map((request) => (
-            <tr key={request._Id}>
-              <td>{request._id}</td>
-              <td>{request.employeeId}</td>
-              <td>{request.requestTypeId}</td>
+          {requests.map((request) => (
+            <tr key={request._id} >
+              <td>1</td>
+              <td>{`${request.employeeId.familyName} ${request.employeeId.firstName}`}</td>
+              <td>{request.requestTypeId.title}</td>
               <td>{request.creationDate}</td>
               <td  className={getStatusColor(request.state)}>{request.state}</td>
+              <td className="lastcolumn">
+                
+                <Link to={`/tables/demandetype/${request._id}`}  > <MdOutlineModeEditOutline /></Link>
+                
+                </td>
+              
             </tr>
-          ))}
+          ))} 
         </tbody>
       </table>
       
     </div>
+
     </div>
+    
   );
 }
 

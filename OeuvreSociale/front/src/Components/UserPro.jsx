@@ -2,20 +2,14 @@ import '../Styles/userPro.css';
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
+import {useParams} from 'react-router-dom';
 
 function UserPro() {
-  const [userData, setUserData] = useState({
-    name: 'Dahoun Manel',
-    firstName: 'Dahoun',
-    lastName: 'Manel',
-    situationFamiliale: 'Célibataire',
-    email: 'm.dahoun@esi-sba.dz',
-    phoneNumber: '0666666666',
-    salary: 25000000,
-    bankAccount: '12345678901234567890',
-  });
+  const [userData, setUserData] = useState([]);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
 const [password, setPassword] = useState('');
+const [error, setError] = useState(null);
 
 const handlePasswordSubmit = () => {
   // Here you would check if the entered password is correct
@@ -49,23 +43,27 @@ const handleNewPasswordSubmit = () => {
   setNewPassword('');
   setConfirmNewPassword('');
 };
+const {id}=useParams();
+console.log("id",id);
+
   useEffect(() => {
-    const fetchUserData = async () => {
+   
+    const fetchRequests =  async () => {
       try {
-        const response = await fetch('/api/user-data');
-        if (response.ok) {
-          const data = await response.json();
-          setUserData(data);
-        } else {
-          console.error('Failed to fetch user data:', await response.text());
-        }
+        const response = await axios.get(`http://localhost:8000/api/employees/${id}`, { responseType: 'json', responseEncoding: 'utf8' });
+        setUserData(response.data); 
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        console.error('Error fetching requests:', error);
+        setError(error);
+        setUserData([]);
       }
     };
-    fetchUserData();
-  }, []);
-
+    fetchRequests(); 
+  
+  },[]);
+  
+   
+   console.log("userData",userData);
   return (
     <div className="profile">
       <h1 className="profile-title">Employee Profile</h1>
@@ -81,8 +79,8 @@ const handleNewPasswordSubmit = () => {
             <p>Bank account:</p>
           </div>
           <div className="Info-left">
+            <p>{userData.familyName}</p>
             <p>{userData.firstName}</p>
-            <p>{userData.lastName}</p>
             <p>{userData.email}</p>
             <p>{userData.bankAccount}</p>
           </div>
@@ -93,8 +91,8 @@ const handleNewPasswordSubmit = () => {
           </div>
           <div className="Info-right">
             <p>{userData.phoneNumber}</p>
-            <p>{userData.situationFamiliale}</p>
-            <p>{userData.salary}</p>
+            <p>{userData.familysitution}</p>
+            <p>{userData.monthlySalary}</p>
           </div>
         </div>
         <button className="button" onClick={() => setShowPasswordModal(true)}>
