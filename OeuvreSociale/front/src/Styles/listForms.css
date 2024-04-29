@@ -1,0 +1,55 @@
+.formsrapper{
+    position: absolute;
+    top:12%;
+    width:30%;
+    height:98%;
+    left:70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:3%;
+    background-color:transparent;
+}
+.title{
+position:absolute;
+top:2%;
+width:90%;
+height:8%;
+color:  rgba(0, 25, 79, 1);
+font-weight: 400;
+size:22;
+line-height:26.86px;
+}
+.linkrapper{
+position:absolute;
+top:15%;
+width:90%;
+height:8%;
+background-color: #fff; 
+display: flex;
+justify-content: left;   
+align-items:center;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+border-radius: 7px;
+text-decoration: none;
+padding-left:2%;
+position: relative;
+color: #1E2648;
+
+}.linkrapper:hover {
+   
+    background-color: #1E2648;
+}
+.linkrapper:hover .linktdem{
+    color: #fff;
+    background-color: #1E2648;
+}
+.linktdem{
+    position: absolute;
+    color: #1E2648;
+    font-weight: 400;
+    font-size:22px;
+    text-decoration: none;
+    display:inline-block;
+   line-height: 26.86px;
+}
