@@ -76,7 +76,7 @@ function Sidebar({ children }) {
                     icon: <HiOutlineSwitchVertical />
                 },
                 {
-                    path: "/demande valid",
+                    path: "/demandevalid",
                     name: "Demande valide",
                     icon: <IoListCircleOutline />
                 }

@@ -269,8 +269,34 @@ position: absolute;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
  
  
+
+  transform:  translateY(-24px);
+
+   
+   font-size: 16px;
+  
+   
+   
+
+}
+.error1 {
+ position: absolute;
+ top: 0;
+
+ background-color: #fff;
+ height: 57px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ gap: 15px;
+
+ border: red 2px solid;
+ border-radius: 6px;
+ 
+
 
   transform:  translateY(-24px);
  
@@ -301,9 +327,7 @@ position: absolute;
   color: red;
   font-size: 16px;
   padding: 8px 15px;
-  
-  
-  
+
 }.errorm svg {
   font-size: 40px;
  

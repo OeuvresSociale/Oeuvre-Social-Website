@@ -1,21 +1,21 @@
 import React from "react";
 import'./Addoffre.css';
 
- import AddOffreForm from '../Components/Addoffreform';
+ import Unvalideoffres from '../Components/Unvalideoffres';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
 
-const Addoffre = () => {
+const UnvalideOffres = () => {
   return (
     <div>
      <div className="containeradd">
       <Sidebar  />
       <div className="contentadd">
         <Header  />
-       <AddOffreForm />
+       <Unvalideoffres />
       </div>
     </div>
  </div> );
 };
 
-export default Addoffre ;
+export default UnvalideOffres ;

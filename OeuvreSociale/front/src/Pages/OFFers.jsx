@@ -1,7 +1,7 @@
 import React from "react";
 import'./Addoffre.css';
 
- import AddOffreForm from '../Components/Addoffreform';
+ import Offers from '../Components/Offers';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
 
@@ -12,7 +12,7 @@ const Addoffre = () => {
       <Sidebar  />
       <div className="contentadd">
         <Header  />
-       <AddOffreForm />
+       <Offers />
       </div>
     </div>
  </div> );

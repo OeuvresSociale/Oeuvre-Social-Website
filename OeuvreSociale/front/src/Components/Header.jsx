@@ -33,13 +33,26 @@ const Header = () => {
           return 'Detailles des demandes';
           case '/profile':
             return 'Belink';
+
+
         case '/formulaire/ajouteroffre/offreformulaire':
+
             return 'Formulaire d ajoute d offre';
             case '/formulaire/formulairepret':
               return 'Ajoute formulaire du pret';
               case '/tables/loantype':
                 return 'Detailles des demandes';
-            
+                case '/formulaire/ajouteroffre':
+                  return 'Ajouter offre';
+                  case '/formulaire/ajouteroffre/offresvalides':
+                    return 'Ajouter offre';
+                    case '/formulaire/ajouteroffre/offresunvalides':
+                      return 'Ajouter offre';
+                      case '/demandevalid':
+                        return 'Demandes valides';
+                        case '/formulaire/ajouteroffre/offretype':
+                          return 'Détails d offre';
+              
          
       default:
         return 'Dashboard';
