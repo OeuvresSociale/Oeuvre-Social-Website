@@ -102,6 +102,7 @@ console.log("id",id);
       Change Password <FontAwesomeIcon icon={faPen} size="sm" />
     </button>
     {showPasswordModal && (
+      <div className='formtitlewrapper'>
       <div className="modal">
         <h2>Enter Your Password</h2>
         <input
@@ -113,8 +114,10 @@ console.log("id",id);
         <button onClick={() => setShowPasswordModal(false)}>Cancel</button>
         <button className="Enter" onClick= {handlePasswordSubmit}>Enter </button>
       </div>
+      </div>
     )}
     {showOTPModal && (
+      <div className='formtitlewrapper'>
   <div className="modal">
     <h2>Enter OTP Sent to Your Email</h2>
     <input
@@ -122,11 +125,13 @@ console.log("id",id);
       value={otp}
       onChange={(e) => setOTP(e.target.value)}
     />
-    <button onClick={handleOTPSubmit}>Validate</button>
+    <button className='Enter' onClick={handleOTPSubmit}>Validate</button>
     <button onClick={() => setShowOTPModal(false)}>Cancel</button>
+  </div>
   </div>
 )}
 {showNewPasswordModal && (
+  <div className='formtitlewrapper'>
   <div className="modal">
     <h2>Enter New Password</h2>
     <input
@@ -141,8 +146,9 @@ console.log("id",id);
       onChange={(e) => setConfirmNewPassword(e.target.value)}
       placeholder="Confirm New Password"
     />
-    <button onClick={handleNewPasswordSubmit}>Validate</button>
+    <button className='Enter' onClick={handleNewPasswordSubmit}>Validate</button>
     <button onClick={() => setShowNewPasswordModal(false)}>Cancel</button>
+  </div>
   </div>
 )}
     </div>
