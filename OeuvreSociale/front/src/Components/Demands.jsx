@@ -1,29 +1,41 @@
 import '../Styles/demands.css';
 import React, { useState , useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+
+import { Link ,useParams} from 'react-router-dom';
+
 
 // table des demnade d'nu employee en his profile
 
 function Demands() {
-  const [filterStatus, setFilterStatus] = useState(null);
+
+  const [filterStatus, setFilterStatus] = useState(null); 
   const [requests, setRequests] = useState([]);
   const [error, setError] = useState(null);
-  
+
+  //const {id}=useParams();
+ 
+
   useEffect(() => {
-    const fetchRequests = async (employeeId) => {
+    
+    const fetchRequests = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/MyRequests/${employeeId}`, { responseType: 'json', responseEncoding: 'utf8' });
+        const response = await axios.get(`http://localhost:8000/api/MyRequests/`, { responseType: 'json', responseEncoding: 'utf8' });
         setRequests(response.data); 
       } catch (error) {
         console.error('Error fetching requests:', error);
         setError(error);
         setRequests([]);
-      }
+      } 
     };
 
-    fetchRequests();
-  }); 
+    fetchRequests(); 
+   
+   
+  },[]); 
+
+  console.log("requests",requests);
+
   const filteredDemands = filterStatus
 
     ? requests.filter((demand) => demand.state === filterStatus)
@@ -71,7 +83,8 @@ function Demands() {
         <tbody>
 
           {requests.map((demand) => (
-          <tr key={demand._Id}>
+          <tr key={demand._id}>
+
               <td>1</td>
               <td>{demand.requestTypeId.title}</td>
               <td>{demand.creationDate}</td>

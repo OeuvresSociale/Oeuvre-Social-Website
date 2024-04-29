@@ -88,12 +88,13 @@ const getallRequests = async (req, res) => {
 //Get one request
 const getRequest = async (req, res) => {
   try {
-    const request = await Request.findById(req.params.id, { files: 1 })
+    const request = await Request.findById(req.params.id , { files: 1 })
       .populate("requestTypeId", "title")
       .populate(
         "employeeId",
-        "idEmployee familyName firstName dateStartJob email phoneNumber"
+        "idEmployee familyName firstName dateStartJob email phoneNumber monthlySalary familysitution "
       );
+   
       
     res.status(200).json(request);
   } catch (err) {

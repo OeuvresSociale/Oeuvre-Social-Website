@@ -4,9 +4,8 @@ import axios from 'axios'
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import Demandetypes from './Demandetypes';
 
+import {Link} from 'react-router-dom';
 // les tables de demandes partie admin
-  
-
 
 function Demands() {
   const[openModefy,setOpenModefy]=useState(false);
@@ -34,15 +33,6 @@ function Demands() {
 
 console.log("data :",requests);
 
-  // Function to fetch details of a single employee
-  const fetchRequestDetails = async (_id) => {
-    try {
-      const response = await axios.get(`http://localhost:8000/api/Request/${requests._id}`);
-      setSelectedRequest(response.data); // Assuming data is an object containing details of the selected employee
-    } catch (error) {
-      console.error('Error fetching request details:', error);
-    }
-  };
 
   const [filterStatus, setFilterStatus] = useState(null);
 
@@ -53,8 +43,8 @@ console.log("data :",requests);
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);
   };
-  function getStatusColor(status) {
-    switch (status) {
+  function getStatusColor(state) {
+    switch (state) {
       case 'Accepted':
         return 'status-accepted'; 
       case 'Refused':
@@ -97,22 +87,27 @@ console.log("data :",requests);
         </thead>
         <tbody>
           {requests.map((request) => (
-            <tr key={request._Id} >
+
+            <tr key={request._id} >
+
               <td>1</td>
               <td>{`${request.employeeId.familyName} ${request.employeeId.firstName}`}</td>
               <td>{request.requestTypeId.title}</td>
               <td>{request.creationDate}</td>
               <td  className={getStatusColor(request.state)}>{request.state}</td>
               <td className="lastcolumn">
-                <MdOutlineModeEditOutline onClick={async() =>  {setOpenModefy(true); await fetchRequestDetails(requests._id);}} />
+
+                <Link to={`/tables/demandetype/${request._id}`}  > <MdOutlineModeEditOutline /></Link>
+                
                 </td>
+
             </tr>
-          ))}
+          ))} 
         </tbody>
       </table>
       
     </div>
-    {openModefy && selectedRequest && <Demandetypes closeModefy={setOpenModefy} selectedRequest={selectedRequest} />}
+
 
     </div>
     

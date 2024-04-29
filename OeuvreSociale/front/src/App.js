@@ -49,11 +49,11 @@ const App = () => {
   <Route path='/employeelist' element={<Employeelist />} />
 
  <Route path='/formulaire/formulairedemande' element={<Addoffre />} />
- <Route path='/tables/demandetype' element={<Demandetype />} />
+ <Route path='/tables/demandetype/:id' element={<Demandetype />} />
  <Route path='/formulaire' element={<Formul />} />
  <Route path='/formulaire/formulairedemande/confirmformulaire' element={<Confirmformul />} />
 
- <Route path='/profile' element={<Profile />} />
+ <Route path='/profile/:id' element={<Profile />} />
  <Route path='/tables' element={<TableDemands />} />
  <Route path='/tables/loantype' element={<LoanType />} />
  <Route path='/formulaire/formulairedemande/modefyformulaire' element={<Modefyformule />} />
