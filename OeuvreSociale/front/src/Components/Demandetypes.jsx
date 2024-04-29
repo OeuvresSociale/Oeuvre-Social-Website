@@ -6,16 +6,19 @@ import { PiFilePdfLight } from "react-icons/pi";
 import axios from 'axios';
 
 //info sur une demande cote admin ( traitement de demande)
+
  
 const Demandetypes =()=>{
   const {id}=useParams();
   console.log(id); 
+
 
    const[openMotif,setOpenMotif]=useState(false);
    const[bordercolor,setbordercolor]=useState('white');
    const[showbuttons,setshowbuttons]=useState(true);
    const[padding,setpadding]=useState('0');
    const [error, setError]=useState(null);
+
 
    const [request, setRequest] = useState({
     _id: "",
@@ -52,6 +55,7 @@ fetchRequestDetails();
 },[])
    console.log("data",request)
     
+
    const handleRedClick=()=>{
     setbordercolor('red');
     setshowbuttons(false);
@@ -73,11 +77,15 @@ fetchRequestDetails();
             </button>
             </Link>
       </div>
+
       <div className="td">{request.requestTypeId.title}</div>
+
+      <div className="td">{request.title}</div>
+
       <div className="empinf">
 
           <div className="infs">
-             <div className="colinf">
+             <div className="colinf"><<<<<<< update
                <div className="rowinf">  <div className="gris">Nom :</div>   <div  className="noir">{request.employeeId.familyName}</div> </div>
                <div className="rowinf"> <div className="gris">Prénom :</div>  <div  className="noir">{request.employeeId.firstName}</div> </div>
                <div className="rowinf"> <div className="gris">ID :</div>    <div  className="noir">{request.employeeId.idEmployee}</div></div>
@@ -88,6 +96,7 @@ fetchRequestDetails();
                <div className="rowinf">   <div className="gris">Numéro de téléphone :</div>   <div  className="noir">{request.employeeId.phoneNumber}</div></div>
                <div className="rowinf">   <div className="gris">Adressr email :</div> <div  className="noir">{request.employeeId.email}</div></div>
                <div className="rowinf"> <div className="gris">Salaire :</div>  <div  className="noir">{request.employeeId.monthlySalary}</div></div>
+
                <div className="rowinf"> <div className="gris">Date d'envoi :</div>  <div  className="noir">{request.creationDate}</div></div>
 
             </div> 

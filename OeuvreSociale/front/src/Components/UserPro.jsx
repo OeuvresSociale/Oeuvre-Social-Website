@@ -5,6 +5,7 @@ import { faPen } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import {useParams} from 'react-router-dom';
 
+
 function UserPro() {
   const [userData, setUserData] = useState([]);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
@@ -51,6 +52,7 @@ console.log("id",id);
     const fetchRequests =  async () => {
       try {
         const response = await axios.get(`http://localhost:8000/api/employees/${id}`, { responseType: 'json', responseEncoding: 'utf8' });
+
         setUserData(response.data); 
       } catch (error) {
         console.error('Error fetching requests:', error);
@@ -59,11 +61,10 @@ console.log("id",id);
       }
     };
     fetchRequests(); 
-  
   },[]);
-  
-   
+ 
    console.log("userData",userData);
+
   return (
     <div className="profile">
       <h1 className="profile-title">Employee Profile</h1>
@@ -91,8 +92,10 @@ console.log("id",id);
           </div>
           <div className="Info-right">
             <p>{userData.phoneNumber}</p>
+
             <p>{userData.familysitution}</p>
             <p>{userData.monthlySalary}</p>
+
           </div>
         </div>
         <button className="button" onClick={() => setShowPasswordModal(true)}>

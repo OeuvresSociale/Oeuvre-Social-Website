@@ -3,10 +3,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import Demandetypes from './Demandetypes';
+
 import {Link} from 'react-router-dom';
 // les tables de demandes partie admin
-  
- 
 
 function Demands() {
   const[openModefy,setOpenModefy]=useState(false);
@@ -18,8 +17,10 @@ function Demands() {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
+
         const response = await axios.get(`http://localhost:8000/api/Requests`, { responseType: 'json', responseEncoding: 'utf8' });
         setRequests(response.data); 
+
       } catch (error) {
         console.error('Error fetching requests:', error);
         setError(error);
@@ -31,6 +32,7 @@ function Demands() {
   },[]); // Fetch employees whenever searchValue changes
 
 console.log("data :",requests);
+
 
   const [filterStatus, setFilterStatus] = useState(null);
 
@@ -85,24 +87,27 @@ console.log("data :",requests);
         </thead>
         <tbody>
           {requests.map((request) => (
+
             <tr key={request._id} >
+
               <td>1</td>
               <td>{`${request.employeeId.familyName} ${request.employeeId.firstName}`}</td>
               <td>{request.requestTypeId.title}</td>
               <td>{request.creationDate}</td>
               <td  className={getStatusColor(request.state)}>{request.state}</td>
               <td className="lastcolumn">
-                
+
                 <Link to={`/tables/demandetype/${request._id}`}  > <MdOutlineModeEditOutline /></Link>
                 
                 </td>
-              
+
             </tr>
           ))} 
         </tbody>
       </table>
       
     </div>
+
 
     </div>
     

@@ -1,11 +1,14 @@
 import '../Styles/demands.css';
 import React, { useState , useEffect } from 'react';
 import axios from 'axios';
+
 import { Link ,useParams} from 'react-router-dom';
+
 
 // table des demnade d'nu employee en his profile
 
 function Demands() {
+
   const [filterStatus, setFilterStatus] = useState(null); 
   const [requests, setRequests] = useState([]);
   const [error, setError] = useState(null);
@@ -32,6 +35,7 @@ function Demands() {
   },[]); 
 
   console.log("requests",requests);
+
   const filteredDemands = filterStatus
 
     ? requests.filter((demand) => demand.state === filterStatus)
@@ -77,12 +81,15 @@ function Demands() {
           </tr>
         </thead>
         <tbody>
+
           {requests.map((demand) => (
           <tr key={demand._id}>
+
               <td>1</td>
               <td>{demand.requestTypeId.title}</td>
               <td>{demand.creationDate}</td>
               <td  className={getStatusColor(demand.state)}>{demand.state}</td>
+
               <td>{demand.motif}</td>
             </tr>
           ))}

@@ -64,16 +64,16 @@ body {
   
   .toggle-menu-btn {
     margin-top: 7px;
-    margin-left: 160px;
+    margin-left: 80%;
     cursor: pointer;
-    font-size: 27px;
+    font-size: 30px;
     background-color: #00194F;
   }  .toggle-menu-btn svg{
     background-color: transparent;
   }
   .toggle-menu-btn2 {
     margin-top: 7px;
-    margin-left: 10px;
+    margin-left: 10%;
     cursor: pointer;
     font-size: 30px;
     background-color: #00194F;
@@ -115,7 +115,8 @@ body {
 
   }.menuicon svg{
     background-color: transparent;
-    padding:15px;
+    padding:19px;
+    /* font-size: 20px; */
    
   }
   
@@ -127,16 +128,6 @@ body {
   }
 
 
-
-
-
-
-
-
-
-
-
-  
   .submenu {
     list-style: none;
     padding :0px;
@@ -151,6 +142,7 @@ body {
     color:#fff;
     background-color: #00194F;
     display:inline-block;
+    align-items: center;
     
     text-decoration: none;
     display: flex;
@@ -162,9 +154,7 @@ body {
   }
 
   .ayhaja:hover{
-     display: flex;
-     text-decoration: none;
-     display: flex;
+     
      
       background-color: #EAEDEF;
       color:#00194F;
@@ -208,11 +198,12 @@ body {
     text-decoration: none;
    
   } .ayhaja svg {
+    /* font-size: 30px; */
     padding: 10px;
     background-color: transparent;
   }.ayhaja:hover span{
-    display:inline-block;
-    text-decoration: none;
+   
+    
     background-color: #EAEDEF;
   } 
   
@@ -250,26 +241,12 @@ a{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
   li{
    
     text-align: left;
     list-style: none;
-    font-size: 22px;
+    font-size: 23px;
   
-
-   
   }
   a.active{
     background-color: #EAEDEF;
@@ -282,9 +259,10 @@ a{
     color:#00194F;
   }
   .subicon{
-    position: relative;
+    position:absolute;
+    right:4% ;
    
-   font-size: 22px;
+   font-size: 18px;
   }
 
    

@@ -8,6 +8,8 @@ import { BsSearch } from "react-icons/bs";
 import Deleteuser from "./Deleteuser";
 import Modefyuser from "./Modefyuser";
 import {  TfiAngleRight , TfiAngleLeft} from "react-icons/tfi";
+import { BiError } from "react-icons/bi";
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import axios from 'axios';
 
 const Formulaire = () => {
@@ -164,19 +166,21 @@ const handleSearch = () => {
 
  </div >
  <div className="f1">
- <div style={{ width: '33%'}}><div  className="f2" ><input type="text"  name="idEmployee" placeholder="ID" onChange={handleChange}required /></div><p className="error-message">Error message</p></div>
+ <div style={{ width: '33%'}}><div  className="f2" ><input type="text"  name="idEmployee" placeholder="ID" onChange={handleChange}required /></div></div>
  <div  style={{ width: '33%'}} className="f2"><input   name="monthlySalary" placeholder="Salaire" onChange={handleChange}required /></div>
  <div style={{ width: '33%'}} className="f2"><input  style={{ width: '240px' }}  type="date" name="dateStartJob" placeholder="date de recrutement" onChange={handleChange} required/></div>
 
  </div>
  <div className="f1">
  
- <div  style={{ width: '50%' }}><div  className="f2"><input type="text"  name="email" placeholder="address email" onChange={handleChange} required/></div><p className="error-message">Error message</p> </div>
-<div style={{ width: '50%' }}><div  className="f2"><input  type="text"  name="phoneNumber" placeholder="Phone Number" onChange={handleChange}required /></div><p className="error-message">Error message</p></div>
+ <div  style={{ width: '50%' }}><div  className="f2"><input type="text"  name="email" placeholder="address email" onChange={handleChange} required/></div> </div>
+<div style={{ width: '50%' }}><div  className="f2"><input  type="text"  name="phoneNumber" placeholder="Phone Number" onChange={handleChange}required /></div></div>
  </div>
  <div className="f1">
  
- <div style={{ width: '100%' }}><div   className="f2"><input type="text" name="bankAccount" placeholder="compte bancaire" onChange={handleChange} required/></div><p className="error-message">Error message</p></div>
+
+ <div style={{ width: '100%' }}><div   className="f2"><input type="text" name="bankAccount" placeholder="compte bancaire" onChange={handleChange} required/></div></div>
+
  </div>
  <div className="f1">
  <div style={{ width: '33%' }} className="f2" >
@@ -327,6 +331,11 @@ const handleSearch = () => {
                 </li>
             </ul>
         </div>
+
+
+       <div className="errorm"> <div className="error1" > <BiError />message d'erreur</div>
+     <div className="error2" > <IoMdCheckmarkCircleOutline />message d'erreur</div></div> 
+
           
       </div>
 

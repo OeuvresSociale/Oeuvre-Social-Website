@@ -1,0 +1,15 @@
+:root {
+    --conwidth: 82%; /* Default value */
+  }.addoffrewrapp11{
+    position: absolute;
+    width: var(--conwidth);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    
+    background-color: #EAEDEF;
+    margin-top: 56px;
+
+}

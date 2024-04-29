@@ -26,6 +26,12 @@ import LoanType from './Pages/LoanType.jsx';
 import LoanForm from './Pages/LoanForm.jsx';
 import ModefyLoan from './Pages/ModefyLoan.jsx';
 import Addloandemande from './Components/Addloandemande.jsx';
+import AddOffreForm from './Pages/AddOffreForm.jsx';
+import ValideDemands from './Pages/ValideDemands.jsx';
+import OFFers from './Pages/OFFers.jsx';
+import ValideOffres from './Pages/ValidOffres.jsx';
+import UnvalideOffres from './Pages/UnvalideOffres.jsx';
+import OffreType from './Pages/OffreType.jsx';
 
 
 
@@ -60,7 +66,12 @@ const App = () => {
  <Route path='/formulaire/formulairepret' element={<LoanForm />} />
  <Route path='/formulaire/formulairepret/modifierpret' element={<ModefyLoan />} />
  <Route path='/formulairetable/ajouterpret' element={<Addloandemande/>} />
-
+ <Route path='/formulaire/ajouteroffre/offreformulaire' element={<AddOffreForm/>} />
+ <Route path='/demandevalid' element={<ValideDemands />} />
+ <Route path='/formulaire/ajouteroffre' element={<OFFers/>} />
+ <Route path='/formulaire/ajouteroffre/offresvalides' element={<ValideOffres/>} />
+ <Route path='/formulaire/ajouteroffre/offresunvalides' element={<UnvalideOffres/>} />
+ <Route path='/formulaire/ajouteroffre/offretype' element={<OffreType/>} />
 
 </Routes>
 

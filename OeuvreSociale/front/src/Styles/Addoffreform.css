@@ -1,0 +1,83 @@
+:root {
+    --conwidth: 82%; /* Default value */
+  }.addoffrewrapp1{
+    position: absolute;
+    width: var(--conwidth);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    
+    background-color: #EAEDEF;
+    margin-top: 56px;
+   
+   
+
+
+    
+}.addoffrewrapp2{
+   
+   
+ 
+    display: flex;
+   
+    justify-content: center;
+   gap:5%;
+    
+    background-color: #EAEDEF;
+   
+
+   
+
+
+    
+}
+.mlbtns2{
+   
+    width: 25%;
+    margin: 40px 0;
+    margin-left: 70%;
+    
+    display: flex;
+    gap:2%;
+    
+   
+  
+}.datesoffre{
+    display: flex;
+    gap: 2%;
+   
+}.datesoffre input{
+   width: 90%;
+}
+
+
+.loaninfst{
+    width:40%;
+    height: 50%;
+
+    background-color: #fff;
+    border-radius: 7px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 5%;
+    font-size: 17px;
+    font-weight: 500;
+
+
+
+
+}.ddimg{
+    width:40%;
+    height: 60%;
+
+    font-size: 17px;
+    font-weight: 500;
+
+}.drop-zone {
+    width:100%;
+    height: 100%;
+   
+
+
+
+}
