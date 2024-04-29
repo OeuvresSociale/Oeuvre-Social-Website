@@ -6,7 +6,7 @@ import React,{useState} from "react"
 
     const handleSubmit = (e) => { 
         e.preventDefault();
-        console.log(email);
+        console.log(email); 
     }
     return(
       <div className="loginwrap">

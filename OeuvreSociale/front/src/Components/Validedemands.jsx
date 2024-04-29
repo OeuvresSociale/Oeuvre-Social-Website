@@ -12,7 +12,7 @@ import Modefyuser from "./Modefyuser";
 import {  TfiAngleRight , TfiAngleLeft} from "react-icons/tfi";
 
 
-const Usertable = () => {
+const Validedemands = () => {
   const[openDelete,setOpenDelete]=useState(false);
   const[openModefy,setOpenModefy]=useState(false);
   const [employees, setEmployees] = useState([]);
@@ -99,11 +99,7 @@ const fetchEmployeeDetails = async (employeeId) => {
             <BsSearch onClick={handleSearch} />
         </div>
         
-           <Link  to="/employeelist/Addemployee"  >
-              <button className="btn">
-              Ajouter employé <IoPersonAddOutline />
-            </button>
-            </Link>
+          
            </div>
 
 
@@ -113,9 +109,10 @@ const fetchEmployeeDetails = async (employeeId) => {
         <tr>
           <th>ID</th>
           <th>Nom de l'employé</th>
-          <th>Email</th>
-          <th>Salaire</th>
-          <th>Rôle</th>
+          <th>Type de demande</th>
+          <th>somme</th>
+          <th>Date d'acceptation</th>
+          <th>Rip</th>
           <th></th>
           
         </tr>
@@ -131,12 +128,8 @@ const fetchEmployeeDetails = async (employeeId) => {
               <td>{employee.email}</td>
               <td>{employee.monthlySalary}</td>
               <td>{employee.role}</td>
-              <td className="lastcolumn">
-                <GoTrash 
-                onClick={ async() => {setOpenDelete(true); await fetchEmployeeDetails(employee._id);}
-                } />
-                <MdOutlineModeEditOutline onClick={async() =>  {setOpenModefy(true); await fetchEmployeeDetails(employee._id);}} />
-              </td>
+              <td>{employee.role}</td>
+              
             </tr>
        ))}
       </tbody>
@@ -188,5 +181,5 @@ const fetchEmployeeDetails = async (employeeId) => {
         );
       };
     
-    export default Usertable ;
+    export default Validedemands ;
       
