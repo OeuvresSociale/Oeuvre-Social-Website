@@ -68,7 +68,7 @@ function Sidebar({ children }) {
             subicon2 :<TfiAngleRight/> ,
             subMenus: [
                 {
-                    path: "/dashboard",
+                    path: "/tresorerie_dashboard",
                     name: "Dashboard",
                     icon: <MdOutlineDashboard />
                 },
