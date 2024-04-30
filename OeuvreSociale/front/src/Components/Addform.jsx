@@ -28,7 +28,7 @@ const Addform = () => {
         };
 
         fetchFormularies();
-    }, [formularies]);
+    }, []);
 
     const toggleExpand = (id) => {
         setFormularies((prevFormularies) =>
@@ -59,23 +59,21 @@ const Addform = () => {
             {openFormtitle && <Formtitle closeFormtitle={setOpenFormtitle} />}
 
             <div className="formulswrapper">
-                {(formularies ?? []).map((form) => (
+                {formularies.map((form) => (
                     <div key={form._id} className="formulary">
-                        <div className="linkform" onClick={() => {
-                            toggleExpand(form._id);
-                            fetchFormularieDetails(form._id);
-                        }}>
+                        <div className="linkform" onClick={() => { toggleExpand(form._id);  }}>
                             {form.title}
                             <div className="addicons">
-                                <GoTrash onClick={() => { setOpenDeleteform(true); fetchFormularieDetails(form._id); }} />
-                                <Link to="/formulaire/formulairedemande/modefyformulaire" >
+                                <GoTrash onClick={() => {setOpenDeleteform(true);fetchFormularieDetails(form._id);}} />
+                                <Link to="/formulaire/formulairedemande/modefyformulaire">
                                     <MdOutlineModeEditOutline onClick={() => { setOpenModefy(true); fetchFormularieDetails(form._id); }} />
                                 </Link>
                             </div>
                         </div>
+                       
                         {form.expand && (
                             <div className="docs">
-                                {(form.docs ?? []).map((doc, index) => (
+                                {form.docs.map((doc, index) => (
                                     <div key={index} className="docname">
                                         {doc}
                                     </div>
@@ -96,3 +94,4 @@ const Addform = () => {
 };
 
 export default Addform;
+
