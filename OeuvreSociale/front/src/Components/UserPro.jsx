@@ -2,7 +2,6 @@ import '../Styles/userPro.css';
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
-
 function UserPro() {
   const [userData, setUserData] = useState({
     name: 'Dahoun Manel',
@@ -15,7 +14,7 @@ function UserPro() {
     bankAccount: '12345678901234567890',
   });
   const [showPasswordModal, setShowPasswordModal] = useState(false);
-const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('');
 
 const handlePasswordSubmit = () => {
   // Here you would check if the entered password is correct
@@ -114,6 +113,7 @@ const handleNewPasswordSubmit = () => {
       </div>
     )}
     {showOTPModal && (
+      <div className='formtitlewrapper'>
   <div className="modal">
     <h2>Enter OTP Sent to Your Email</h2>
     <input
@@ -124,6 +124,8 @@ const handleNewPasswordSubmit = () => {
     <button onClick={handleOTPSubmit}>Validate</button>
     <button onClick={() => setShowOTPModal(false)}>Cancel</button>
   </div>
+  </div>
+
 )}
 {showNewPasswordModal && (
   <div className="modal">
