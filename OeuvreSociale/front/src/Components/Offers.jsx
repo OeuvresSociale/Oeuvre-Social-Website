@@ -62,6 +62,32 @@ const Offres = () => {
             
                 <div className="vali">
                      <span className="titleaddoffre"> Offres non valides</span>
+                     <div className="offrecrap">
+                        <div className="offrec">
+                        <img className='offimg2' src={`${process.env.PUBLIC_URL}/images/logo.png`}  />
+                        <div className="titoff">Titre d'offre :</div>
+                        <div className="descoff">Titre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offre :</div>
+                         <div className="offbtns"><button  className="offdel">Supprimer</button>
+                        <button  className="offvalid">Valider</button></div>
+
+                        
+                         </div>
+                         <div className="offrec">
+                        <img className='offimg2' src={`${process.env.PUBLIC_URL}/images/logo.png`}  />
+                        <div className="titoff">Titre d'offre :</div>
+                        <div className="descoff">Titre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offre :</div>
+                         <div className="offbtns"><button  className="offdel">Supprimer</button>
+                        <button  className="offvalid">Valider</button></div>
+
+                        
+                         </div>
+                    
+                     </div>
+
+
+
+
+
                 
                 
                      <Link to='/formulaire/ajouteroffre/offresunvalides'> <div className="vt">Voir tout</div> </Link>
@@ -74,6 +100,18 @@ const Offres = () => {
 
 
                 <div className="vali">  <span className="titleaddoffre"> Offres valides</span>
+                <div className="offrecrap">
+                       <div className="offrec">
+                        <img className='offimg3' src={`${process.env.PUBLIC_URL}/images/logo.png`}  />
+                         <Link to='/formulaire/ajouteroffre/offretype'><div className="titoff">Titre d'offre :</div></Link>
+                        <div className="descoff">Titre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offre :</div>
+                        
+
+                        
+                         </div>
+                    
+                     </div>
+
                 <Link to='/formulaire/ajouteroffre/offresvalides'> <div className="vt">Voir tout</div> </Link>
                 </div>
 

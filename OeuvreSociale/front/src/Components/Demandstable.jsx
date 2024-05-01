@@ -32,11 +32,26 @@ function Demands() {
 
 console.log("data :",requests);
 
+
+
+  // Function to fetch details of a single employee
+  const fetchRequestDetails = async (_id) => {
+    try {
+      const response = await axios.get(`http://localhost:8000/api/Request/${requests._id}`);
+      setSelectedRequest(response.data); // Assuming data is an object containing details of the selected employee
+    } catch (error) {
+      console.error('Error fetching request details:', error);
+    }
+  };
+
+
+
   const [filterStatus, setFilterStatus] = useState(null);
 
   const filteredDemands = filterStatus
     ? requests.filter((demand) => demand.state === filterStatus)
     : requests;
+
 
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);
@@ -53,7 +68,7 @@ console.log("data :",requests);
         return ''; 
     }
   }
-/////////////////////////////////////////////////////////////////////////  
+
 const handleChange = (event) => {
   setSearchValue(event.target.value);
 }; 

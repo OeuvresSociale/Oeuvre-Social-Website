@@ -9,6 +9,7 @@ import { BsArrowLeftCircle } from "react-icons/bs";
 
 
 
+
 const Valideoffres = () => {
     // const [openFormtitle, setOpenFormtitle] = useState(false);
     // const [openDelete, setOpenDeleteform] = useState(false);
@@ -58,6 +59,17 @@ const Valideoffres = () => {
   
 
                 <div className="vali7">  <span className="titleaddoffre"> Offres valides</span>
+                <div className="offrecrapv">
+                       <div className="offrecv">
+                        <img className='offimg3' src={`${process.env.PUBLIC_URL}/images/logo.png`}  />
+                         <Link to='/formulaire/ajouteroffre/offretype'><div className="titoff">Titre d'offre :</div></Link>
+                        <div className="descoff">Titre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offre :</div>
+                        
+
+                        
+                         </div>
+                    
+                     </div>
                 </div>
         </div>
 
