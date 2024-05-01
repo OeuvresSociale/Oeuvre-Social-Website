@@ -36,6 +36,11 @@ import Transaction from "./Pages/Transaction.jsx";
 import Tdashboard from "./Pages/Tresorerie_Dashboard.jsx";
 import CreeLoan from "./Pages/CreeLoan.jsx";
 
+
+import Loan from './Pages/Loan.jsx';
+import FormularTab from './Pages/FormularTab.jsx';
+
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -58,9 +63,11 @@ const App = () => {
 
         <Route path="/tables/demandetype/:id" element={<Demandetype />} />
         <Route path="/tables" element={<TableDemands />} />
+     
         {/* ..............Damande Tabele.............................................................................. */}
         {/* .............loan Tabele.............................................................................. */}
         <Route path="/tables/loantype" element={<LoanType />} />
+        <Route path='/Loan' element={<Loan />} />
 
         {/* ..............Offre Tabele.............................................................................. */}
 
@@ -68,14 +75,14 @@ const App = () => {
         <Route path="/formulaire" element={<Formul />} />
         {/* ..............Damande Formular.............................................................................. */}
         <Route path="/formulaire/formulairedemande" element={<Addoffre />} />
-        <Route
-          path="/formulaire/formulairedemande/confirmformulaire"
+        <Route path="/formulaire/formulairedemande/confirmformulaire"
           element={<Confirmformul />}
         />
         <Route
           path="/formulaire/formulairedemande/modefyformulaire"
           element={<Modefyformule />}
-        />
+        /> 
+         <Route path='/FormularTab' element={<FormularTab />} />
 
         {/* .............loan Formular.............................................................................. */}
         <Route

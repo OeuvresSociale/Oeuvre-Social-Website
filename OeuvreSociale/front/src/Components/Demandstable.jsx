@@ -33,6 +33,7 @@ function Demands() {
 console.log("data :",requests);
 
 
+
   // Function to fetch details of a single employee
   const fetchRequestDetails = async (_id) => {
     try {
@@ -44,16 +45,12 @@ console.log("data :",requests);
   };
 
 
+
   const [filterStatus, setFilterStatus] = useState(null);
 
   const filteredDemands = filterStatus
     ? requests.filter((demand) => demand.state === filterStatus)
     : requests;
-
-  // Render the table and other UI elements here
-
-
- 
 
 
   const handleFilterChange = (event) => {

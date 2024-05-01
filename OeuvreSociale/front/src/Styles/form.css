@@ -1,0 +1,61 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700 &display=swap');
+.demands-title {
+  position:absolute;
+  top:3%;
+  left:5%;
+  font-size:22px; 
+  color: #00194F;
+  font-weight: 400;
+  line-height: 26.82px;
+}
+.demwrapper{
+  position:absolute;
+  top:12%;
+  left:2%; 
+  width: 65%;
+  height:95%;
+  background-color: #ffffff;
+  align-items:center;
+  padding:10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+  
+  .th,
+  .lin{
+    padding: 20px;
+    text-align: left;
+    margin-right: 100px;
+    margin-bottom: 20px;
+    display: block;
+
+  }
+  .th{
+    left: 20%;
+    color: rgba(20, 133, 130, 1);
+  }
+
+.table {
+  position:absolute;
+  width: 85%;
+  top:18%;
+}
+.status-accepted {
+  color:rgba(25, 232, 7, 1);
+  ;
+}
+
+.status-refused {
+  color: rgba(255, 74, 74, 1);
+  ; 
+}
+
+.status-pending {
+  color:rgba(255, 187, 54, 1);
+  ; 
+}
+
+
+
+
