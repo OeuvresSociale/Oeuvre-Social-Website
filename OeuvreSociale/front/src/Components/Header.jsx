@@ -3,7 +3,7 @@ import { IoNotificationsOutline } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
 import '../Styles/Header.css';
 import { Link, useLocation } from 'react-router-dom';
-import Logo from '../Assets/Logo1.png';
+import Logo1 from '../Assets/Logo1.png';
 import OIP from '../Assets/OIP.png';
 
 const Header = () => {

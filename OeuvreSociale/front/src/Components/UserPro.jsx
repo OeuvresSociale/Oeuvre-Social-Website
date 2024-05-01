@@ -9,14 +9,14 @@ import {useParams} from 'react-router-dom';
 
   
 function UserPro(props) {
-  const [profileImage, setProfileImage] = useState(OIP); // Set the default profile picture as the initial state
+  const [profileImage, setProfileImage] = useState(OIP); 
 
   const handleProfileImageUpload = (event) => {
-    const file = event.target.files[0]; // Get the selected file
-    if (file && file.type.includes('image/')) { // Check if the file is a PNG image
+    const file = event.target.files[0]; 
+    if (file && file.type.includes('image/')) {
       const reader = new FileReader();
       reader.onload = () => {
-        setProfileImage(reader.result); // Set the profile image to the selected image
+        setProfileImage(reader.result);
       };
       reader.readAsDataURL(file);
     }
@@ -175,7 +175,7 @@ const handleNewPasswordSubmit = () => {
     {showOTPModal && (
   <div className='formtitlewrapper'>
     <div className="modal">
-      <h2>Enter OTP Sent to Your Email</h2>
+      <h3 className='otptitle'> Enter OTP Sent to Your Email</h3>
       <div className="otpInputWrapper">
         {[...Array(6)].map((_, index) => (
           <input
