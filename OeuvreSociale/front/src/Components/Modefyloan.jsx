@@ -15,6 +15,8 @@ const Modefyloan =()=>{
         const handleEditorChange = (newEditorState) => {
             setEditorState(newEditorState);
         };
+
+        
     
 
 

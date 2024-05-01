@@ -11,30 +11,26 @@ import {  TfiAngleRight , TfiAngleLeft} from "react-icons/tfi";
 import { BiError } from "react-icons/bi";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import axios from 'axios';
+import TablePagination from '@mui/material/TablePagination';
 
 const Formulaire = () => {
   const[openDelete,setOpenDelete]=useState(false);
   const[openModefy,setOpenModefy]=useState(false);
-  const[currentPage,setCurrentPage]=useState('');
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5); // Default rows per page
+  
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+  
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0); // Reset page to 0 when rows per page changes
+  };
+    
+  
+ 
 
-  const totalPages = 2; // Example total number of pages
-
-    const renderPaginationButtons = () => {
-        const buttons = [];
-        for (let i = 1; i <= totalPages; i++) {
-            buttons.push(
-                <li key={i}>
-                    <button
-                        className={currentPage === i ? 'pagination-button active2' : 'pagination-button'}
-                        onClick={() => setCurrentPage(i)}
-                    >
-                        {i}
-                    </button>
-                </li>
-            );
-        }
-        return buttons;
-    };
  
 
   
@@ -292,13 +288,23 @@ const handleSearch = () => {
        ))}
       </tbody>
     </table>
-
+   
 
 
 
 
 
            </div>
+           <TablePagination  className='tablepag'
+  // Options for rows per page
+  component="div"
+  count={employees.length} // Total number of rows
+  rowsPerPage={rowsPerPage}
+  page={page}
+  onPageChange={handleChangePage}
+  onRowsPerPageChange={handleChangeRowsPerPage}
+/>
+
            {console.log(selectedEmployee)}
            {openModefy && selectedEmployee && <Modefyuser closeModefy={setOpenModefy} selectedEmployee={selectedEmployee} />}
       
@@ -306,31 +312,7 @@ const handleSearch = () => {
            {openDelete && selectedEmployee && <Deleteuser  closeDelete={setOpenDelete} selectedEmployee={selectedEmployee} />}
 
 
-           <div className="pagination-container">
-            {/* Other JSX content */}
-            <ul className="pagination">
-                <li>
-                    <button
-                        className="pagination-button1"
-                        onClick={() => setCurrentPage(currentPage - 1)}
-                        disabled={currentPage === 1}
-                    >
-                        <TfiAngleLeft />
-                    </button>
-                </li>
-                {renderPaginationButtons()}
-                <li>
-                    <button
-                        className="pagination-button1"
-                        onClick={() => setCurrentPage(currentPage + 1)}
-                        disabled={currentPage === totalPages}
-                    >
-                      
-                       <TfiAngleRight/>
-                    </button>
-                </li>
-            </ul>
-        </div>
+          
 
 
        <div className="errorm"> <div className="error1" > <BiError />message d'erreur</div>

@@ -32,11 +32,61 @@ function Demands() {
 
 console.log("data :",requests);
 
+
+  // Function to fetch details of a single employee
+  const fetchRequestDetails = async (_id) => {
+    try {
+      const response = await axios.get(`http://localhost:8000/api/Request/${requests._id}`);
+      setSelectedRequest(response.data); // Assuming data is an object containing details of the selected employee
+    } catch (error) {
+      console.error('Error fetching request details:', error);
+    }
+  };
+
+
   const [filterStatus, setFilterStatus] = useState(null);
 
   const filteredDemands = filterStatus
     ? requests.filter((demand) => demand.state === filterStatus)
     : requests;
+
+  // Render the table and other UI elements here
+};
+
+
+
+
+const demands = [
+  {
+    demandId: 1,
+    Employee:"mohammed",
+    type: 'Mariage',
+    date: new Date(2024, 2, 20),
+    status: 'Accepted',
+  },
+  {
+    demandId: 2,
+    type: 'Advance',
+    Employee:"mohammed",
+    date: new Date(2024, 2, 15),
+    status: 'Refused',
+  },
+  {
+    demandId: 3,
+    Employee:"mohammed",
+    type: 'Advance',
+    date: new Date(2024, 2, 18),
+    status: 'Pending',
+  },
+];
+
+function Demands() {
+  const [filterStatus, setFilterStatus] = useState(null);
+
+  const filteredDemands = filterStatus
+    ? demands.filter((demand) => demand.status === filterStatus)
+    : demands;
+
 
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);
@@ -53,7 +103,7 @@ console.log("data :",requests);
         return ''; 
     }
   }
-/////////////////////////////////////////////////////////////////////////  
+
 const handleChange = (event) => {
   setSearchValue(event.target.value);
 }; 
