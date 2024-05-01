@@ -1,14 +1,16 @@
 import React from "react";
-import Sidebar from "./Components/Sidebar";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Addemployee from "./Pages/Addemployee.jsx";
-import Employeelist from "./Pages/Employeelist.jsx";
-import Header from "./Components/Header.jsx";
 import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import Sidebar from "./Components/Sidebar.jsx";
+import Header from "./Components/Header.jsx";
 import Usertable from "./Components/Usertable.jsx";
 import Formulaire from "./Components/Formulaire.jsx";
 import Modefyuser from "./Components/Modefyuser.jsx";
 import Deleteuser from "./Components/Deleteuser.jsx";
+
+import Addemployee from "./Pages/Addemployee.jsx";
+import Employeelist from "./Pages/Employeelist.jsx";
 import Addoffre from "./Pages/Addoffre.jsx";
 import Demandetype from "./Pages/Demandetype.jsx";
 import Formul from "./Pages/Formul.jsx";
@@ -31,7 +33,7 @@ import ValideOffres from "./Pages/ValidOffres.jsx";
 import UnvalideOffres from "./Pages/UnvalideOffres.jsx";
 import OffreType from "./Pages/OffreType.jsx";
 import Archive from "./Pages/Archive.jsx";
-import Dashboard from "./Pages/Dashboard.jsx";
+import Dashboard from "./Pages/Admin/Dashboard/Dashboard.jsx";
 import Transaction from "./Pages/Transaction.jsx";
 import Tdashboard from "./Pages/Tresorerie_Dashboard.jsx";
 
@@ -47,7 +49,7 @@ const App = () => {
 
         {/* 2-Admin part.............................................................................. */}
         {/* Admin Dashboard.............................................................................. */}
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route exact path="/" element={<Dashboard />} />
 
         {/* Employee.............................................................................. */}
         <Route path="/employeelist" element={<Employeelist />} />
