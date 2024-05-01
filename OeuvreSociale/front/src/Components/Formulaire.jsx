@@ -113,7 +113,7 @@ const [employees, setEmployees] = useState([]);
 const [error, setError] = useState(null);
 const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [searchValue, setSearchValue] = useState('');
-useEffect(() => {
+useEffect(() => { 
   const fetchEmployees = async () => {
     try {
       const response = await axios.get(`http://localhost:8000/api/employees?page=1&search=${searchValue}`, { responseType: 'json', responseEncoding: 'utf8' });

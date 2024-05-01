@@ -8,7 +8,7 @@ import axios from 'axios';
 //info sur une demande cote admin ( traitement de demande)
 
  
-const Demandetypes =()=>{
+const Demandetypes =()=>{ 
   const {id}=useParams();
   console.log(id); 
 
@@ -85,7 +85,7 @@ fetchRequestDetails();
       <div className="empinf">
 
           <div className="infs">
-             <div className="colinf"><<<<<<< update
+             <div className="colinf">
                <div className="rowinf">  <div className="gris">Nom :</div>   <div  className="noir">{request.employeeId.familyName}</div> </div>
                <div className="rowinf"> <div className="gris">Prénom :</div>  <div  className="noir">{request.employeeId.firstName}</div> </div>
                <div className="rowinf"> <div className="gris">ID :</div>    <div  className="noir">{request.employeeId.idEmployee}</div></div>

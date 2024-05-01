@@ -7,7 +7,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 
-
+ 
 const Offres = () => {
     // const [openFormtitle, setOpenFormtitle] = useState(false);
     // const [openDelete, setOpenDeleteform] = useState(false);
