@@ -3,7 +3,6 @@ import '../Styles/Modefyloan.css';
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 
 
@@ -16,6 +15,7 @@ const Modefyloan =()=>{
         const handleEditorChange = (newEditorState) => {
             setEditorState(newEditorState);
         };
+
         const handleClick = async (e) => {
     
             e.preventDefault();//not refreshing the page 
@@ -55,7 +55,7 @@ return (
  
   <div className="mlbtns">
   <Link to='/formulaire/formulairepret'> <button className="mlrefuse"   >Annuler</button></Link>
-            <Link to='/formulaire/formulairepret'> <button className="mlaccepte" onClick={handleClick}  >Modifier</button></Link>
+            <Link to='/formulaire/formulairepret'> <button className="mlaccepte"   onClick={handleClick} >Créer</button></Link>
 
 
 
@@ -86,7 +86,6 @@ return (
 }
 export default Modefyloan;
     
-
 
 
 
