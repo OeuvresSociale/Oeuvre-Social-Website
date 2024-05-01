@@ -25,7 +25,7 @@ import ValideOffres from "./Pages/ValidOffres.jsx";
 import UnvalideOffres from "./Pages/UnvalideOffres.jsx";
 import OffreType from "./Pages/OffreType.jsx";
 import Archive from "./Pages/Archive.jsx";
-import Dashboard from "./Pages/Dashboard.jsx";
+import Dashboard from "./Pages/Admin/Dashboard/Dashboard.jsx";
 import Transaction from "./Pages/Transaction.jsx";
 import Tdashboard from "./Pages/Tresorerie_Dashboard.jsx";
 import CreeLoan from "./Pages/CreeLoan.jsx";
@@ -44,6 +44,7 @@ const App = () => {
 
         {/* 2-Admin part.............................................................................. */}
         {/* Admin Dashboard.............................................................................. */}
+
         <Route path="/" element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />} />
 
