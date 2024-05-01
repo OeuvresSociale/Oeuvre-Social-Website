@@ -7,45 +7,24 @@ import { Link ,useParams} from 'react-router-dom';
 
 // table des demnade d'nu employee en his profile
 
-function Demands() {
+function Demands(props) {
 
   const [filterStatus, setFilterStatus] = useState(null); 
-  const [requests, setRequests] = useState([]);
-  const [error, setError] = useState(null);
-
-  //const {id}=useParams();
- 
-
-  useEffect(() => {
-    
-    const fetchRequests = async () => {
-      try {
-        const response = await axios.get(`http://localhost:8000/api/MyRequests/`, { responseType: 'json', responseEncoding: 'utf8' });
-        setRequests(response.data); 
-      } catch (error) {
-        console.error('Error fetching requests:', error);
-        setError(error);
-        setRequests([]);
-      } 
-    };
-
-    fetchRequests(); 
-   
-   
-  },[]); 
-
+//  const [requests, setRequests] = useState([]);
+//   const [error, setError] = useState(null);
+  console.log("props:",props.dataD)
+  const requests = props.dataD;
   console.log("requests",requests);
 
-  const filteredDemands = filterStatus
-
-    ? requests.filter((demand) => demand.state === filterStatus)
-    : requests;
+  // const filteredDemands = filterStatus
+  //   ? requests.filter((demand) => demand.state === filterStatus)
+  //   : requests;
 
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);
   };
-  function getStatusColor(status) {
-    switch (status) {
+  function getStatusColor(state) {
+    switch (state) {
       case 'Accepted':
         return 'status-accepted'; 
       case 'Refused':
@@ -54,7 +33,10 @@ function Demands() {
         return 'status-pending'; 
       default:
         return ''; 
-    }
+    } 
+  }
+  if (!requests) {
+    return <div>Loading...</div>;
   }
   return (
     <div className="demand">
@@ -82,18 +64,17 @@ function Demands() {
         </thead>
         <tbody>
 
-          {requests.map((demand) => (
-          <tr key={demand._id}>
-
+          {requests.map((request) => (
+          <tr key={request._id}>
               <td>1</td>
-              <td>{demand.requestTypeId.title}</td>
-              <td>{demand.creationDate}</td>
-              <td  className={getStatusColor(demand.state)}>{demand.state}</td>
+              <td>{request.requestTypeId.title}</td>
+              <td>{request.creationDate}</td>
+              <td  className={getStatusColor()}>{request.state}</td>
 
-              <td>{demand.motif}</td>
+              <td>{request.motif}</td>
             </tr>
-          ))}
-        </tbody>
+                 ) )}
+               </tbody>
       </table>
       
     </div>

@@ -74,8 +74,6 @@ const userSchema = new schema ({
         enum:['president','tresorerie','membre','employe'],
         default :"employe"
 
-        
-
        
     },
     profilePicture:{

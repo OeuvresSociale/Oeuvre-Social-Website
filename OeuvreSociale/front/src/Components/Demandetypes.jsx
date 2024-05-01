@@ -7,9 +7,11 @@ import axios from "axios";
 
 //info sur une demande cote admin ( traitement de demande)
 
-const Demandetypes = () => {
-  const { id } = useParams();
-  console.log(id);
+
+ 
+const Demandetypes =()=>{ 
+  const {id}=useParams();
+  console.log(id); 
 
   const [openMotif, setOpenMotif] = useState(false);
   const [bordercolor, setbordercolor] = useState("white");
@@ -86,6 +88,8 @@ const Demandetypes = () => {
       <div className="td">{request.title}</div>
 
       <div className="empinf">
+
+
         <div className="infs">
           <div className="colinf">
             <div className="rowinf">
@@ -108,6 +112,7 @@ const Demandetypes = () => {
               <div className="gris">Situation famillialle :</div>{" "}
               <div className="noir">{request.employeeId.familysitution}</div>
             </div>
+
           </div>
           <div className="colinf">
             <div className="rowinf">

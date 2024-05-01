@@ -10,7 +10,7 @@ const requestSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'typeRequest',
         required: true
-    },
+    }, 
     employeeId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',

@@ -9,7 +9,7 @@ const Addloandemande = () => {
         amount: '',
         duration: '',
         purpose: ''
-    });
+    }); 
 
     const [loanType, setLoanType] = useState({});
     const [message, setMessage] = useState('');

@@ -19,7 +19,7 @@ const Usertable = () => {
   const [error, setError] = useState(null);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const[currentPage,setCurrentPage]=useState('');
-
+ 
   const totalPages = 2; // Example total number of pages
 
     const renderPaginationButtons = () => {
