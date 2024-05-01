@@ -61,7 +61,7 @@ function Sidebar({ children }) {
             icon: <FaRegPlusSquare />
         },
         {
-            path: "/tresorerie",
+           
             name: "Trésorerie",
             icon: <FaMoneyBillTrendUp />,
             subicon :<TfiAngleDown/>,

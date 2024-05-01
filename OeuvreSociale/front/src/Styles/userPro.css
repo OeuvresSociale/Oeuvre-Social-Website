@@ -124,3 +124,8 @@
 .modal button:hover {
   opacity: 0.8;
 }
+.tablepag{
+  position: absolute;
+  right:0 ;
+  bottom: 0;
+}
