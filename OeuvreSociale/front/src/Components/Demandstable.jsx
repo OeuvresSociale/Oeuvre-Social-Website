@@ -3,11 +3,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import Demandetypes from './Demandetypes';
-
+import { BsSearch } from "react-icons/bs";
+import {Link} from 'react-router-dom';
 // les tables de demandes partie admin
-  
-
-
+ 
 function Demands() {
   const[openModefy,setOpenModefy]=useState(false);
   const [requests, setRequests] = useState([]);
@@ -18,10 +17,9 @@ function Demands() {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-
         const response = await axios.get(`http://localhost:8000/api/Requests`, { responseType: 'json', responseEncoding: 'utf8' });
         setRequests(response.data); 
-
+        console.log("response:",response)
       } catch (error) {
         console.error('Error fetching requests:', error);
         setError(error);
@@ -30,9 +28,10 @@ function Demands() {
     };
 
     fetchRequests();
-  },[]); // Fetch employees whenever searchValue changes
+  },[searchValue]); // Fetch employees whenever searchValue changes
 
 console.log("data :",requests);
+
 
   // Function to fetch details of a single employee
   const fetchRequestDetails = async (_id) => {
@@ -44,19 +43,19 @@ console.log("data :",requests);
     }
   };
 
-<<<<<<< Updated upstream
+
   const [filterStatus, setFilterStatus] = useState(null);
 
   const filteredDemands = filterStatus
-    ? requests.filter((demand) => demand.status === filterStatus)
+    ? requests.filter((demand) => demand.state === filterStatus)
     : requests;
-=======
+
   // Render the table and other UI elements here
 };
 
 
 
-/////////////////////////////////////////////////////////////////////////
+
 const demands = [
   {
     demandId: 1,
@@ -87,13 +86,13 @@ function Demands() {
   const filteredDemands = filterStatus
     ? demands.filter((demand) => demand.status === filterStatus)
     : demands;
->>>>>>> Stashed changes
+
 
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);
   };
-  function getStatusColor(status) {
-    switch (status) {
+  function getStatusColor(state) {
+    switch (state) {
       case 'Accepted':
         return 'status-accepted'; 
       case 'Refused':
@@ -104,13 +103,29 @@ function Demands() {
         return ''; 
     }
   }
-/////////////////////////////////////////////////////////////////////////  
-  return (
+
+const handleChange = (event) => {
+  setSearchValue(event.target.value);
+}; 
+
+const handleSearch = () => {
+  // Do something with the searchValue, for example, you can log it
+  setSearchValue( searchValue);
+};
+return (
     <div className='dtwrapper'>
   <div className="subbox">
            <div className="search">
-            <input className="inp"  type="text" placeholder="rechercher..." />
-           
+            <input 
+            id="searchInput"
+            className="inp" 
+            type="text" 
+            placeholder="id , employe nom , type..." 
+            pattern=''
+            value={searchValue}
+            onChange={handleChange}
+             />
+              <BsSearch onClick={handleSearch} />
            </div>
         </div>
      
@@ -136,22 +151,27 @@ function Demands() {
         </thead>
         <tbody>
           {requests.map((request) => (
-            <tr key={request._Id} >
+
+            <tr key={request._id} >
+
               <td>1</td>
               <td>{`${request.employeeId.familyName} ${request.employeeId.firstName}`}</td>
               <td>{request.requestTypeId.title}</td>
               <td>{request.creationDate}</td>
               <td  className={getStatusColor(request.state)}>{request.state}</td>
               <td className="lastcolumn">
-                <MdOutlineModeEditOutline onClick={async() =>  {setOpenModefy(true); await fetchRequestDetails(requests._id);}} />
+
+                <Link to={`/tables/demandetype/${request._id}`}  > <MdOutlineModeEditOutline /></Link>
+                
                 </td>
+
             </tr>
-          ))}
+          ))} 
         </tbody>
       </table>
       
     </div>
-    {openModefy && selectedRequest && <Demandetypes closeModefy={setOpenModefy} selectedRequest={selectedRequest} />}
+
 
     </div>
     

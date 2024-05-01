@@ -1,89 +1,132 @@
-import React from 'react';
-import Sidebar from './Components/Sidebar';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Addemployee from './Pages/Addemployee.jsx';
-import Employeelist from './Pages/Employeelist.jsx';
-import Header from './Components/Header.jsx'
-import './App.css'
-import Usertable from './Components/Usertable.jsx';
-import Formulaire from './Components/Formulaire.jsx';
-import Modefyuser from './Components/Modefyuser.jsx';
-import Deleteuser from './Components/Deleteuser.jsx';
-import Addoffre from './Pages/Addoffre.jsx';
-import Demandetype from './Pages/Demandetype.jsx';
-import Formul from './Pages/Formul.jsx';
-import Confirmformul from './Pages/Confirmformul.jsx';
-import Login from './Pages/Login.jsx';
-import Profile from './Pages/Profile.jsx';
-import TableDemands from './Pages/TableDemands.jsx';
-import Modefyformule from './Pages/Modefyformule.jsx';
-
-import Recover from './Pages/Recover.jsx';
-import Otp from './Pages/otp.jsx';
-import New from './Pages/New.jsx';
-
-import LoanType from './Pages/LoanType.jsx';
-import LoanForm from './Pages/LoanForm.jsx';
-import ModefyLoan from './Pages/ModefyLoan.jsx';
-import Addloandemande from './Components/Addloandemande.jsx';
-import AddOffreForm from './Pages/AddOffreForm.jsx';
-import ValideDemands from './Pages/ValideDemands.jsx';
-import OFFers from './Pages/OFFers.jsx';
-import ValideOffres from './Pages/ValidOffres.jsx';
-import UnvalideOffres from './Pages/UnvalideOffres.jsx';
-import OffreType from './Pages/OffreType.jsx';
-
-
-
-
-
+import React from "react";
+import Sidebar from "./Components/Sidebar";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Addemployee from "./Pages/Addemployee.jsx";
+import Employeelist from "./Pages/Employeelist.jsx";
+import Header from "./Components/Header.jsx";
+import "./App.css";
+import Usertable from "./Components/Usertable.jsx";
+import Formulaire from "./Components/Formulaire.jsx";
+import Modefyuser from "./Components/Modefyuser.jsx";
+import Deleteuser from "./Components/Deleteuser.jsx";
+import Addoffre from "./Pages/Addoffre.jsx";
+import Demandetype from "./Pages/Demandetype.jsx";
+import Formul from "./Pages/Formul.jsx";
+import Confirmformul from "./Pages/Confirmformul.jsx";
+import Login from "./Pages/Login.jsx";
+import Profile from "./Pages/Profile.jsx";
+import TableDemands from "./Pages/TableDemands.jsx";
+import Modefyformule from "./Pages/Modefyformule.jsx";
+import Recover from "./Pages/Recover.jsx";
+import Otp from "./Pages/otp.jsx";
+import New from "./Pages/New.jsx";
+import LoanType from "./Pages/LoanType.jsx";
+import LoanForm from "./Pages/LoanForm.jsx";
+import ModefyLoan from "./Pages/ModefyLoan.jsx";
+import Addloandemande from "./Components/Addloandemande.jsx";
+import AddOffreForm from "./Pages/AddOffreForm.jsx";
+import ValideDemands from "./Pages/ValideDemands.jsx";
+import OFFers from "./Pages/OFFers.jsx";
+import ValideOffres from "./Pages/ValidOffres.jsx";
+import UnvalideOffres from "./Pages/UnvalideOffres.jsx";
+import OffreType from "./Pages/OffreType.jsx";
+import Archive from "./Pages/Archive.jsx";
+import Dashboard from "./Pages/Dashboard.jsx";
+import Transaction from "./Pages/Transaction.jsx";
+import Tdashboard from "./Pages/Tresorerie_Dashboard.jsx";
 
 const App = () => {
   return (
-    <BrowserRouter >
+    <BrowserRouter>
+      <Routes>
+        {/* 1-Login Page.............................................................................. */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/recover" element={<Recover />} />
+        <Route path="/otp" element={<Otp />} />
+        <Route path="/new" element={<New />} />
 
-    
-   
-<Routes>
-  <Route path='/employeelist/Addemployee' element={<Addemployee />} />
-  <Route path='/employeelist' element={<Employeelist />} />
+        {/* 2-Admin part.............................................................................. */}
+        {/* Admin Dashboard.............................................................................. */}
+        <Route path="/dashboard" element={<Dashboard />} />
 
- <Route path='/formulaire/formulairedemande' element={<Addoffre />} />
- <Route path='/tables/demandetype' element={<Demandetype />} />
- <Route path='/formulaire' element={<Formul />} />
- <Route path='/formulaire/formulairedemande/confirmformulaire' element={<Confirmformul />} />
+        {/* Employee.............................................................................. */}
+        <Route path="/employeelist" element={<Employeelist />} />
+        <Route path="/employeelist/Addemployee" element={<Addemployee />} />
 
- <Route path='/profile' element={<Profile />} />
- <Route path='/tables' element={<TableDemands />} />
- <Route path='/tables/loantype' element={<LoanType />} />
- <Route path='/formulaire/formulairedemande/modefyformulaire' element={<Modefyformule />} />
+        {/* Tabeles.............................................................................. */}
 
- <Route path='/login' element={<Login />} />
- <Route path='/recover' element={<Recover />} />
- <Route path='/otp' element={<Otp />} />
- <Route path='/new' element={<New />} />
+        <Route path="/tables/demandetype/:id" element={<Demandetype />} />
+        <Route path="/tables" element={<TableDemands />} />
+        {/* ..............Damande Tabele.............................................................................. */}
+        {/* .............loan Tabele.............................................................................. */}
+        <Route path="/tables/loantype" element={<LoanType />} />
 
- <Route path='/formulaire/formulairepret' element={<LoanForm />} />
- <Route path='/formulaire/formulairepret/modifierpret' element={<ModefyLoan />} />
- <Route path='/formulairetable/ajouterpret' element={<Addloandemande/>} />
- <Route path='/formulaire/ajouteroffre/offreformulaire' element={<AddOffreForm/>} />
- <Route path='/demandevalid' element={<ValideDemands />} />
- <Route path='/formulaire/ajouteroffre' element={<OFFers/>} />
- <Route path='/formulaire/ajouteroffre/offresvalides' element={<ValideOffres/>} />
- <Route path='/formulaire/ajouteroffre/offresunvalides' element={<UnvalideOffres/>} />
- <Route path='/formulaire/ajouteroffre/offretype' element={<OffreType/>} />
+        {/* ..............Offre Tabele.............................................................................. */}
 
-</Routes>
+        {/* Formulaire.............................................................................. */}
+        <Route path="/formulaire" element={<Formul />} />
+        {/* ..............Damande Formular.............................................................................. */}
+        <Route path="/formulaire/formulairedemande" element={<Addoffre />} />
+        <Route
+          path="/formulaire/formulairedemande/confirmformulaire"
+          element={<Confirmformul />}
+        />
+        <Route
+          path="/formulaire/formulairedemande/modefyformulaire"
+          element={<Modefyformule />}
+        />
 
+        {/* .............loan Formular.............................................................................. */}
+        <Route
+          path="/formulairetable/ajouterpret"
+          element={<Addloandemande />}
+        />
+        <Route path="/formulaire/formulairepret" element={<LoanForm />} />
+        <Route
+          path="/formulaire/formulairepret/modifierpret"
+          element={<ModefyLoan />}
+        />
 
-</BrowserRouter>
-    
+        {/* ..............Offre Formular............................................................................... */}
+
+        <Route
+          path="/formulaire/ajouteroffre/offreformulaire"
+          element={<AddOffreForm />}
+        />
+        <Route path="/formulaire/ajouteroffre" element={<OFFers />} />
+        <Route
+          path="/formulaire/ajouteroffre/offresvalides"
+          element={<ValideOffres />}
+        />
+        <Route
+          path="/formulaire/ajouteroffre/offresunvalides"
+          element={<UnvalideOffres />}
+        />
+        <Route
+          path="/formulaire/ajouteroffre/offretype"
+          element={<OffreType />}
+        />
+
+        {/* Tresorerie.............................................................................. */}
+
+        {/* ........Tresorier Dashboard..............................................................*/}
+        <Route path="/tresorerie_dashboard" element={<Tdashboard />} />
+
+        {/* ........Transaction table..............................................................*/}
+        <Route path="/transaction" element={<Transaction />} />
+
+        {/* ........Accepted demande..............................................................*/}
+        <Route path="/demandevalid" element={<ValideDemands />} />
+
+        {/* Archive.............................................................................. */}
+        <Route path="/Archive" element={<Archive />} />
+
+        {/* 3-Employee part.............................................................................. */}
+
+        <Route path="/profile/:id" element={<Profile />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
 export default App;
-
-
-    
-   
-

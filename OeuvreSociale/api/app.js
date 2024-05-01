@@ -14,9 +14,9 @@ const rateLimit = require('express-rate-limit');
 const session = require('express-session');
 const morgan=require('morgan');
 
-
+  
 const app = express();
-const cors = require('cors');
+const cors = require('cors'); 
 /** */
 const corsOptions ={
     origin:'http://localhost:3000', 
@@ -69,8 +69,8 @@ app.use('/api',requestRouter);
 
 
 // Assume 'YourModel' is the Mongoose model representing your collection
-
-// Yourmodel.deleteMany()
+// const RequestModel = require("./server/models/request.js");
+// RequestModel.deleteMany()
 //   .then((result) => {
 //     console.log(`${result.deletedCount} documents deleted successfully.`);
 //   })
@@ -79,7 +79,7 @@ app.use('/api',requestRouter);
 //   });
  
 
-
+ 
 
 //connection to DB
 connectDB().then(()=>{

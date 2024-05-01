@@ -3,12 +3,15 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+import {useParams} from 'react-router-dom';
 
-function UserPro() {
-  const [userData, setUserData] = useState([]);
+  
+function UserPro(props) {
+ // const [userData, setUserData] = useState([]);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
 const [password, setPassword] = useState('');
 const [error, setError] = useState(null);
+
 
 const handlePasswordSubmit = () => {
   // Here you would check if the entered password is correct
@@ -42,20 +45,29 @@ const handleNewPasswordSubmit = () => {
   setNewPassword('');
   setConfirmNewPassword('');
 };
-  useEffect(() => {
-    const fetchRequests = async () => {
-      try {
-        const response = await axios.get(`http://localhost:8000/api/employee`, { responseType: 'json', responseEncoding: 'utf8' });
-        setUserData(response.data); 
-      } catch (error) {
-        console.error('Error fetching requests:', error);
-        setError(error);
-        setUserData([]);
-      }
-    };
-    fetchRequests();
-  });
-   console.log(userData);
+// const {id}=useParams();
+// console.log("id",id);
+
+  // useEffect(() => {
+   
+  //   const fetchRequests =  async () => {
+  //     try {
+  //       const response = await axios.get(`http://localhost:8000/api/employees/${id}`, { responseType: 'json', responseEncoding: 'utf8' });
+
+  //       setUserData(response.data); 
+  //     } catch (error) {
+  //       console.error('Error fetching requests:', error);
+  //       setError(error);
+  //       setUserData([]);
+  //     }
+  //   };
+  //   fetchRequests(); 
+  // },[]);
+ const userData = props.dataP;
+  console.log("userData",userData);
+   if (!userData) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="profile">
       <h1 className="profile-title">Employee Profile</h1>
@@ -83,8 +95,10 @@ const handleNewPasswordSubmit = () => {
           </div>
           <div className="Info-right">
             <p>{userData.phoneNumber}</p>
-            <p>{userData.familySituation}</p>
-            <p>{userData.salary}</p>
+
+            <p>{userData.familysitution}</p>
+            <p>{userData.monthlySalary}</p>
+
           </div>
         </div>
         <button className="button" onClick={() => setShowPasswordModal(true)}>

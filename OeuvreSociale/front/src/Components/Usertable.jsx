@@ -21,6 +21,7 @@ const Usertable = () => {
   const [selectedEmployee, setSelectedEmployee] = useState(null);
 
 
+
   const [page, setPage] = useState(0);
 const [rowsPerPage, setRowsPerPage] = useState(5); // Default rows per page
 
@@ -72,6 +73,7 @@ const fetchEmployeeDetails = async (employeeId) => {
   }
 }
 
+console.log("data :",employees);
 
   const handleChange = (event) => {
     setSearchValue(event.target.value);
@@ -120,7 +122,7 @@ const fetchEmployeeDetails = async (employeeId) => {
           <th>Salaire</th>
           <th>Rôle</th>
           <th></th>
-          
+          <th></th> 
         </tr>
       </thead>
       <tbody>
@@ -139,9 +141,10 @@ const fetchEmployeeDetails = async (employeeId) => {
                 onClick={ async() => {setOpenDelete(true); await fetchEmployeeDetails(employee._id);}
                 } />
                 <MdOutlineModeEditOutline onClick={async() =>  {setOpenModefy(true); await fetchEmployeeDetails(employee._id);}} />
+                <Link to={`/profile/${employee._id}`}  > <MdOutlineModeEditOutline /></Link>
               </td>
             </tr>
-       ))}
+       ))} 
       </tbody>
     </table>
     
