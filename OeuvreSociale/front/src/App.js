@@ -75,8 +75,7 @@ const App = () => {
         <Route path="/formulaire" element={<Formul />} />
         {/* ..............Damande Formular.............................................................................. */}
         <Route path="/formulaire/formulairedemande" element={<Addoffre />} />
-        <Route0
-          path="/formulaire/formulairedemande/confirmformulaire"
+        <Route path="/formulaire/formulairedemande/confirmformulaire"
           element={<Confirmformul />}
         />
         <Route
