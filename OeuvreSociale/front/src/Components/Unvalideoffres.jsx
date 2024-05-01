@@ -58,6 +58,28 @@ const Valideoffres = () => {
   
 
                 <div className="vali7">  <span className="titleaddoffre"> Offres non valides</span>
+                <div className="offrecrapv">
+                        <div className="offrecv">
+                        <img className='offimg2' src={`${process.env.PUBLIC_URL}/images/logo.png`}  />
+                        <div className="titoff">Titre d'offre :</div>
+                        <div className="descoff">Titre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offre :</div>
+                        <div className="offbtns"><button  className="offdel">Supprimer</button>
+                        <button  className="offvalid">Valider</button></div>
+
+                        
+                         </div>
+                         <div className="offrecv">
+                        <img className='offimg2' src={`${process.env.PUBLIC_URL}/images/logo.png`}  />
+                        <div className="titoff">Titre d'offre :</div>
+                        <div className="descoff">Titre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offre :</div>
+                        <div className="offbtns"><button  className="offdel">Supprimer</button>
+                        <button  className="offvalid">Valider</button></div>
+
+                        
+                         </div>
+                    
+                     </div>
+
                 </div>
         </div>
 

@@ -44,4 +44,44 @@ position: relative;
 .gallery-item img {
     width: 100%; /* Make images fill their parent container */
     height: auto; /* Maintain aspect ratio */
+}.offrecv{
+    height:40%;
+    width:20%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+    gap: 4%;
+
+}.offrecv:hover{
+    background-color: #00194F;
+    color: #fff;
+
+
+}
+.offrecv:hover .titoff{
+    background-color: #00194F;
+    color: #fff;
+
+
+}.offrecv:hover .offdel{
+    background-color: #EE0A0A;
+    color: #fff;
+
+
+}.offrecv:hover .offvalid{
+    background-color: #138582;
+    color: #fff;
+
+
+}.offrecrapv{
+    margin-top: 2%;
+    width: 90%;
+    height:100%;
+    display: flex;
+    justify-self: left;
+    align-items: left;
+    gap:1%;
 }
