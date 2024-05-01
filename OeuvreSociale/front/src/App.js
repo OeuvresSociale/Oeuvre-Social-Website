@@ -1,14 +1,7 @@
 import React from "react";
-import Sidebar from "./Components/Sidebar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Addemployee from "./Pages/Addemployee.jsx";
 import Employeelist from "./Pages/Employeelist.jsx";
-import Header from "./Components/Header.jsx";
-import "./App.css";
-import Usertable from "./Components/Usertable.jsx";
-import Formulaire from "./Components/Formulaire.jsx";
-import Modefyuser from "./Components/Modefyuser.jsx";
-import Deleteuser from "./Components/Deleteuser.jsx";
 import Addoffre from "./Pages/Addoffre.jsx";
 import Demandetype from "./Pages/Demandetype.jsx";
 import Formul from "./Pages/Formul.jsx";
@@ -36,10 +29,8 @@ import Transaction from "./Pages/Transaction.jsx";
 import Tdashboard from "./Pages/Tresorerie_Dashboard.jsx";
 import CreeLoan from "./Pages/CreeLoan.jsx";
 
-
-import Loan from './Pages/Loan.jsx';
-import FormularTab from './Pages/FormularTab.jsx';
-
+import Loan from "./Pages/Loan.jsx";
+import FormularTab from "./Pages/FormularTab.jsx";
 
 const App = () => {
   return (
@@ -53,6 +44,7 @@ const App = () => {
 
         {/* 2-Admin part.............................................................................. */}
         {/* Admin Dashboard.............................................................................. */}
+        <Route path="/" element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />} />
 
         {/* Employee.............................................................................. */}
@@ -63,11 +55,11 @@ const App = () => {
 
         <Route path="/tables/demandetype/:id" element={<Demandetype />} />
         <Route path="/tables" element={<TableDemands />} />
-     
+
         {/* ..............Damande Tabele.............................................................................. */}
         {/* .............loan Tabele.............................................................................. */}
         <Route path="/tables/loantype" element={<LoanType />} />
-        <Route path='/Loan' element={<Loan />} />
+        <Route path="/Loan" element={<Loan />} />
 
         {/* ..............Offre Tabele.............................................................................. */}
 
@@ -75,15 +67,15 @@ const App = () => {
         <Route path="/formulaire" element={<Formul />} />
         {/* ..............Damande Formular.............................................................................. */}
         <Route path="/formulaire/formulairedemande" element={<Addoffre />} />
-        <Route0
+        <Route
           path="/formulaire/formulairedemande/confirmformulaire"
           element={<Confirmformul />}
         />
         <Route
           path="/formulaire/formulairedemande/modefyformulaire"
           element={<Modefyformule />}
-        /> 
-         <Route path='/FormularTab' element={<FormularTab />} />
+        />
+        <Route path="/FormularTab" element={<FormularTab />} />
 
         {/* .............loan Formular.............................................................................. */}
         <Route
