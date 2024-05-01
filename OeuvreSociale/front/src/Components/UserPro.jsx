@@ -2,6 +2,7 @@ import '../Styles/userPro.css';
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
+
 import axios from 'axios';
 import {useParams} from 'react-router-dom';
 
@@ -11,7 +12,6 @@ function UserPro(props) {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
 const [password, setPassword] = useState('');
 const [error, setError] = useState(null);
-
 
 const handlePasswordSubmit = () => {
   // Here you would check if the entered password is correct

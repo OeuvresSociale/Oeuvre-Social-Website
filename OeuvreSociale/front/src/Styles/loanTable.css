@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700 &display=swap');
+.loan{
+  width:78% ;
+  height: 73%;
+  background-color: #fff;
+  position: absolute;
+  margin:30px;
+  border-radius: 7px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.loans{
+    width:90%;
+    margin-top: 10px;
+    position:absolute;
+    top: 10%;
+   align-items: center;
+    display:flex; 
+    align-items:center;
+    padding: 60px;
+    
+    border-radius: 5px;
+    
+  }
+  
+  .loans th,
+  .loans td {
+    padding: 20px;
+  
+    text-align: left;
+    margin-right: 100px;
+  }
+  .loans th{
+    color: #138582;
+  }
+  .filtercontainer {
+    position:absolute;
+    top:7%;
+   
+    right:3%;
+    /* padding: 10px 20px; */
+    border: none; 
+   
+    text-decoration: none; 
+    /* cursor: pointer; */
+
+  }
+  
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-select select {
+  display: none; 
+}
+
+.table {
+  width: 90%;
+
+}
+.status-accepted {
+  color:rgba(110, 218, 101, 1);
+  ;
+}
+
+.status-refused {
+  color: #ff3939; 
+}
+
+.status-pending {
+  color:rgba(255, 187, 54, 1);
+}
+
+
+
+
