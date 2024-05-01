@@ -58,6 +58,7 @@ const App = () => {
         {/* Employee.............................................................................. */}
         <Route path="/employeelist" element={<Employeelist />} />
         <Route path="/employeelist/Addemployee" element={<Addemployee />} />
+        <Route path="/Profile" element={<Profile/>} />
 
         {/* Tabeles.............................................................................. */}
 

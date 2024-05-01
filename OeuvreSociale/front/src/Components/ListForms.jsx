@@ -99,7 +99,7 @@ function Forms() {
             </ul>
             <div className="buttonsWrapper">
               <button className="cancelButton" onClick={closePop}>Cancel</button>
-              <button className="validateButton">Validate</button>
+              <button className="validateButton" >Validate</button>
             </div>
           </div>
         </div>
