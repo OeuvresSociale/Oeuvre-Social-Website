@@ -1,43 +1,30 @@
 import '../Styles/demands.css';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState , useEffect } from 'react';
+import axios from 'axios';
 
-const demands = [
-  {
-    demandId: 1,
-    type: 'Mariage',
-    date: new Date(2024, 2, 20),
-    status: 'Accepted',
-    motif: 'Needed for application',
-  },
-  {
-    demandId: 2,
-    type: 'Advance',
-    date: new Date(2024, 2, 15),
-    status: 'Refused',
-    motif: 'Insufficient reason',
-  },
-  {
-    demandId: 3,
-    type: 'Advance',
-    date: new Date(2024, 2, 18),
-    status: 'Pending',
-    motif: 'Waiting for approval',
-  },
-];
+import { Link ,useParams} from 'react-router-dom';
 
-function Demands() {
-  const [filterStatus, setFilterStatus] = useState(null);
 
-  const filteredDemands = filterStatus
-    ? demands.filter((demand) => demand.status === filterStatus)
-    : demands;
+// table des demnade d'nu employee en his profile
+
+function Demands(props) {
+
+  const [filterStatus, setFilterStatus] = useState(null); 
+//  const [requests, setRequests] = useState([]);
+//   const [error, setError] = useState(null);
+  console.log("props:",props.dataD)
+  const requests = props.dataD;
+  console.log("requests",requests);
+
+  // const filteredDemands = filterStatus
+  //   ? requests.filter((demand) => demand.state === filterStatus)
+  //   : requests;
 
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);
   };
-  function getStatusColor(status) {
-    switch (status) {
+  function getStatusColor(state) {
+    switch (state) {
       case 'Accepted':
         return 'status-accepted'; 
       case 'Refused':
@@ -46,7 +33,10 @@ function Demands() {
         return 'status-pending'; 
       default:
         return ''; 
-    }
+    } 
+  }
+  if (!requests) {
+    return <div>Loading...</div>;
   }
   return (
     <div className="demand">
@@ -73,17 +63,18 @@ function Demands() {
           </tr>
         </thead>
         <tbody>
-          {filteredDemands.map((demand) => (
-          <tr key={demand.demandId}>
 
-              <td>{demand.demandId}</td>
-              <td>{demand.type}</td>
-              <td>{demand.date.toLocaleDateString()}</td>
-              <td  className={getStatusColor(demand.status)}>{demand.status}</td>
-              <td>{demand.motif}</td>
+          {requests.map((request) => (
+          <tr key={request._id}>
+              <td>1</td>
+              <td>{request.requestTypeId.title}</td>
+              <td>{request.creationDate}</td>
+              <td  className={getStatusColor()}>{request.state}</td>
+
+              <td>{request.motif}</td>
             </tr>
-          ))}
-        </tbody>
+                 ) )}
+               </tbody>
       </table>
       
     </div>

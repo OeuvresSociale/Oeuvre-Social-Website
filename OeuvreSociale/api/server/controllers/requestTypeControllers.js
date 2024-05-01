@@ -10,6 +10,7 @@ const getTypesRequest = async (req, res) => {
     res.status(404).json({ message: error.message });
   } 
 };
+
 //get one 
 const getTypeRequest = async (req, res) => {
 try{

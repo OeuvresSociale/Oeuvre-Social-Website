@@ -74,7 +74,7 @@ const getallRequests = async (req, res) => {
     .populate("employeeId", "familyName firstName")
       .sort({ creationDate: -1 })
       .skip(skipRequests)
-      .limit(RequestPerPage);
+      .limit(RequestPerPage); 
     res.status(200).json(Requests);
     if (!Requests) {
       res.status(401).json("there is no  requests here");
@@ -88,12 +88,13 @@ const getallRequests = async (req, res) => {
 //Get one request
 const getRequest = async (req, res) => {
   try {
-    const request = await Request.findById(req.params.id, { files: 1 })
+    const request = await Request.findById(req.params.id , { files: 1 })
       .populate("requestTypeId", "title")
       .populate(
         "employeeId",
-        "idEmployee familyName firstName dateStartJob email phoneNumber"
+        "idEmployee familyName firstName dateStartJob email phoneNumber monthlySalary familysitution "
       );
+   
       
     res.status(200).json(request);
   } catch (err) {
@@ -106,10 +107,10 @@ const getRequest = async (req, res) => {
 const createRequest = async (req, res) => {
   try {
     // Extract file information from req.files array
-    const filesData = req.files.map((file) => ({
-      fileId: file.filename, // Assuming you're using multer to store files locally
-      filename: file.originalname,
-    }));
+    // const filesData = req.files.map((file) => ({
+    //   fileId: file.filename, // Assuming you're using multer to store files locally
+    //   filename: file.originalname,
+    // }));
 
     // Create a new instance of RequestModel with files data
     const request = new Request({
@@ -117,7 +118,7 @@ const createRequest = async (req, res) => {
       requestTypeId: req.body.requestTypeId,
       employeeId: req.body.employeeId,
 
-      files: filesData, // Set files array with file information
+      //files: filesData, // Set files array with file information
     });
     // Save the new request to the database
     const savedRequest = await request.save();
@@ -176,7 +177,7 @@ const suiviRequest = async (req, res) => {
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Internal server error" });
-    }
+    } 
   } catch {
     res.status(401).json("this request is not existed");
   }

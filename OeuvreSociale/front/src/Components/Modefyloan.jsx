@@ -15,6 +15,8 @@ const Modefyloan =()=>{
         const handleEditorChange = (newEditorState) => {
             setEditorState(newEditorState);
         };
+
+        
     
 
 
@@ -28,7 +30,7 @@ return (
            
            <div className="empinf">
 
-<div className="loaninfs">
+<div className="loaninfs2">
    <div className="colloaninf">
     <div className="loaninf"><div className="loan1">Prix maximal du pret :</div><div className="loan2"><input  type="text"  placeholder="Valeur" />DA</div></div>
     <div className="loaninf"><div className="loan1">Mois maximal du remboursement :</div><div className="loan2"><input  type="text"  placeholder="Valeur" /></div></div>

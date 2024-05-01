@@ -7,11 +7,31 @@ import '../Styles/Formulaire.css';
 import { BsSearch } from "react-icons/bs";
 import Deleteuser from "./Deleteuser";
 import Modefyuser from "./Modefyuser";
+import {  TfiAngleRight , TfiAngleLeft} from "react-icons/tfi";
+import { BiError } from "react-icons/bi";
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import axios from 'axios';
+import TablePagination from '@mui/material/TablePagination';
 
 const Formulaire = () => {
   const[openDelete,setOpenDelete]=useState(false);
   const[openModefy,setOpenModefy]=useState(false);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5); // Default rows per page
+  
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+  
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0); // Reset page to 0 when rows per page changes
+  };
+    
+  
+ 
+
+ 
 
   
   const [inputs, setInputs]=useState({
@@ -77,6 +97,7 @@ useEffect(() => {
   }
   catch(error){
   setErr(error.response.data);
+ 
   
   }
   };
@@ -88,7 +109,7 @@ const [employees, setEmployees] = useState([]);
 const [error, setError] = useState(null);
 const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [searchValue, setSearchValue] = useState('');
-useEffect(() => {
+useEffect(() => { 
   const fetchEmployees = async () => {
     try {
       const response = await axios.get(`http://localhost:8000/api/employees?page=1&search=${searchValue}`, { responseType: 'json', responseEncoding: 'utf8' });
@@ -136,31 +157,33 @@ const handleSearch = () => {
            </div>
 <div className="formulaire">
 <div className="f1">
- <div style={{ width: '50%' }} className="f2" ><input type="text" name="familyName" placeholder="Nom" onChange={handleChange} /></div>
- <div style={{ width: '50%' }} className="f2"  ><input type="text"name="firstName" placeholder="Prénom" onChange={handleChange} /></div>
+ <div style={{ width: '50%' }} className="f2" ><input type="text" name="familyName" placeholder="Nom" onChange={handleChange} required/></div>
+ <div style={{ width: '50%' }} className="f2"  ><input type="text"name="firstName" placeholder="Prénom" onChange={handleChange} required/></div>
 
  </div >
  <div className="f1">
- <div style={{ width: '33%'}} className="f2" ><input type="text"  name="idEmployee" placeholder="ID" onChange={handleChange} /></div>
- <div  style={{ width: '33%'}} className="f2"><input   name="monthlySalary" placeholder="Salaire" onChange={handleChange} /></div>
- <div style={{ width: '33%'}} className="f2"><input  style={{ width: '240px' }}  type="date" name="dateStartJob" placeholder="date de recrutement" onChange={handleChange}/></div>
+ <div style={{ width: '33%'}}><div  className="f2" ><input type="text"  name="idEmployee" placeholder="ID" onChange={handleChange}required /></div></div>
+ <div  style={{ width: '33%'}} className="f2"><input   name="monthlySalary" placeholder="Salaire" onChange={handleChange}required /></div>
+ <div style={{ width: '33%'}} className="f2"><input  style={{ width: '240px' }}  type="date" name="dateStartJob" placeholder="date de recrutement" onChange={handleChange} required/></div>
 
  </div>
  <div className="f1">
  
- <div style={{ width: '50%' }}  className="f2"><input type="text"  name="email" placeholder="address email" onChange={handleChange} /></div>
- <div style={{ width: '50%' }} className="f2"><input  type="text"  name="phoneNumber" placeholder="Phone Number" onChange={handleChange} /></div>
+ <div  style={{ width: '50%' }}><div  className="f2"><input type="text"  name="email" placeholder="address email" onChange={handleChange} required/></div> </div>
+<div style={{ width: '50%' }}><div  className="f2"><input  type="text"  name="phoneNumber" placeholder="Phone Number" onChange={handleChange}required /></div></div>
  </div>
  <div className="f1">
  
- <div  style={{ width: '100%' }} className="f2"><input type="text" name="bankAccount" placeholder="compte bancaire" onChange={handleChange} /></div>
+
+ <div style={{ width: '100%' }}><div   className="f2"><input type="text" name="bankAccount" placeholder="compte bancaire" onChange={handleChange} required/></div></div>
+
  </div>
  <div className="f1">
  <div style={{ width: '33%' }} className="f2" >
 
  
       <div className="select-container">
-        <select id="gender" name="gender" value={null} onChange={handleGenderChange}>
+        <select id="gender" name="gender" value={null} onChange={handleGenderChange}required>
         <option value="">sexe</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
@@ -170,7 +193,7 @@ const handleSearch = () => {
       </div>
       <div style={{ width: '33%' }} className="f2" >
       <div className="select-container">
-        <select id="sitfam" name="sitfam" value={null} onChange={handlesitfamChange}>
+        <select id="sitfam" name="sitfam" value={null} onChange={handlesitfamChange}required>
         <option value="">situation familialle</option>
           <option value="Marie">Marié</option>
           <option value="celibataire">célibataire</option>
@@ -181,7 +204,7 @@ const handleSearch = () => {
       <div style={{ width: '33%' }} className="f2" >
       
       <div className="select-container">
-        <select id="role" name="role" value={null} onChange={handleroleChange}>
+        <select id="role" name="role" value={null} onChange={handleroleChange}required>
          
           <option value="president">président</option>
           <option value="tresorerie">trésorerie</option>
@@ -213,8 +236,7 @@ const handleSearch = () => {
  <p>
   { //affiche le message d'erreur
 //errorMessage
-}
-</p>
+}</p>
 
 </div>
 
@@ -266,13 +288,23 @@ const handleSearch = () => {
        ))}
       </tbody>
     </table>
-
+   
 
 
 
 
 
            </div>
+           <TablePagination  className='tablepag'
+  // Options for rows per page
+  component="div"
+  count={employees.length} // Total number of rows
+  rowsPerPage={rowsPerPage}
+  page={page}
+  onPageChange={handleChangePage}
+  onRowsPerPageChange={handleChangeRowsPerPage}
+/>
+
            {console.log(selectedEmployee)}
            {openModefy && selectedEmployee && <Modefyuser closeModefy={setOpenModefy} selectedEmployee={selectedEmployee} />}
       
@@ -280,8 +312,13 @@ const handleSearch = () => {
            {openDelete && selectedEmployee && <Deleteuser  closeDelete={setOpenDelete} selectedEmployee={selectedEmployee} />}
 
 
+          
 
 
+       <div className="errorm"> <div className="error1" > <BiError />message d'erreur</div>
+     <div className="error2" > <IoMdCheckmarkCircleOutline />message d'erreur</div></div> 
+
+          
       </div>
 
 

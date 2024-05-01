@@ -222,7 +222,7 @@ async function login(req,res){
                              res.cookie('token', token, { httpOnly: true });
                           useremail=user.email;
                           role=user.role;
-                          salary=user.salary;
+                          salary=user.monthlySalary;
                           console.log('token:',token);
                           return res.status(200).send(
                             {useremail,

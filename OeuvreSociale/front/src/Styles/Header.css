@@ -51,10 +51,12 @@
 
 height: 56px;
 display: flex;
+justify-content: center;
+align-items: center;
 flex-direction: row;
 gap:5px;
 right: 0;
-font-size: 53px;
+font-size: 34px;
 background: #fff;
 
 }

@@ -41,7 +41,7 @@ async function Auth(req, res, next) {
         console.error('Authentication error:', error.message);
         return res.status(401).json({ error: 'Authentication failed: Invalid token' });
     }
-}
+} 
 
 
  function localVariables(req, res, next){
@@ -56,4 +56,4 @@ async function Auth(req, res, next) {
 
 
 
-module.exports = {Auth,localVariables}
+module.exports = {Auth};

@@ -39,7 +39,7 @@ const userSchema = new schema ({
     },
     sexe:{
         type:String,
-        required:true,
+        required:true, 
         
     },
     familysitution:{
@@ -73,8 +73,6 @@ const userSchema = new schema ({
 
         enum:['president','tresorerie','membre','employe'],
         default :"employe"
-
-        
 
        
     },

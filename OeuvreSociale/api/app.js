@@ -14,9 +14,9 @@ const rateLimit = require('express-rate-limit');
 const session = require('express-session');
 const morgan=require('morgan');
 
-
+  
 const app = express();
-const cors = require('cors');
+const cors = require('cors'); 
 /** */
 const corsOptions ={
     origin:'http://localhost:3000', 
@@ -53,58 +53,33 @@ app.use(helmet()); /**Use the helmet middleware to set secure HTTP headers,
 
 
 // Define the rate limiter
-const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes: This value is used to define the duration of the time window during which the rate limit is enforced
-    max: 100, // limit each IP to 100 requests per window
-  });
+// const limiter = rateLimit({
+//     windowMs: 15 * 60 * 1000, // 15 minutes: This value is used to define the duration of the time window during which the rate limit is enforced
+//     max: 100, // limit each IP to 100 requests per window
+//   });
   
 
 
 /**api routes*/
-app.use('/api',limiter,router);
-app.use('/api',limiter,employeeRouter);
-app.use('/api',limiter,typeRequestRouter);
-app.use('/api',limiter,requestRouter);
-
-
-//function insertuserData(){
-   // user.insertMany([
-   // {
-      //  idEmployee:"1",
-       // familyName:"meflah",
-       // firstName:"yousra",
-       // password:"esi",
-       // email:"y.meflah@esi.sba.dz",
-       // phoneNumber:"1234",
-       // sexe:"f",
-       // isMarried:false,
-        //numberOfChild
-       // bankAccount:"1234",
-       // monthlySalary:12,
-       // dateStartJob
-        //isCommit:true
-       // role
-       // profilePicture:
-   // },
-   
-   // ])
-    
-
-//} 
-
-
-//} 
-
-//insertuserData();
+app.use('/api',router);
+app.use('/api',employeeRouter);
+app.use('/api',typeRequestRouter);
+app.use('/api',requestRouter);
 
 
 
+// Assume 'YourModel' is the Mongoose model representing your collection
+// const RequestModel = require("./server/models/request.js");
+// RequestModel.deleteMany()
+//   .then((result) => {
+//     console.log(`${result.deletedCount} documents deleted successfully.`);
+//   })
+//   .catch((error) => {
+//     console.error('Error deleting documents:', error);
+//   });
+ 
 
-
-
-
-
-
+ 
 
 //connection to DB
 connectDB().then(()=>{

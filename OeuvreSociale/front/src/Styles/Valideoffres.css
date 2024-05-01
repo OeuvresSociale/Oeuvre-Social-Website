@@ -1,0 +1,47 @@
+.addoffrewrapper4{
+    position: absolute;
+    width: var(--conwidth);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:2%;
+    background-color: #EAEDEF;
+    margin-top: 40px;
+
+   
+
+
+    
+}.vali7{
+    width:90%;
+    height:80%;
+    border-top: #999999 1px solid;
+    display: flex;
+position: relative;
+
+}
+.gallery-wrapper {
+    display: flex; /* Use flexbox to arrange gallery items */
+    flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+    justify-content: space-between; /* Distribute items evenly along the main axis */
+    gap: 10px; /* Add some space between items */
+    padding: 10px; /* Add padding inside the wrapper */
+    background-color: #f0f0f0; /* Set a background color */
+    border-radius: 8px; /* Add rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.gallery-item {
+    width: calc(33.33% - 10px); /* Adjust item width based on the number of items per row */
+    margin-bottom: 10px; /* Add bottom margin to separate rows */
+    border-radius: 8px; /* Add rounded corners to each item */
+    overflow: hidden; /* Hide overflowing content */
+}
+
+/* Optional: Style for images inside gallery items */
+.gallery-item img {
+    width: 100%; /* Make images fill their parent container */
+    height: auto; /* Maintain aspect ratio */
+}

@@ -2,19 +2,16 @@ import '../Styles/userPro.css';
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
-function UserPro() {
-  const [userData, setUserData] = useState({
-    name: 'Dahoun Manel',
-    firstName: 'Dahoun',
-    lastName: 'Manel',
-    situationFamiliale: 'Célibataire',
-    email: 'm.dahoun@esi-sba.dz',
-    phoneNumber: '0666666666',
-    salary: 25000000,
-    bankAccount: '12345678901234567890',
-  });
+
+import axios from 'axios';
+import {useParams} from 'react-router-dom';
+
+  
+function UserPro(props) {
+ // const [userData, setUserData] = useState([]);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
-  const [password, setPassword] = useState('');
+const [password, setPassword] = useState('');
+const [error, setError] = useState(null);
 
 const handlePasswordSubmit = () => {
   // Here you would check if the entered password is correct
@@ -48,23 +45,29 @@ const handleNewPasswordSubmit = () => {
   setNewPassword('');
   setConfirmNewPassword('');
 };
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch('/api/user-data');
-        if (response.ok) {
-          const data = await response.json();
-          setUserData(data);
-        } else {
-          console.error('Failed to fetch user data:', await response.text());
-        }
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
-    fetchUserData();
-  }, []);
+// const {id}=useParams();
+// console.log("id",id);
 
+  // useEffect(() => {
+   
+  //   const fetchRequests =  async () => {
+  //     try {
+  //       const response = await axios.get(`http://localhost:8000/api/employees/${id}`, { responseType: 'json', responseEncoding: 'utf8' });
+
+  //       setUserData(response.data); 
+  //     } catch (error) {
+  //       console.error('Error fetching requests:', error);
+  //       setError(error);
+  //       setUserData([]);
+  //     }
+  //   };
+  //   fetchRequests(); 
+  // },[]);
+ const userData = props.dataP;
+  console.log("userData",userData);
+   if (!userData) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="profile">
       <h1 className="profile-title">Employee Profile</h1>
@@ -80,8 +83,8 @@ const handleNewPasswordSubmit = () => {
             <p>Bank account:</p>
           </div>
           <div className="Info-left">
+            <p>{userData.familyName}</p>
             <p>{userData.firstName}</p>
-            <p>{userData.lastName}</p>
             <p>{userData.email}</p>
             <p>{userData.bankAccount}</p>
           </div>
@@ -92,14 +95,17 @@ const handleNewPasswordSubmit = () => {
           </div>
           <div className="Info-right">
             <p>{userData.phoneNumber}</p>
-            <p>{userData.situationFamiliale}</p>
-            <p>{userData.salary}</p>
+
+            <p>{userData.familysitution}</p>
+            <p>{userData.monthlySalary}</p>
+
           </div>
         </div>
         <button className="button" onClick={() => setShowPasswordModal(true)}>
       Change Password <FontAwesomeIcon icon={faPen} size="sm" />
     </button>
     {showPasswordModal && (
+      <div className='formtitlewrapper'>
       <div className="modal">
         <h2>Enter Your Password</h2>
         <input
@@ -111,6 +117,7 @@ const handleNewPasswordSubmit = () => {
         <button onClick={() => setShowPasswordModal(false)}>Cancel</button>
         <button className="Enter" onClick= {handlePasswordSubmit}>Enter </button>
       </div>
+      </div>
     )}
     {showOTPModal && (
       <div className='formtitlewrapper'>
@@ -121,13 +128,13 @@ const handleNewPasswordSubmit = () => {
       value={otp}
       onChange={(e) => setOTP(e.target.value)}
     />
-    <button onClick={handleOTPSubmit}>Validate</button>
+    <button className='Enter' onClick={handleOTPSubmit}>Validate</button>
     <button onClick={() => setShowOTPModal(false)}>Cancel</button>
   </div>
   </div>
-
 )}
 {showNewPasswordModal && (
+  <div className='formtitlewrapper'>
   <div className="modal">
     <h2>Enter New Password</h2>
     <input
@@ -142,8 +149,9 @@ const handleNewPasswordSubmit = () => {
       onChange={(e) => setConfirmNewPassword(e.target.value)}
       placeholder="Confirm New Password"
     />
-    <button onClick={handleNewPasswordSubmit}>Validate</button>
+    <button className='Enter' onClick={handleNewPasswordSubmit}>Validate</button>
     <button onClick={() => setShowNewPasswordModal(false)}>Cancel</button>
+  </div>
   </div>
 )}
     </div>

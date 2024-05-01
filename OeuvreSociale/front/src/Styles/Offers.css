@@ -1,0 +1,94 @@
+:root {
+    --conwidth: 82%; /* Default value */
+  }.addoffrewrapper{
+    position: absolute;
+    width: var(--conwidth);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:2%;
+    background-color: #EAEDEF;
+    margin-top: 20px;
+
+   
+
+
+    
+}.addoffre{
+    position: absolute;
+   right: 1%;
+   top: 16%;
+    width: 220px;
+    height: 40px;
+  
+   background-color: #148582; 
+   color: #fff; 
+  
+   border-radius: 5px;
+  
+   cursor: pointer;
+   text-decoration: none;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+ 
+   display: flex;
+   align-items: center;
+   gap:20px;
+   justify-content: center;
+   padding: 8px 12px; 
+   font-size: 30px;
+   font-weight: 400;
+  
+  
+  
+   
+
+
+}.addoffre button{
+    transform: translateY(-7px);
+    font-size: 22px;
+    background-color: #148582; 
+    color: #fff; 
+    border: none;
+    font-weight: 400;
+    cursor: pointer;
+    
+}.vali{
+  
+    width:90%;
+    height:39%;
+    border-top: #999999 1px solid;
+    display: flex;
+    
+   
+   
+    position: relative;
+    
+   
+
+}.addformbtn{
+    width:90%;
+    height:8%;
+    display: flex;
+    position: relative;
+    cursor: pointer;
+    
+
+}.titleaddoffre{
+    background-color: #EAEDEF;
+    color:#00194F;
+    font-size: 28px;
+    font-weight: 400;
+    transform: translateY(-20px);
+    position: absolute;
+ 
+}.vt{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: #00194F;
+}.vt:hover{
+   
+    color: #148582;
+}

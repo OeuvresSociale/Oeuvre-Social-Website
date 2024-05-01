@@ -64,16 +64,16 @@ body {
   
   .toggle-menu-btn {
     margin-top: 7px;
-    margin-left: 160px;
+    margin-left: 80%;
     cursor: pointer;
-    font-size: 27px;
+    font-size: 30px;
     background-color: #00194F;
   }  .toggle-menu-btn svg{
     background-color: transparent;
   }
   .toggle-menu-btn2 {
     margin-top: 7px;
-    margin-left: 10px;
+    margin-left: 10%;
     cursor: pointer;
     font-size: 30px;
     background-color: #00194F;
@@ -115,28 +115,19 @@ body {
 
   }.menuicon svg{
     background-color: transparent;
-    padding:15px;
+    padding:19px;
+    /* font-size: 20px; */
    
   }
   
   .link-taxt {
     
-
+cursor: pointer;
     font-weight: 400;
     background-color: #00194F;
   }
 
 
-
-
-
-
-
-
-
-
-
-  
   .submenu {
     list-style: none;
     padding :0px;
@@ -151,6 +142,7 @@ body {
     color:#fff;
     background-color: #00194F;
     display:inline-block;
+    align-items: center;
     
     text-decoration: none;
     display: flex;
@@ -161,19 +153,14 @@ body {
     display: none;
   }
 
-  .ayhaja:hover{
-     display: flex;
-     text-decoration: none;
-     display: flex;
+  .ayhaja:not(.active):hover{
+
      
-      background-color: #EAEDEF;
-      color:#00194F;
+      color:#b2b5b7;
    
-  }.ayhaja:hover a{
-    background-color: #EAEDEF;
   }.ayhaja.active{
     
-      background-color: #EAEDEF;
+    background-color: #EAEDEF;
       color:#00194F;
     
   } 
@@ -197,7 +184,7 @@ body {
   ul{
    display: inline;
     list-style-type: none;
-    background-color: #00194F;
+   
     text-decoration: none;
    
   }
@@ -208,40 +195,29 @@ body {
     text-decoration: none;
    
   } .ayhaja svg {
+    /* font-size: 30px; */
     padding: 10px;
     background-color: transparent;
-  }.ayhaja:hover span{
-    display:inline-block;
-    text-decoration: none;
-    background-color: #EAEDEF;
-  } 
-  
-  
-  
-   .ayhaja:hover .menuicon {
-    background-color: #EAEDEF;
-    color:#00194F;
-   
   }
-
+  
+  
+   
 
 
    a svg {
     padding: 10px;
     background-color: transparent;
-  }.menuitem:hover{
-    background-color: #EAEDEF;
-    color:#00194F;
-  }.menuitem:hover span{
+  }.menuitem:not(.active):hover{
+    color:#b2b5b7;
+  }.menuitem:not(.active):hover span{
     
-    background-color: #EAEDEF;
+    color:#b2b5b7;
   } 
   
   
   
-  .menuitem:hover .menuicon {
-    background-color: #EAEDEF;
-    color:#00194F;
+  .menuitem:not(.active):hover a {
+    color:#b2b5b7;
    
   }
 a{
@@ -250,41 +226,32 @@ a{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
   li{
    
     text-align: left;
     list-style: none;
-    font-size: 22px;
+    font-size: 23px;
   
-
-   
   }
   a.active{
+    
     background-color: #EAEDEF;
     color:#00194F;
+  
   }.active .menuicon {
     background-color: #EAEDEF;
     color:#00194F;
+   
   }.active .link-taxt{
     background-color: #EAEDEF;
     color:#00194F;
+    /* pointer-events: none; */
   }
   .subicon{
-    position: relative;
+    position:absolute;
+    right:4% ;
    
-   font-size: 22px;
+   font-size: 12px;
   }
 
    

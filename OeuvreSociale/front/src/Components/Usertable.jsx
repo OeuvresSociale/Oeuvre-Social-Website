@@ -8,6 +8,9 @@ import axios from 'axios';
 import { BsSearch } from "react-icons/bs";
 import Deleteuser from "./Deleteuser";
 import Modefyuser from "./Modefyuser";
+import TablePagination from '@mui/material/TablePagination';
+
+import {  TfiAngleRight , TfiAngleLeft} from "react-icons/tfi";
 
 
 const Usertable = () => {
@@ -16,6 +19,30 @@ const Usertable = () => {
   const [employees, setEmployees] = useState([]);
   const [error, setError] = useState(null);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
+
+
+
+  const [page, setPage] = useState(0);
+const [rowsPerPage, setRowsPerPage] = useState(5); // Default rows per page
+
+const handleChangePage = (event, newPage) => {
+  setPage(newPage);
+};
+
+const handleChangeRowsPerPage = (event) => {
+  setRowsPerPage(parseInt(event.target.value, 10));
+  setPage(0); // Reset page to 0 when rows per page changes
+};
+  
+
+  
+
+   
+
+
+
+
+
     const [searchValue, setSearchValue] = useState('');
   useEffect(() => {
     const fetchEmployees = async () => {
@@ -46,6 +73,7 @@ const fetchEmployeeDetails = async (employeeId) => {
   }
 }
 
+console.log("data :",employees);
 
   const handleChange = (event) => {
     setSearchValue(event.target.value);
@@ -55,6 +83,10 @@ const fetchEmployeeDetails = async (employeeId) => {
     // Do something with the searchValue, for example, you can log it
     setSearchValue( searchValue);
   };
+
+
+
+  
 
   return (
     <div className="box">
@@ -90,7 +122,7 @@ const fetchEmployeeDetails = async (employeeId) => {
           <th>Salaire</th>
           <th>Rôle</th>
           <th></th>
-          
+          <th></th> 
         </tr>
       </thead>
       <tbody>
@@ -109,18 +141,29 @@ const fetchEmployeeDetails = async (employeeId) => {
                 onClick={ async() => {setOpenDelete(true); await fetchEmployeeDetails(employee._id);}
                 } />
                 <MdOutlineModeEditOutline onClick={async() =>  {setOpenModefy(true); await fetchEmployeeDetails(employee._id);}} />
+                <Link to={`/profile/${employee._id}`}  > <MdOutlineModeEditOutline /></Link>
               </td>
             </tr>
-       ))}
+       ))} 
       </tbody>
     </table>
-
+    
 
 
 
 
 
            </div>
+
+           <TablePagination  className='tablepag'
+  // Options for rows per page
+  component="div"
+  count={employees.length} // Total number of rows
+  rowsPerPage={rowsPerPage}
+  page={page}
+  onPageChange={handleChangePage}
+  onRowsPerPageChange={handleChangeRowsPerPage}
+/>
            {console.log(selectedEmployee)}
            {openModefy && selectedEmployee && <Modefyuser closeModefy={setOpenModefy} selectedEmployee={selectedEmployee} />}
       
@@ -128,13 +171,12 @@ const fetchEmployeeDetails = async (employeeId) => {
            {openDelete && selectedEmployee && <Deleteuser  closeDelete={setOpenDelete} selectedEmployee={selectedEmployee} />}
 
 
-
-
+          
       </div>
 
 
         );
-    };
+      };
     
     export default Usertable ;
       

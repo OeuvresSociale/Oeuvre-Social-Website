@@ -81,7 +81,7 @@
   width:25%;
   height:35%;
   top: 40%;
-  left:55%;
+  left:50%;
   transform: translate(-50%, -50%);
   background-color: #ffffff;
   padding: 20px;
@@ -98,7 +98,7 @@
 }
 
 .modal input {
-  position: absolute;
+  position: relative;
   top:40%;
   left: 15%;
   width: 70%;
@@ -110,17 +110,22 @@
 }
 .modal button {
   position:relative;
-  top: 80%;
+  top: 55%;
   left: 45%;
   padding: 8px 25px;
   margin-right:10px;
   border: none;
   border-radius: 7px;
 }
-.modal button.Enter {
-  background-color:rgba(19, 133, 130, 1);
+.Enter {
+  background-color:#148582;
   ;
 }
 .modal button:hover {
   opacity: 0.8;
+}
+.tablepag{
+  position: absolute;
+  right:0 ;
+  bottom: 0;
 }
