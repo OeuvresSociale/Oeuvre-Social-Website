@@ -9,7 +9,53 @@
     justify-content: center;
     
     
+    
     background-color: #EAEDEF;
     margin-top: 56px;
 
+}.loaninfst5{
+
+
+  width: 40%;
+  height: 80%;
+  background-color: #fff;
+  border-radius: 7px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+  padding: 5%;
+  font-size: 17px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 6%;
+
+
+
+}.offimg{
+  margin-top: 1%;
+  width:100%;
+  height: 90%;
+
+}.ddimg5 {
+  width: 40%;
+  height: 90%;
+  font-size: 17px;
+  font-weight: 500;
+}.addoffrewrapp25{
+   margin-top: 2%;
+   
+ height: 80%;
+  display: flex;
+ 
+  justify-content: center;
+ gap:5%;
+  
+  background-color: #EAEDEF;
+ 
+
+  
+}.gris5 {
+  font-size: 21px;
+  font-weight: 400;
+  color: #000;
+  background-color: #fff;
 }

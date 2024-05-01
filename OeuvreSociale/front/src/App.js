@@ -34,6 +34,7 @@ import Archive from "./Pages/Archive.jsx";
 import Dashboard from "./Pages/Dashboard.jsx";
 import Transaction from "./Pages/Transaction.jsx";
 import Tdashboard from "./Pages/Tresorerie_Dashboard.jsx";
+import CreeLoan from "./Pages/CreeLoan.jsx";
 
 
 import Loan from './Pages/Loan.jsx';
@@ -92,6 +93,10 @@ const App = () => {
         <Route
           path="/formulaire/formulairepret/modifierpret"
           element={<ModefyLoan />}
+        />
+        <Route
+          path="/formulaire/formulairepret/creepret"
+          element={<CreeLoan />}
         />
 
         {/* ..............Offre Formular............................................................................... */}
