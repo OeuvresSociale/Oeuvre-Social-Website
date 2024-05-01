@@ -4,7 +4,7 @@ const typeRequest = require("../models/typeRequest");
 //Get all request
 const getTypesRequest = async (req, res) => {
   try {
-    const typesRequest = await typeRequest.find({}, { _id: 1, title: 1 });
+    const typesRequest = await typeRequest.find();
     res.status(200).json(typesRequest);
   } catch (error) {
     res.status(404).json({ message: error.message });

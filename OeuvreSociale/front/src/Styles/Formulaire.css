@@ -149,9 +149,11 @@ margin: 23px 0;
 }.add{
   width:120px;
   height:35px;
-  border-color: #999999;
+ border-color: transparent;
   border-radius: 5px;
   border-width: 1px;
+  box-shadow:  rgba(20, 133, 130, 5);
+
   background-color: #148582;
   color:#fff;
   font-size: 15px;

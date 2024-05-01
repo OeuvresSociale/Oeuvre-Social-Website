@@ -1,81 +1,86 @@
-import React ,{useState,useEffect}from "react";
-import '../Styles/Demandetypes.css';
-import { Link, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import "../Styles/Demandetypes.css";
+import { Link, useParams } from "react-router-dom";
 import Motif from "./Motif";
 import { PiFilePdfLight } from "react-icons/pi";
-import axios from 'axios';
+import axios from "axios";
 
 //info sur une demande cote admin ( traitement de demande)
+
 
  
 const Demandetypes =()=>{ 
   const {id}=useParams();
   console.log(id); 
 
+  const [openMotif, setOpenMotif] = useState(false);
+  const [bordercolor, setbordercolor] = useState("white");
+  const [showbuttons, setshowbuttons] = useState(true);
+  const [padding, setpadding] = useState("0");
+  const [error, setError] = useState(null);
 
-   const[openMotif,setOpenMotif]=useState(false);
-   const[bordercolor,setbordercolor]=useState('white');
-   const[showbuttons,setshowbuttons]=useState(true);
-   const[padding,setpadding]=useState('0');
-   const [error, setError]=useState(null);
-
-
-   const [request, setRequest] = useState({
+  const [request, setRequest] = useState({
     _id: "",
     requestTypeId: {
-        _id: "",
-        title: ""
+      _id: "",
+      title: "",
     },
     employeeId: {
-        _id: "",
-        idEmployee: "",
-        familyName: "",
-        firstName: "",
-        email: "",
-        phoneNumber: "",
-        dateStartJob: "",
-        monthlySalary:"",
-        familysitution:""
+      _id: "",
+      idEmployee: "",
+      familyName: "",
+      firstName: "",
+      email: "",
+      phoneNumber: "",
+      dateStartJob: "",
+      monthlySalary: "",
+      familysitution: "",
     },
-    files: []
-});
-useEffect(() => {
-const fetchRequestDetails = async () => {
-  try {
-    const response = await axios.get(`http://localhost:8000/api/Request/${id}`);
+    files: [],
+  });
+  useEffect(() => {
+    const fetchRequestDetails = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8000/api/Request/${id}`
+        );
 
-    setRequest(response.data)
-    // Assuming data is an object containing details of the selected employee
-  } catch (error) {
-    alert(error.response.data)
-    console.error('Error fetching request details:', error);
-  }
-};
-fetchRequestDetails();
-},[])
-   console.log("data",request)
-    
+        setRequest(response.data);
+        // Assuming data is an object containing details of the selected employee
+      } catch (error) {
+        alert(error.response.data);
+        console.error("Error fetching request details:", error);
+      }
+    };
+    fetchRequestDetails();
+  }, []);
+  console.log("data", request);
 
-   const handleRedClick=()=>{
-    setbordercolor('red');
-    setshowbuttons(false);
-    setpadding(120); 
-  
-   };
-   const handleGreenClick=()=>{
-    setbordercolor('green');
+  const handleRedClick = () => {
+    setbordercolor("red");
     setshowbuttons(false);
     setpadding(120);
-   };
-    
-   return(
-<div style={{ borderColor: bordercolor, borderStyle: 'solid',borderWidth:'1px' ,paddingBottom:padding}} className= 'demandetype'>
-       <div className="return">
-           <Link  to="/tables"  >
-              <button>
-              Return
-            </button>
-            </Link>
+  };
+  const handleGreenClick = () => {
+    setbordercolor("green");
+    setshowbuttons(false);
+    setpadding(120);
+  };
+
+  return (
+    <div
+      style={{
+        borderColor: bordercolor,
+        borderStyle: "solid",
+        borderWidth: "1px",
+        paddingBottom: padding,
+      }}
+      className="demandetype"
+    >
+      <div className="return">
+        <Link to="/tables">
+          <button>Return</button>
+        </Link>
       </div>
 
       <div className="td">{request.requestTypeId.title}</div>
@@ -84,96 +89,121 @@ fetchRequestDetails();
 
       <div className="empinf">
 
-          <div className="infs">
-             <div className="colinf">
-               <div className="rowinf">  <div className="gris">Nom :</div>   <div  className="noir">{request.employeeId.familyName}</div> </div>
-               <div className="rowinf"> <div className="gris">Prénom :</div>  <div  className="noir">{request.employeeId.firstName}</div> </div>
-               <div className="rowinf"> <div className="gris">ID :</div>    <div  className="noir">{request.employeeId.idEmployee}</div></div>
-               <div className="rowinf">  <div className="gris">Situation famillialle :</div>  <div  className="noir">{request.employeeId.familysitution}</div></div>
 
-             </div> 
-            <div  className="colinf"> 
-               <div className="rowinf">   <div className="gris">Numéro de téléphone :</div>   <div  className="noir">{request.employeeId.phoneNumber}</div></div>
-               <div className="rowinf">   <div className="gris">Adressr email :</div> <div  className="noir">{request.employeeId.email}</div></div>
-               <div className="rowinf"> <div className="gris">Salaire :</div>  <div  className="noir">{request.employeeId.monthlySalary}</div></div>
-
-               <div className="rowinf"> <div className="gris">Date d'envoi :</div>  <div  className="noir">{request.creationDate}</div></div>
-
-            </div> 
-
-             
-
+        <div className="infs">
+          <div className="colinf">
+            <div className="rowinf">
+              {" "}
+              <div className="gris">Nom :</div>{" "}
+              <div className="noir">{request.employeeId.familyName}</div>{" "}
+            </div>
+            <div className="rowinf">
+              {" "}
+              <div className="gris">Prénom :</div>{" "}
+              <div className="noir">{request.employeeId.firstName}</div>{" "}
+            </div>
+            <div className="rowinf">
+              {" "}
+              <div className="gris">ID :</div>{" "}
+              <div className="noir">{request.employeeId.idEmployee}</div>
+            </div>
+            <div className="rowinf">
+              {" "}
+              <div className="gris">Situation famillialle :</div>{" "}
+              <div className="noir">{request.employeeId.familysitution}</div>
+            </div>
 
           </div>
+          <div className="colinf">
+            <div className="rowinf">
+              {" "}
+              <div className="gris">Numéro de téléphone :</div>{" "}
+              <div className="noir">{request.employeeId.phoneNumber}</div>
+            </div>
+            <div className="rowinf">
+              {" "}
+              <div className="gris">Adressr email :</div>{" "}
+              <div className="noir">{request.employeeId.email}</div>
+            </div>
+            <div className="rowinf">
+              {" "}
+              <div className="gris">Salaire :</div>{" "}
+              <div className="noir">{request.employeeId.monthlySalary}</div>
+            </div>
 
-
-
-
-       </div>
-
-           <div className="pdfs">
-
-            <div className="pdfdoc">
-               <div  className="doctitle">Premier document :</div>
-               <div className="doclink"><a 
-        href="../Assets/homework.pdf"  //request.files
-        target="_blank"
-        rel="noopener noreferrer"
-      > <PiFilePdfLight />
-      </a></div>
-             </div>
-
-             <div className="pdfdoc">
-               <div className="doctitle">Premier document :</div>
-               <div className="doclink"> <a 
-        href="../Assets/homework.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-      > <PiFilePdfLight />
-      </a></div>
-             </div>
-
-             <div className="pdfdoc">
-               <div className="doctitle">Premier document :</div>
-               <div className="doclink"><a 
-        href="../Assets/homework.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-      > <PiFilePdfLight />
-      </a></div>
-             </div>
-
-           </div>
-           {showbuttons && (
-
-           <div className="dtbtns">
-            <button className="refuse"   onClick={ ()=>{ setOpenMotif(true)}}>Réfuser</button>
-             <button className="accepte" onClick={handleGreenClick}   >Accepter</button>
-
-
-
-
-           </div> )}
-
-
-
-           {openMotif && <Motif  closeMotif={setOpenMotif} handleRedClick={handleRedClick} />}
-
-
+            <div className="rowinf">
+              {" "}
+              <div className="gris">Date d'envoi :</div>{" "}
+              <div className="noir">{request.creationDate}</div>
+            </div>
+          </div>
+        </div>
       </div>
-   
-   
 
+      <div className="pdfs">
+        <div className="pdfdoc">
+          <div className="doctitle">Premier document :</div>
+          <div className="doclink">
+            <a
+              href="../Assets/homework.pdf" //request.files
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              <PiFilePdfLight />
+            </a>
+          </div>
+        </div>
 
+        <div className="pdfdoc">
+          <div className="doctitle">Premier document :</div>
+          <div className="doclink">
+            {" "}
+            <a
+              href="../Assets/homework.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              <PiFilePdfLight />
+            </a>
+          </div>
+        </div>
 
+        <div className="pdfdoc">
+          <div className="doctitle">Premier document :</div>
+          <div className="doclink">
+            <a
+              href="../Assets/homework.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {" "}
+              <PiFilePdfLight />
+            </a>
+          </div>
+        </div>
+      </div>
+      {showbuttons && (
+        <div className="dtbtns">
+          <button
+            className="refuse"
+            onClick={() => {
+              setOpenMotif(true);
+            }}
+          >
+            Réfuser
+          </button>
+          <button className="accepte" onClick={handleGreenClick}>
+            Accepter
+          </button>
+        </div>
+      )}
 
-
-   );
-
-
-
-
-
-
+      {openMotif && (
+        <Motif closeMotif={setOpenMotif} handleRedClick={handleRedClick} />
+      )}
+    </div>
+  );
 };
 export default Demandetypes;

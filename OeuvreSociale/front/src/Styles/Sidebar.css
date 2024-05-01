@@ -154,16 +154,13 @@ body {
   }
 
   .ayhaja:hover{
+
      
-     
-      background-color: #EAEDEF;
-      color:#00194F;
+      color:#b2b5b7;
    
-  }.ayhaja:hover a{
-    background-color: #EAEDEF;
   }.ayhaja.active{
     
-      background-color: #EAEDEF;
+    
       color:#00194F;
     
   } 
@@ -201,12 +198,7 @@ body {
     /* font-size: 30px; */
     padding: 10px;
     background-color: transparent;
-  }.ayhaja:hover span{
-   
-    
-    background-color: #EAEDEF;
-  } 
-  
+  }
   
   
    .ayhaja:hover .menuicon {
@@ -221,18 +213,16 @@ body {
     padding: 10px;
     background-color: transparent;
   }.menuitem:hover{
-    background-color: #EAEDEF;
-    color:#00194F;
+    color:#b2b5b7;
   }.menuitem:hover span{
     
-    background-color: #EAEDEF;
+    color:#b2b5b7;
   } 
   
   
   
   .menuitem:hover .menuicon {
-    background-color: #EAEDEF;
-    color:#00194F;
+    color:#b2b5b7;
    
   }
 a{
@@ -249,20 +239,24 @@ a{
   
   }
   a.active{
+    
     background-color: #EAEDEF;
     color:#00194F;
+    pointer-events: none;
   }.active .menuicon {
     background-color: #EAEDEF;
     color:#00194F;
+    pointer-events: none;
   }.active .link-taxt{
     background-color: #EAEDEF;
     color:#00194F;
+    pointer-events: none;
   }
   .subicon{
     position:absolute;
     right:4% ;
    
-   font-size: 18px;
+   font-size: 12px;
   }
 
    

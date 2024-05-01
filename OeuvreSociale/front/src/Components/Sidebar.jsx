@@ -9,19 +9,18 @@ import { FaRegPlusSquare } from "react-icons/fa";
 import { LuLayoutList } from "react-icons/lu";
 import { HiOutlineSwitchVertical } from "react-icons/hi";
 import { IoListCircleOutline } from "react-icons/io5";
-
-
-
-
-
 import MenuItem from "./MenuItem.jsx";
 
 
+let stt = true;
+
 function Sidebar({ children }) {
-    const [isOpen, setIsOpen] = useState(true);
+    const root = document.documentElement;
+    const [isOpen, setIsOpen] = useState(stt);
+       
      // Get the root element
 
-    const root = document.documentElement;
+   
     const toggle = () => {
         setIsOpen(!isOpen);
        if(isOpen){
@@ -36,8 +35,11 @@ function Sidebar({ children }) {
        root.style.setProperty('--conwidth', '82%');
        root.style.setProperty('--dtwidth', '79%');
        }
-        
+         
     }
+
+    stt=isOpen; 
+
     const menuItems = [
         {
             path: "/dashboard",
@@ -66,7 +68,7 @@ function Sidebar({ children }) {
             subicon2 :<TfiAngleRight/> ,
             subMenus: [
                 {
-                    path: "/dashboard",
+                    path: "/tresorerie_dashboard",
                     name: "Dashboard",
                     icon: <MdOutlineDashboard />
                 },
