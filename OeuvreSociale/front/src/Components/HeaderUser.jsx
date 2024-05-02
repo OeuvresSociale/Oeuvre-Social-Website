@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../Styles/headerUser.css';
 import { FaBell, FaUserCircle, FaSignOutAlt } from 'react-icons/fa';
 import images from "../Assets/images.png"; 
@@ -12,11 +13,11 @@ const HeaderUser = () => {
           <span className="website-name">Belink</span>
         </div>
         <nav className="menu">
-          <ul>
-            <li><span className='texte'>About Us</span></li>
-            <li><span className='texte'>Offres</span></li>
-            <li><span className='texte'>Demands</span></li>
-            <li><span className='texte'>Contact Us</span></li>
+        <ul>
+            <li><Link to="/about-us"><span className='texte'>About Us</span></Link></li>
+            <li><Link to="/offres"><span className='texte'>Offres</span></Link></li>
+            <li><Link to="/tables"><span className='texte'>Demands</span></Link></li>
+            <li><Link to="/contact-us"><span className='texte'>Contact Us</span></Link></li>
           </ul>
         </nav>
       </div>
