@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { GoTrash } from "react-icons/go";
 
-const DeleteOffre = ({ closeValidateoffre }) => {
+const DeleteOffre = ({ closeDeleteoffre }) => {
    
     
    
@@ -20,8 +20,8 @@ const DeleteOffre = ({ closeValidateoffre }) => {
                     <div className="deletoff4">Vous etes sur ?</div>
                    
                     <div className="formtitlebtns">
-                        <button  className="formtitlecancel">Annuler</button>
-                        <button  className="deletoffvalider">Supprimer</button>
+                        <button  className="formtitlecancel"onClick={() => { closeDeleteoffre(false); }} >Annuler</button>
+                        <button  className="deletoffvalider" onClick={() => { closeDeleteoffre(false); }}>Supprimer</button>
                     </div>
                
             </div>

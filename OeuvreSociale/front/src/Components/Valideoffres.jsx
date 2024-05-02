@@ -64,10 +64,12 @@ const Valideoffres = () => {
                         <img className='offimg3' src={`${process.env.PUBLIC_URL}/images/logo.png`}  />
                          <Link to='/formulaire/ajouteroffre/offretype'><div className="titoff">Titre d'offre :</div></Link>
                         <div className="descoff">Titre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offre :</div>
+                   
                         
-
+                         
                         
                          </div>
+                    
                     
                      </div>
                 </div>

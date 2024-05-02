@@ -35,6 +35,7 @@ import Dashboard from "./Pages/Dashboard.jsx";
 import Transaction from "./Pages/Transaction.jsx";
 import Tdashboard from "./Pages/Tresorerie_Dashboard.jsx";
 import CreeLoan from "./Pages/CreeLoan.jsx";
+import UnvalideOffretype from "./Pages/UnvalideOffretype.jsx";
 
 
 import Loan from './Pages/Loan.jsx';
@@ -120,6 +121,10 @@ const App = () => {
         <Route
           path="/formulaire/ajouteroffre/offretype"
           element={<OffreType />}
+        />
+        <Route
+          path="/formulaire/ajouteroffre/unvalideoffretype" 
+        element={<UnvalideOffretype />}   //  where u go when click on the unvalid offre
         />
 
         {/* Tresorerie.............................................................................. */}

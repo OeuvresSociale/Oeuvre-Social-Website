@@ -67,7 +67,7 @@ const Offres = () => {
                      <div className="offrecrap">
                         <div className="offrec">
                         <img className='offimg2' src={`${process.env.PUBLIC_URL}/images/logo.png`}  />
-                        <div className="titoff">Titre d'offre :</div>
+                        <Link to='/formulaire/ajouteroffre/unvalideoffretype'><div className="titoff">Titre d'offre :</div></Link>
                         <div className="descoff">Titre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offre :</div>
                          <div className="offbtns"><button onClick={() => { setopenDeleteoffre(true); }}  className="offdel">Supprimer</button>
                         <button  className="offvalid" onClick={() => {setopenvalidateoffre(true); }}>Valider</button></div>
@@ -119,7 +119,7 @@ const Offres = () => {
 
                
                     {openDeleteoffre && <Deleteoffre closeDeleteoffre={setopenDeleteoffre}  />}
-                 {openvalidateoffre && <Validateoffrepopup closevalidateoffre={setopenvalidateoffre}  />}
+                 {openvalidateoffre && <Validateoffrepopup closeValidateoffre={setopenvalidateoffre}  />}
               
           
 
