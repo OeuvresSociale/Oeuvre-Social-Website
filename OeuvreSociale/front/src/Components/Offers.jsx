@@ -4,13 +4,15 @@ import { FiPlusCircle } from "react-icons/fi";
 import { GoTrash } from "react-icons/go";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import axios from "axios";
+import Deleteoffre from './Deleteoffre';
+import Validateoffrepopup from './Validateoffrepopup';
 import { Link } from "react-router-dom";
 
 
  
 const Offres = () => {
-    // const [openFormtitle, setOpenFormtitle] = useState(false);
-    // const [openDelete, setOpenDeleteform] = useState(false);
+    const [openDeleteoffre, setopenDeleteoffre] = useState(false);
+     const [openvalidateoffre, setopenvalidateoffre] = useState(false);
     // const [selectedformularie, setSelectedformularie] = useState(null);
     // const [formularies, setFormularies] = useState([]);
     // const [openModefy, setOpenModefy] = useState(false);
@@ -67,8 +69,8 @@ const Offres = () => {
                         <img className='offimg2' src={`${process.env.PUBLIC_URL}/images/logo.png`}  />
                         <div className="titoff">Titre d'offre :</div>
                         <div className="descoff">Titre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offre :</div>
-                         <div className="offbtns"><button  className="offdel">Supprimer</button>
-                        <button  className="offvalid">Valider</button></div>
+                         <div className="offbtns"><button onClick={() => { setopenDeleteoffre(true); }}  className="offdel">Supprimer</button>
+                        <button  className="offvalid" onClick={() => {setopenvalidateoffre(true); }}>Valider</button></div>
 
                         
                          </div>
@@ -115,7 +117,11 @@ const Offres = () => {
                 <Link to='/formulaire/ajouteroffre/offresvalides'> <div className="vt">Voir tout</div> </Link>
                 </div>
 
-
+               
+                    {openDeleteoffre && <Deleteoffre closeDeleteoffre={setopenDeleteoffre}  />}
+                 {openvalidateoffre && <Validateoffrepopup closevalidateoffre={setopenvalidateoffre}  />}
+              
+          
 
 
 
