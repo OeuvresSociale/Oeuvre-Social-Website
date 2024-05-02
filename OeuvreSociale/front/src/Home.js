@@ -1,6 +1,6 @@
 import React from 'react'
-import Dashboard from './src/Pages/Admin/Dashboard/Dashboard';
-import home from './src/Pages/Employee/home/home.jsx';
+import Dashboard from './Pages/Admin/Dashboard/Dashboard.jsx';
+import home from './Pages/Employee/home/home.jsx';
 
 const Home = () => {
   return (
