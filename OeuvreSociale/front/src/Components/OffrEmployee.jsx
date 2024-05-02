@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import '../Styles/offrEmployee.css';
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import pic1 from "../Assets/pic1.jpg"
@@ -9,13 +9,29 @@ import pic6 from "../Assets/pic6.jpg"
 
 
 const Card = ({ title, description, images }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3000); 
+
+    return () => clearInterval(interval);
+  }, [images.length]);
+
   return (
     <div className="card" onClick={() => handleCardClick()}>
       <h2>{title}</h2>
       <p>{description}</p>
       <div className="image-container">
         {images.map((image, index) => (
-          <img key={index} src={image} />
+          <img
+            key={index}
+            src={image}
+            style={{ display: index === currentImageIndex ? "block" : "none" }}
+          />
         ))}
       </div>
     </div>
@@ -54,24 +70,23 @@ const cardData = [
   {
     title: 'Card 1',
     description: 'Description for card 1',
-    images: [{pic1}]
+    images: [pic1, pic3,pic4]
   },
   {
     title: 'Card 2',
     description: 'Description for card 2',
-    images: [{images}]
+    images: [pic1]
   },
   {
     title: 'Card 2',
     description: 'Description for card 2',
-    images: [{images}]
+    images: [pic1,pic3]
   },
   {
     title: 'Card 2',
     description: 'Description for card 2',
-    images: [{images}]
+    images: [pic4,pic3]
   },
-  // Add more card data here
 ];
 
 export default OffrEmployee;

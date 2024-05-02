@@ -4,7 +4,7 @@
     width:86%;
     background-color:transparent;
     height:70%;
-    top:15%;
+    top:12%;
     display: flex;
     align-items:left;
     flex-wrap: wrap;
@@ -23,7 +23,7 @@
     background-color: #ffffff;
     position: relative;
     width: calc(25% - 20px);
-    height:45%;
+    height:50%;
     margin:10px;
     padding:10px;
     border: 3px solid rgba(255, 255, 255, 1);
@@ -64,10 +64,17 @@
   .image-container {
     position: absolute;
     top:2%;
-    width:100%;
+    width:98%;
     height:52%;
     border-radius: 10px;
-    left:0%;
-    background-color: rgba(153, 153, 153, 0.5);
+    left:1%;
+    background-color: transparent;
+  }
+  .image-container img {
+    position: relative;
+    width:100%;
+    height:100%;
+    border-radius: 10px;
+    margin-right: 10px;
   }
   
