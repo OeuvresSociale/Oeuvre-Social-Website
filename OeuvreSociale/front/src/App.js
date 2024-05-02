@@ -40,6 +40,7 @@ import CreeLoan from "./Pages/CreeLoan.jsx";
 import Loan from './Pages/Loan.jsx';
 import FormularTab from './Pages/FormularTab.jsx';
 import ProfileAd from "./Pages/ProfileAd.jsx";
+import Offre from "./Pages/Offre.jsx";
 
 
 const App = () => {
@@ -61,6 +62,7 @@ const App = () => {
         <Route path="/employeelist" element={<Employeelist />} />
         <Route path="/employeelist/Addemployee" element={<Addemployee />} />
         <Route path="/Profile" element={<Profile/>} />
+        <Route path="/Offre" element={<Offre/>} />
 
         {/* Tabeles.............................................................................. */}
 
