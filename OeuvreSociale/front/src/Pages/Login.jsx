@@ -1,5 +1,5 @@
 import "../Styles/login.css"
-import logo from "../Assets/logo.png"
+import images from "../Assets/images.png"
 import React,{useEffect, useState} from "react"
 import axios from "axios";
 
@@ -38,7 +38,7 @@ const handleInputChange = (event) => {
       <div className="loginwrap">
         <div className="wrapper">
           <div className="blue-section">
-            <img src={logo} alt="logo" className="logo" />
+            <img src={images} alt="logo" className="logo" />
           </div>
             <form onSubmit={handleSubmit}>
               <h1>Belink</h1>  
