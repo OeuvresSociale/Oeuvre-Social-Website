@@ -1,21 +1,20 @@
 .header {
-    justify-content: space-between; 
-    align-items: center;
-    padding: 1rem; 
-    margin-top: 80px;
+  position: relative;
+  left: 3%;
+  top: 6%;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 1rem; 
+  margin-top: 80px;
   }
   
   .menu {
-    width:80%;
+    width:90%;
     display:flex;
-    position: relative;
-    top:5%;
-    left: 2%;
     list-style: none; 
     padding: 0; 
     margin: 0; 
   }
-  
   .menu-item {
     text-decoration: none; 
     color: #333; 
@@ -27,10 +26,16 @@
   
   .menu-item:hover {
     color: #00194F; 
-  }
-  
-  .menu-item.active {
-    color: #00194F; 
-    border-bottom: 2px solid #00194F; 
-  }
-  
+    text-decoration: underline;
+    text-decoration-thickness: 3px; 
+    text-decoration-color: #00194F; 
+    text-underline-offset: 10px; 
+}
+.menu-item.active {
+  color: #00194F; 
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: #00194F; 
+  text-underline-offset: 10px; 
+
+}

@@ -1,3 +1,6 @@
+body{
+    background-color:rgba(217, 217, 217, 1);
+}
 .recoverwrap{
     width:100vw;
     height:100vh;
@@ -25,7 +28,7 @@
     font-weight:400;
     align-self: center;
     position: relative;
-    left: 15%;
+    left: 9%;
     top: 5%;
     color:rgba(0, 25, 79, 1);
     line-height: 54.93px;
@@ -47,20 +50,22 @@
 }
 
 .bluesection .logo {
-    position: relative;
-    width: 70%; 
-    height:30%;
+    position:absolute;
+    width: 85%; 
+    height:40%;
     border-radius:50%;
-    left:45%;
+    left:5%;
+    top:20%;
 }
 .bluesection .titlee{
-    font-size: 42px;
+    position:absolute;
+    left:2%;
+    font-size: 22px;
     font-weight:400;
     align-self: center;
     position: relative;
-    left: 9%;
-    top: 40%;
-    color:rgba(0, 25, 79, 1);
+    top:20%;
+    color:rgb(255, 255, 255);
     line-height: 54.93px;
     margin-bottom: 10px;
 }

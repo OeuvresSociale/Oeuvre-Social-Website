@@ -1,5 +1,5 @@
 import "../Styles/otp.css";
-import React, { useState } from "react";
+import React,{useEffect, useState} from "react"
 import images from "../Assets/images.png"
 
 const Recover = () => {
@@ -60,7 +60,7 @@ const Recover = () => {
     onChange={(e) => {
       handleChange(2, e.target.value);
       if (e.target.value.length === 1) {
-        e.target.nextElementSibling.focus(); // Focus next element
+        e.target.nextElementSibling.focus(); 
       }
     }}
     required
@@ -72,7 +72,7 @@ const Recover = () => {
     onChange={(e) => {
       handleChange(3, e.target.value);
       if (e.target.value.length === 1) {
-        e.target.nextElementSibling.focus(); // Focus next element
+        e.target.nextElementSibling.focus(); 
       }
     }}
     required
@@ -84,7 +84,7 @@ const Recover = () => {
     onChange={(e) => {
       handleChange(4, e.target.value);
       if (e.target.value.length === 1) {
-        e.target.nextElementSibling.focus(); // Focus next element
+        e.target.nextElementSibling.focus(); 
       }
     }}
     required
