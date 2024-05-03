@@ -39,11 +39,11 @@ const Addoffreform =()=>{
             setEditorState(newEditorState);
         };
 
-        const handleClick = async (e) => {
+        // const handleClick = async (e) => {
     
-          e.preventDefault();//not refreshing the page 
+        //   e.preventDefault();//not refreshing the page 
          
-         };
+        //  };
 
         const fileInputRef = useRef(null);
   const [image, setImage] = useState(null);

@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
         required: true,
     },
     requestTypeId: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId, 
         ref: 'typeRequest',
         required: true,
     }, 
@@ -52,6 +52,6 @@ const mongoose = require("mongoose");
 // }
 
 
- 
+const RequestModel = mongoose.model('RequestModel', requestSchema);
 
 module.exports = RequestModel;

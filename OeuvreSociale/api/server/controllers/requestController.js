@@ -5,6 +5,7 @@ const path = require("path");
 const fs = require("fs");
 const asyncWrapper = require("../middleware/asyncWrapper");
 const { Console } = require("console");
+
 //Get all request for employee
 const getMyRequests = async (req, res) => {
   //current page
@@ -104,25 +105,13 @@ const getRequest = async (req, res) => {
 // controller function for creating a new request
 const createRequest = async (req, res) => {
   try {
-
-    // if (!req.files || !Array.isArray(req.files)) {
-    //   throw new Error("No files uploaded");
-    // }
-
-    // Extract file information from req.files array
-    // const filesData = req.files.map((file) => ({
-    //   fileId: file.filename, // Assuming you're using multer to store files locally
-    //   filename: file.originalname,
-    // })); 
-
     // Create a new instance of RequestModel with files data
-    const request = new Request({
+    const newRequest = new Request({
       creationDate: new Date(),
       requestTypeId: req.body.requestTypeId,
       employeeId: req.body.employeeId,
- 
       // files: filesData, // Set files array with file information
-
+    });
 
     // Save the request document to the database
     await newRequest.save();
@@ -148,6 +137,7 @@ const createRequest = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //update my  request we dont use it in our app
