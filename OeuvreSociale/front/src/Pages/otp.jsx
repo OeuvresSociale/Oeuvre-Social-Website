@@ -1,5 +1,6 @@
 import "../Styles/otp.css";
 import React, { useState } from "react";
+import images from "../Assets/images.png"
 
 const Recover = () => {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
@@ -21,7 +22,9 @@ const Recover = () => {
     <div className="otpwrap">
       <div className="otwrapper">
         <div className="blueesection">
-          <img src="./assets/logo.png" alt="logo" className="logo" />
+          <img src={images} alt="logo" className="loogo" />
+          <div  className="tiitle"> <h1>Belink</h1> </div>
+
         </div>
         <form onSubmit={handleSubmit}>
           <h2>Enter the code</h2>
