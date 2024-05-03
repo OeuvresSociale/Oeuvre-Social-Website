@@ -85,8 +85,6 @@ const Demandetypes =()=>{
 
       <div className="td">{request.requestTypeId.title}</div>
 
-      <div className="td">{request.title}</div>
-
       <div className="empinf">
 
 
@@ -134,55 +132,30 @@ const Demandetypes =()=>{
             <div className="rowinf">
               {" "}
               <div className="gris">Date d'envoi :</div>{" "}
-              <div className="noir">{request.creationDate}</div>
+             <div className="noir">
+                {new Date(request.creationDate).toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                })}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
+      {console.log(request.files)}
       <div className="pdfs">
-        <div className="pdfdoc">
-          <div className="doctitle">Premier document :</div>
-          <div className="doclink">
-            <a
-              href="../Assets/homework.pdf" //request.files
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {" "}
-              <PiFilePdfLight />
-            </a>
+        {request.files.map((file, index) => (
+          <div key={index} className="pdfdoc">
+            <div className="doctitle">{file.fileOriginalName}</div>
+            <div className="doclink">
+              <a href={`http://localhost:8000/api/${request._id}/${file._id}`} target="_blank" rel="noopener noreferrer">
+                <PiFilePdfLight />
+              </a>
+            </div>
           </div>
-        </div>
-
-        <div className="pdfdoc">
-          <div className="doctitle">Premier document :</div>
-          <div className="doclink">
-            {" "}
-            <a
-              href="../Assets/homework.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {" "}
-              <PiFilePdfLight />
-            </a>
-          </div>
-        </div>
-
-        <div className="pdfdoc">
-          <div className="doctitle">Premier document :</div>
-          <div className="doclink">
-            <a
-              href="../Assets/homework.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {" "}
-              <PiFilePdfLight />
-            </a>
-          </div>
-        </div>
+        ))}
       </div>
       {showbuttons && (
         <div className="dtbtns">
