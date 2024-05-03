@@ -91,4 +91,90 @@
 }.vt:hover{
    
     color: #148582;
+}.offrec{
+    height:80%;
+    width:20%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+    gap: 4%;
+
+}.offrec:hover{
+    background-color: #00194F;
+    color: #fff;
+
+
 }
+.offrec:hover .titoff{
+    background-color: #00194F;
+    color: #fff;
+
+
+}.offrec:hover .offdel{
+    background-color: #EE0A0A;
+    color: #fff;
+
+
+}.offrec:hover .offvalid{
+    background-color: #138582;
+    color: #fff;
+
+
+}.offrecrap{
+    margin-top: 1%;
+    width: 90%;
+    height:100%;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    gap:1%;
+}.offimg2{
+    height:45%;
+    width:100%;
+    border-radius: 7px;
+}.offimg3{
+    height:55%;
+    width:100%;
+    border-radius: 7px;
+}.descoff{
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 13px;
+}.titoff{
+    font-size:18px;
+    color: #000;
+    font-weight: 400;
+}.offdel{
+    width:47%;
+    height:35px;
+    border-color: #EE0A0A;
+    border-radius: 7px;
+    border-width: 1px;
+    background-color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    color:#EE0A0A;
+    cursor: pointer;
+  }.offvalid{
+    width:47%;
+    height:35px;
+    border-color: #138582;
+    border-radius: 7px;
+    border-width: 1px;
+    
+    border-radius: 7px;
+   
+    background-color: #fff;
+    color:#138582;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+  }.offbtns{
+    display: flex;
+    gap:5%;
+  }

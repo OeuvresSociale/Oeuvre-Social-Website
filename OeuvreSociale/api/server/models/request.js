@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
  const requestSchema = new mongoose.Schema({
     creationDate: {
@@ -33,8 +33,8 @@ const mongoose = require('mongoose');
     },
     files: {
         type: [{
-            fileId: String, 
-            filename: String,
+            fileName: String, 
+            fileOriginalName: String,
         }],
         // validate: [arrayMinLengthValidator, 'Files array must have at least one element'],
         // required: true
@@ -51,6 +51,7 @@ const mongoose = require('mongoose');
 //     return value && value.length > 0;
 // }
 
-const RequestModel = mongoose.model('Request', requestSchema);
+
+ 
 
 module.exports = RequestModel;

@@ -34,7 +34,15 @@ import Archive from "./Pages/Archive.jsx";
 import Dashboard from "./Pages/Dashboard.jsx";
 import Transaction from "./Pages/Transaction.jsx";
 import Tdashboard from "./Pages/Tresorerie_Dashboard.jsx";
+import CreeLoan from "./Pages/CreeLoan.jsx";
+import UnvalideOffretype from "./Pages/UnvalideOffretype.jsx";
+import Loan from './Pages/Loan.jsx';
+import FormularTab from './Pages/FormularTab.jsx';
+import ProfileAd from "./Pages/ProfileAd.jsx";
+import Offre from "./Pages/Offre.jsx";
 import Images from "./Pages/Images.jsx";
+
+
 
 const App = () => {
   return (
@@ -49,18 +57,23 @@ const App = () => {
         {/* 2-Admin part.............................................................................. */}
         {/* Admin Dashboard.............................................................................. */}
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/ProfileAd" element={<ProfileAd/>} />
 
         {/* Employee.............................................................................. */}
         <Route path="/employeelist" element={<Employeelist />} />
         <Route path="/employeelist/Addemployee" element={<Addemployee />} />
+        <Route path="/Profile" element={<Profile/>} />
+        <Route path="/Offre" element={<Offre/>} />
 
         {/* Tabeles.............................................................................. */}
 
         <Route path="/tables/demandetype/:id" element={<Demandetype />} />
         <Route path="/tables" element={<TableDemands />} />
+     
         {/* ..............Damande Tabele.............................................................................. */}
         {/* .............loan Tabele.............................................................................. */}
         <Route path="/tables/loantype" element={<LoanType />} />
+        <Route path='/Loan' element={<Loan />} />
 
         {/* ..............Offre Tabele.............................................................................. */}
 
@@ -68,14 +81,14 @@ const App = () => {
         <Route path="/formulaire" element={<Formul />} />
         {/* ..............Damande Formular.............................................................................. */}
         <Route path="/formulaire/formulairedemande" element={<Addoffre />} />
-        <Route
-          path="/formulaire/formulairedemande/confirmformulaire"
+        <Route path="/formulaire/formulairedemande/confirmformulaire"
           element={<Confirmformul />}
         />
         <Route
           path="/formulaire/formulairedemande/modefyformulaire"
           element={<Modefyformule />}
-        />
+        /> 
+         <Route path='/FormularTab' element={<FormularTab />} />
 
         {/* .............loan Formular.............................................................................. */}
         <Route
@@ -86,6 +99,10 @@ const App = () => {
         <Route
           path="/formulaire/formulairepret/modifierpret"
           element={<ModefyLoan />}
+        />
+        <Route
+          path="/formulaire/formulairepret/creepret"
+          element={<CreeLoan />}
         />
 
         {/* ..............Offre Formular............................................................................... */}
@@ -106,6 +123,10 @@ const App = () => {
         <Route
           path="/formulaire/ajouteroffre/offretype"
           element={<OffreType />}
+        />
+        <Route
+          path="/formulaire/ajouteroffre/unvalideoffretype" 
+        element={<UnvalideOffretype />}   //  where u go when click on the unvalid offre
         />
 
         {/* Tresorerie.............................................................................. */}

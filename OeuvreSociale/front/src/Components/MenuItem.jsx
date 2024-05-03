@@ -17,7 +17,7 @@ const handleItemClick = (index) => {
 return (
 <li >
  
- <NavLink to={path} onClick={hide}  className="menuitem" activeclassname='active' >
+{path ? (<NavLink to={path} onClick={hide}  className="menuitem" activeclassname='active' >
  <a  className="menuitem">
     <div className="menuicon">
     {icon}
@@ -28,7 +28,20 @@ return (
     {expand ? subicon2 : subicon }
     </div>
     
-    </NavLink>
+    </NavLink>): (
+        <div  onClick={hide} className="menuitem">
+          <a className="menuitem">
+            <div className="menuicon">{icon}</div>{" "}
+          </a>{" "}
+          <span className="link-taxt">{name}</span>{" "}
+          <div
+            className="subicon"
+            style={{ backgroundColor: "transparent" }}
+          >
+            {expand ? subicon2 : subicon}
+          </div>{" "}
+        </div>
+      )}
 
  {subMenus && subMenus.length > 0 ? (
     <ul className={expand ?  "ai" : 'submenu'} >

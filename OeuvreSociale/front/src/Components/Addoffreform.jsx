@@ -38,6 +38,13 @@ const Addoffreform =()=>{
         const handleEditorChange = (newEditorState) => {
             setEditorState(newEditorState);
         };
+
+        const handleClick = async (e) => {
+    
+          e.preventDefault();//not refreshing the page 
+         
+         };
+
         const fileInputRef = useRef(null);
   const [image, setImage] = useState(null);
 
@@ -77,7 +84,10 @@ return (
            <div className="addoffrewrapp1">
            <div className="mlbtns2">
   <Link to='/formulaire/ajouteroffre'> <button className="mlrefuse"   >Annuler</button></Link>
-  <button className="mlaccepte" onClick={handleClick} >Créer</button>
+
+
+            <Link to='/formulaire/ajouteroffre'> <button className="mlaccepte"   onClick={handleClick} >Créer</button></Link>
+
          </div> 
 
 <div className="addoffrewrapp2"> 

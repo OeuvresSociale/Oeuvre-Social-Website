@@ -1,0 +1,70 @@
+.deleteoffre{
+    background-color: #fff;
+border-radius:15px ;
+width: 600px;
+height: 320px;
+display: flex;
+flex-direction: column;
+border: #EE0A0A 3px solid;
+justify-content: center;
+align-items: center;
+padding:20px;
+gap:20px;
+
+}.validatoff{
+    background-color: #fff;
+border-radius:15px ;
+width: 600px;
+height: 320px;
+display: flex;
+flex-direction: column;
+border: #138582 3px solid;
+justify-content: center;
+align-items: center;
+padding:20px;
+gap:20px;
+text-align-last: center;
+
+
+}.deletofficon{
+    font-size: 60px;
+    color:#EE0A0A ;
+}.deletofficon1{
+    font-size: 60px;
+    color:#138582 ;
+}.deletoff3{
+    font-size: 25px;
+    color: black;
+    font-weight: 500;
+}.deletoff4{
+    font-size: 18px;
+    color: rgb(50, 49, 49) 70%;
+    font-weight: 400;
+}.deletoffvalider{
+    width:100px;
+    height:35px;
+    border: none;
+    border-radius: 7px;
+    
+    background-color: #EE0A0A;
+    color:#fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}.valofficon{
+    font-size: 60px;
+    color:#138582 ;
+
+}.offvalider{
+    width:100px;
+    height:35px;
+    border: none;
+    border-radius: 7px;
+    
+    background-color: #138582;
+    color:#fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+
+}

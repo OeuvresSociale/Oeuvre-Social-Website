@@ -33,6 +33,11 @@ const Formtitle = ({ closeFormtitle }) => {
                         onChange={handleTextInputChange}
                         placeholder='titre'
                     />
+                    <input
+                        type='text'
+                       
+                        placeholder='Prix'
+                    />
                    
                     <div className="formtitlebtns">
                         <button onClick={() => closeFormtitle(false)} className="formtitlecancel">Annuler</button>
