@@ -19,11 +19,11 @@ const laonSchema = new schema({
     reimburse:{
         type:Number
     },
-    isDone:{
+    complete:{
         type:Boolean,
         default:true,
         required:false
-    },
+    }, 
     employeeId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
@@ -51,6 +51,10 @@ const laonSchema = new schema({
     motif: {
         type: String,
         required:false
+    },
+    validated:{ // for tresorerie
+        type:Boolean,
+        default:false
     }
     
 })
