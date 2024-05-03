@@ -6,22 +6,9 @@ import { Link } from "react-router-dom";
 import { MdOutlineImage } from "react-icons/md";
 import { BsArrowLeftCircle } from "react-icons/bs";
 
-
-
-
 const Offretype =()=>{
-  
-       
-      
  
-
- 
- 
- 
-
-return (
-    
-       
+return (      
            
            <div className="addoffrewrapp11">
             <Link to='/formulaire/ajouteroffre'> <div className="arrow"><BsArrowLeftCircle /></div> </Link>
@@ -29,13 +16,6 @@ return (
 
 <div className="addoffrewrapp2"> 
 <div className="ddimg"> <div>L'image :</div>
-
-
-    
-      
-   
-   
-
 
 
 </div>
@@ -53,13 +33,8 @@ return (
   </div>
    </div>
 
-
-
-
 </div>
 </div>
-
-
 
 )
 

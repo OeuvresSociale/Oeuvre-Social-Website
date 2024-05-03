@@ -34,6 +34,7 @@ import Archive from "./Pages/Archive.jsx";
 import Dashboard from "./Pages/Dashboard.jsx";
 import Transaction from "./Pages/Transaction.jsx";
 import Tdashboard from "./Pages/Tresorerie_Dashboard.jsx";
+import Images from "./Pages/Images.jsx";
 
 const App = () => {
   return (
@@ -123,7 +124,12 @@ const App = () => {
 
         {/* 3-Employee part.............................................................................. */}
 
+     
         <Route path="/profile/:id" element={<Profile />} />
+{/* ----------------------- */}
+
+        <Route path="/image" element={<Images />} />
+      
       </Routes>
     </BrowserRouter>
   );

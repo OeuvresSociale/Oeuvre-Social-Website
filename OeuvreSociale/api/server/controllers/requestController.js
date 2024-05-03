@@ -106,19 +106,23 @@ const getRequest = async (req, res) => {
 //create a new  request(faire une demande par employee)
 const createRequest = async (req, res) => {
   try {
+    // if (!req.files || !Array.isArray(req.files)) {
+    //   throw new Error("No files uploaded");
+    // }
+
     // Extract file information from req.files array
     // const filesData = req.files.map((file) => ({
     //   fileId: file.filename, // Assuming you're using multer to store files locally
     //   filename: file.originalname,
-    // }));
+    // })); 
 
     // Create a new instance of RequestModel with files data
     const request = new Request({
       creationDate: new Date(),
       requestTypeId: req.body.requestTypeId,
       employeeId: req.body.employeeId,
-
-      //files: filesData, // Set files array with file information
+ 
+      // files: filesData, // Set files array with file information
     });
     // Save the new request to the database
     const savedRequest = await request.save();
@@ -158,7 +162,7 @@ const updateMyRequest = async (req, res) => {
   }
 };
 // suive request
-
+ 
 const suiviRequest = async (req, res) => {
   try {
     const request = await Request.findById(req.params.id);
@@ -184,11 +188,11 @@ const suiviRequest = async (req, res) => {
 };
 
 
+
 module.exports = {
   getRequest,
   getallRequests,
   getMyRequests,
   createRequest,
   suiviRequest,
-  
 };

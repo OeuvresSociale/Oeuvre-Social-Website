@@ -13,6 +13,8 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const session = require('express-session');
 const morgan=require('morgan');
+const tresuryRouter = require('./server/routes/tresury.js');
+const offreRouter = require('./server/routes/offre.js')
 
   
 const app = express();
@@ -65,8 +67,8 @@ app.use('/api',router);
 app.use('/api',employeeRouter);
 app.use('/api',typeRequestRouter);
 app.use('/api',requestRouter);
-
-
+app.use('/api',tresuryRouter);
+app.use('/api',offreRouter);
 
 // Assume 'YourModel' is the Mongoose model representing your collection
 // const RequestModel = require("./server/models/request.js");
@@ -77,8 +79,22 @@ app.use('/api',requestRouter);
 //   .catch((error) => {
 //     console.error('Error deleting documents:', error);
 //   });
- 
 
+
+// const offreModel =require('./server/models/offres.js');
+// const newOffre = new offreModel({
+//     title: "Premier offre",
+//     desc: "welcome",
+//     dateDebut: new Date("2024-04-30T08:50:33.673Z"),
+//     dateFin: new Date("2024-05-30T08:50:33.673Z")
+// });
+// newOffre.save()
+//     .then(savedOffre => {
+//         console.log('New offre has been created:', savedOffre);
+//     })
+//     .catch(err => {
+//         console.error('Error creating offre:', err);
+//     });
  
 
 //connection to DB
