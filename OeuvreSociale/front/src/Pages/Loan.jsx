@@ -9,7 +9,7 @@ const Loan = () => {
       <div className='containerdem'>
         <Sidebar/>
         <div className='contentdem'>
-          <Header/>
+          <Header/> 
         <div className="Infos-section">
           <Menu />
         </div>

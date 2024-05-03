@@ -23,7 +23,7 @@ const laonSchema = new schema({
         type:Boolean,
         default:true,
         required:false
-    },
+    }, 
     employeeId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',

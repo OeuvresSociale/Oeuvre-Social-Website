@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const offreSchema = new mongoose.Schema({
-    title: {
+    title: { 
         type: String,
         required: true,
     },
@@ -13,11 +13,11 @@ const offreSchema = new mongoose.Schema({
         type: [String],  
         required: false,
     },
-    dateDebut:{
+    dateDebut:{ 
         type: Date,
         required: true
     },
-    dateFin:{
+    dateFin:{ 
         type: Date,
         required: true
     },
@@ -27,7 +27,7 @@ const offreSchema = new mongoose.Schema({
         required: true
     },
     invisible:{
-    type:Boolean,
+    type:Boolean,  
     default:false
     }
 });
