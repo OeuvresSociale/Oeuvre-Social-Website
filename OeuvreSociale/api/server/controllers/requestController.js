@@ -104,14 +104,25 @@ const getRequest = async (req, res) => {
 // controller function for creating a new request
 const createRequest = async (req, res) => {
   try {
-    // Extract request data from the request body
-    const { requestTypeId, employeeId, motif, amount } = req.body;
 
-    // Create a new request document in the database
-    const newRequest = new Request({
-      requestTypeId,
-      employeeId,
-    });
+    // if (!req.files || !Array.isArray(req.files)) {
+    //   throw new Error("No files uploaded");
+    // }
+
+    // Extract file information from req.files array
+    // const filesData = req.files.map((file) => ({
+    //   fileId: file.filename, // Assuming you're using multer to store files locally
+    //   filename: file.originalname,
+    // })); 
+
+    // Create a new instance of RequestModel with files data
+    const request = new Request({
+      creationDate: new Date(),
+      requestTypeId: req.body.requestTypeId,
+      employeeId: req.body.employeeId,
+ 
+      // files: filesData, // Set files array with file information
+
 
     // Save the request document to the database
     await newRequest.save();
@@ -167,7 +178,7 @@ const updateMyRequest = async (req, res) => {
   }
 };
 // suive request
-
+ 
 const suiviRequest = async (req, res) => {
   try {
     const request = await Request.findById(req.params.id);
@@ -220,6 +231,7 @@ async function getFileById(req, res) {
     res.status(500).send("Internal Server Error");
   }
 }
+
 
 module.exports = {
   getRequest,

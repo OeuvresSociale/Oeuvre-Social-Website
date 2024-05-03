@@ -109,8 +109,9 @@ const handleNewPasswordSubmit = () => {
   console.log("userData",userData);
    if (!userData) {
     return <div>Loading...</div>;
-  }
-  
+
+ }
+
   return (
     <div className="profile">
       <h1 className="profile-title">Employee Profile</h1>

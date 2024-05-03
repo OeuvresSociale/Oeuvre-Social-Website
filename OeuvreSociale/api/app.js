@@ -1,18 +1,21 @@
-const express = require("express");
-const dotenv = require("dotenv").config();
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const { connectDB } = require("./server/config/db");
-const router = require("./server/routes/admin.js");
-const employeeRouter = require("./server/routes/EmployeeManagement.js");
-const typeRequestRouter = require("./server/routes/requestType.js");
-const requestRouter = require("./server/routes/request.js");
-const MongoStore = require("connect-mongo");
-const user = require("./server/models/user");
-const helmet = require("helmet");
-const rateLimit = require("express-rate-limit");
-const session = require("express-session");
-const morgan = require("morgan");
+const express =require("express");
+const dotenv =require("dotenv").config();
+const bodyParser =require("body-parser");
+const mongoose = require ("mongoose");
+const {connectDB}=require('./server/config/db');
+const router = require('./server/routes/admin.js');
+const employeeRouter = require('./server/routes/EmployeeManagement.js');
+const typeRequestRouter = require('./server/routes/requestType.js');
+const requestRouter = require('./server/routes/request.js');
+const MongoStore =require('connect-mongo');
+const user =require('./server/models/user');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const session = require('express-session');
+const morgan=require('morgan');
+const tresuryRouter = require('./server/routes/tresury.js');
+const offreRouter = require('./server/routes/offre.js')
+
 
 const app = express();
 const cors = require("cors");
@@ -55,10 +58,14 @@ app.use(helmet()); /**Use the helmet middleware to set secure HTTP headers,
 //   });
 
 /**api routes*/
-app.use("/api", router);
-app.use("/api", employeeRouter);
-app.use("/api", typeRequestRouter);
-app.use("/api", requestRouter);
+
+app.use('/api',router);
+app.use('/api',employeeRouter);
+app.use('/api',typeRequestRouter);
+app.use('/api',requestRouter);
+app.use('/api',tresuryRouter);
+app.use('/api',offreRouter);
+
 
 // Assume 'YourModel' is the Mongoose model representing your collection
 // const RequestModel = require("./server/models/request.js");
@@ -69,6 +76,25 @@ app.use("/api", requestRouter);
 //   .catch((error) => {
 //     console.error('Error deleting documents:', error);
 //   });
+
+
+
+// const offreModel =require('./server/models/offres.js');
+// const newOffre = new offreModel({
+//     title: "Premier offre",
+//     desc: "welcome",
+//     dateDebut: new Date("2024-04-30T08:50:33.673Z"),
+//     dateFin: new Date("2024-05-30T08:50:33.673Z")
+// });
+// newOffre.save()
+//     .then(savedOffre => {
+//         console.log('New offre has been created:', savedOffre);
+//     })
+//     .catch(err => {
+//         console.error('Error creating offre:', err);
+//     });
+ 
+
 
 //connection to DB
 connectDB()
