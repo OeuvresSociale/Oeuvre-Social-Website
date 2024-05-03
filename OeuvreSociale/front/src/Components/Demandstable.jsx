@@ -33,6 +33,7 @@ function Demands() {
 console.log("data :",requests);
 
 
+
   // Function to fetch details of a single employee
   const fetchRequestDetails = async (_id) => {
     try {
@@ -50,11 +51,42 @@ console.log("data :",requests);
     ? requests.filter((demand) => demand.state === filterStatus)
     : requests;
 
+
   // Render the table and other UI elements here
 
 
- 
 
+/////////////////////////////////////////////////////////////////////////
+const demands = [
+  {
+    demandId: 1,
+    Employee:"mohammed",
+    type: 'Mariage',
+    date: new Date(2024, 2, 20),
+    status: 'Accepted',
+  },
+  {
+    demandId: 2,
+    type: 'Advance',
+    Employee:"mohammed",
+    date: new Date(2024, 2, 15),
+    status: 'Refused',
+  },
+  {
+    demandId: 3,
+    Employee:"mohammed",
+    type: 'Advance',
+    date: new Date(2024, 2, 18),
+    status: 'Pending',
+  },
+];
+
+function Demands() {
+  const [filterStatus, setFilterStatus] = useState(null);
+
+  const filteredDemands = filterStatus
+    ? demands.filter((demand) => demand.status === filterStatus)
+    : demands;
 
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);
@@ -144,6 +176,7 @@ return (
     </div>
     
   );
+}
 }
 
 export default Demands;

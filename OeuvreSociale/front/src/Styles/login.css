@@ -17,17 +17,19 @@ body{
     size: 28;
     line-height: 34.18px;
     background-color: rgba(217,217,217,1);
+    border-radius: 10px;
 }
 .wrapper{
     width: 600px;
-    height: 497px;
+    height:490px;
     background:#fff ;
     color:#fff ;
     padding-right: 30px;
     display: grid;
-    border-radius: 10px;
+    border-radius:10px;
     box-shadow: -10 10 30px rgba(255, 255, 255, 1);
-    grid-template-columns: 40% 60%; 
+    grid-template-columns: 40% 60%;
+      overflow: hidden;
 }
 .wrapper h1{
     font-size: 64px;
@@ -35,7 +37,7 @@ body{
     line-height: 77px;
     align-self: center;
     position: relative;
-    left: 30%;
+    left:27%;
     top: 2%;
     color:rgba(0, 25, 79, 1);
 }  
@@ -43,14 +45,16 @@ body{
 .wrapper .blue-section {
     position: relative;
     height:100%;
-    width: 100%;
+    width: 110%;
     border-radius:10px;
     background-color: #00194F;
-    clip-path: polygon(0% 100% 0,100% 0%, 100% 75%, 50% 100%);
+    clip-path: polygon(0% 0%,85% 0%, 100% 50%, 85% 100%, 0% 100%);
     display: flex;
     justify-content: center; 
     align-items: center; 
-    box-shadow:-10 10 30px rgba(104, 118, 145, 0.7);
+    box-shadow: rgba(104, 118, 145, 0.7);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 .logo {
     position: relative;
@@ -121,3 +125,7 @@ body{
     line-height: 36.62px;
     justify-content: center; 
 }
+
+
+
+

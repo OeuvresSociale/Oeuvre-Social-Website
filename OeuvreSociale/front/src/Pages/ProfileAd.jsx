@@ -10,12 +10,13 @@ const ProfileAd = () => {
       <Sidebar/>
     <div className='contentf'>
         <Header/>
-    <div className='content'>
-        <Adminpro />
         </div>
+
+    <div >
+        <Adminpro />
       </div>
     </div>
-    </div>
+     </div>
   );
 };
 

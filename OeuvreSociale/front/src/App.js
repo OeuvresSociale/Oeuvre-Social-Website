@@ -24,19 +24,18 @@ import OFFers from "./Pages/OFFers.jsx";
 import ValideOffres from "./Pages/ValidOffres.jsx";
 import UnvalideOffres from "./Pages/UnvalideOffres.jsx";
 import OffreType from "./Pages/OffreType.jsx";
-import Archive from "./Pages/Archive.jsx";
+import Archive from "./Pages/Admin/Archive/Archive.jsx";
 import Transaction from "./Pages/Admin/Transaction/Transaction.jsx";
 import Tdashboard from "./Pages/Tresorerie_Dashboard.jsx";
 import CreeLoan from "./Pages/CreeLoan.jsx";
+import UnvalideOffretype from "./Pages/UnvalideOffretype.jsx";
 import Loan from "./Pages/Loan.jsx";
+import ProfileAd from "./Pages/ProfileAd.jsx";
+import Offre from "./Pages/Offre.jsx";
 import FormularTab from "./Pages/FormularTab.jsx";
 import Dashboard from "./Pages/Admin/Dashboard/Dashboard.jsx";
-//...................................................................
-
-//...................................................................
 
 const App = () => {
-
   return (
     <BrowserRouter>
       <Routes>
@@ -49,12 +48,15 @@ const App = () => {
         {/* 2-Admin part.............................................................................. */}
         {/* Admin Dashboard.............................................................................. */}
 
-       <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/ProfileAd" element={<ProfileAd />} />
 
         {/* Employee.............................................................................. */}
         <Route path="/employeelist" element={<Employeelist />} />
         <Route path="/employeelist/Addemployee" element={<Addemployee />} />
+        <Route path="/Profile" element={<Profile />} />
+        <Route path="/Offre" element={<Offre />} />
 
         {/* Tabeles.............................................................................. */}
 
@@ -72,6 +74,7 @@ const App = () => {
         <Route path="/formulaire" element={<Formul />} />
         {/* ..............Damande Formular.............................................................................. */}
         <Route path="/formulaire/formulairedemande" element={<Addoffre />} />
+
         <Route
           path="/formulaire/formulairedemande/confirmformulaire"
           element={<Confirmformul />}
@@ -115,6 +118,10 @@ const App = () => {
         <Route
           path="/formulaire/ajouteroffre/offretype"
           element={<OffreType />}
+        />
+        <Route
+          path="/formulaire/ajouteroffre/unvalideoffretype"
+          element={<UnvalideOffretype />} //  where u go when click on the unvalid offre
         />
 
         {/* Tresorerie.............................................................................. */}

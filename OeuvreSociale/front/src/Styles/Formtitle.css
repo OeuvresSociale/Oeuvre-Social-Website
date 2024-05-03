@@ -19,12 +19,12 @@
 background-color: #fff;
 border-radius:15px ;
 width: 600px;
-height: 300px;
+height: 330px;
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-padding:20px;
+padding:40px;
 position: relative;
 
 
@@ -39,7 +39,7 @@ color:#1E2648;
 .formtitle input{
   background-color: #F7F7F7;
 border: none;
-width: 480px;
+width: 90%;
     
 height:40px;
 
