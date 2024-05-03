@@ -1,14 +1,12 @@
 import React from 'react';
 import Form from '../Components/Form';
 import ListForms from '../Components/ListForms';
-import Header from '../Components/Header';
+import HeaderUser from '../Components/HeaderUser';
 const FormularTab = () => {
     return (
      
-        <div className='contentdem'>
-          <div>
-          <Header/>
-          </div>
+        <div>
+          <HeaderUser/>
         <div className="Demand-section">
        <Form/>
         </div>

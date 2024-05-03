@@ -167,8 +167,8 @@ const handleNewPasswordSubmit = () => {
           placeholder='tap your password'
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={() => setShowPasswordModal(false)}>Cancel</button>
-        <button className="Enter" onClick= {handlePasswordSubmit}>Enter </button>
+        <button className="canceel" onClick={() => setShowPasswordModal(false)}>Cancel</button>
+        <button className="Enteer" onClick= {handlePasswordSubmit}>Enter </button>
       </div>
       </div>
     )}
@@ -190,8 +190,8 @@ const handleNewPasswordSubmit = () => {
           />
         ))}
       </div>
-      <button className='Enter' onClick={handleOTPSubmit}>Validate</button>
-      <button onClick={() => setShowOTPModal(false)}>Cancel</button>
+      <button className="canceel" onClick={() => setShowOTPModal(false)}>Cancel</button>
+      <button className='Enteer' onClick={handleOTPSubmit}>Confirm </button>
     </div>
   </div>
 )}
@@ -211,8 +211,8 @@ const handleNewPasswordSubmit = () => {
       onChange={(e) => setConfirmNewPassword(e.target.value)}
       placeholder="Confirm New Password"
     />
-    <button className='Enter' onClick={handleNewPasswordSubmit}>Validate</button>
-    <button onClick={() => setShowNewPasswordModal(false)}>Cancel</button>
+    <button className='can'  onClick={() => setShowNewPasswordModal(false)}>Cancel</button>
+    <button className='entteer' onClick={handleNewPasswordSubmit}>Validate</button>
   </div>
   </div>
 )}

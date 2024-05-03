@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React,{useEffect, useState} from "react"
 import { FaCamera, FaPen, FaSignOutAlt } from 'react-icons/fa';
 import { MdTransform } from "react-icons/md";
-import Button from '@mui/material/Button'; // Import Button from Material-UI
+import Button from '@mui/material/Button'; 
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import OIP from "../Assets/OIP.png";
@@ -13,7 +13,7 @@ const AdminProfileModal = () => {
 
   const user = {
     firstName: "Mohammed",
-    lastName: "Moh"
+    familyName: "Moh"
   };
 
   const handleProfileImageUpload = (event) => {
@@ -50,7 +50,7 @@ const AdminProfileModal = () => {
                 </label>
               </div>
               <div className="user-info">
-                <p>{user.firstName} {user.lastName}</p>
+                <p>{user.firstName} {user.familyName}</p>
               </div>
               <div className='boox'>
               <Box

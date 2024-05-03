@@ -37,7 +37,16 @@
     border-bottom-right-radius: 20px;
 
 }
-
+.otwrapper h2{
+    font-size: 42px;
+    font-weight:400;
+    align-self: center;
+    position: relative;
+    left: 12%;
+    top: 5%;
+    color:rgba(0, 25, 79, 1);
+    line-height: 54.93px;
+}
 .bluesection .loogo {
     position: relative;
     width:60%; 
