@@ -21,6 +21,21 @@ function UserPro(props) {
       reader.readAsDataURL(file);
     }
   };
+///////////////////////////////////////////
+useEffect(() => {
+  const fetchProfileImage = async () => {
+    try {
+      // Assuming props.userId contains the user's ID
+      const response = await axios.get(`http://localhost:8000/api/${props.userId}/uploadImage`);
+      setProfileImage(response.data); // Assuming the response.data contains the image data
+    } catch (error) {
+      console.error('Error fetching profile image:', error);
+    }
+  };
+  fetchProfileImage();
+}, [props.userId]);
+
+///////////////////////////////////////////
  // const [userData, setUserData] = useState([]);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
 const [password, setPassword] = useState('');
@@ -87,31 +102,10 @@ const handleNewPasswordSubmit = () => {
   setNewPassword('');
   setConfirmNewPassword('');
 };
-// const {id}=useParams();
-// console.log("id",id);
 
-  // useEffect(() => {
-   
-  //   const fetchRequests =  async () => {
-  //     try {
-  //       const response = await axios.get(`http://localhost:8000/api/employees/${id}`, { responseType: 'json', responseEncoding: 'utf8' });
-
-  //       setUserData(response.data); 
-  //     } catch (error) {
-  //       console.error('Error fetching requests:', error);
-  //       setError(error);
-  //       setUserData([]);
-  //     }
-  //   };
-  //   fetchRequests(); 
-  // },[]);
  const userData = props.dataP;
   console.log("userData",userData);
-   if (!userData) {
-    return <div>Loading...</div>;
-
- }
-
+ 
   return (
     <div className="profile">
       <h1 className="profile-title">Employee Profile</h1>
@@ -168,8 +162,8 @@ const handleNewPasswordSubmit = () => {
           placeholder='tap your password'
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={() => setShowPasswordModal(false)}>Cancel</button>
-        <button className="Enter" onClick= {handlePasswordSubmit}>Enter </button>
+        <button className="canceel" onClick={() => setShowPasswordModal(false)}>Cancel</button>
+        <button className="Enteer" onClick= {handlePasswordSubmit}>Enter </button>
       </div>
       </div>
     )}
@@ -191,8 +185,8 @@ const handleNewPasswordSubmit = () => {
           />
         ))}
       </div>
-      <button className='Enter' onClick={handleOTPSubmit}>Validate</button>
-      <button onClick={() => setShowOTPModal(false)}>Cancel</button>
+      <button className="canceel" onClick={() => setShowOTPModal(false)}>Cancel</button>
+      <button className='Enteer' onClick={handleOTPSubmit}>Confirm </button>
     </div>
   </div>
 )}
@@ -212,8 +206,8 @@ const handleNewPasswordSubmit = () => {
       onChange={(e) => setConfirmNewPassword(e.target.value)}
       placeholder="Confirm New Password"
     />
-    <button className='Enter' onClick={handleNewPasswordSubmit}>Validate</button>
-    <button onClick={() => setShowNewPasswordModal(false)}>Cancel</button>
+    <button className='can'  onClick={() => setShowNewPasswordModal(false)}>Cancel</button>
+    <button className='entteer' onClick={handleNewPasswordSubmit}>Validate</button>
   </div>
   </div>
 )}

@@ -5,20 +5,23 @@ import axios from 'axios';
 import { Link ,useParams} from 'react-router-dom';
 
 
-// table des demnade d'nu employee en his profile
+// table des demnade d'un employee en his profile
 
-function Demands(props) {
+  function Demands(props) {
+    const [filterStatus, setFilterStatus] = useState(null); 
+    const [requests, setRequests] = useState([]);
+    //   const [error, setError] = useState(null);
+    console.log("props:",props.dataD)
+    useEffect(() => {
+        setRequests(props.dataD); // Set requests when props.dataD changes
+    }, [props.dataD]); // Trigger effect when props.dataD changes
+    console.log("requests",requests);
 
-  const [filterStatus, setFilterStatus] = useState(null); 
-//  const [requests, setRequests] = useState([]);
-//   const [error, setError] = useState(null);
-  console.log("props:",props.dataD)
-  const requests = props.dataD;
-  console.log("requests",requests);
 
-  // const filteredDemands = filterStatus
-  //   ? requests.filter((demand) => demand.state === filterStatus)
-  //   : requests;
+  const filteredDemands = filterStatus
+    ? requests.filter((demand) => demand.state === filterStatus)
+    : requests;
+
 
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);
@@ -35,9 +38,15 @@ function Demands(props) {
         return ''; 
     } 
   }
-  if (!requests) {
-    return <div>Loading...</div>;
-  }
+  const LoadingIndicator = () => {
+    return (
+      <div className="loading-spinner">
+        {/* Insert loading spinner or message here */}
+        Loading...
+      </div>
+    );
+  };
+  
   return (
     <div className="demand">
         <h1 className="demands-title"> History </h1>
@@ -64,7 +73,8 @@ function Demands(props) {
         </thead>
         <tbody>
 
-          {requests.map((request) => (
+
+         {requests.map((request) => (
           <tr key={request._id}>
               <td>1</td>
               <td>{request.requestTypeId.title}</td>
@@ -72,8 +82,8 @@ function Demands(props) {
               <td  className={getStatusColor()}>{request.state}</td>
 
               <td>{request.motif}</td>
-            </tr>
-                 ) )}
+            </tr> 
+                 ) )}  
                </tbody>
       </table>
       

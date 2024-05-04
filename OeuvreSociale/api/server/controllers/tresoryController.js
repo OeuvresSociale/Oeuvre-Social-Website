@@ -37,7 +37,7 @@ const validRequest = async (req, res) => {
       name:
         updatedRequest.employeeId.firstName +
         " " +
-        updatedRequest.employeeId.familyName,
+        updatedRequest.employeeId.familyName, 
       Amount: updatedRequest.requestTypeId.amount,
       categorie: "outcome",
       type: "demande",

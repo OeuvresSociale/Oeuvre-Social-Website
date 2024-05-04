@@ -1,6 +1,6 @@
 const express =require("express");
 const dotenv =require("dotenv").config();
-const bodyParser =require("body-parser");
+const bodyParser =require("body-parser");   
 const mongoose = require ("mongoose");
 const {connectDB}=require('./server/config/db');
 const router = require('./server/routes/admin.js');
@@ -15,11 +15,11 @@ const session = require('express-session');
 const morgan=require('morgan');
 const tresuryRouter = require('./server/routes/tresury.js');
 const offreRouter = require('./server/routes/offre.js')
-
+const notificationRouter = require('./server/routes/notification.js')
+const pvRouter = require('./server/routes/reunion.js')
 
 const app = express();
 const cors = require("cors");
-/** */
 const corsOptions = {
   origin: "http://localhost:3000",
   credentials: true, //access-control-allow-credentials:true
@@ -61,15 +61,17 @@ app.use(helmet()); /**Use the helmet middleware to set secure HTTP headers,
 
 app.use('/api',router);
 app.use('/api',employeeRouter);
-app.use('/api',typeRequestRouter);
-app.use('/api',requestRouter);
-app.use('/api',tresuryRouter);
+app.use('/api',typeRequestRouter);  
+app.use('/api',requestRouter); 
+app.use('/api',tresuryRouter);   
 app.use('/api',offreRouter);
+app.use('/api',notificationRouter);
+app.use('/api',pvRouter);
 
 
 // Assume 'YourModel' is the Mongoose model representing your collection
-// const loan = require("./server/models/loanRepaymen.js");
-// loan.deleteMany()
+// const RequestModel = require("./server/models/Laon.js")
+// RequestModel.deleteMany()
 //   .then((result) => {
 //     console.log(`${result.deletedCount} documents deleted successfully.`);
 //   })
@@ -79,7 +81,7 @@ app.use('/api',offreRouter);
 
 
 
-// const offreModel =require('./server/models/offres.js');
+// const offreModel =require('./server/models/offre.js');
 // const newOffre = new offreModel({
 //     title: "Premier offre",
 //     desc: "welcome",

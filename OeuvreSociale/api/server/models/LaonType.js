@@ -1,18 +1,20 @@
 const mongoose = require('mongoose');
 
 const typeLoanSchema = new mongoose.Schema({
+  
     title:{
         type:String,
         default:"demande de pret"
     },
-    maxAmount: {
+    maxAmount: { 
         type: Number, 
         required: true,
         
     },
     maxMonth: {
         type: Number,
-        required: true,  
+        required: true, 
+
     },
     maxPourcentage: {
         type: Number,

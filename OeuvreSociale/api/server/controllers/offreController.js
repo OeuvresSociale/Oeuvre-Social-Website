@@ -79,6 +79,32 @@ const updateOffre = async (req, res) => {
     }
   };
 
+  const ValidOffre = async (req, res) => {
+    try {
+      const offre = await offreModel.findById(req.params.id);
+      try {
+          if (!req.body.title) {
+              return res.status(400).json({ error: "Title is required" });
+            }
+        const updatedOffre= await offreModel.findByIdAndUpdate(
+          req.params.id,
+          {
+            $set: req.body,
+          },
+          { new: true }
+        );
+        res.status(200).json(updatedOffre);
+        console.log("offre has been updated");
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server error" });
+      }
+    } catch {
+      res.status(401).json("this offre  not existed");
+    }
+  };
+
+
 module.exports={ 
     addOffre,
     deleteOffre,

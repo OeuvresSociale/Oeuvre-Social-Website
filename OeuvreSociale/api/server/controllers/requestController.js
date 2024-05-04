@@ -5,6 +5,7 @@ const path = require("path");
 const fs = require("fs");
 const asyncWrapper = require("../middleware/asyncWrapper");
 const { Console } = require("console");
+// const {Notify}= require("../models/notification");
 
 //Get all request for employee
 const getMyRequests = async (req, res) => {
@@ -40,7 +41,7 @@ const getRequests = async (req, res) => {
   const page = req.query.page || 1;
   const RequestPerPage = 10;
   const skipRequests = (page - 1) * RequestPerPage;
-  const search = req.query.search || "En attente";
+  const search = req.query.search||  "En attente";
   try {
     const Requests = await Request.find({
       $or: [{ state: { $regex: search } }],
@@ -60,10 +61,10 @@ const getRequests = async (req, res) => {
 //Get all request for member  with search and pagination
 const getallRequests = async (req, res) => {
   //current page
-  const page = req.query.page || 1;
+  const page = req.query.page|| 1;
   const RequestPerPage = 10;
   const skipRequests = (page - 1) * RequestPerPage;
-  const filter = req.query.filter || "";
+  const filter = req.query.filter||"";
   try {
     const Requests = await Request.find(
       {
@@ -110,7 +111,6 @@ const createRequest = async (req, res) => {
       creationDate: new Date(),
       requestTypeId: req.body.requestTypeId,
       employeeId: req.body.employeeId,
-      // files: filesData, // Set files array with file information
     });
 
     // Save the request document to the database
@@ -128,7 +128,8 @@ const createRequest = async (req, res) => {
       await newRequest.save();
     }
 
-    res.status(201).json({
+
+res.status(201).json({
       message: "Request created successfully",
       request: newRequest.toObject(), // Convert to plain JavaScript object
     });
@@ -137,7 +138,6 @@ const createRequest = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //update my  request we dont use it in our app
@@ -168,7 +168,7 @@ const updateMyRequest = async (req, res) => {
   }
 };
 // suive request
- 
+
 const suiviRequest = async (req, res) => {
   try {
     const request = await Request.findById(req.params.id);
@@ -180,10 +180,11 @@ const suiviRequest = async (req, res) => {
         {
           $set: req.body, //only new state date answer and motif
         },
-        { new: true }
+        { new: true } 
       );
       res.status(200).json(updatedRequest);
       console.log("Request has been updated");
+
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Internal server error" });
@@ -221,7 +222,6 @@ async function getFileById(req, res) {
     res.status(500).send("Internal Server Error");
   }
 }
-
 
 module.exports = {
   getRequest,

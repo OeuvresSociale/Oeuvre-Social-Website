@@ -39,6 +39,7 @@ import UnvalideOffretype from "./Pages/UnvalideOffretype.jsx";
 import Loan from './Pages/Loan.jsx';
 import FormularTab from './Pages/FormularTab.jsx';
 import ProfileAd from "./Pages/ProfileAd.jsx";
+
 import Offre from "./Pages/Offre.jsx";
 import Images from "./Pages/Images.jsx";
 
@@ -96,6 +97,8 @@ const App = () => {
           element={<Addloandemande />}
         />
         <Route path="/formulaire/formulairepret" element={<LoanForm />} />
+        <Route path="/table/loan" element={<LoanType />} />
+        
         <Route
           path="/formulaire/formulairepret/modifierpret"
           element={<ModefyLoan />}
@@ -104,7 +107,7 @@ const App = () => {
           path="/formulaire/formulairepret/creepret"
           element={<CreeLoan />}
         />
-
+ 
         {/* ..............Offre Formular............................................................................... */}
 
         <Route
@@ -149,7 +152,7 @@ const App = () => {
         <Route path="/profile/:id" element={<Profile />} />
 {/* ----------------------- */}
 
-        <Route path="/image" element={<Images />} />
+        {/* <Route path="/image" element={<Images />} /> */}
       
       </Routes>
     </BrowserRouter>

@@ -10,7 +10,7 @@ const laonRepaymentSchema = new schema({
     amount:{
         type:Number, 
         required:true 
-    },
+    }, 
     duration:{
         type:Number,
         required:false,
@@ -23,7 +23,7 @@ const laonRepaymentSchema = new schema({
     },
     loanId:{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'laon',
+    ref: 'laonModel',
     required: true
     },
     

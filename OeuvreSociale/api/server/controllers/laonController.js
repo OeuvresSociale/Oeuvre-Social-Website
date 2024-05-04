@@ -56,13 +56,14 @@ const getallLaon = async (req, res) => {
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
-
+  
   
  };
 //Get one request
 const getLaon = async (req, res) => {
   try {
     const request = await laonModel.findById(req.params.id, { files: 1 })
+
       .populate(
         "employeeId",
         "idEmployee familyName firstName dateStartJob email phoneNumber"
@@ -83,14 +84,31 @@ const suiviLaon = async (req, res) => {
 
     try {
       const updatedRequest = await laonModel.findByIdAndUpdate(
+
         req.params.id,
         {
           $set: req.body, //only new state date answer and motif
         },
         { new: true }
-      );
+      );  
       res.status(200).json(updatedRequest);
       console.log("Request has been updated");
+      const notification = new Notify({
+        employeeId: updatedRequest.employeeId,
+        type: 'new_message',
+        message: 'Your Laon request has been answed',
+        timestamp: new Date(),
+        readStatus: false
+      });
+      
+      // Save the notification to the database
+      notification.save()
+        .then(savedNotification => {
+          console.log('Notification saved successfully:', savedNotification);
+        })
+        .catch(error => {
+          console.error('Error saving notification:', error);
+        });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Internal server error" });
@@ -101,9 +119,8 @@ const suiviLaon = async (req, res) => {
 };
 
 
- 
+///create laon request by employee
 
-////////////////////////////////////
 /**
  * to test : http://localhost:8000/api/LaonRequest/
  * {
@@ -128,8 +145,38 @@ const suiviLaon = async (req, res) => {
             if (!user) {
               return res.status(404).json({ error: 'User not found' });
             }
-          
+            const exist = await laonRepayment.find({}).populate({
+              path: 'loanId',
+              populate: {
+                path: 'employeeId',
+                match: { _id: employeeId } // Filter by the employeeId you're interested in
+              }
+            });       
+           console.log(exist);
+               
+        
+           if (exist.length === 0) {
+            console.log("No past loan .... You can request a loan");
+        } else {
+            const pastLoan = exist[0]; // Assuming you want to work with the first past loan if multiple exist
+            if (!pastLoan.complete) {
+                return res.status(400).json({ error:  "Your past loan is not complete.... "});
+            } else {
+                console.log("Your past loan is complete.... You can request a new loan");
+                // try {
+                //     // Delete the past loan from the database
+                //     await laonRepayment.findByIdAndDelete(pastLoan._id);
+                //     console.log("Past loan deleted from the database");
+                // } catch (error) {
+                //     console.error("Error deleting past loan:", error);
+                //     return res.status(500).json({ error: "Internal Server Error" });
+                // }
+            }
+        }
+        
+         
             const salary = user.monthlySalary;
+            const durée = req.body.duration;
             const percentage = 0.3;   // 30% of monthlySalary
             const maxAllowedReturnPerMonth = salary * percentage;   //maximum he can return in month < 30%
             const maxLoanAmount = maxAllowedReturnPerMonth * 12;    //maximum he can laon 
@@ -138,7 +185,7 @@ const suiviLaon = async (req, res) => {
               return res.status(400).json({ error: 'Loan amount exceeds maximum allowed' });
             }
           
-            const repaymentAmountPerMonth = amount / duration;   /**la somme he will return monthly based 
+            const repaymentAmountPerMonth = amount / durée;   /**la somme he will return monthly based 
                                                                   *on amount and duration he coose */
           
 
@@ -146,7 +193,7 @@ const suiviLaon = async (req, res) => {
             if (repaymentAmountPerMonth > maxAllowedReturnPerMonth) {
               return res.status(400).json({ error: 'Repayment amount per month exceeds maximum allowed' });
             }
-           console.log(`We will retrieve ${repaymentAmountPerMonth} from your account for ${duration} months.`);
+           console.log(`We will retrieve ${repaymentAmountPerMonth} from your account for ${durée} months.`);
         
         // // Create an array to store repayment amounts for each month
         // const repaymentSchedule = [];
@@ -158,21 +205,20 @@ const suiviLaon = async (req, res) => {
         // }
 
       const result = {
-                    duration: duration,
+                    duration: durée,
                     salary: salary,
                     maxLoanAmount: maxLoanAmount,
                     loanAmount: amount,
-                    message: "Maximum allowed repayment per month",
                     maxAllowedRepaymentPerMonth: maxAllowedReturnPerMonth,
                     repaymentPerMonth: repaymentAmountPerMonth,
-                             
+                    message: `We will retrieve ${repaymentAmountPerMonth} from your account for ${durée} months.`,
                   };               
-                  res.status(200).json(result);
+                 
 
              const request = new laonModel(req.body);
              const savedRequest = await request.save();
              const laonModelId = savedRequest._id;
-            
+             
              //save result in loanRepayment collection:
 
              const repmRequest = new laonRepayment({
@@ -182,8 +228,7 @@ const suiviLaon = async (req, res) => {
              });
              const savedrepmRequest = await repmRequest.save();
 
-
-
+             res.status(200).json(result);
             // Respond with the saved request
            // res.status(201).json(savedRequest);
         } catch (error) {
@@ -201,7 +246,7 @@ const suiviLaon = async (req, res) => {
             }
         }
     };
-    
+  
     
 
 module.exports={

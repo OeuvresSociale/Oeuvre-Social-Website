@@ -18,7 +18,7 @@ const mongoose = require("mongoose");
     },
     answerDate: {
         type: Date
-    },
+    }, 
     state: {
         type: String,
         enum: ['En attente', 'Approuvée', 'Rejetée'],
@@ -27,9 +27,6 @@ const mongoose = require("mongoose");
     }, 
     motif: {
         type: String 
-    },
-    amount :{
-        type:Number
     },
     files: {
         type: [{
