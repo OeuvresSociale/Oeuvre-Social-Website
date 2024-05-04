@@ -14,11 +14,17 @@ const validRequest = async (req, res) => {
       req.params.id,
       { validated: true },
       { new: true }
-    ).populate({
-      path: "employeeId",
-      model: "user",
-      select: "firstName familyName",
-    });
+    )
+      .populate({
+        path: "employeeId",
+        model: "user",
+        select: "firstName familyName",
+      })
+      .populate({
+        path: "requestTypeId",
+        model: "typeRequest",
+        select: "amount",
+      });
     if (!updatedRequest) {
       return res.status(404).json({ error: "Request not found" });
     }
@@ -30,9 +36,10 @@ const validRequest = async (req, res) => {
         updatedRequest.employeeId.firstName +
         " " +
         updatedRequest.employeeId.familyName,
+      Amount: updatedRequest.requestTypeId.amount,
       categorie: "outcome",
       type: "demande",
-      facture: req.files.map((file) => ({
+      files: req.files.map((file) => ({
         fileName: file.filename, // Use the filename as fileId
         fileOriginalName: file.originalname,
       })),
@@ -63,6 +70,7 @@ const validLaon = async (req, res) => {
       model: "user",
       select: "firstName familyName",
     });
+
     if (!updatedRequest) {
       return res.status(404).json({ error: "Request not found" });
     }
@@ -74,9 +82,10 @@ const validLaon = async (req, res) => {
         updatedRequest.employeeId.firstName +
         " " +
         updatedRequest.employeeId.familyName,
+      Amount: updatedRequest.amount,
       categorie: "outcome",
       type: "laon",
-      facture: req.files.map((file) => ({
+      files: req.files.map((file) => ({
         fileName: file.filename, // Use the filename as fileId
         fileOriginalName: file.originalname,
       })),
@@ -131,7 +140,7 @@ const addTransaction = async (req, res) => {
       type: req.body.type,
       Amount: req.body.Amount,
       categorie: req.body.categorie,
-      facture: req.files.map((file) => ({
+      files: req.files.map((file) => ({
         fileName: file.filename, // Use the filename as fileId
         fileOriginalName: file.originalname,
       })),
@@ -238,11 +247,19 @@ const deleteTransaction = async (req, res) => {
 const initializeBudget = async (req, res) => {
   try {
     const { initialAmount } = req.body;
+    // Delete all documents from the "budget" collection
+    const deletionResult = await Budget.deleteMany();
+    // Create an initial history entry with the initial amount
+    const initialHistoryEntry = {
+      amount: initialAmount,
+      updatedDate: new Date(),
+    };
 
     const budget = new Budget({
       initialAmount: initialAmount,
-      history: [], // Initially, the history array is empty
+      history: [initialHistoryEntry],
     });
+
     const savedBudget = await budget.save();
     console.log("Budget initialized successfully:", savedBudget);
     res.status(200).json(savedBudget);
@@ -251,6 +268,7 @@ const initializeBudget = async (req, res) => {
     res.status(500).json({ error: "Failed to initialize budget" });
   }
 };
+
 //budget updating
 async function updateBudget(transaction) {
   try {
@@ -260,27 +278,39 @@ async function updateBudget(transaction) {
       console.error("Budget not found!");
       return;
     }
-    // Update budget based on transaction category
+
+    // Calculate the current amount based on the latest amount in the history
+    let currentAmount = budget.initialAmount;
+    if (budget.history.length > 0) {
+      // Get the latest history entry
+      const latestHistoryEntry = budget.history[budget.history.length - 1];
+      currentAmount = latestHistoryEntry.amount;
+    }
+
+    // the current amount based on the transaction category
     if (transaction.categorie === "income") {
-      budget.initialAmount += transaction.Amount;
+      currentAmount += transaction.Amount;
     } else if (transaction.categorie === "outcome") {
-      budget.initialAmount -= transaction.Amount;
+      currentAmount -= transaction.Amount;
     } else {
       console.error("Invalid transaction category!");
       return;
     }
-    // Add transaction to history
+
+    // Add the current amount to the budget history
     budget.history.push({
-      amount: transaction.Amount,
+      amount: currentAmount,
       updatedDate: transaction.creationDate,
     });
-    // Save the updated budget
+
     await budget.save();
+
     console.log("Budget updated successfully!");
   } catch (error) {
     console.error("Error updating budget:", error);
   }
 }
+
 //function to display the files
 const uploadsDir = path.join(__dirname, "../uploads");
 async function getFileById(req, res) {

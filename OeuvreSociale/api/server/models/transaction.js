@@ -28,12 +28,14 @@ const transactionSchema = new schema({
     type: Date,
     default: Date.now,
   },
-  facture: [
-    {
-      fileName: String,
-      fileOriginalName: String,
-    },
-  ],
+  files: {
+    type: [
+      {
+        fileName: String,
+        fileOriginalName: String,
+      },
+    ],
+  },
 });
 //   requestId: {
 //     type: mongoose.Schema.Types.ObjectId,
