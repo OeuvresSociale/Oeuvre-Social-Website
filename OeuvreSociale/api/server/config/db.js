@@ -4,13 +4,16 @@ Grid.mongo = mongoose.mongo;
 const multer = require("multer");
 const { GridFsStorage } = require("multer-gridfs-storage");
 const { GridFSBucket, ObjectId } = require("mongodb");
+
 let gfs;
 let db;
 let bucket;
+
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.mongodb_url);
     console.log(`DB is connected: ${conn.connection.host}`);
+
     // Initialize GridFS
     db = conn.connection.db;
     gfs = Grid(db, mongoose.mongo);
