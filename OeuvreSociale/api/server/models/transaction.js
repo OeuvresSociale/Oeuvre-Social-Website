@@ -35,8 +35,7 @@ const transactionSchema = new schema({
     }],
     // validate: [arrayMinLengthValidator, 'Files array must have at least one element'],
     // required: true
-    },
-    
+    },    
     requestId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'request',

@@ -68,8 +68,8 @@ app.use('/api',offreRouter);
 
 
 // Assume 'YourModel' is the Mongoose model representing your collection
-// const RequestModel = require("./server/models/request.js");
-// RequestModel.deleteMany()
+// const loan = require("./server/models/loanRepaymen.js");
+// loan.deleteMany()
 //   .then((result) => {
 //     console.log(`${result.deletedCount} documents deleted successfully.`);
 //   })

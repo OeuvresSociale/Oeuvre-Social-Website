@@ -70,8 +70,6 @@ const updateEmployee = async (req, res) => {
       res.status(500).json({ error: error.message || "Internal server error" });
     }
   };
-  
-  
 //delete
 const deleteEmployee = async (req, res) => {
   try {

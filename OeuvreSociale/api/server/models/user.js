@@ -50,7 +50,8 @@ const userSchema = new schema ({
     numberOfChild:{
         type:String,
         required:false,
-        unique : false, default :"0"
+        unique : false,
+        default :"0"
     },
     bankAccount:{
         type:String,
