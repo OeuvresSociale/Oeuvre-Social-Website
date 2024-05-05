@@ -1,15 +1,17 @@
 import '../Styles/loanTable.css';
-import React, { useState ,useEffect} from 'react';
 import axios from 'axios'
+import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
+import { MdOutlineModeEditOutline } from "react-icons/md";
 
-// const loans = [
-//   {
-//     loanId: 1,
-//     name: 'Mohammed',
-//     date: new Date(2024, 2, 20),
-//     status: 'Accepted', 
-//   },
-// ];
+const loans = [
+  {
+    loanId: 1,
+    name: 'Mohammed',
+    date: new Date(2024, 2, 20),
+    status: 'Accepted',
+  },
+];
 function Loans() {
     const [error, setError] = useState(null);
     const [searchValue, setSearchValue] = useState('');
@@ -80,16 +82,17 @@ function Loans() {
           </tr>
         </thead>
         <tbody>
-          {filteredLoans.map((laon) => (
-            <tr key={laon._id}>
-              <td>1</td>
-              <td>{`${laon.employeeId.familyName} ${laon.employeeId.firstName}`}</td>
-              <td>{new Date(laon.creationDate).toLocaleDateString("en-GB", {
-                  day: "2-digit",
-                  month: "2-digit",
-                  year: "numeric",
-                })}</td>
-              <td  className={getStatusColor(laon.state)}>{laon.state}</td>
+          {filteredLoans.map((loan) => (
+            <tr key={loan.loanId}>
+              <td>{loan.loanId}</td>
+              <td>{loan.name}</td>
+              <td>{loan.date.toLocaleDateString()}</td>
+              <td  className={getStatusColor(loan.status)}>{loan.status}</td>
+              {/* <td className="lastcolumn">
+
+                <Link to={`/tables${....}`}> <MdOutlineModeEditOutline /></Link>
+                
+                </td> */}
             </tr>
           ))}
         </tbody>
