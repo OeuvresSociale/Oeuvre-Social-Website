@@ -1,21 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 
-
-html,
-body,
-#root,
-.app,
-.content {
-  height: 100%;
-  width: 100%;
-  font-family: "Montserrat", sans-serif;
+body {
+  max-width: 100%; /* Ensure the body never exceeds the width of the screen */
+  margin: 0 ; /* Center the body horizontally */
+  font-family: "Montserrat", sans-serif; /* Set the default font */
+  background-color: #F8F7F7;
+  --webkit-font-smoothing: antialiased;
+  --moz-osx-font-smoothing: grayscale;
 }
 
-.app {
-  display: flex;
-  position: relative;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+/* Scrollbar Styling */
 
 ::-webkit-scrollbar {
   width: 10px;

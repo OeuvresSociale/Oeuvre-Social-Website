@@ -1,19 +1,18 @@
 import React from "react";
 import { Typography } from "@mui/material";
-import "../../../Styles/Admin/Admin_pages.css"
-import Sidebar from "../../../Components/Sidebar.jsx";
-import Transaction_Table from "../../../Components/tabeles/Transaction_Table.jsx";
-import TopMenu from "../../../Components/Admin/bar_menu/TopMenu.jsx";
+import "../../../Styles//Admin/global/structureDuPage.css";
+import Header from "../../../Components/Header";
+import Sidebar from "../../../Components/Sidebar";
+import DemandValid_Table from "../../../Components/tabeles/DemandValid_Table.jsx";
 
 
-
-const Transaction = () => {
+const DemandValid = () => {
   return (
     <div>
-      <div className="admin-container">
+      <div className="body_space">
         <Sidebar />
-        <div className="admin-content">
-          <TopMenu />
+        <div className="dataContainer">
+          <Header />
           <Typography
             variant="h3"
             component="h3"
@@ -25,11 +24,10 @@ const Transaction = () => {
               margin: "20px",
             }}
           >
-            Table de Transaction
+            Table de DemandValid
           </Typography>
-          
           <div className="componentContainer">
-            <Transaction_Table />
+            <DemandValid_Table />
           </div>
         </div>
       </div>
@@ -37,4 +35,4 @@ const Transaction = () => {
   );
 };
 
-export default Transaction;
+export default DemandValid;

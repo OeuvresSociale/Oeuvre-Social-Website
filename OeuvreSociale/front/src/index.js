@@ -12,6 +12,8 @@ root.render(
     
     <App />
     
-  </React.StrictMode>
+  </React.StrictMode>,
+  //Set viewport meta tag
+  document.querySelector('meta[name="viewport"]').getAttribute('content', 'width=device-width, initial-scale=1')
 );
 //reportWebVitals();
