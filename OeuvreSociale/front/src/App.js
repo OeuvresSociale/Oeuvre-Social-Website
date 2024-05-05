@@ -1,14 +1,11 @@
 import React from "react";
-import Sidebar from "./Components/Sidebar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+//import layout
+//import AdminLayout from './AdminLayout';
+//import ClientLayout from './ClientLayout';
+
 import Addemployee from "./Pages/Addemployee.jsx";
 import Employeelist from "./Pages/Employeelist.jsx";
-import Header from "./Components/Header.jsx";
-import "./App.css";
-import Usertable from "./Components/Usertable.jsx";
-import Formulaire from "./Components/Formulaire.jsx";
-import Modefyuser from "./Components/Modefyuser.jsx";
-import Deleteuser from "./Components/Deleteuser.jsx";
 import Addoffre from "./Pages/Addoffre.jsx";
 import Demandetype from "./Pages/Demandetype.jsx";
 import Formul from "./Pages/Formul.jsx";
@@ -25,30 +22,28 @@ import LoanForm from "./Pages/LoanForm.jsx";
 import ModefyLoan from "./Pages/ModefyLoan.jsx";
 import Addloandemande from "./Components/Addloandemande.jsx";
 import AddOffreForm from "./Pages/AddOffreForm.jsx";
-import ValideDemands from "./Pages/ValideDemands.jsx";
+import Demande_Valid from "./Pages/Admin/Demande_valide/Demande_Valide.jsx";
 import OFFers from "./Pages/OFFers.jsx";
 import ValideOffres from "./Pages/ValidOffres.jsx";
 import UnvalideOffres from "./Pages/UnvalideOffres.jsx";
 import OffreType from "./Pages/OffreType.jsx";
-import Archive from "./Pages/Archive.jsx";
-import Dashboard from "./Pages/Dashboard.jsx";
-import Transaction from "./Pages/Transaction.jsx";
-import Tdashboard from "./Pages/Tresorerie_Dashboard.jsx";
-import CreeLoan from "./Pages/CreeLoan.jsx";
-import UnvalideOffretype from "./Pages/UnvalideOffretype.jsx";
-import Loan from './Pages/Loan.jsx';
-import FormularTab from './Pages/FormularTab.jsx';
-import ProfileAd from "./Pages/ProfileAd.jsx";
-import Offre from "./Pages/Offre.jsx";
-import Images from "./Pages/Images.jsx";
 
+import Archive from "./Pages/Admin/Archive/Archive.jsx";
+import Transaction from "./Pages/Admin/Transaction/Transaction.jsx";
+
+import CreeLoan from "./Pages/CreeLoan.jsx";
+import Loan from "./Pages/Loan.jsx";
+import FormularTab from "./Pages/FormularTab.jsx";
+import Dashboard from "./Pages/Admin/Dashboard/Dashboard.jsx";
 
 
 const App = () => {
+
   return (
     <BrowserRouter>
       <Routes>
         {/* 1-Login Page.............................................................................. */}
+      
         <Route path="/login" element={<Login />} />
         <Route path="/recover" element={<Recover />} />
         <Route path="/otp" element={<Otp />} />
@@ -56,24 +51,23 @@ const App = () => {
 
         {/* 2-Admin part.............................................................................. */}
         {/* Admin Dashboard.............................................................................. */}
+
+       <Route path="/" element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/ProfileAd" element={<ProfileAd/>} />
 
         {/* Employee.............................................................................. */}
         <Route path="/employeelist" element={<Employeelist />} />
         <Route path="/employeelist/Addemployee" element={<Addemployee />} />
-        <Route path="/Profile" element={<Profile/>} />
-        <Route path="/Offre" element={<Offre/>} />
 
         {/* Tabeles.............................................................................. */}
 
         <Route path="/tables/demandetype/:id" element={<Demandetype />} />
         <Route path="/tables" element={<TableDemands />} />
-     
+
         {/* ..............Damande Tabele.............................................................................. */}
         {/* .............loan Tabele.............................................................................. */}
         <Route path="/tables/loantype" element={<LoanType />} />
-        <Route path='/Loan' element={<Loan />} />
+        <Route path="/Loan" element={<Loan />} />
 
         {/* ..............Offre Tabele.............................................................................. */}
 
@@ -81,14 +75,15 @@ const App = () => {
         <Route path="/formulaire" element={<Formul />} />
         {/* ..............Damande Formular.............................................................................. */}
         <Route path="/formulaire/formulairedemande" element={<Addoffre />} />
-        <Route path="/formulaire/formulairedemande/confirmformulaire"
+        <Route
+          path="/formulaire/formulairedemande/confirmformulaire"
           element={<Confirmformul />}
         />
         <Route
           path="/formulaire/formulairedemande/modefyformulaire"
           element={<Modefyformule />}
-        /> 
-         <Route path='/FormularTab' element={<FormularTab />} />
+        />
+        <Route path="/FormularTab" element={<FormularTab />} />
 
         {/* .............loan Formular.............................................................................. */}
         <Route
@@ -124,21 +119,13 @@ const App = () => {
           path="/formulaire/ajouteroffre/offretype"
           element={<OffreType />}
         />
-        <Route
-          path="/formulaire/ajouteroffre/unvalideoffretype" 
-        element={<UnvalideOffretype />}   //  where u go when click on the unvalid offre
-        />
 
         {/* Tresorerie.............................................................................. */}
-
-        {/* ........Tresorier Dashboard..............................................................*/}
-        <Route path="/tresorerie_dashboard" element={<Tdashboard />} />
-
         {/* ........Transaction table..............................................................*/}
         <Route path="/transaction" element={<Transaction />} />
 
         {/* ........Accepted demande..............................................................*/}
-        <Route path="/demandevalid" element={<ValideDemands />} />
+        <Route path="/demandevalid" element={<Demande_Valid />} />
 
         {/* Archive.............................................................................. */}
         <Route path="/Archive" element={<Archive />} />

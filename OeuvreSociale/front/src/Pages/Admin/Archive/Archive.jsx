@@ -1,10 +1,10 @@
 import React from "react";
 //import'./Addemployee.css';
 
-import Header from "../Components/Header";
-import Sidebar from "../Components/Sidebar";
+import Header from "../../../Components/Header";
+import Sidebar from "../../../Components/Sidebar";
 
-const Dashboard = () => {
+const Archive = () => {
   return (
     <div>
       <div className="containerf">
@@ -17,4 +17,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Archive;
