@@ -36,12 +36,12 @@ import Transaction from "./Pages/Transaction.jsx";
 import Tdashboard from "./Pages/Tresorerie_Dashboard.jsx";
 import CreeLoan from "./Pages/CreeLoan.jsx";
 import UnvalideOffretype from "./Pages/UnvalideOffretype.jsx";
-
-
 import Loan from './Pages/Loan.jsx';
 import FormularTab from './Pages/FormularTab.jsx';
 import ProfileAd from "./Pages/ProfileAd.jsx";
 import Offre from "./Pages/Offre.jsx";
+import Images from "./Pages/Images.jsx";
+
 
 
 const App = () => {
@@ -145,7 +145,12 @@ const App = () => {
 
         {/* 3-Employee part.............................................................................. */}
 
+     
         <Route path="/profile/:id" element={<Profile />} />
+{/* ----------------------- */}
+
+        <Route path="/image" element={<Images />} />
+      
       </Routes>
     </BrowserRouter>
   );

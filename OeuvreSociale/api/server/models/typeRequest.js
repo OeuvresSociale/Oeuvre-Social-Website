@@ -6,18 +6,20 @@ const typeRequestSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        //unique: true
+        unique: true 
     },
     desc: {
-        type: String, 
-        required: false, 
-    },
+        type: String
+    },   
     docs: {
-        type: [String], // We'll store the values in an array for validation
-        required: false,
+        type: [String] // We'll store the values in an array for validation
+       
         //set dont accept the repetion but the array accept it
-    }
-         
+    },
+    amount:{
+        type:Number,
+        required:true
+    },
 });
 
 const typeRequest = mongoose.model('typeRequest', typeRequestSchema);

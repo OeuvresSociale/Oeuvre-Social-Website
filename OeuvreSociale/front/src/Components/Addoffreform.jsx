@@ -1,15 +1,36 @@
-import React , {useState ,  useRef }from "react";
+import React , {useState ,  useRef,useEffect }from "react";
 import '../Styles/Addoffreform.css';
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import { Link } from "react-router-dom";
 import { MdOutlineImage } from "react-icons/md";
-
-
-
+import axios from "axios";
 
 const Addoffreform =()=>{
-  
+
+        const[input,setInput]=useState({
+          title:"",
+          desc:"",
+          dateDebut:"",
+          dateFin:""
+        });
+
+        useEffect(()=>{
+          setInput(prevInputs=>({
+          ...prevInputs
+          }));
+        },[]);
+        const [err, setErr]=useState(null);
+        const handleClick = async (e) => {
+          e.preventDefault();//not refreshing the page 
+         try{  
+           await axios.post("http://localhost:8000/api/offre",input); 
+         }
+         catch(error){
+         setErr(error.response.data);
+         }
+        };
+
         const [editorState, setEditorState] = useState(() =>
             EditorState.createEmpty()
         );
@@ -18,11 +39,11 @@ const Addoffreform =()=>{
             setEditorState(newEditorState);
         };
 
-        const handleClick = async (e) => {
+        // const handleClick = async (e) => {
     
-          e.preventDefault();//not refreshing the page 
+        //   e.preventDefault();//not refreshing the page 
          
-         };
+        //  };
 
         const fileInputRef = useRef(null);
   const [image, setImage] = useState(null);
@@ -63,7 +84,10 @@ return (
            <div className="addoffrewrapp1">
            <div className="mlbtns2">
   <Link to='/formulaire/ajouteroffre'> <button className="mlrefuse"   >Annuler</button></Link>
+
+
             <Link to='/formulaire/ajouteroffre'> <button className="mlaccepte"   onClick={handleClick} >Créer</button></Link>
+
          </div> 
 
 <div className="addoffrewrapp2"> 
@@ -100,11 +124,7 @@ return (
         onChange={handleFileChange}
         style={{ display: 'none' }}
       />
-    
-      
-   
-
-
+ 
 
 </div>
 
@@ -124,13 +144,8 @@ return (
   </div>
    </div>
 
-
-
-
 </div>
 </div>
-
-
 
 )
 

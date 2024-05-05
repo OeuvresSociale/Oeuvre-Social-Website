@@ -17,11 +17,11 @@ router.route('/register').post(controller.register);
 //router.route('/authentication').post((req,res)=>res.end());  // authenticate user
 router.route('/login').post(controller.login);  // login in app
 router.route('/sendEmail').post(Auth,verifyRole('president'),notification.sendEmail); 
-router.route('/forgotPassword').post(Auth,controller.forgotPassword); 
+router.route('/forgotPassword').post(controller.forgotPassword); 
 //router.route('/notification').post(controller.notification);
-router.route('/uploadImage').post(Auth,uploadImage);
+router.route('/uploadImage').post(uploadImage);
 
-
+ 
 /**GET METHODS */
 router.route('/user/:idEmployee').get(controller.getUser);   //get user with idEmployee
 router.route('/generateOTP').get(controller.generateOTP);  //generate random OTP

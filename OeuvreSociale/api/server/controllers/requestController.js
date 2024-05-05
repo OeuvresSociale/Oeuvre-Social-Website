@@ -5,6 +5,7 @@ const path = require("path");
 const fs = require("fs");
 const asyncWrapper = require("../middleware/asyncWrapper");
 const { Console } = require("console");
+
 //Get all request for employee
 const getMyRequests = async (req, res) => {
   //current page
@@ -104,13 +105,12 @@ const getRequest = async (req, res) => {
 // controller function for creating a new request
 const createRequest = async (req, res) => {
   try {
-    // Extract request data from the request body
-    const { requestTypeId, employeeId, motif, amount } = req.body;
-
-    // Create a new request document in the database
+    // Create a new instance of RequestModel with files data
     const newRequest = new Request({
-      requestTypeId,
-      employeeId,
+      creationDate: new Date(),
+      requestTypeId: req.body.requestTypeId,
+      employeeId: req.body.employeeId,
+      // files: filesData, // Set files array with file information
     });
 
     // Save the request document to the database
@@ -137,6 +137,7 @@ const createRequest = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //update my  request we dont use it in our app
@@ -167,7 +168,7 @@ const updateMyRequest = async (req, res) => {
   }
 };
 // suive request
-
+ 
 const suiviRequest = async (req, res) => {
   try {
     const request = await Request.findById(req.params.id);
@@ -220,6 +221,7 @@ async function getFileById(req, res) {
     res.status(500).send("Internal Server Error");
   }
 }
+
 
 module.exports = {
   getRequest,
