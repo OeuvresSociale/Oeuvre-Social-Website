@@ -1,5 +1,9 @@
 import '../Styles/loanTable.css';
+import axios from 'axios'
 import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
+import { MdOutlineModeEditOutline } from "react-icons/md";
+
 const loans = [
   {
     loanId: 1,
@@ -60,6 +64,11 @@ function Loans() {
               <td>{loan.name}</td>
               <td>{loan.date.toLocaleDateString()}</td>
               <td  className={getStatusColor(loan.status)}>{loan.status}</td>
+              {/* <td className="lastcolumn">
+
+                <Link to={`/tables${....}`}> <MdOutlineModeEditOutline /></Link>
+                
+                </td> */}
             </tr>
           ))}
         </tbody>
