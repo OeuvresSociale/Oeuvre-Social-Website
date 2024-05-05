@@ -23,7 +23,7 @@ function Demands() {
       } catch (error) {
         console.error('Error fetching requests:', error);
         setError(error);
-        setRequests([]);
+        setRequests([]); 
       }
     };
 
@@ -43,6 +43,7 @@ console.log("data :",requests);
       console.error('Error fetching request details:', error);
     }
   };
+
 
 
   const [filterStatus, setFilterStatus] = useState(null);
@@ -156,8 +157,14 @@ return (
 
               <td>1</td>
               <td>{`${request.employeeId.familyName} ${request.employeeId.firstName}`}</td>
-              <td>{request.requestTypeId.title}</td>
-              <td>{request.creationDate}</td>
+              <td>{
+                request.requestTypeId.title
+              }</td>
+              <td> {new Date(request.creationDate).toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                })}</td>
               <td  className={getStatusColor(request.state)}>{request.state}</td>
               <td className="lastcolumn">
 

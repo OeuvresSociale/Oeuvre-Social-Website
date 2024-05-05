@@ -1,13 +1,11 @@
 import React from 'react';
 import OffrEmployee from '../Components/OffrEmployee';
-import Header from '../Components/Header';
+import HeaderUser from '../Components/HeaderUser';
 const Offre = () => {
     return (
      
-        <div className='contentdem'>
-          <div>
-          <Header/>
-          </div>
+        <div>
+          <HeaderUser/>
         <div className="Offre-section">
        <OffrEmployee/>
         </div>

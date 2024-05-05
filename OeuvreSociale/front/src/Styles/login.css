@@ -29,7 +29,7 @@ body{
     border-radius:10px;
     box-shadow: -10 10 30px rgba(255, 255, 255, 1);
     grid-template-columns: 40% 60%;
-      overflow: hidden;
+    overflow: hidden;
 }
 .wrapper h1{
     font-size: 64px;
@@ -56,11 +56,12 @@ body{
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
-.logo {
+.wrapper .logo {
     position: relative;
-    width: 70%; 
-    height:30%;
+    width: 85%; 
+    height:40%;
     border-radius:50%;
+    left:1%;
 }
 
 .wrapper .input-box{

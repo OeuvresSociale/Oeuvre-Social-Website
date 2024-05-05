@@ -27,6 +27,8 @@ catch(err){
 /**
  * for testign
  * {"title": "Bourse de nouveau-né",
+ * "amount":"200",
+  "desc":"we will give you 200 for voayage",
     "docs": [
       "Acte de naissance du nouveau-né",
       "Attestation de travail"]} req 

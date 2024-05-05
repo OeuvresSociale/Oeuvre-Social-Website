@@ -1,5 +1,6 @@
 import "../Styles/otp.css";
-import React, { useState } from "react";
+import React,{useEffect, useState} from "react"
+import images from "../Assets/images.png"
 
 const Recover = () => {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
@@ -21,7 +22,9 @@ const Recover = () => {
     <div className="otpwrap">
       <div className="otwrapper">
         <div className="blueesection">
-          <img src="./assets/logo.png" alt="logo" className="logo" />
+          <img src={images} alt="logo" className="loogo" />
+          <div  className="tiitle"> <h1>Belink</h1> </div>
+
         </div>
         <form onSubmit={handleSubmit}>
           <h2>Enter the code</h2>
@@ -57,7 +60,7 @@ const Recover = () => {
     onChange={(e) => {
       handleChange(2, e.target.value);
       if (e.target.value.length === 1) {
-        e.target.nextElementSibling.focus(); // Focus next element
+        e.target.nextElementSibling.focus(); 
       }
     }}
     required
@@ -69,7 +72,7 @@ const Recover = () => {
     onChange={(e) => {
       handleChange(3, e.target.value);
       if (e.target.value.length === 1) {
-        e.target.nextElementSibling.focus(); // Focus next element
+        e.target.nextElementSibling.focus(); 
       }
     }}
     required
@@ -81,7 +84,7 @@ const Recover = () => {
     onChange={(e) => {
       handleChange(4, e.target.value);
       if (e.target.value.length === 1) {
-        e.target.nextElementSibling.focus(); // Focus next element
+        e.target.nextElementSibling.focus(); 
       }
     }}
     required

@@ -10,11 +10,7 @@ const TableDemands = () => {
         <Sidebar/>
         <div className='contentdem'>
           <Header/>
-     
-          
-        <div className="Infos-section">
-          <Menu />
-        </div>
+         <Menu />
         <div className="Demand-section">
        <Demandstable/>
         </div>

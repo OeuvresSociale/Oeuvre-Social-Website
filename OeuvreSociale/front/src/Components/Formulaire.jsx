@@ -38,7 +38,7 @@ const Formulaire = () => {
     idEmployee:"",
     familyName:"",
     firstName:"",
-    email:"",
+    email:"", 
     phoneNumber: "" ,
     sexe:"",
     familysitution:"",

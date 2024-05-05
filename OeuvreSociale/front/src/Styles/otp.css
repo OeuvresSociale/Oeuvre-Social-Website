@@ -20,31 +20,50 @@
     box-shadow: -10 10 30px rgba(255, 255, 255, 1);
     grid-template-columns: 40% 60%; 
 }
+
+.otwrapper .blueesection {
+    position: relative;
+    height:100%;
+    width: 110%;
+    border-radius:10px;
+    background-color: #00194F;
+    clip-path: polygon(0% 0%,85% 0%, 100% 50%, 85% 100%, 0% 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    box-shadow: rgba(104, 118, 145, 0.7);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+}
 .otwrapper h2{
     font-size: 42px;
     font-weight:400;
     align-self: center;
     position: relative;
-    left: 9%;
-    top: 10%;
+    left: 12%;
+    top: 5%;
     color:rgba(0, 25, 79, 1);
     line-height: 54.93px;
 }
-.otwrapper .blueesection {
-    border-radius:3px;
-    height: 100%;
+.bluesection .loogo {
     position: relative;
-    width: 100%;
-    background-color: #00194F;
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    box-shadow:-10 10 30px rgba(104, 118, 145, 0.7);
+    width:60%; 
+    height:30%;
+    border-radius:50%;
+    left:15%;
 }
-
-.bluesection .logo {
-    max-width: 100%; 
-    max-height: 100%;
+.bluesection .tiitle{
+    font-size: 42px;
+    font-weight:400;
+    align-self: center;
+    position: relative;
+    left: 9%;
+    top: 20%;
+    color:rgba(0, 25, 79, 1);
+    line-height: 54.93px;
+    margin-bottom: 10px;
 }
 .otwrapper .input-box {
     position:relative;

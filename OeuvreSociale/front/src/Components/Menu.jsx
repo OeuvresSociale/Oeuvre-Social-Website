@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../Styles/menu.css';
 
 const Menu = () => {
-  const [activeItem, setActiveItem] = useState(''); // State to store the active item
-
+  const [activeItem, setActiveItem] = useState(''); 
   const handleClick = (item) => {
-    setActiveItem(item); // Update active item on click
+    setActiveItem(item); 
   };
 
   return (
