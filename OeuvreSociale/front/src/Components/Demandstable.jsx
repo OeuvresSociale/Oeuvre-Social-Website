@@ -46,47 +46,12 @@ console.log("data :",requests);
 
 
 
-<<<<<<< Updated upstream
   const [filterStatus, setFilterStatus] = useState(null);
 
   const filteredDemands = filterStatus
     ? requests.filter((demand) => demand.state === filterStatus)
     : requests;
 
-=======
-
-/////////////////////////////////////////////////////////////////////////
-const demands = [
-  {
-    demandId: 1,
-    Employee:"mohammed",
-    type: 'Mariage',
-    date: new Date(2024, 2, 20),
-    status: 'Accepted',
-  },
-  {
-    demandId: 2,
-    type: 'Advance',
-    Employee:"mohammed",
-    date: new Date(2024, 2, 15),
-    status: 'Refused',
-  },
-  {
-    demandId: 3,
-    Employee:"mohammed",
-    type: 'Advance',
-    date: new Date(2024, 2, 18),
-    status: 'Pending',
-  },
-];
-
-function Demands() {
-  const [filterStatus, setFilterStatus] = useState(null);
-
-  const filteredDemands = filterStatus
-    ? demands.filter((demand) => demand.status === filterStatus)
-    : demands;
->>>>>>> Stashed changes
 
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);

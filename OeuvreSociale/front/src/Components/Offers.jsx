@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import '../Styles/Offers.css';
+
 import { FiPlusCircle } from "react-icons/fi";
 import { GoTrash } from "react-icons/go";
 import { MdOutlineModeEditOutline } from "react-icons/md";
@@ -8,11 +8,21 @@ import Deleteoffre from './Deleteoffre';
 import Validateoffrepopup from './Validateoffrepopup';
 import { Link } from "react-router-dom";
 
+import '../Styles/Offers.css';
+
 
  
 const Offres = () => {
     const [openDeleteoffre, setopenDeleteoffre] = useState(false);
      const [openvalidateoffre, setopenvalidateoffre] = useState(false);
+     const settings = {
+        dots: false,
+        infinite: true, // Show arrows only if there are more than 5 items
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 1
+      };
+    
     // const [selectedformularie, setSelectedformularie] = useState(null);
     // const [formularies, setFormularies] = useState([]);
     // const [openModefy, setOpenModefy] = useState(false);
@@ -65,6 +75,8 @@ const Offres = () => {
                 <div className="vali">
                      <span className="titleaddoffre"> Offres non valides</span>
                      <div className="offrecrap">
+                    
+                 
                         <div className="offrec">
                         <img className='offimg2' src={`${process.env.PUBLIC_URL}/images/logo.png`}  />
                         <Link to='/formulaire/ajouteroffre/unvalideoffretype'><div className="titoff">Titre d'offre :</div></Link>
@@ -76,21 +88,35 @@ const Offres = () => {
                          </div>
                          <div className="offrec">
                         <img className='offimg2' src={`${process.env.PUBLIC_URL}/images/logo.png`}  />
-                        <div className="titoff">Titre d'offre :</div>
+                        <Link to='/formulaire/ajouteroffre/unvalideoffretype'><div className="titoff">Titre d'offre :</div></Link>
                         <div className="descoff">Titre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offre :</div>
-                         <div className="offbtns"><button  className="offdel">Supprimer</button>
-                        <button  className="offvalid">Valider</button></div>
+                         <div className="offbtns"><button onClick={() => { setopenDeleteoffre(true); }}  className="offdel">Supprimer</button>
+                        <button  className="offvalid" onClick={() => {setopenvalidateoffre(true); }}>Valider</button></div>
 
                         
                          </div>
-                    
-                     </div>
+                         <div className="offrec">
+                        <img className='offimg2' src={`${process.env.PUBLIC_URL}/images/logo.png`}  />
+                        <Link to='/formulaire/ajouteroffre/unvalideoffretype'><div className="titoff">Titre d'offre :</div></Link>
+                        <div className="descoff">Titre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offre :</div>
+                         <div className="offbtns"><button onClick={() => { setopenDeleteoffre(true); }}  className="offdel">Supprimer</button>
+                        <button  className="offvalid" onClick={() => {setopenvalidateoffre(true); }}>Valider</button></div>
+
+                        
+                         </div>
+                         <div className="offrec">
+                        <img className='offimg2' src={`${process.env.PUBLIC_URL}/images/logo.png`}  />
+                        <Link to='/formulaire/ajouteroffre/unvalideoffretype'><div className="titoff">Titre d'offre :</div></Link>
+                        <div className="descoff">Titre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offre :</div>
+                         <div className="offbtns"><button onClick={() => { setopenDeleteoffre(true); }}  className="offdel">Supprimer</button>
+                        <button  className="offvalid" onClick={() => {setopenvalidateoffre(true); }}>Valider</button></div>
+
+                        
+                         </div>
+                        
+                    </div>
 
 
-
-
-
-                
                 
                      <Link to='/formulaire/ajouteroffre/offresunvalides'> <div className="vt">Voir tout</div> </Link>
                 
