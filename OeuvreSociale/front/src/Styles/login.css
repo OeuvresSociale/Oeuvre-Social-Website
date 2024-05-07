@@ -58,9 +58,10 @@ body{
 }
 .wrapper .logo {
     position: relative;
-    width: 70%; 
-    height:30%;
+    width: 85%; 
+    height:40%;
     border-radius:50%;
+    left:1%;
 }
 
 .wrapper .input-box{

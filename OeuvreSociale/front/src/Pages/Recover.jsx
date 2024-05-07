@@ -1,5 +1,5 @@
 import "../Styles/recover.css"
-import React,{useState} from "react"
+import React,{useEffect, useState} from "react"
 import images from "../Assets/images.png"
 
  const Recover= () => {
@@ -18,9 +18,9 @@ import images from "../Assets/images.png"
             <form onSubmit={handleSubmit}>
               <h2> Forgot Your Password?</h2>  
                 <div className="input-box">
-                   <input type="email" onChange={(e)=>setEmail(e.target.value)} value={email} placeholder="Username" id="email" name="email" required></input>
+                   <input type="email" onChange={(e)=>setEmail(e.target.value)} value={email} placeholder="Email Adress" id="email" name="email" required></input>
                  </div>
-                 <button type="submit"> Recover password </button> 
+                 <button> Recover password </button> 
             </form>
         </div></div>
     )

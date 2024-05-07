@@ -16,7 +16,9 @@ const laon = require("../controllers/laonController.js");
 const {
   getRepayment,
   getallRepayment,
+
 } = require("../controllers/loanRepayment.js"); 
+
 const router = express.Router();
 
 // type request

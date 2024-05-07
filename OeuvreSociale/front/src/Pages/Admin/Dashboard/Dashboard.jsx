@@ -1,10 +1,10 @@
 import React from "react";
 //import'./Addemployee.css';
 
-import Header from "../Components/Header";
-import Sidebar from "../Components/Sidebar";
+import Header from "../../../Components/Header";
+import Sidebar from "../../../Components/Sidebar";
 
-const Transaction = () => {
+const Dashboard = () => {
   return (
     <div>
       <div className="containerf">
@@ -17,4 +17,4 @@ const Transaction = () => {
   );
 };
 
-export default Transaction;
+export default Dashboard;

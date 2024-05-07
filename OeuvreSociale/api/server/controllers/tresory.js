@@ -1,3 +1,4 @@
+
 const Request = require("../models/request.js");
 const Offre = require("../models/offres.js");
 const laonRepayment = require("../models/loanRepaymen.js");
@@ -8,7 +9,7 @@ const Budget = require("../models/budget.js");
 const path = require("path");
 const fs = require("fs");
 const { updateBudget } = require("./budgetController.js");
-// valide the request
+
 const validRequest = async (req, res) => {
   try {
     // Find the request by ID and update its validated to true
@@ -201,7 +202,7 @@ const processRepaymentsMonthly = async (req, res) => {
       if (repayment.duration <= 0) {
         repayment.complete = true; // Set complete to true if duration is zero or negative
       }
-      
+
       await repayment.save();
     }
     console.log("Repayments processed successfully");
@@ -246,6 +247,18 @@ const deleteTransaction = async (req, res) => {
     }
   }
 };
+// Function to initialize the Budget
+const initializeBudget = async (req, res) => {
+  try {
+    const { initialAmount } = req.body;
+    // Delete all documents from the "budget" collection
+    const deletionResult = await Budget.deleteMany();
+    // Create an initial history entry with the initial amount
+    const initialHistoryEntry = {
+      amount: initialAmount,
+      updatedDate: new Date(),
+    };
+
 
 //function to display the files
 const uploadsDir = path.join(__dirname, "../uploads");
@@ -345,9 +358,96 @@ const calculateOutcomeSummary = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+// =======
+//     const budget = new Budget({
+//       initialAmount: initialAmount,
+//       history: [initialHistoryEntry],
+//     });
+
+//     const savedBudget = await budget.save();
+//     console.log("Budget initialized successfully:", savedBudget);
+//     res.status(200).json(savedBudget);
+//   } catch (error) {
+//     console.error("Error initializing budget:", error);
+//     res.status(500).json({ error: "Failed to initialize budget" });
+//   }
+// };
+
+//budget updating
+// async function updateBudget(transaction) {
+//   try {
+//     let budget = await Budget.findOne();
+
+//     if (!budget) {
+//       console.error("Budget not found!");
+//       return;
+//     }
+
+//     // Calculate the current amount based on the latest amount in the history
+//     let currentAmount = budget.initialAmount;
+//     if (budget.history.length > 0) {
+//       // Get the latest history entry
+//       const latestHistoryEntry = budget.history[budget.history.length - 1];
+//       currentAmount = latestHistoryEntry.amount;
+//     }
+
+//     // the current amount based on the transaction category
+//     if (transaction.categorie === "income") {
+//       currentAmount += transaction.Amount;
+//     } else if (transaction.categorie === "outcome") {
+//       currentAmount -= transaction.Amount;
+//     } else {
+//       console.error("Invalid transaction category!");
+//       return;
+//     }
+
+//     // Add the current amount to the budget history
+//     budget.history.push({
+//       amount: currentAmount,
+//       updatedDate: transaction.creationDate,
+//     });
+
+//     await budget.save();
+
+//     console.log("Budget updated successfully!");
+//   } catch (error) {
+//     console.error("Error updating budget:", error);
+//   }
+// }
+
+// //function to display the files
+// const uploadsDir = path.join(__dirname, "../uploads");
+// async function getFileById(req, res) {
+//   const transactionId = req.params.transactionId;
+//   const fileId = req.params.fileId;
+//   console.log(fileId);
+//   try {
+//     // Retrieve the request document from the database
+//     const Transaction = await transaction.findById(transactionId);
+//     if (!Transaction) {
+//       return res.status(404).send("transaction not found");
+//     }
+
+//     // Access files directly from the transaction object
+//     const foundFile = Transaction.files.find(
+//       (file) => file._id.toString() === fileId
+//     );
+//     if (!foundFile) {
+//       return res.status(404).send("File not found");
+//     }
+//     const filePath = path.join(uploadsDir, foundFile.fileName);
+//     res.sendFile(filePath);
+//   } catch (error) {
+//     console.error("Error retrieving file:", error);
+//     res.status(500).send("Internal Server Error");
+//   }
+// }
+// >>>>>>> main
 // Schedule the function to run monthly
 //cron.schedule('0 0 1 * *', processRepaymentsMonthly); // At 00:00 on the 1st day of every month
 module.exports = {
+  initializeBudget,
+  updateBudget,
   validRequest,
   getValid,
   validLaon,
@@ -359,4 +459,5 @@ module.exports = {
   getFileById,
   calculateIncomeSummary,
   calculateOutcomeSummary,
+
 };

@@ -16,6 +16,7 @@ const transactionSchema = new schema({
   type: {
     type: String,
     enum: ["demande", "laon", "annoce", "Repayment", "autre"],
+
   },
   categorie: {
     type: String,
@@ -28,12 +29,23 @@ const transactionSchema = new schema({
     type: Date,
     default: Date.now,
   },
+
   files: [ 
     {
       fileName: String,
       fileOriginalName: String,
     },
   ],
+
+//   files: {
+//     type: [
+//       {
+//         fileName: String,
+//         fileOriginalName: String,
+//       },
+//     ],
+//   },
+
 });
 //   requestId: {
 //     type: mongoose.Schema.Types.ObjectId,

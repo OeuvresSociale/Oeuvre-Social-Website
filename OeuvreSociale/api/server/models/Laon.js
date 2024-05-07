@@ -19,6 +19,7 @@ const laonSchema = new schema({
   reimburse: {
     type: Number,
   },
+
   employeeId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
@@ -54,7 +55,7 @@ const laonSchema = new schema({
   },
 });
 
-
 const laonModel = mongoose.model("laonModel", laonSchema);
+
 
 module.exports = laonModel;
