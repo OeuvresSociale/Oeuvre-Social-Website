@@ -4,7 +4,7 @@
 */
 
 const UserModel =require('../models/user.js');
-const notification =require('../controllers/notification'); 
+const notification =require('../controllers/notificationController.js'); 
 const bcrypt =require('bcrypt'); 
 const jwt = require('jsonwebtoken'); 
 const jwtSecret = process.env.JWT_SECRET;

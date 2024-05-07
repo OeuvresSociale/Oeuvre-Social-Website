@@ -1,6 +1,6 @@
 const PV = require('../models/pv');
  
-
+ 
 const addPV = async (req,res) => {
     try {
         if (!req.body.title) {

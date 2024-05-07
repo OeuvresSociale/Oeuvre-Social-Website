@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 
 const schema = mongoose.Schema;
 
-const imageSchema = new schema({
+const imageSchema = new schema({ 
     name:{
         type:String,
-        required:true 
+    
     },
     image:{
         data:Buffer,
@@ -18,5 +18,6 @@ const imageSchema = new schema({
     },
    
 })
+const imageModel =mongoose.model('imageModel',imageSchema);
 
-module.exports=mongoose.model('imageModel',imageSchema);
+module.exports=imageModel;
