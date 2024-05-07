@@ -1,6 +1,6 @@
 
 :root {
-    --dtwidth: 79%; /* Default value */
+    --dtwidth: 79%;
   }.loanformwrapp{
     width: var(--dtwidth);
     height: 85%;
@@ -137,7 +137,6 @@
 
 
 }
-=======
 :root {
     --dtwidth: 79%; /* Default value */
   }.loanformwrapp{

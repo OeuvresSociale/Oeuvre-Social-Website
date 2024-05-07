@@ -1,5 +1,5 @@
 import "../Styles/new.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 
 const Login = () => {
   const [password, setPassword] = useState('');

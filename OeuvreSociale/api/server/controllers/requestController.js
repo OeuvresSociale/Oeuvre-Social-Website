@@ -1,7 +1,10 @@
 const Request = require("../models/request");
 const Employee = require("../models/user");
 const TypeRequest = require("../models/typeRequest");
-
+const path = require("path");
+const fs = require("fs");
+const asyncWrapper = require("../middleware/asyncWrapper");
+const { Console } = require("console");
 
 //Get all request for employee
 const getMyRequests = async (req, res) => {
@@ -62,19 +65,17 @@ const getallRequests = async (req, res) => {
   const skipRequests = (page - 1) * RequestPerPage;
   const filter = req.query.filter || "";
   try {
-    const Requests = await Request
-   
-    .find(
+    const Requests = await Request.find(
       {
         $or: [{ state: { $regex: filter } }],
       },
       { creationDate: 1, state: 1, motif: 1 }
     )
-    .populate("requestTypeId", "title")
-    .populate("employeeId", "familyName firstName")
+      .populate("requestTypeId", "title")
+      .populate("employeeId", "familyName firstName")
       .sort({ creationDate: -1 })
       .skip(skipRequests)
-      .limit(RequestPerPage); 
+      .limit(RequestPerPage);
     res.status(200).json(Requests);
     if (!Requests) {
       res.status(401).json("there is no  requests here");
@@ -82,56 +83,65 @@ const getallRequests = async (req, res) => {
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
+};
 
-  
- };
 //Get one request
 const getRequest = async (req, res) => {
   try {
-    const request = await Request.findById(req.params.id , { files: 1 })
+    const request = await Request.findById(req.params.id)
       .populate("requestTypeId", "title")
       .populate(
         "employeeId",
         "idEmployee familyName firstName dateStartJob email phoneNumber monthlySalary familysitution "
       );
-   
-      
+
     res.status(200).json(request);
   } catch (err) {
-      // Handle errors
-      res.status(500).json(err);
+    // Handle errors
+    res.status(500).json(err);
   }
 };
-///////////////////////////////// /////////////////////////////////////////////////////////////////////////////////////////
-//create a new  request(faire une demande par employee)
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// controller function for creating a new request
 const createRequest = async (req, res) => {
   try {
-    // Extract file information from req.files array
-    // const filesData = req.files.map((file) => ({
-    //   fileId: file.filename, // Assuming you're using multer to store files locally
-    //   filename: file.originalname,
-    // }));
-
     // Create a new instance of RequestModel with files data
-    const request = new Request({
+    const newRequest = new Request({
       creationDate: new Date(),
       requestTypeId: req.body.requestTypeId,
       employeeId: req.body.employeeId,
-
-      //files: filesData, // Set files array with file information
+      // files: filesData, // Set files array with file information
     });
-    // Save the new request to the database
-    const savedRequest = await request.save();
 
-    // Respond with the saved request
-    res.status(201).json(savedRequest);
+    // Save the request document to the database
+    await newRequest.save();
+
+    // Process uploaded files
+    if (req.files) {
+      const files = req.files.map((file) => ({
+        fileName: file.filename, // Use the filename as fileId
+        fileOriginalName: file.originalname,
+      }));
+
+      // Update the request document with file metadata
+      newRequest.files = files;
+      await newRequest.save();
+    }
+
+    res.status(201).json({
+      message: "Request created successfully",
+      request: newRequest.toObject(), // Convert to plain JavaScript object
+    });
   } catch (error) {
     console.error("Error creating request:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //update my  request we dont use it in our app
+
 const updateMyRequest = async (req, res) => {
   try {
     const request = await Request.findById(req.params.id);
@@ -158,7 +168,7 @@ const updateMyRequest = async (req, res) => {
   }
 };
 // suive request
-
+ 
 const suiviRequest = async (req, res) => {
   try {
     const request = await Request.findById(req.params.id);
@@ -177,11 +187,40 @@ const suiviRequest = async (req, res) => {
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Internal server error" });
-    } 
+    }
   } catch {
     res.status(401).json("this request is not existed");
   }
 };
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//function to display the files
+const uploadsDir = path.join(__dirname, "../uploads");
+async function getFileById(req, res) {
+  const requestId = req.params.requestId;
+  const fileId = req.params.fileId;
+  console.log(fileId);
+  try {
+    // Retrieve the request document from the database
+    const request = await Request.findById(requestId);
+    if (!request) {
+      return res.status(404).send("Request not found");
+    }
+
+    // Access files directly from the request object
+    const foundFile = request.files.find(
+      (file) => file._id.toString() === fileId
+    );
+    if (!foundFile) {
+      return res.status(404).send("File not found");
+    }
+    const filePath = path.join(uploadsDir, foundFile.fileName);
+    res.sendFile(filePath);
+  } catch (error) {
+    console.error("Error retrieving file:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
 
 
 module.exports = {
@@ -190,5 +229,5 @@ module.exports = {
   getMyRequests,
   createRequest,
   suiviRequest,
-  
+  getFileById,
 };

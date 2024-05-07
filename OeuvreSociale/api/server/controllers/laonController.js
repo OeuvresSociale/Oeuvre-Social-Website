@@ -1,7 +1,7 @@
 const Employee = require("../models/user");
 const laonModel= require('../models/Laon');
-
-
+const laonRepayment = require('../models/loanRepaymen');
+ 
 //Get all request for employee
 const getMyLaon = async (req, res) => {
   //current page
@@ -171,7 +171,19 @@ const suiviLaon = async (req, res) => {
 
              const request = new laonModel(req.body);
              const savedRequest = await request.save();
+             const laonModelId = savedRequest._id;
             
+             //save result in loanRepayment collection:
+
+             const repmRequest = new laonRepayment({
+              duration: duration,
+              amount: repaymentAmountPerMonth,
+              loanId:savedRequest._id
+             });
+             const savedrepmRequest = await repmRequest.save();
+
+
+
             // Respond with the saved request
            // res.status(201).json(savedRequest);
         } catch (error) {

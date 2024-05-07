@@ -23,7 +23,7 @@ function Demands() {
       } catch (error) {
         console.error('Error fetching requests:', error);
         setError(error);
-        setRequests([]);
+        setRequests([]); 
       }
     };
 
@@ -46,14 +46,16 @@ console.log("data :",requests);
 
 
 
-<<<<<<< Updated upstream
   const [filterStatus, setFilterStatus] = useState(null);
 
   const filteredDemands = filterStatus
     ? requests.filter((demand) => demand.state === filterStatus)
     : requests;
 
-=======
+
+  // Render the table and other UI elements here
+
+
 
 /////////////////////////////////////////////////////////////////////////
 const demands = [
@@ -86,7 +88,6 @@ function Demands() {
   const filteredDemands = filterStatus
     ? demands.filter((demand) => demand.status === filterStatus)
     : demands;
->>>>>>> Stashed changes
 
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);
@@ -156,8 +157,14 @@ return (
 
               <td>1</td>
               <td>{`${request.employeeId.familyName} ${request.employeeId.firstName}`}</td>
-              <td>{request.requestTypeId.title}</td>
-              <td>{request.creationDate}</td>
+              <td>{
+                request.requestTypeId.title
+              }</td>
+              <td> {new Date(request.creationDate).toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                })}</td>
               <td  className={getStatusColor(request.state)}>{request.state}</td>
               <td className="lastcolumn">
 
@@ -176,6 +183,7 @@ return (
     </div>
     
   );
+}
 }
 
 export default Demands;

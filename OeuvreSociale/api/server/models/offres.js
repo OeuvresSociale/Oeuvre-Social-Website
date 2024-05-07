@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const offreSchema = new mongoose.Schema({
-    title: {
+    title: { 
         type: String,
         required: true,
     },
@@ -10,13 +10,25 @@ const offreSchema = new mongoose.Schema({
         required: false, 
     },
     docs: {
-        type: [String], 
+        type: [String],  
         required: false,
+    },
+    dateDebut:{ 
+        type: Date,
+        required: true
+    },
+    dateFin:{ 
+        type: Date,
+        required: true
     },
     creationDate: {
         type: Date,
         default: Date.now,
         required: true
+    },
+    invisible:{
+    type:Boolean,  
+    default:false
     }
 });
 

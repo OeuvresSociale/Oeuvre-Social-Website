@@ -26,15 +26,14 @@
   border: 1px solid #ddd;
   border-radius: 5px;
 }
-  .profile-picture {
+  .profilepicture img {
     margin-right: 20px;
     flex-shrink: 0; 
-  }
-  .profile-picture img {
-    position:relative;
-    width: 90%;
-    height:200px;
-    top: 8%;
+    position:absolute;
+    width:22%;
+    height:85%;
+    top:8%;
+    left:2%;
     border-radius: 0%;
   }
   
@@ -75,34 +74,34 @@
   .button:focus {
     text-decoration: underline; 
   }
-  /* Modal container */
 .modal {
   position:fixed;
-  width:25%;
-  height:35%;
-  top: 40%;
+  width:30%;
+  height:40%;
+  top: 45%;
   left:50%;
   transform: translate(-50%, -50%);
   background-color: #ffffff;
   padding: 20px;
   border-radius: 5px;
+  box-shadow: 10px;
 }
 .modal h2 {
   position:absolute;
   top:0.2%;
-  left:20%;
-  font-size: 20px;
+  left:18%;
+  font-size: 30px;
   margin-bottom: 10px; 
   font-weight: 500;
   line-height: 48.76px;
+  color:rgba(30, 38, 72, 1);
 }
-
 .modal input {
   position: relative;
-  top:40%;
-  left: 15%;
+  top:35%;
+  left:15%;
   width: 70%;
-  padding:10px;
+  padding:15px;
   margin-bottom: 15px;
   border: 1px  #ccc;
   border-radius: 5px;
@@ -110,22 +109,88 @@
 }
 .modal button {
   position:relative;
-  top: 55%;
+  top: 50%;
   left: 45%;
   padding: 8px 25px;
   margin-right:10px;
-  border: none;
+  border:1px solid rgba(153, 153, 153, 1);
   border-radius: 7px;
 }
-.Enter {
-  background-color:#148582;
-  ;
+.canceel {
+  background-color:#ffffff;
+  color: rgba(153, 153, 153, 1);
 }
-.modal button:hover {
-  opacity: 0.8;
+.Enteer {
+  background-color:#148582;
+  color:rgba(255, 255, 255, 0.8);
 }
 .tablepag{
   position: absolute;
   right:0 ;
   bottom: 0;
+}
+
+.cameraIcon {
+  position: absolute;
+  bottom: 18px; 
+  left: 240px;
+  cursor: pointer;  
+}
+
+.cameraIcon > svg {
+  width: 30px; 
+  height: 30px;
+  color: #333;
+}
+
+.otpInputWrapper {
+  display: flex;
+}
+.otptitle{
+  position:absolute;
+  top:0.2%;
+  left:10%;
+  font-size: 25px;
+  margin-bottom: 10px; 
+  font-weight: 500;
+  line-height: 48.76px;
+  color: rgba(30, 38, 72, 1);
+}
+.otpInputWrapper input {
+  position: relative;
+  left:25px;
+  top:85px;
+  width: 20px; 
+  height: 40px;
+  margin-right: 10px;
+  text-align: center; 
+  border: 1px  #ccc;
+  border-radius: 3px; 
+  font-size: 12px; 
+}
+
+.otpInputWrapper input:last-child {
+  margin-right: 0;
+}
+.modal .can{
+  position:relative;
+  top:40%;
+  left: 45%;
+  padding: 8px 25px;
+  margin-right:10px;
+  border:1px solid rgba(153, 153, 153, 1);
+  border-radius: 7px;
+  background-color:#ffffff;
+  color: rgba(153, 153, 153, 1);
+}
+.modal .entteer{
+  position:relative;
+  top:40%;
+  left:45%;
+  padding: 8px 25px;
+  margin-right:10px;
+  border:1px solid rgba(153, 153, 153, 1);
+  border-radius: 7px;
+  background-color:#148582;
+  color:rgba(255, 255, 255, 0.8);
 }

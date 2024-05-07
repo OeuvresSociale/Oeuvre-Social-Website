@@ -1,11 +1,11 @@
-const offre = require('../models/offres');
+const offreModel = require('../models/offres.js');
 
 const addOffre = async (req,res)=>{
     try {
         if (!req.body.title) {
             return res.status(400).json({ error: "Title is required" });
           }
-          const newOffre = new typeRequest(req.body);
+          const newOffre = new offreModel(req.body);
           const saveOffre = await newOffre.save();
           res.status(200).json(saveOffre);
           console.log("new offre has been created");
@@ -13,7 +13,7 @@ const addOffre = async (req,res)=>{
         console.error(error);
         res.status(500).json({ error: "Internal server error" }); 
     }
-}
+} 
 
 
 //delete offre
@@ -35,7 +35,7 @@ const deleteOffre = async (req, res) => {
 //Get all offres
 const getOffres = async (req, res) => {
   try {
-    const offre = await offre.find();
+    const offre = await offreModel.find();
     res.status(200).json(offre);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -45,7 +45,7 @@ const getOffres = async (req, res) => {
 //get one  offre
 const getOffre = async (req, res) => {
 try{
-  const offre = await offre.findById(req.params.id);
+  const offre = await offreModel.findById(req.params.id);
   res.status(200).json(offre);
 }
 catch(err){
@@ -56,12 +56,12 @@ catch(err){
 //update
 const updateOffre = async (req, res) => {
     try {
-      const offre = await offre.findById(req.params.id);
+      const offre = await offreModel.findById(req.params.id);
       try {
           if (!req.body.title) {
               return res.status(400).json({ error: "Title is required" });
             }
-        const updatedOffre= await offre.findByIdAndUpdate(
+        const updatedOffre= await offreModel.findByIdAndUpdate(
           req.params.id,
           {
             $set: req.body,

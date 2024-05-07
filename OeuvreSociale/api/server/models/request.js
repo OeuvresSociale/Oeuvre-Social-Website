@@ -1,15 +1,15 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const requestSchema = new mongoose.Schema({
+ const requestSchema = new mongoose.Schema({
     creationDate: {
         type: Date,
         default: Date.now,
-        required: true
+        required: true,
     },
     requestTypeId: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId, 
         ref: 'typeRequest',
-        required: true
+        required: true,
     }, 
     employeeId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -23,22 +23,35 @@ const requestSchema = new mongoose.Schema({
         type: String,
         enum: ['En attente', 'Approuvée', 'Rejetée'],
         default: 'En attente',
-        required: true
-    },
+        required: true,
+    }, 
     motif: {
-        type: String,
-        required:false
+        type: String 
     },
     amount :{
-        required: false,
         type:Number
     },
-    files: [{
-        fileId: String, 
-        filename: String
-    }]
+    files: {
+        type: [{
+            fileName: String, 
+            fileOriginalName: String,
+        }],
+        // validate: [arrayMinLengthValidator, 'Files array must have at least one element'],
+        // required: true
+    },
+    validated:{ // for tresorerie
+        type:Boolean,
+        required:true,
+        default:false
+    }
 });
 
-const RequestModel = mongoose.model('Request', requestSchema);
+// Custom validator function to check if the array has at least one element
+// function arrayMinLengthValidator(value) {
+//     return value && value.length > 0;
+// }
+
+
+const RequestModel = mongoose.model('RequestModel', requestSchema);
 
 module.exports = RequestModel;

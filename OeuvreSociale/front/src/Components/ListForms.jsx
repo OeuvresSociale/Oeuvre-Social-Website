@@ -65,8 +65,8 @@ function Forms() {
     <div className="formsrapper">
       <h2 className="title">Types des demandes</h2>
       {links.map((link, index) => (
-        <div key={index} className="linkrapper">
-          <div className="linktdem" onClick={() => handleLinkClick(link.popId)}>
+        <div key={index} className="linkrapper"onClick={() => handleLinkClick(link.popId)}>
+          <div className="linktdem" >
             {link.label}
           </div>
         </div>
@@ -89,9 +89,9 @@ function Forms() {
               {pops[selectedPop].inputTitles.map((title, index) => (
                 <li key={index}>
                   <div className="Label">{title} : </div>
-                  <div className="inputWrapper">
+                  <div className="inputWrapper"onClick={() => handleUploadButtonClick(pops[selectedPop].inputNames[index])}>
                     <FaRegFilePdf className="pdfIcon" />
-                    <div className="uploadFile" onClick={() => handleUploadButtonClick(pops[selectedPop].inputNames[index])}>  <FaArrowUp className="icon" /> Upload File </div>
+                    <div className="uploadFile" >  <FaArrowUp className="icon" /> Upload File </div>
                     <input type="file" accept=".pdf" name={pops[selectedPop].inputNames[index]} onChange={handleFileUpload} />
                   </div>
                 </li>
@@ -99,7 +99,7 @@ function Forms() {
             </ul>
             <div className="buttonsWrapper">
               <button className="cancelButton" onClick={closePop}>Cancel</button>
-              <button className="validateButton">Validate</button>
+              <button className="validateButton" >Validate</button>
             </div>
           </div>
         </div>
