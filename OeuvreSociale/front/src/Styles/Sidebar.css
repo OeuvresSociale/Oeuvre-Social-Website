@@ -58,6 +58,7 @@ body {
   .top-section {
     background-color: #00194F; /* Adjust the top section color */
     color: #fff;
+    height:7%;
     
     text-align: center;
   }

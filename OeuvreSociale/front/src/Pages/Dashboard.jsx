@@ -3,14 +3,16 @@ import React from "react";
 
 import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
+import DashBoard from "../Components/DashBoard";
 
 const Dashboard = () => {
   return (
     <div>
-      <div className="containerf">
+      <div className="containerdem">
         <Sidebar />
-        <div className="contentf">
+        <div className="contentdem">
           <Header />
+          <DashBoard/>
         </div>
       </div>
     </div>
