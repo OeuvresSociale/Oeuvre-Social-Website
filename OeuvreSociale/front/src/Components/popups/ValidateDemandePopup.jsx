@@ -17,6 +17,12 @@ const ValidateDemandePopup = ({ openPopup, handleClosePopup, selectedRow }) => {
     const file = event.target.files[0];
     if (file) {
       setPdfFile(file);
+
+      const fileName = file.name;
+      const fileTextElement = document.querySelector(".file-text");
+      if (fileTextElement) {
+        fileTextElement.textContent = fileName;
+      }
     }
   };
 
