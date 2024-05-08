@@ -72,7 +72,9 @@
     height:8%;
     display: flex;
     position: relative;
-    cursor: pointer;
+   
+    color:#fff;
+    text-decoration: none;
     
 
 }.titleaddoffre{

@@ -3,6 +3,8 @@ import { IoNotificationsOutline } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
 import "../Styles/Header.css";
 import { Link, useLocation } from "react-router-dom";
+import OIP from "../Assets/OIP.png";
+import Logo from "../Assets/Logo1.png";
 
 const Header = () => {
   const location = useLocation();
@@ -54,18 +56,18 @@ const Header = () => {
   return (
     <div className="container">
       <div className="box1">
-        <div className="logo5">
-          <img src="../Assets/Logo.png" />
-        </div>
+       
+        <img src={Logo} alt="logo" className="logo5" />
+      
         <div className="em">{renderText()}</div>
       </div>
       <div className="box2">
         <div className="notification">
           <IoNotificationsOutline />
         </div>
-        <div className="profile5">
-          <img src="../Assets/OIP.png" />
-        </div>
+       
+        <img src={OIP} alt="logo" className="profile5" />
+     
       </div>
     </div>
   );

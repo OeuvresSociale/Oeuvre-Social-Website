@@ -6,6 +6,7 @@ import { MdOutlineModeEditOutline } from "react-icons/md";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { BsArrowLeftCircle } from "react-icons/bs";
+import Logo from "../Assets/Logo1.png";
 
 
 
@@ -60,15 +61,15 @@ const Valideoffres = () => {
 
                 <div className="vali7">  <span className="titleaddoffre"> Offres valides</span>
                 <div className="offrecrapv">
-                       <div className="offrecv">
-                        <img className='offimg3' src={`${process.env.PUBLIC_URL}/images/logo.png`}  />
-                         <Link to='/formulaire/ajouteroffre/offretype'><div className="titoff">Titre d'offre :</div></Link>
+                       <Link to='/formulaire/ajouteroffre/offretype' className="offrecv">
+                       <img src={Logo} alt="logo" className="offimg3" />
+                         <div className="titoff">Titre d'offre :</div>
                         <div className="descoff">Titre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offre :</div>
                    
                         
                          
                         
-                         </div>
+                     </Link>
                     
                     
                      </div>

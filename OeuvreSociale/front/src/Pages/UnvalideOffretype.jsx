@@ -5,7 +5,7 @@ import'./Addoffre.css';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
 
-const Addoffre = () => {
+const UnvalideOffretype = () => {
   return (
     <div>
      <div className="containeradd">
@@ -18,4 +18,4 @@ const Addoffre = () => {
  </div> );
 };
 
-export default Addoffre ;
+export default UnvalideOffretype ;

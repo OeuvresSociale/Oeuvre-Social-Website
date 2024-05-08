@@ -70,7 +70,7 @@
       }.b2{
         width:100px;
         height:35px;
-        border-color: #999999;
+        border-color: transparent;
         border-radius: 7px;
         border-width: 1px;
         background-color: #148582;
@@ -78,6 +78,7 @@
         font-size: 15px;
         font-weight: 600;
         cursor: pointer;
+        outline: none;
        
        
       

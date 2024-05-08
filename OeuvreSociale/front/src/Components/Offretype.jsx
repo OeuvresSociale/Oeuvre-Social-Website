@@ -2,6 +2,7 @@ import React , {useState ,  useRef }from "react";
 import '../Styles/Offretype.css';
 import { Link } from "react-router-dom";
 import { MdOutlineImage } from "react-icons/md";
+import Logo from "../Assets/Logo1.png";
 import { BsArrowLeftCircle } from "react-icons/bs";
 
 const Offretype =()=>{
@@ -14,7 +15,7 @@ return (
 
 <div className="addoffrewrapp25"> 
 <div className="ddimg5"> <div>L'image :</div>
-<img className='offimg' src={`${process.env.PUBLIC_URL}/images/logo.png`}  />
+<img src={Logo} alt="logo" className='offimg'  />
 
 
 </div>

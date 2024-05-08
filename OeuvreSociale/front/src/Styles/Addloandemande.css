@@ -45,7 +45,7 @@ position: relative;
     
 }.firstwhite{
     
-
+   
    
     display: flex;
     flex-direction: column;
@@ -60,6 +60,7 @@ position: relative;
 
 }.firstwhite input{
     width: 90%;
+
 }.restextarea{
     background-color: #fff;
      border: none; 
@@ -112,6 +113,7 @@ position: relative;
   
     
 }.loan4 input{
+    
     outline: none;
     border: none;
    
