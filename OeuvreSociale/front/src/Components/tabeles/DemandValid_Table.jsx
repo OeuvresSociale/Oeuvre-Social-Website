@@ -9,6 +9,8 @@ const DemandValid_Table = () => {
   const [openPopup, setOpenPopup] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null); // Store the selected row
 
+  // Handles functions
+
   const handleClosePopup = () => {
     setOpenPopup(false);
   };
@@ -20,6 +22,33 @@ const DemandValid_Table = () => {
     setOpenPopup(true);
   };
 
+   /*const [data, setData] = useState([]);
+  const getTrans_Data = async () => {
+    await axios
+      .get("http://localhost:8000/api/Transactions")
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+    useEffect(() => {
+        getTrans_Data();
+    }, []);
+  
+    const rows = data.map((transaction) => {
+        return {
+            id: transaction._id,
+            conerné: transaction.conerné,
+            type: transaction.type,
+            Date: transaction.Date,
+            Somme: transaction.Somme,
+            pdf: transaction.pdf,
+        };
+    */
+
+  //Declare columns content
   const columns = [
     { field: "concerned", headerName: "Concerné", width: 315 },
     { field: "type", headerName: "Type", width: 315 },

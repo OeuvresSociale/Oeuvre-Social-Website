@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Avatar, IconButton, MenuItem, Select, TextField, Modal, Box, Button } from "@mui/material";
+import { Avatar, IconButton } from "@mui/material";
 import { Edit, PictureAsPdf } from "@mui/icons-material"; 
+import ModifyRowPopup from "../popups/ModifyRowPopup";
 import "../../Styles/tables/DataGrid.css";
 
 const Transactions_Table = () => {
@@ -35,6 +36,49 @@ const Transactions_Table = () => {
   ]);
   const [open, setOpen] = useState(false);
 
+  //Fetchin data
+  /*const [data, setData] = useState([]);
+  const getTrans_Data = async () => {
+    await axios
+      .get("http://localhost:8000/api/Transactions")
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+ 
+   const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    getTrans_Data();
+  }, []);
+
+  const getTrans_Data = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/transactions");
+      const data = response.data;
+      // Map fetched data to match the structure of rows
+      const rowData = data.map((transaction) => ({
+        id: transaction._id,
+        concerned: transaction.concerned,
+        type: transaction.type,
+        date: transaction.date,
+        amount: transaction.amount,
+        direction: transaction.direction,
+        pdf: transaction.pdf,
+      }));
+      // Update the state with the mapped data
+      setRows(rowData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+    */
+  
+  //Handle Functions
+
   const handleEdit = (rowId) => {
     setEditableRowId(rowId);
     // Find the editable row data
@@ -67,6 +111,8 @@ const Transactions_Table = () => {
     setEditableRowData(null);
     setOpen(false);
   };
+
+  //Declare the colums content
 
   const columns = [
     { field: "concerned", headerName: "Concerné", width: 275 },
@@ -106,10 +152,7 @@ const Transactions_Table = () => {
           editRowsModel={{
             id: editableRowId,
           }}
-          onEditCellChangeCommitted={(params) => {
-            // Handle data change after editing if needed
-            console.log("Row edited:", params);
-          }}
+        
           sx={{
             textAlign: "center",
             color: "#00194f",
@@ -118,75 +161,17 @@ const Transactions_Table = () => {
             fontSize: "15px",
           }}
         />
-        <Modal
+         </div>
+         {open && (
+        <ModifyRowPopup
           open={open}
-          onClose={handleCancelEdit}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', bgcolor: 'background.paper', boxShadow: 24, p: 4, width: 400 }}>
-            {/* Display a form for editing */}
-            <TextField
-              label="Concerné"
-              value={editableRowData?.concerned || ""}
-              onChange={(e) =>
-                setEditableRowData({
-                  ...editableRowData,
-                  concerned: e.target.value,
-                })
-              }
-            />
-            <TextField
-              label="Type"
-              value={editableRowData?.type || ""}
-              onChange={(e) =>
-                setEditableRowData({
-                  ...editableRowData,
-                  type: e.target.value,
-                })
-              }
-            />
-            <TextField
-              label="Date d'envoi"
-              type="date"
-              value={editableRowData?.date || ""}
-              onChange={(e) =>
-                setEditableRowData({
-                  ...editableRowData,
-                  date: e.target.value,
-                })
-              }
-            />
-            <TextField
-              label="Somme"
-              type="number"
-              value={editableRowData?.amount || ""}
-              onChange={(e) =>
-                setEditableRowData({
-                  ...editableRowData,
-                  amount: e.target.value,
-                })
-              }
-            />
-            <Select
-              label="Direction"
-              value={editableRowData?.direction || ""}
-              onChange={(e) =>
-                setEditableRowData({
-                  ...editableRowData,
-                  direction: e.target.value,
-                })
-              }
-            >
-              <MenuItem value="sortant">Sortant</MenuItem>
-              <MenuItem value="entrant">Entrant</MenuItem>
-            </Select>
-            {/* Add input fields for other editable fields */}
-            <Button variant="contained" onClick={handleSaveEdit}>Save</Button>
-            <Button variant="contained" onClick={handleCancelEdit}>Cancel</Button>
-          </Box>
-        </Modal>
-      </div>
+          editableRowData={editableRowData}
+          handleSaveEdit={handleSaveEdit}
+          handleCancelEdit={handleCancelEdit}
+          setEditableRowData={setEditableRowData}
+        />
+      )}
+     
     </div>
   );
 };
