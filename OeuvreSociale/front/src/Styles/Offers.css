@@ -72,7 +72,9 @@
     height:8%;
     display: flex;
     position: relative;
-    cursor: pointer;
+   
+    color:#fff;
+    text-decoration: none;
     
 
 }.titleaddoffre{
@@ -178,3 +180,26 @@
     display: flex;
     gap:5%;
   }
+  .slick-prev,
+.slick-next {
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  cursor: pointer;
+}
+
+.slick-prev {
+  left: 10px;
+}
+
+.slick-next {
+  right: 10px;
+}.custom-slider .slick-slider,
+.custom-slider .slick-track {
+  display: block;
+  overflow: visible;
+  width: auto;
+  /* Reset other properties as needed */
+}

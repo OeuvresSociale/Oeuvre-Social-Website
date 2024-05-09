@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { GoTrash } from "react-icons/go";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { BsArrowLeftCircle } from "react-icons/bs";
 const Confirmform = () => {
     const [inputText, setInputText] = useState('');
     const [previewWords, setPreviewWords] = useState([]);
@@ -47,6 +48,7 @@ const Confirmform = () => {
     
     return (
         <div className="confirmwrapper">
+            <Link to='/formulaire/formulairedemande'> <div className="arrow"><BsArrowLeftCircle /></div> </Link>
             <div className="confirmform">
                 {/* Removed unnecessary Link wrapper */}
                 <button onClick={handleConfirmForm}>Confirmer</button>
