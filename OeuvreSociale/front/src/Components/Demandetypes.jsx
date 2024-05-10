@@ -12,6 +12,7 @@ import axios from "axios";
 const Demandetypes =()=>{ 
   const {id}=useParams();
   console.log(id); 
+const [idRequest, setIdRequest] = useState(null);
 
   const [openMotif, setOpenMotif] = useState(false);
   const [bordercolor, setbordercolor] = useState("white");
@@ -61,10 +62,18 @@ const Demandetypes =()=>{
     setshowbuttons(false);
     setpadding(120);
   };
-  const handleGreenClick = () => {
-    setbordercolor("green");
-    setshowbuttons(false);
-    setpadding(120);
+  const handleGreenClick =async () => {
+    try {
+      const response = await axios.put(`http://localhost:8000/api/Requests/${request._id}`, {
+        state:"Approuvée",
+      });
+      setbordercolor("green");
+      setshowbuttons(false);
+      setpadding(120);
+    } catch (error) {
+     
+      console.error("Error accepting request:", error);
+    }
   };
 
   return (
@@ -163,6 +172,7 @@ const Demandetypes =()=>{
             className="refuse"
             onClick={() => {
               setOpenMotif(true);
+             
             }}
           >
             Réfuser
@@ -174,7 +184,7 @@ const Demandetypes =()=>{
       )}
 
       {openMotif && (
-        <Motif closeMotif={setOpenMotif} handleRedClick={handleRedClick} />
+        <Motif closeMotif={setOpenMotif} handleRedClick={handleRedClick} Request={request} />
       )}
     </div>
   );

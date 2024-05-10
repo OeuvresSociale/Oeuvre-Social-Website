@@ -35,6 +35,7 @@ import CreeLoan from "./Pages/CreeLoan.jsx";
 import Loan from "./Pages/Loan.jsx";
 import FormularTab from "./Pages/FormularTab.jsx";
 import Dashboard from "./Pages/Admin/Dashboard/Dashboard.jsx";
+import Home from "./Pages/Employee/home/home.jsx";
 
 
 const App = () => {
@@ -132,11 +133,12 @@ const App = () => {
 
         {/* 3-Employee part.............................................................................. */}
 
+        <Route path ="/home" element={< Home />}/>
      
         <Route path="/profile/:id" element={<Profile />} />
 {/* ----------------------- */}
 
-        <Route path="/image" element={<Images />} />
+        
       
       </Routes>
     </BrowserRouter>

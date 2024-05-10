@@ -28,7 +28,7 @@ function Demands() {
     };
 
     fetchRequests();
-  },[searchValue]); // Fetch employees whenever searchValue changes
+  },[]); // Fetch employees whenever searchValue changes
 
 console.log("data :",requests);
 
