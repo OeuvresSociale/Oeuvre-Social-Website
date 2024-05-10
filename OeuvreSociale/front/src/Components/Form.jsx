@@ -1,19 +1,31 @@
 import '../Styles/form.css';
 import React, { useState, useEffect } from 'react';
 
-const demands = [
-  {
-    demandId: 1,
-    type: 'Mariage',
-    date: new Date(2024, 2, 20),
-    status: 'Pending',
-  },
+// const demands = [
+//   {
+//     demandId: 1,
+//     type: 'Mariage',
+//     date: new Date(2024, 2, 20),
+//     status: 'Pending',
+//   },
  
  
-];
+// ];
 
 function Demands() {
   const [filterStatus, setFilterStatus] = useState(null);
+  const [demands, setDemands] = useState([]);
+// const demands = [
+//   {
+//     demandId: 1,
+//     type: 'Mariage',
+//     date: new Date(2024, 2, 20),
+//     status: 'Pending',
+//   },
+ 
+ 
+// ];
+
 
   const filteredDemands = filterStatus
     ? demands.filter((demand) => demand.status === filterStatus)
