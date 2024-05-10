@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React,{ useState, useEffect } from "react";
 import '../Styles/Confirmform.css';
 import { FiPlusCircle } from "react-icons/fi";
 import { Link } from "react-router-dom";
@@ -9,9 +9,18 @@ import { BsArrowLeftCircle } from "react-icons/bs";
 const Confirmform = () => {
     const [inputText, setInputText] = useState('');
     const [previewWords, setPreviewWords] = useState([]);
+    const [textInputValue, setTextInputValue] = useState('');
+    const [textInputprix, setTextInputprix] = useState('');
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
-    const textInputValue = queryParams.get('text') || '';
+
+
+    useEffect(() => {
+        const textInputValueFromQuery = queryParams.get('text') || '';
+        const textInputprixFromQuery = queryParams.get('prix') || '';
+        setTextInputValue(textInputValueFromQuery);
+        setTextInputprix(textInputprixFromQuery);
+    }, [location.search]);
 
     const handleInputChange = (event) => {
         setInputText(event.target.value);
@@ -33,6 +42,7 @@ const Confirmform = () => {
         try {
             const formData = {
                 title: textInputValue,
+                prix: textInputprix,
                 docs: previewWords,
             };
             const response = await axios.post('http://localhost:8000/api/typesRequest', formData);
@@ -66,13 +76,15 @@ const Confirmform = () => {
                     <FiPlusCircle />
                 </div>
             </div>
-            <div className="previewContainer">
+
+            <div className="previewContainer2">
                 {previewWords.map((word, index) => (
                     <div key={index} className="wordBox">
                         {word} <GoTrash onClick={() => handleDeleteWord(index)} />
                     </div>
                 ))}
             </div>
+            <div  className="previewContainer"> Prix : {textInputprix} </div>
         </div>
     );
 };
