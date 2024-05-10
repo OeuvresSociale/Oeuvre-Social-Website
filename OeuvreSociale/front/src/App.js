@@ -27,6 +27,7 @@ import OFFers from "./Pages/OFFers.jsx";
 import ValideOffres from "./Pages/ValidOffres.jsx";
 import UnvalideOffres from "./Pages/UnvalideOffres.jsx";
 import OffreType from "./Pages/OffreType.jsx";
+import UnvalideOffreType from "./Pages/UnvalideOffretype.jsx";
 
 import Archive from "./Pages/Admin/Archive/Archive.jsx";
 import Transaction from "./Pages/Admin/Transaction/Transaction.jsx";
@@ -104,22 +105,27 @@ const App = () => {
         {/* ..............Offre Formular............................................................................... */}
 
         <Route
-          path="/formulaire/ajouteroffre/offreformulaire"
+         path="/formulaire/ajouteroffre/offreformulaire"   // where to create new offre
           element={<AddOffreForm />}
         />
-        <Route path="/formulaire/ajouteroffre" element={<OFFers />} />
+        <Route path="/formulaire/ajouteroffre" element={<OFFers />} /> {/* the page contains the button ajouter offre */}
         <Route
-          path="/formulaire/ajouteroffre/offresvalides"
+         path="/formulaire/ajouteroffre/offresvalides"     //all valide offres page 
           element={<ValideOffres />}
         />
         <Route
-          path="/formulaire/ajouteroffre/offresunvalides"
+        path="/formulaire/ajouteroffre/offresunvalides"    // all unvalide offres page
           element={<UnvalideOffres />}
         />
         <Route
-          path="/formulaire/ajouteroffre/offretype"
+          path="/formulaire/ajouteroffre/offretype"  //  when u click on a valide offre 
           element={<OffreType />}
         />
+        <Route
+          path="/formulaire/ajouteroffre/unvalideoffretype"
+          element={<UnvalideOffreType />}   //    when u click on an unvalide offre 
+        />
+
 
         {/* Tresorerie.............................................................................. */}
         {/* ........Transaction table..............................................................*/}

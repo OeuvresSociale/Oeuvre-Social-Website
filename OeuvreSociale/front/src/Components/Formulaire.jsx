@@ -229,7 +229,7 @@ const handleSearch = () => {
  <div style={{ width: '200px',  marginLeft: '35%' }}className="f2"><input type="text"  name="numberOfChild" placeholder="nombre d'enfants" onChange={handleChange} /></div> )}
 
 <div className="btns">
-    <button className="cancel">Annuler</button> 
+    <Link to='/employeelist'><button className="cancel">Annuler</button> </Link>
      <button className="add" onClick={handleClick}>Ajouter</button>
 </div>
  </div>
