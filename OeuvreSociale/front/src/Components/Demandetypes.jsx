@@ -65,7 +65,7 @@ const [idRequest, setIdRequest] = useState(null);
   const handleGreenClick =async () => {
     try {
       const response = await axios.put(`http://localhost:8000/api/Requests/${request._id}`, {
-        state:"Approuvée",
+        state:"Approuvée", motif: ""
       });
       setbordercolor("green");
       setshowbuttons(false);
