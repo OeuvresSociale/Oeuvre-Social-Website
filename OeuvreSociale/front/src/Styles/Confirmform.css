@@ -88,6 +88,22 @@
     display: flex;
     flex-direction: column;
     background-color: white;
+    box-shadow:  rgba(0, 0, 0, 0.1);
+    border-radius: 7px;
+    width:88%;
+    padding: 1%;
+    font-size: 18px;
+    font-weight: 500;
+   color:#00194F;
+   border-bottom: #999999 1px solid;
+  }
+  .previewContainer2 {
+    position: absolute;
+    top:258px;
+
+    display: flex;
+    flex-direction: column;
+    background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 7px;
     width:90%;
@@ -100,7 +116,7 @@
     font-weight: 500;
    color:#00194F;
   }
-  .previewContainer svg{
+  .previewContainer2 svg{
     font-size: 25px;
     position: absolute;
     right:2%;
