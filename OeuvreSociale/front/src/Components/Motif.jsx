@@ -1,14 +1,20 @@
 import React ,{useState}from "react";
 import '../Styles/Motif.css';
+import axios from "axios";
 
+const Motif=({closeMotif , handleRedClick , Request})=>{
 
-const Motif=({closeMotif , handleRedClick})=>{
-
-    const handlesendClick=()=>{
-        handleRedClick();
-        closeMotif(false)
-      
-       };
+    const handlesendClick= async ()=>{
+         try {
+           const response = await axios.put(`http://localhost:8000/api/Requests/${Request._id}`, { state:"Rejetée", motif: text });
+            handleRedClick();
+            // Close the motif
+            closeMotif(false);
+        } catch (error) {
+           
+            console.error('Error sending motif:', error);
+        }
+    };
 
        const [text, setText] = useState(''); // State to store textarea content
 

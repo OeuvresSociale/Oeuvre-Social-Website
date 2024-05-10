@@ -1,27 +1,19 @@
-import React from "react";
-import Header from "../../../Components/Header";
-import Sidebar from "../../../Components/Sidebar";
+import React from 'react';
+import HeaderUser from '../../../Components/HeaderUser';
+import WelcomeSection from '../../../Components/Employee/Home/WelcomeSection';
+import AnnouncementSection from '../../../Components/Employee/Home/AnnouncementSection';
+import ContactSection from '../../../Components/Employee/Home/ContactSection';
+import Footer from '../../../Components/Employee/Home/Footer';
 
-const home = () => {
+function Home() {
   return (
     <div>
-      <div className="containerf">
-        <Sidebar />
-        <div className="contentf">
-          <Header />
-          <div className="row">
-            <div className="col-12">
-              <h1>home</h1>
-              <p className="fs-5 fw-light">
-                Welcome to your home,{" "}
-                <span className="fw-bold">user</span>!
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <HeaderUser />
+      <WelcomeSection />
+      <AnnouncementSection />
+      <ContactSection />
+      <Footer />
     </div>
   );
-};
-
-export default home;
+}
+export default Home;
