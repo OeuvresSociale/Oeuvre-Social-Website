@@ -1,10 +1,20 @@
 import React ,{useState}from "react";
 import '../Styles/Dashboard.css';
 import Chart from 'react-apexcharts';
+import Calendar from 'react-calendar';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import 'react-calendar/dist/Calendar.css';
 
 
 
 const DashBoard = () => {
+    const [selectedDates, setSelectedDates] = useState([]);
+
+  const handleDateChange = (date) => {
+    setSelectedDates([...selectedDates, date]); // Add the selected date to the array
+  };
+
 
     const chartOptions = {
         series: [{
@@ -88,6 +98,21 @@ const DashBoard = () => {
                </div>
                
             </div>
+            <div className="app88">
+            <Calendar
+        onChange={handleDateChange}
+        value={selectedDates} // Pass the array of selected dates as the value
+        selectRange={false} // Disable range selection
+      />
+      <div>
+        <h2>Dates des réunions :</h2>
+        <ul>
+          {selectedDates.map((date, index) => (
+            <li key={index}>{date.toLocaleDateString()}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
         </div>
     );
 };
