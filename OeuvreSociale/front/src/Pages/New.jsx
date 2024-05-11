@@ -1,5 +1,6 @@
 import "../Styles/new.css";
 import React, { useState, useEffect } from 'react';
+import images from "../Assets/images.png"
 
 const Login = () => {
   const [password, setPassword] = useState('');
@@ -21,7 +22,8 @@ const Login = () => {
     <div className="newwrap">
       <div className="nwrapper">
         <div className="blue--section">
-          <img src="./assets/logo.png" alt="logo" className="logo" />
+        <h1 className="titre"> Belink</h1>
+        <img src={images} alt="logoo" className="logoo" />
         </div>
         <form onSubmit={handleSubmit}>
           <h1>Enter new password</h1>

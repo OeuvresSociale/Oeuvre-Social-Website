@@ -1,3 +1,6 @@
+body{
+    background-color:rgba(217, 217, 217, 1);
+}
 .otpwrap{
     width:100vw;
     height:100vh;
@@ -11,8 +14,8 @@
     align-items: center;
 }
 .otwrapper{
-    width: 580px;
-    height: 400px;
+    width: 600px;
+    height:490px;
     background:#fff ;
     color:#fff ;
     display: grid;
@@ -43,7 +46,7 @@
     align-self: center;
     position: relative;
     left: 12%;
-    top: 5%;
+    top: 10%;
     color:rgba(0, 25, 79, 1);
     line-height: 54.93px;
 }
@@ -67,10 +70,10 @@
 }
 .otwrapper .input-box {
     position:relative;
-    top: 8%;
+    top: 15%;
     left: 10%;
     width: 92%;
-    height: 50px;
+    height: 70px;
     margin: 17px 0;
     outline: none;
     border-radius:5px;
@@ -81,7 +84,7 @@
     position: relative;
     border-radius:5px;
     width:30px ;
-    height:40px ;
+    height:50px ;
     margin: 0 5px; 
     border: 1px solid #ccc;
     padding: 5px ;
@@ -97,7 +100,7 @@
 }
 .otwrapper button {
     position: relative;
-    top:10% ;
+    top:20% ;
     left: 10%;
     width: 90%;
     height: 50px; ;

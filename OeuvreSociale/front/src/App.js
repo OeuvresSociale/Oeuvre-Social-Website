@@ -136,7 +136,7 @@ const App = () => {
         <Route path="/profile/:id" element={<Profile />} />
 {/* ----------------------- */}
 
-        <Route path="/image" element={<Images />} />
+        {/* <Route path="/image" element={<Images />} /> */}
       
       </Routes>
     </BrowserRouter>

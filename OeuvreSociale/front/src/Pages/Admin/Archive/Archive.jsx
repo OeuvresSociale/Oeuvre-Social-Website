@@ -1,5 +1,6 @@
 import React from "react";
-//import'./Addemployee.css';
+import Arch from '../../../Components/Arch';
+
 
 import Header from "../../../Components/Header";
 import Sidebar from "../../../Components/Sidebar";
@@ -12,8 +13,12 @@ const Archive = () => {
         <div className="contentf">
           <Header />
         </div>
-      </div>
+        </div>
+       <div className="containerf">
+        <Arch />
     </div>
+    </div>
+
   );
 };
 
