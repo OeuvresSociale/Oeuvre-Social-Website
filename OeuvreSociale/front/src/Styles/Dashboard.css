@@ -33,7 +33,7 @@
     
 }
 .somme9{
-    width: 30%;
+    width: 22%;
     height: 100%;
     background-color: #fff;
     border-radius: 7px;
@@ -45,8 +45,29 @@
     align-items: center;
     padding: 2%;
 
+}
+.somme8{
+    width: 22%;
+    height: 100%;
+    background-color:#00194F;
+    color: #fff;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    gap: 23%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+
+    align-items: center;
+    padding: 2%;
+
 }.somme3{
     color:#00194F;
+    font-size: 18px;
+    font-weight: 500;
+
+}
+.somme4{
+   
     font-size: 18px;
     font-weight: 500;
 
@@ -62,6 +83,12 @@
 
 }.npr9{
     color:#00194F;
+    font-size: 30px;
+    font-weight: 500;
+
+}
+.npr8{
+   
     font-size: 30px;
     font-weight: 500;
 
