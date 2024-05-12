@@ -9,19 +9,24 @@ import axios from "axios";
 
 const Modefyloan =()=>{
   
-        const [editorState, setEditorState] = useState(() =>
-            EditorState.createEmpty()
-        );
+        // const [editorState, setEditorState] = useState(() =>
+        //     EditorState.createEmpty()
+        // );
     
-        const handleEditorChange = (newEditorState) => {
-            setEditorState(newEditorState);
-        };
+        // const handleEditorChange = (newEditorState) => {
+        //     setEditorState(newEditorState);
+        // };
         const handleClick = async (e) => {
     
             e.preventDefault();//not refreshing the page 
            
            };
 
+            const [text, setText] = useState(''); // State to store textarea content
+
+  const handleInputChange = (event) => {
+    setText(event.target.value);
+  };
         
     
 
@@ -34,7 +39,7 @@ return (
 
           
            
-           <div className="empinf">
+         
 
 <div className="loaninfs2">
    <div className="colloaninf">
@@ -44,10 +49,12 @@ return (
     
    </div> 
   <div  className="colloaninf2"> 
-  <div className="loaninf"><div className="loan1">Description :</div><div className="loandes2"> <Editor
-                editorState={editorState}
-                onEditorStateChange={handleEditorChange}
-            /></div>
+  <div className="loaninf"><div className="loan1">Description :</div><div className="loandes2">  <textarea
+     className="resizable-textarea2"
+      value={text}
+      onChange={handleInputChange}
+      placeholder="description"
+    ></textarea></div>
   </div>
   </div>
   </div>
@@ -65,7 +72,7 @@ return (
    
 
 
-</div>
+
 
 
 

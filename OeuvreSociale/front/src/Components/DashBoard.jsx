@@ -2,14 +2,16 @@ import React ,{useState}from "react";
 import '../Styles/Dashboard.css';
 import Chart from 'react-apexcharts';
 import Calendar from 'react-calendar';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-calendar/dist/Calendar.css';
 
 
 
+
 const DashBoard = () => {
     const [selectedDates, setSelectedDates] = useState([]);
+
+    
 
   const handleDateChange = (date) => {
     setSelectedDates([...selectedDates, date]); // Add the selected date to the array
@@ -86,6 +88,10 @@ const DashBoard = () => {
                 
                 <div className="somme9"> <div className="st"><div className="somme3">La somme sortante </div><div className="aujour">Aujourd'hui</div></div>
                 <div className="npr9">20000000</div>
+                </div>
+
+                <div className="somme8"> <div className="st"><div className="somme4">La somme initiale </div></div>
+                <div className="npr8">20000000</div>
                 </div>
               
                

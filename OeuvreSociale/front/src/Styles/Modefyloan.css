@@ -1,61 +1,4 @@
-.rdw-editor-toolbar {
-    display: flex;
-    padding: 20px;
-   
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  /* Styles for the editor content area */
-  .rdw-editor-main {
-    padding: 20px;
-  
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-
-    
-    font-size: 16px;
-    color: #333;
-    
-    
-    min-height: 200px;
-    margin-top: 10px;
-  }
-  
-  /* Styles for the editor placeholder text */
-  .rdw-editor-placeholder {
-    color: #999;
-    padding: 20px;
-  
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Styles for the editor inline toolbar */
-  .rdw-inline-toolbar {
-    
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Styles for specific toolbar buttons */
-  .rdw-option-wrapper {
-   display: flex;
-   flex-direction: row;
-    padding: 8px;
-  }
-  
-  /* Styles for toolbar button icons */
-  .rdw-option-wrapper i {
-   
-    font-size: 18px;
-    color: #555;
-  } .mlbtns{
+ .mlbtns{
     
     background-color: #fff;
     width: 25%;
@@ -145,9 +88,29 @@
     display: flex;
  gap: 6%;
     width:100%;
+    height:70%;
     justify-content: center;
     align-items: center;
     margin-top: 3%;
     
 }
-
+.resizable-textarea2{
+  background-color: #F7F7F7;
+  border: none;
+  width: 95%;
+  
+  height:250px;
+  
+  border-radius: 5px;
+  
+  padding: 25px;
+  outline: none;
+  font-size: 23px;
+  font-weight: 400;
+  resize: none; /* Allow both vertical and horizontal resizing */
+    overflow: auto;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+  
+  
+  }
