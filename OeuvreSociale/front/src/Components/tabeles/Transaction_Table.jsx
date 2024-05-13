@@ -1,53 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Avatar, IconButton } from "@mui/material";
 import { Edit, PictureAsPdf } from "@mui/icons-material"; 
 import ModifyRowPopup from "../popups/ModifyRowPopup";
+import axios from "axios";
 import "../../Styles/tables/DataGrid.css";
 
 const Transactions_Table = () => {
   const [editableRowId, setEditableRowId] = useState(null);
   const [editableRowData, setEditableRowData] = useState(null);
-  const [rows, setRows] = useState([
-    {
-      id: 1,
-      concerned: "Manel",
-      type: "Mariage",
-      date: "2024-02-20",
-      amount: 1000,
-      direction: "sortant",
-    },
-    {
-      id: 2,
-      concerned: "Manl",
-      type: "Mariage",
-      date: "2024-02-20",
-      amount: 1000,
-      direction: "entrant",
-    },
-    {
-      id: 3,
-      concerned: "Manel",
-      type: "Marge",
-      date: "2024-02-20",
-      amount: 1000,
-      direction: "sortant",
-    },
-  ]);
+  // const [rows, setRows] = useState([
+  //   {
+  //     id: 1,
+  //     concerned: "Manel",
+  //     type: "Mariage",
+  //     date: "2024-02-20",
+  //     amount: 1000,
+  //     direction: "sortant",
+  //   },
+  //   {
+  //     id: 2,
+  //     concerned: "Manl",
+  //     type: "Mariage",
+  //     date: "2024-02-20",
+  //     amount: 1000,
+  //     direction: "entrant",
+  //   },
+  //   {
+  //     id: 3,
+  //     concerned: "Manel",
+  //     type: "Marge",
+  //     date: "2024-02-20",
+  //     amount: 1000,
+  //     direction: "sortant",
+  //   },
+  // ]);
   const [open, setOpen] = useState(false);
 
   //Fetchin data
-  /*const [data, setData] = useState([]);
-  const getTrans_Data = async () => {
-    await axios
-      .get("http://localhost:8000/api/Transactions")
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // const [data, setData] = useState([]);
+  // const getTrans_Data = async () => {
+  //   await axios
+  //     .get("http://localhost:8000/api/Transactions")
+  //     .then((response) => {
+  //       setData(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
  
    const [rows, setRows] = useState([]);
 
@@ -57,17 +58,19 @@ const Transactions_Table = () => {
 
   const getTrans_Data = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/transactions");
+      const response = await axios.get("http://localhost:8000/api/RequestyAll");
       const data = response.data;
+      //Debugging the fetched Data
+      console.log("The data passed are here:", data);
       // Map fetched data to match the structure of rows
       const rowData = data.map((transaction) => ({
         id: transaction._id,
-        concerned: transaction.concerned,
+        name: transaction.name,
         type: transaction.type,
         date: transaction.date,
-        amount: transaction.amount,
-        direction: transaction.direction,
-        pdf: transaction.pdf,
+        Amount: transaction.Amount,
+        categorie: transaction.categorie,
+        files: transaction.files,
       }));
       // Update the state with the mapped data
       setRows(rowData);
@@ -75,7 +78,7 @@ const Transactions_Table = () => {
       console.error("Error fetching data:", error);
     }
   };
-    */
+   
   
   //Handle Functions
 
@@ -151,7 +154,7 @@ const Transactions_Table = () => {
           columns={columns}
           editRowsModel={{
             id: editableRowId,
-          }}
+          }} 
         
           sx={{
             textAlign: "center",
