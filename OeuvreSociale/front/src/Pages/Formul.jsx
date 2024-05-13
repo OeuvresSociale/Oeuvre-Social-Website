@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../Components/Header';
 import Formuls from '../Components/Formuls';
 
-import './Formul.css';
+
 import Sidebar from '../Components/Sidebar';
 
 

@@ -4,6 +4,7 @@ import Chart from 'react-apexcharts';
 import Calendar from 'react-calendar';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-calendar/dist/Calendar.css';
+import { GoTrash } from "react-icons/go";
 
 
 
@@ -15,6 +16,17 @@ const DashBoard = () => {
 
   const handleDateChange = (date) => {
     setSelectedDates([...selectedDates, date]); // Add the selected date to the array
+  };
+
+  const handleDeleteDate = (index) => {
+    const updatedDates = [...selectedDates];
+    updatedDates.splice(index, 1);
+    setSelectedDates(updatedDates);
+  };
+  const [selectedmeeting, setSelectedmeeting] = useState(''); 
+
+  const handlemeetingChange = (e) => {
+    setSelectedmeeting(e.target.value);
   };
 
 
@@ -114,7 +126,20 @@ const DashBoard = () => {
         <h2>Dates des réunions :</h2>
         <ul>
           {selectedDates.map((date, index) => (
-            <li key={index}>{date.toLocaleDateString()}</li>
+            <li key={index}>
+                <div className="meetingdate">
+                {date.toLocaleDateString()}
+            <select id="meeting" name="meeting" value={null} onChange={handlemeetingChange}required style={{
+    color: selectedmeeting === 'urgent' ? 'red' : selectedmeeting === 'simple' ? 'green' : 'inherit'
+  }}>
+        <option value="">type</option>
+          <option value="male">urgent</option>
+          <option value="female">simple</option>
+         
+        </select>
+        <GoTrash  onClick={() => handleDeleteDate(index)} />
+        </div>
+        </li>
           ))}
         </ul>
       </div>

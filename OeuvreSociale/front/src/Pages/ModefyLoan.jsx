@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../Components/Header';
 import Modefyloan from '../Components/Modefyloan';
-import './Employeelist.css';
+
 import Sidebar from '../Components/Sidebar';
 
 
