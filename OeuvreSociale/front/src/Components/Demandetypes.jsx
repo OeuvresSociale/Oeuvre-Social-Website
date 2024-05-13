@@ -168,23 +168,13 @@ const [idRequest, setIdRequest] = useState(null);
       </div>
       {showbuttons && (
         <div className="dtbtns">
-          <button
-            className="refuse"
-            onClick={() => {
-              setOpenMotif(true);
-             
-            }}
-          >
-            Réfuser
-          </button>
-          <button className="accepte" onClick={handleGreenClick}>
-            Accepter
-          </button>
+          <button className="refuse" onClick={() => {setOpenMotif(true);}}> Réfuser </button>
+          <button className="accepte" onClick={handleGreenClick}> Accepter </button>
         </div>
       )}
 
       {openMotif && (
-        <Motif closeMotif={setOpenMotif} handleRedClick={handleRedClick} Request={request} />
+        <Motif closeMotif={setOpenMotif} handleRedClick={handleRedClick} Request={request} context="Demande"/>
       )}
     </div>
   );

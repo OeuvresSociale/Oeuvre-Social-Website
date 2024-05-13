@@ -9,8 +9,6 @@ import { BsArrowLeftCircle } from "react-icons/bs";
 import Logo from "../Assets/Logo1.png";
 
 
-
-
 const Valideoffres = () => {
     // const [openFormtitle, setOpenFormtitle] = useState(false);
     // const [openDelete, setOpenDeleteform] = useState(false);

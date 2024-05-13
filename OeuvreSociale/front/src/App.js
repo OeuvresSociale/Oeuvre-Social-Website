@@ -68,7 +68,7 @@ const App = () => {
 
         {/* ..............Damande Tabele.............................................................................. */}
         {/* .............loan Tabele.............................................................................. */}
-        <Route path="/tables/loantype" element={<LoanType />} />
+        <Route path="/tables/loantype/:id" element={<LoanType />} /> 
         <Route path="/Loan" element={<Loan />} />
 
         {/* ..............Offre Tabele.............................................................................. */}
@@ -105,14 +105,14 @@ const App = () => {
         {/* ..............Offre Formular............................................................................... */}
 
         <Route
-         path="/formulaire/ajouteroffre/offreformulaire"   // where to create new offre
+         path=" "   // where to create new offre
           element={<AddOffreForm />}
         />
         <Route path="/formulaire/ajouteroffre" element={<OFFers />} /> {/* the page contains the button ajouter offre */}
         <Route
          path="/formulaire/ajouteroffre/offresvalides"     //all valide offres page 
           element={<ValideOffres />}
-        />
+        /> 
         <Route
         path="/formulaire/ajouteroffre/offresunvalides"    // all unvalide offres page
           element={<UnvalideOffres />}

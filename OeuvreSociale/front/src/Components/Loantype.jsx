@@ -1,8 +1,10 @@
-import React ,{useState}from "react";
+import React ,{useState,useEffect}from "react";
 import '../Styles/Loantype.css';
 import { Link } from 'react-router-dom';
 import Motif from "./Motif";
 import { PiFilePdfLight } from "react-icons/pi";
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 
 const Loantype =()=>{
@@ -11,64 +13,71 @@ const Loantype =()=>{
    const[showbuttons,setshowbuttons]=useState(true);
    const[padding,setpadding]=useState('0');
 
-
+   const { id } = useParams();
+   console.log("id:",id);
    const [loan, setRequest] = useState({
       _id: "",
-    
-    employeeId: {
-      _id: "",
-      idEmployee: "",
-      familyName: "",
-      firstName: "",
-      email: "",
-      phoneNumber: "",
-      monthlySalary: "",
-      familysitution: "",
-    },
-    amount:"",
-    duration:"",
-    purpose:"",
-  });
+      purpose:"",
+      amount: "",
+      duration: "",
+      complete: "",
+      employeeId: {
+         _id: "",
+         idEmployee: "",
+         familyName: "",
+         firstName: "",
+         email: "",
+         phoneNumber: "",
+         dateStartJob: "",
+         monthlySalary: "",
+         familysitution: "",
+       },
+      requestTypeId: {
+        title: "",
+        _id: ""
+      }, 
+     
+    });
 
-   //   useEffect(() => {
-   //     const fetchRequestDetails = async () => {
-   //       try {
-   //         const response = await axios.get(
-   //           `http://localhost:8000/api/Request/${id}`
-   //         );
-   
-   //         setRequest(response.data);
-   //         // Assuming data is an object containing details of the selected employee
-   //       } catch (error) {
-   //         alert(error.response.data);
-   //         console.error("Error fetching request details:", error);
-   //       }
-   //     };
-   //     fetchRequestDetails();
-   //   }, []);
-
-   
+     useEffect(() => {
+       const fetchRequestDetails = async () => {
+         try {
+           const response = await axios.get(`http://localhost:8000/api/Req/${id}`);
+           setRequest(response.data);
+           console.log("response:",response.data);
+         } catch (error) {
+           console.error("Error fetching request details:", error);
+         }
+       };
+       fetchRequestDetails();
+     }, []);
 
 
-  
+     const handleRedClick = () => {
+      setbordercolor('red');
+      setshowbuttons(false);
+      setpadding(120);
+    };
+ 
+  const handleGreenClick =async () => {
+    try {
+      const response = await axios.put(`http://localhost:8000/api/LaonRequest/${loan._id}`, {
+        state:"Approuvée", motif: ""
+      });
+      setbordercolor("green");
+      setshowbuttons(false);
+      setpadding(120);
+    } catch (error) {
+     
+      console.error("Error accepting request:", error);
+    }
+  };
 
-   const handleRedClick=()=>{
-    setbordercolor('red');
-    setshowbuttons(false);
-    setpadding(120);
-  
-   };
-   const handleGreenClick=()=>{
-    setbordercolor('green');
-    setshowbuttons(false);
-    setpadding(120);
-   };
-
-   
+   console.log("loan:",loan);
    return(
 <div style={{ borderColor: bordercolor, borderStyle: 'solid',borderWidth:'1px' ,paddingBottom:padding}} className= 'demandetype'>
        <div className="return">
-           <Link  to="/tables"  >
+           <Link  to="/loan"  >
               <button>
               Return
             </button>
@@ -89,7 +98,11 @@ const Loantype =()=>{
                <div className="rowinf">   <div className="gris">Numéro de téléphone :</div>   <div  className="noir">{loan.employeeId.phoneNumber}</div></div>
                <div className="rowinf">   <div className="gris">Adressr email :</div> <div  className="noir">{loan.employeeId.email}</div></div>
                <div className="rowinf"> <div className="gris">Salaire :</div>  <div  className="noir">{loan.employeeId.monthlySalary}</div></div>
-               <div className="rowinf"> <div className="gris">Date d'envoi :</div>  <div  className="noir">jj/mm/aaaa</div></div>
+               <div className="rowinf"> <div className="gris">Date d'envoi :</div>  <div  className="noir"> {new Date(loan.creationDate).toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                })}</div></div>
 
             </div> 
 
@@ -112,35 +125,14 @@ const Loantype =()=>{
 
            </div>
            {showbuttons && (
-
            <div className="dtbtns">
             <button className="refuse"   onClick={ ()=>{ setOpenMotif(true)}}>Réfuser</button>
              <button className="accepte" onClick={handleGreenClick}   >Accepter</button>
-
-
-
-
            </div> )}
-
-
-
-           {openMotif && <Motif  closeMotif={setOpenMotif} handleRedClick={handleRedClick} />}
-
-
+          {openMotif && <Motif  closeMotif={setOpenMotif} handleRedClick={handleRedClick} loan={loan} context="Loan"/>}
       </div>
-   
-   
-
-
-
-
 
    );
-
-
-
-
-
 
 };
 export default Loantype;

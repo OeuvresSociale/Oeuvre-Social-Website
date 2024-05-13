@@ -12,7 +12,7 @@ router.delete("/offre/:id",deleteOffre);
 module.exports=router; 
 // {
 //     "title":"deuxiemme offre",
-//     "desc":"welcome ",
+//     "desc":"welcome ", 
 //     "dateDebut":"2024-04-30T08:50:33.673+00:00",
 //     "dateFin":"2024-05-30T08:50:33.673+00:00"
 //   }
