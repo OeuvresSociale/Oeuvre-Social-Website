@@ -49,18 +49,18 @@ return (
 
 <div className="loaninfs2">
    <div className="colloaninf">
-    <div className="loaninf"><div className="loan1">Prix maximal du pret :</div><div className="loan2"><input  type="text"  placeholder="Valeur" value={formData.maxAmount}
+    <div className="loaninf"><div className="loan1">Prix maximal du pret :</div><div className="loan2"><input  type="text"  placeholder="Valeur" name="maxAmount" value={formData.maxAmount}
                                 onChange={handleChange} />DA</div></div>
-    <div className="loaninf"><div className="loan1">Mois maximal du remboursement :</div><div className="loan2"><input  type="text"  placeholder="Valeur" value={formData.maxMonth}
+    <div className="loaninf"><div className="loan1">Mois maximal du remboursement :</div><div className="loan2"><input  type="text"  placeholder="Valeur" name="maxMonth" value={formData.maxMonth}
                                 onChange={handleChange}/></div></div>
-    <div className="loaninf"><div className="loan1">Pourcentage maximal à rembourser chaque mois :</div><div className="loan2"><input  type="text"  placeholder="Valeur" value={formData.maxPourcentage}
+    <div className="loaninf"><div className="loan1">Pourcentage maximal à rembourser chaque mois :</div><div className="loan2"><input  type="text"  placeholder="Valeur" name="maxPourcentage" value={formData.maxPourcentage}
                                 onChange={handleChange}/></div></div>
     
    </div> 
   <div  className="colloaninf2"> 
   <div className="loaninf"><div className="loan1">Description :</div><div className="loandes2">  <textarea
      className="resizable-textarea2"
-     name="description"
+     name="desc"
      value={formData.desc}
      onChange={handleChange}
       placeholder="description"
