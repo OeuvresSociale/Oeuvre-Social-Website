@@ -7,10 +7,11 @@ import OIP from "../Assets/OIP.png";
 import Logo from "../Assets/Logo1.png";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Adminpro from "./Adminpro"
 import axios from 'axios';
 
 const Header = () => {
-
+  const [showpro, setShowpro] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState("");
 
   const notify = async () => {
@@ -89,11 +90,12 @@ const Header = () => {
           <IoNotificationsOutline onClick={notify} />
         </div>
        
-        <img src={OIP} alt="logo" className="profile5" />
+        <img src={OIP} alt="logo" className="profile5" onClick={() => { setShowpro(!showpro); }} />
      
       </div>
 
       <ToastContainer />
+      {showpro && <Adminpro closeshowpro={setShowpro}  />}
     </div>
   );
 };

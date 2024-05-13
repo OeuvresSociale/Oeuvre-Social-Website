@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../Components/Header";
 import Usertable from "../Components/Usertable";
-import "./Employeelist.css";
+
 import Sidebar from "../Components/Sidebar";
 
 const Employeelist = () => {
