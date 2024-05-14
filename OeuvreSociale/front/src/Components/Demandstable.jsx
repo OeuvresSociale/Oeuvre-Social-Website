@@ -14,11 +14,13 @@ function Demands() {
   const [searchValue, setSearchValue] = useState('');
   const [selectedRequest, setSelectedRequest] = useState(null);
 
+  
   useEffect(() => {
     const fetchRequests = async () => {
       try {
         const response = await axios.get(`http://localhost:8000/api/Requests`, { responseType: 'json', responseEncoding: 'utf8' });
         setRequests(response.data); 
+        alert("hello");
         console.log("response:",response)
       } catch (error) {
         console.error('Error fetching requests:', error);
@@ -58,36 +60,7 @@ console.log("data :",requests);
 
 
 /////////////////////////////////////////////////////////////////////////
-const demands = [
-  {
-    demandId: 1,
-    Employee:"mohammed",
-    type: 'Mariage',
-    date: new Date(2024, 2, 20),
-    status: 'Accepted',
-  },
-  {
-    demandId: 2,
-    type: 'Advance',
-    Employee:"mohammed",
-    date: new Date(2024, 2, 15),
-    status: 'Refused',
-  },
-  {
-    demandId: 3,
-    Employee:"mohammed",
-    type: 'Advance',
-    date: new Date(2024, 2, 18),
-    status: 'Pending',
-  },
-];
 
-function Demands() {
-  const [filterStatus, setFilterStatus] = useState(null);
-
-  const filteredDemands = filterStatus
-    ? demands.filter((demand) => demand.status === filterStatus)
-    : demands;
 
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);
@@ -156,10 +129,8 @@ return (
             <tr key={request._id} >
 
               <td>1</td>
-              <td>{`${request.employeeId.familyName} ${request.employeeId.firstName}`}</td>
-              <td>{
-                request.requestTypeId.title
-              }</td>
+              <td>2</td>
+              <td>{request.requestTypeId.title }</td>
               <td> {new Date(request.creationDate).toLocaleDateString("en-GB", {
                   day: "2-digit",
                   month: "2-digit",
@@ -184,6 +155,6 @@ return (
     
   );
 }
-}
+
 
 export default Demands;

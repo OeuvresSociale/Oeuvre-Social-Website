@@ -124,6 +124,7 @@
   }.app88{
     width: 22%;
     height: 90%;
+
     background-color: #fff;
     border-radius: 7px;
     padding: 2%;
@@ -134,6 +135,7 @@
 
   }.datepicker-container{
     display: none;
+
   }.meetingdate{
     color: #fff;
     background-color: #1E2648;
@@ -148,4 +150,5 @@
  
     background-color: #1E2648;
     font-size: 15px;
+
   }

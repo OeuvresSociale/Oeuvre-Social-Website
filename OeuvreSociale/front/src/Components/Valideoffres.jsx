@@ -9,8 +9,6 @@ import { BsArrowLeftCircle } from "react-icons/bs";
 import Logo from "../Assets/Logo1.png";
 
 
-
-
 const Valideoffres = () => {
 
 

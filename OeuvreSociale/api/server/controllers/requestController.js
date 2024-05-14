@@ -6,6 +6,7 @@ const fs = require("fs");
 const asyncWrapper = require("../middleware/asyncWrapper");
 const { Console } = require("console");
 
+
 //Get all request for employee
 const getMyRequests = async (req, res) => {
   //current page
@@ -89,6 +90,22 @@ const getallRequests = async (req, res) => {
 const getRequest = async (req, res) => {
   try {
     const request = await Request.findById(req.params.id)
+      .populate("requestTypeId", "title")
+      .populate(
+        "employeeId",
+        "idEmployee familyName firstName dateStartJob email phoneNumber monthlySalary familysitution "
+      );
+
+    res.status(200).json(request);
+  } catch (err) {
+    // Handle errors
+    res.status(500).json(err);
+  }
+};
+const laonModel= require('../models/Laon');
+const getReq = async (req, res) => {
+  try {
+    const request = await laonModel.findById(req.params.id)
       .populate("requestTypeId", "title")
       .populate(
         "employeeId",
@@ -224,10 +241,12 @@ async function getFileById(req, res) {
 
 
 module.exports = {
-  getRequest,
+  getRequest, 
   getallRequests,
   getMyRequests,
   createRequest,
   suiviRequest,
   getFileById,
+  getReq,
+
 };

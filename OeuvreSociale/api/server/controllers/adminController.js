@@ -22,7 +22,7 @@ let useremail; //email of user so we can send him an otp email
     "firstName": "YACINE",
     "password": "esi",
     "email": "w11s111el@esi.sba.dz",
-    "phoneNumber": "92233331117724",
+    "phoneNumber": "92233331117724",   
     "sexe": "f",
     "isMarried": "false",
     "bankAccount": "1911111043001234",
@@ -30,7 +30,7 @@ let useremail; //email of user so we can send him an otp email
     "isCommit": "false",
     "role": "employee"
 } 
-*/
+*/ 
 
 //post : register new employee with hash password and testing existance
 
@@ -187,7 +187,7 @@ async function register(req,res){
     }
 
 }
-
+   
 
 // async function login(req,res){
 //     res.json('login route');
@@ -216,21 +216,25 @@ async function login(req,res){
 
                         // create jwt token
                         const token = jwt.sign(
-                            {   idEmployee : user.idEmployee,
-                                role : user.role
-                            }, jwtSecret , { expiresIn : "24h"});
-                             res.cookie('token', token, { httpOnly: true });
-                          useremail=user.email;
-                          role=user.role;
-                          salary=user.monthlySalary;
-                          console.log('token:',token);
-                          return res.status(200).send(
-                            {useremail,
-                            role,
-                            salary,
-                            msg: "Login Successful...!",
-                            });                                    
-
+                            { idEmployee: user.idEmployee, role: user.role },
+                            jwtSecret,
+                            { expiresIn: "24h" }
+                        );
+                
+                        // Send additional data along with the token
+                        const responseData = {
+                            useremail: user.email,
+                            role: user.role,
+                            salary: user.monthlySalary,
+                            token: token,
+                            msg: "Login Successful"
+                        };
+                
+                        // Set cookie with the token
+                        res.cookie('token', token, { httpOnly: true });
+                
+                        // Send the response with additional data
+                        return res.status(200).send(responseData);
                     })
                     .catch(error =>{
                        
@@ -312,16 +316,16 @@ async function updateUser(req, res) {
 
 /** GET: http://localhost:8000/api/generateOTP */
 async function generateOTP(req,res){
-    
+    const {email}=req.query;
     req.app.locals.OTP = await otpGenerator.generate(6, { lowerCaseAlphabets: false, 
         upperCaseAlphabets: false, specialChars: false})
     res.status(201).send({ code: req.app.locals.OTP })
    // res.json(useremail);
-    console.log(useremail);
+    console.log(email);
 
     notification.sendEmail({
         body: {
-            to: useremail,
+            to: email,
             subject:'Your OTP code',
             message:`Your OTP is: ${req.app.locals.OTP}`
             
@@ -332,8 +336,8 @@ async function generateOTP(req,res){
    
 /** GET: http://localhost:8000/api/verifyOTP */
 async function verifyOTP(req,res){
-    const { code } = req.query;
-    if(parseInt(req.app.locals.OTP) === parseInt(code)){
+    const { otp } = req.body;
+    if(parseInt(req.app.locals.OTP) === parseInt(otp)){
         req.app.locals.OTP = null; // reset the OTP value
         req.app.locals.resetSession = true; // start session for reset password
         return res.status(201).send({ msg: 'Verify Successsfully!'})
@@ -349,20 +353,20 @@ async function createResetSession(req,res){
          return res.status(201).send({ flag : req.app.locals.resetSession})
     }
     return res.status(440).send({error : "Session expired!"})
- }
+ }  
  
 // update the password when we have valid session
 /** PUT: http://localhost:8000/api/resetPassword */
-async function resetPassword(req,res){
-    try {
-        
+async function resetPassword(req,res){  
+    try {   
+             
        if(!req.app.locals.resetSession) return res.status(440).send({error : "Session expired!"});
 
-        const { firstName, password } = req.body;
-        
+        // const {email, confirmPassword, password } = req.body;
+        const {password}=req.body;
             try {
                 // Find the user by firstName
-                const user = await UserModel.findOne({ firstName });
+                const user = await UserModel.findById(req.params.id);
         
                 if (!user) {
                     return res.status(404).send({ error: "User not found" });

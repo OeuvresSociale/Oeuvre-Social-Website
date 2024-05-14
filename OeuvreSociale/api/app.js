@@ -6,11 +6,11 @@ const {connectDB}=require('./server/config/db');
 const router = require('./server/routes/admin.js');
 const employeeRouter = require('./server/routes/EmployeeManagement.js');
 const typeRequestRouter = require('./server/routes/requestType.js');
-const requestRouter = require('./server/routes/request.js');
+const requestRouter = require('./server/routes/request.js'); 
 const MongoStore =require('connect-mongo');
-const user =require('./server/models/user');
+const user =require('./server/models/user'); 
 const helmet = require('helmet');
-const rateLimit = require('express-rate-limit');
+// const rateLimit = require('express-rate-limit');
 const session = require('express-session');
 const morgan=require('morgan');
 const tresuryRouter = require('./server/routes/tresury.js');
@@ -50,7 +50,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet()); /**Use the helmet middleware to set secure HTTP headers, 
                     adding an extra layer of protection against common web vulnerabilities.*/
 //app.use(morgan('dev'));
-
+ 
 // Define the rate limiter
 // const limiter = rateLimit({
 //     windowMs: 15 * 60 * 1000, // 15 minutes: This value is used to define the duration of the time window during which the rate limit is enforced
@@ -58,7 +58,7 @@ app.use(helmet()); /**Use the helmet middleware to set secure HTTP headers,
 //   });
 
 /**api routes*/
-
+ 
 app.use('/api',router);
 app.use('/api',employeeRouter);
 app.use('/api',typeRequestRouter);
@@ -75,7 +75,7 @@ app.use('/api',offreRouter);
 //   })
 //   .catch((error) => {
 //     console.error('Error deleting documents:', error);
-//   });
+//   }); 
 
 
 

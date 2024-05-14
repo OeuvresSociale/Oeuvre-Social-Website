@@ -1,22 +1,29 @@
 import "../Styles/otp.css";
 import React,{useEffect, useState} from "react"
 import images from "../Assets/images.png"
+import axios from "axios"
+// import { useHistory } from "react-router-dom";
 
 const Recover = () => {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
-
+  // const history = useHistory();
   const handleChange = (index, value) => {
     const updatedOtp = [...otp];
     updatedOtp[index] = value;
     setOtp(updatedOtp);
-  };
+  }; 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const enteredOtp = otp.join(''); 
-    console.log(enteredOtp);
-    
-  };
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {  
+        console.log('otp:', otp.join('')); // Combine OTP array into a single string
+        const response = await axios.get("http://localhost:8000/api/verifyOTP", { otp: otp.join('') }); // Send OTP in the request body
+        console.log("response:", response.data);
+        // history.push("/New")
+      } catch (error) {
+        console.error("Error in verifying OTP:", error);
+      } 
+    };
 
   return (
     <div className="otpwrap">

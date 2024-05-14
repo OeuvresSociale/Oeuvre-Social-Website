@@ -2,7 +2,7 @@ const dotenv =require("dotenv").config();
 const nodemailer = require('nodemailer');
 
 /**{
-            "to":"y.meflah@esi-sba.dz",
+            "to":"y.meflah@esi-sba.dz",  
             "subject":"Your OTP code",
             "message":"Your OTP is"
             
