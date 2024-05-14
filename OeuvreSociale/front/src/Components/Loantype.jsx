@@ -64,6 +64,7 @@ const Loantype =()=>{
       const response = await axios.put(`http://localhost:8000/api/LaonRequest/${loan._id}`, {
         state:"Approuvée", motif: ""
       });
+        
       setbordercolor("green");
       setshowbuttons(false);
       setpadding(120);

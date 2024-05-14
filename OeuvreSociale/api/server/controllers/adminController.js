@@ -216,21 +216,25 @@ async function login(req,res){
 
                         // create jwt token
                         const token = jwt.sign(
-                            {   idEmployee : user.idEmployee,
-                                role : user.role
-                            }, jwtSecret , { expiresIn : "24h"});
-                             res.cookie('token', token, { httpOnly: true });
-                          useremail=user.email;
-                          role=user.role;
-                          salary=user.monthlySalary;
-                          console.log('token:',token);
-                          return res.status(200).send(
-                            {useremail,
-                            role,
-                            salary,
-                            msg: "Login Successful...!",
-                            });                                    
-
+                            { idEmployee: user.idEmployee, role: user.role },
+                            jwtSecret,
+                            { expiresIn: "24h" }
+                        );
+                
+                        // Send additional data along with the token
+                        const responseData = {
+                            useremail: user.email,
+                            role: user.role,
+                            salary: user.monthlySalary,
+                            token: token,
+                            msg: "Login Successful"
+                        };
+                
+                        // Set cookie with the token
+                        res.cookie('token', token, { httpOnly: true });
+                
+                        // Send the response with additional data
+                        return res.status(200).send(responseData);
                     })
                     .catch(error =>{
                        
@@ -332,8 +336,8 @@ async function generateOTP(req,res){
    
 /** GET: http://localhost:8000/api/verifyOTP */
 async function verifyOTP(req,res){
-    const { code } = req.query;
-    if(parseInt(req.app.locals.OTP) === parseInt(code)){
+    const { otp } = req.body;
+    if(parseInt(req.app.locals.OTP) === parseInt(otp)){
         req.app.locals.OTP = null; // reset the OTP value
         req.app.locals.resetSession = true; // start session for reset password
         return res.status(201).send({ msg: 'Verify Successsfully!'})

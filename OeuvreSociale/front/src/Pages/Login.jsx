@@ -4,35 +4,33 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
-
-  // const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     console.log(email);
-  // };
-  ////////////////////////////////
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const [alert, setAlert] = useState(null);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
-  const handleSubmit = async () => {
+ 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8000/api//login", {
-        email: formData.email,
-        password: formData.password,
-      });
+      const response = await axios.post("http://localhost:8000/api/login", formData);
+      console.log('email',formData.email,);
+      console.log('password',formData.password,);
       const data = response.data;
+      console.log("data:",data);
+      setAlert({ type: 'success', message: response.data.msg }); // Set success alert message
     } catch (error) {
       console.error("Error in login:", error);
+      setAlert({ type: 'error', message: error.response?.data?.error || 'Login failed' }); // Set error alert message
     }
-    ////////////////////////////////////////////
-  };
+    }
+  
+
   return (
     <div className="loginwrap">
       <div className="wrapper">
@@ -44,31 +42,33 @@ const Login = () => {
           <div className="input-box">
             <input
               type="email"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
+              onChange={handleInputChange}
+              value={formData.email}
               placeholder="Username"
               id="email"
               name="email"
               required
-            ></input>
+            />
           </div>
           <div className="input-box">
             <input
               type="password"
-              onChange={(e) => setPass(e.target.value)}
-              value={pass}
+              onChange={handleInputChange}
+              value={formData.password}
               placeholder="Password"
               id="password"
               name="password"
-            ></input>
+            />
           </div>
           <div className="forget-pass">
             <a href="/Recover"> Forgot password? </a>
           </div>
-          <button type="submit"> Login </button>
+          <button type="submit">Login</button>
+          {alert && <div className={`alert ${alert.type}`}>{alert.message}</div>} {/* Display alert message */}
         </form>
       </div>
     </div>
   );
 };
+
 export default Login;

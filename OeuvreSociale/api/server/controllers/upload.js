@@ -1,6 +1,6 @@
 const { MongoClient, GridFSBucket } = require("mongodb");
 const { GridFsStorage } = require("multer-gridfs-storage");
-const multer = require("multer");
+const multer = require("multer");  
 // Initialize GridFS bucket globally
 let bucket;
 

@@ -14,11 +14,13 @@ function Demands() {
   const [searchValue, setSearchValue] = useState('');
   const [selectedRequest, setSelectedRequest] = useState(null);
 
+  
   useEffect(() => {
     const fetchRequests = async () => {
       try {
         const response = await axios.get(`http://localhost:8000/api/Requests`, { responseType: 'json', responseEncoding: 'utf8' });
         setRequests(response.data); 
+        alert("hello");
         console.log("response:",response)
       } catch (error) {
         console.error('Error fetching requests:', error);

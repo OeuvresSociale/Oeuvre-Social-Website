@@ -222,7 +222,7 @@ const createLaonRequest = async (req, res) => {
             return res.status(404).json({ error: 'User not found' });
           }
           const exist = await laonRepayment.find({}).populate({
-            path: 'loanId'
+            path: 'loanId',
             populate: {
               path: 'employeeId',
               match: { _id: employeeId } // Filter by the employeeId you're interested in

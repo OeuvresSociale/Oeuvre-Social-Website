@@ -16,7 +16,7 @@ function UserPro(props) {
     if (file && file.type.includes('image/')) {
       const reader = new FileReader();
       reader.onload = () => {
-        setProfileImage(reader.result);
+        setProfileImage(reader.result); 
       };
       reader.readAsDataURL(file);
     }

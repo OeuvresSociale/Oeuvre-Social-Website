@@ -12,7 +12,7 @@ const transactionSchema = new schema({
   },
   title: {
     type: String,
-  },
+  }, 
   type: {
     type: String,
     enum: ["demande", "loan", "annoce", "Repayment", "autre"],
