@@ -92,7 +92,7 @@ const ValidateDemandePopup = ({ openPopup, handleClosePopup, selectedRow }) => {
         )}
       </DialogContent>
       <DialogActions>
-        <Grid item xs={12} className="transaction-form">
+        <Grid item xs={12} className="popup_button">
           <Grid container justifyContent="flex-end" spacing={2}>
             <Grid item>
               <Button

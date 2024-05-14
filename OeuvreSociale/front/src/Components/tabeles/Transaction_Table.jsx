@@ -12,45 +12,38 @@ const Transactions_Table = () => {
   // const [rows, setRows] = useState([
   //   {
   //     id: 1,
-  //     concerned: "Manel",
+  //     name: "Manel",
   //     type: "Mariage",
   //     date: "2024-02-20",
   //     amount: 1000,
-  //     direction: "sortant",
+  //     categorie: "sortant",
   //   },
   //   {
   //     id: 2,
-  //     concerned: "Manl",
+  //     name: "Manl",
   //     type: "Mariage",
   //     date: "2024-02-20",
   //     amount: 1000,
-  //     direction: "entrant",
+  //     categorie: "entrant",
   //   },
   //   {
   //     id: 3,
-  //     concerned: "Manel",
+  //     name: "Manel",
   //     type: "Marge",
   //     date: "2024-02-20",
   //     amount: 1000,
-  //     direction: "sortant",
+  //     categorie: "sortant",
   //   },
   // ]);
   const [open, setOpen] = useState(false);
-
-  //Fetchin data
-  // const [data, setData] = useState([]);
-  // const getTrans_Data = async () => {
-  //   await axios
-  //     .get("http://localhost:8000/api/Transactions")
-  //     .then((response) => {
-  //       setData(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
- 
-   const [rows, setRows] = useState([]);
+  const [rows, setRows] = useState([{
+        id: 1,
+        name: "Manel",
+        type: "Mariage",
+        date: "2024-02-20",
+        Amount: 1000,
+        categorie: "sortant",
+      },]);
 
   useEffect(() => {
     getTrans_Data();
@@ -118,11 +111,11 @@ const Transactions_Table = () => {
   //Declare the colums content
 
   const columns = [
-    { field: "concerned", headerName: "Concerné", width: 275 },
+    { field: "name", headerName: "Concerné", width: 275 },
     { field: "type", headerName: "Type", width: 275 },
     { field: "date", headerName: "Date d'envoi", width: 275 },
-    { field: "amount", headerName: "Somme", width: 275 },
-    { field: "direction", headerName: "Direction", width: 200 },
+    { field: "Amount", headerName: "Somme", width: 275 },
+    { field: "categorie", headerName: "categorie", width: 200 },
     {
       field: "pdf",
       headerName: "PDF",

@@ -1,44 +1,44 @@
 import React, { useState, useEffect } from "react";
 import { Grid, TextField, Button, Typography } from "@mui/material";
 import "./Transaction_form.css";
-// import axios from "axios"; // Import Axios library
+import axios from "axios"; // Import Axios library
 import { InsertDriveFile } from "@mui/icons-material";
 
 const Transaction_form = () => {
   const [formData, setFormData] = useState({
-    concerned: "",
+    name: "",
     type: "",
     date: "",
     amount: "",
-    direction: "",
+    categorie: "",
     file: null,
   });
 
-  // useEffect(() => {
-  //     const submitForm = async () => {
-  //       if (formData.concerned && formData.type && formData.date && formData.amount && formData.direction && formData.file) {
-  //         try {
-  //           const response = await axios.post("/api/transactions", formData);
-  //           console.log("Form submitted:", response.data);
-  //           // Clear form data after successful submission
-  //           setFormData({
-  //             concerned: "",
-  //             type: "",
-  //             date: "",
-  //             amount: "",
-  //             direction: "",
-  //             file: null,
-  //           });
-  //           alert("Transaction saved successfully");
-  //         } catch (error) {
-  //           console.error("Error submitting form:", error);
-  //           alert("Failed to save transaction. Please try again.");
-  //         }
-  //       }
-  //     };
+  useEffect(() => {
+      const submitForm = async () => {
+        if (formData.name && formData.type && formData.date && formData.amount && formData.categorie && formData.files) {
+          try {
+            const response = await axios.post("http://localhost:8000/api/RequestyAll", formData);
+            console.log("Form li submitinaha:", response.data);
+            // Supprimer form data after successful submission
+            setFormData({
+              name: "",
+              type: "",
+              date: "",
+              amount: "",
+              categorie: "",
+              files: null,
+            });
+            alert("Transaction saved successfully");
+          } catch (error) {
+            console.error("Error submitting form:", error);
+            alert("Failed to save transaction. Please try again.");
+          }
+        }
+      };
 
-  //     submitForm();
-  //   }, [formData]);
+      submitForm();
+    }, [formData]);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -55,23 +55,23 @@ const Transaction_form = () => {
 
   const handleCancel = () => {
     setFormData({
-      concerned: "",
+      name: "",
       type: "",
       date: "",
       amount: "",
-      direction: "",
-      file: null,
+      categorie: "",
+      files: null,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Check if all fields are filled
+    // check if all fields are filled
     const isFormValid = Object.values(formData).every((value) => !!value);
 
     if (isFormValid) {
       // Submit the form
-      console.log("Form submitted:", formData);
+      console.log("info of the form submitted:", formData);
     } else {
       alert("Please fill in all fields.");
     }
@@ -98,8 +98,8 @@ const Transaction_form = () => {
         <Grid item xs={12}>
           <TextField
             label="Concerné"
-            name="concerned"
-            value={formData.concerned}
+            name="name"
+            value={formData.name}
             onChange={handleChange}
             variant="outlined"
             fullWidth
@@ -146,9 +146,9 @@ const Transaction_form = () => {
         <Grid item xs={12}>
           <TextField
             select
-            label="Direction"
-            name="direction"
-            value={formData.direction}
+            label="categorie"
+            name="categorie"
+            value={formData.categorie}
             onChange={handleChange}
             variant="outlined"
             fullWidth
@@ -166,9 +166,9 @@ const Transaction_form = () => {
           <div className="pdf-field">
             <label className="file-label">
               <input
-                type="file"
+                type="files"
                 accept=".pdf"
-                name="file"
+                name="files"
                 onChange={handleChange}
                 required
                 className="file-input"

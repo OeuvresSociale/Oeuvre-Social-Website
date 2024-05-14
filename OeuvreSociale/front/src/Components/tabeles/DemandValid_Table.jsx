@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { IconButton } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 import ValidateDemandePopup from "../popups/ValidateDemandePopup";
 import "../../Styles/tables/DataGrid.css";
+import axios from "axios";
 
 const DemandValid_Table = () => {
   const [openPopup, setOpenPopup] = useState(false);
@@ -21,33 +22,41 @@ const DemandValid_Table = () => {
     // Open the popup
     setOpenPopup(true);
   };
+  const [rows, setRows] = useState([{
+    id: 1,
+    name: "Manel",
+    type: "Mariage",
+    date: "2024-02-20",
+    amount: 1000,
+    categorie: "sortant",
+  },]);
 
-   /*const [data, setData] = useState([]);
-  const getTrans_Data = async () => {
-    await axios
-      .get("http://localhost:8000/api/Transactions")
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-    useEffect(() => {
-        getTrans_Data();
-    }, []);
-  
-    const rows = data.map((transaction) => {
-        return {
-            id: transaction._id,
-            conerné: transaction.conerné,
-            type: transaction.type,
-            Date: transaction.Date,
-            Somme: transaction.Somme,
-            pdf: transaction.pdf,
-        };
-    */
+useEffect(() => {
+getTrans_Data();
+}, []);
 
+const getTrans_Data = async () => {
+try {
+  const response = await axios.get("http://localhost:8000/api/RequestyAll");
+  const data = response.data;
+  //Debugging the fetched Data
+  console.log("The data passed are here:", data);
+  // Map fetched data to match the structure of rows
+  const rowData = data.map((demandValidInfo) => ({
+    id: demandValidInfo._id,
+    name: demandValidInfo.name,
+    type: demandValidInfo.type,
+    date: demandValidInfo.date,
+    Amount: demandValidInfo.Amount,
+    categorie: demandValidInfo.categorie,
+    files: demandValidInfo.files,
+  }));
+  // Update the state with the mapped data
+  setRows(rowData);
+} catch (error) {
+  console.error("Error fetching data:", error);
+}
+};
   //Declare columns content
   const columns = [
     { field: "concerned", headerName: "Concerné", width: 315 },
@@ -67,32 +76,32 @@ const DemandValid_Table = () => {
     },
   ];
 
-  const rows = [
-    {
-      id: 1,
-      concerned: "Manel",
-      type: "Mariage",
-      date: "2024-02-20",
-      amount: 1000,
-      validated: true,
-    },
-    {
-      id: 2,
-      concerned: "Manl",
-      type: "Mariage",
-      date: "2024-02-20",
-      amount: 1000,
-      validated: false,
-    },
-    {
-      id: 3,
-      concerned: "Manel",
-      type: "Marge",
-      date: "2024-02-20",
-      amount: 1000,
-      validated: true,
-    },
-  ];
+  // const rows = [
+  //   {
+  //     id: 1,
+  //     concerned: "Manel",
+  //     type: "Mariage",
+  //     date: "2024-02-20",
+  //     amount: 1000,
+  //     validated: true,
+  //   },
+  //   {
+  //     id: 2,
+  //     concerned: "Manl",
+  //     type: "Mariage",
+  //     date: "2024-02-20",
+  //     amount: 1000,
+  //     validated: false,
+  //   },
+  //   {
+  //     id: 3,
+  //     concerned: "Manel",
+  //     type: "Marge",
+  //     date: "2024-02-20",
+  //     amount: 1000,
+  //     validated: true,
+  //   },
+  // ];
 
   return (
     <div style={{ width: "100%" }}>
