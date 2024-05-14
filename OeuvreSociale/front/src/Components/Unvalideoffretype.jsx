@@ -3,6 +3,7 @@ import '../Styles/Addoffreform.css';
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import { Link } from "react-router-dom";
+import { GoTrash } from "react-icons/go";
 import { MdOutlineImage } from "react-icons/md";
 
 
@@ -10,14 +11,7 @@ import { MdOutlineImage } from "react-icons/md";
 
 const Addoffreform =()=>{
   
-        const [editorState, setEditorState] = useState(() =>
-            EditorState.createEmpty()
-        );
-    
-        const handleEditorChange = (newEditorState) => {
-            setEditorState(newEditorState);
-        };
-
+       
         const handleClick = async (e) => {
     
           e.preventDefault();//not refreshing the page 
@@ -56,6 +50,18 @@ const Addoffreform =()=>{
     reader.readAsDataURL(file);
   };
 
+  const handleDeleteImage = () => {
+    setImage(null);
+  };
+
+
+  const [text, setText] = useState(''); // State to store textarea content
+
+  const handleInputChange = (event) => {
+    setText(event.target.value);
+  };
+        
+
 return (
     
        
@@ -76,7 +82,20 @@ return (
         onDragOver={handleDragOver}
       >
         {image ? (
-          <img src={image} alt="Dropped" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <div>
+          <div className="deleteimg" onClick={handleDeleteImage}>
+            <GoTrash />
+          </div>
+          <img
+            src={image}
+            alt="Dropped"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover"
+            }}
+          />
+        </div>
         ) : (
             <button onClick={handleButtonClick}
             style={{
@@ -112,10 +131,12 @@ return (
     </div>
     
  
-  <div className="loaninf"><div className="loan1">Description :</div><div className="loandes2"> <Editor
-                editorState={editorState}
-                onEditorStateChange={handleEditorChange}
-            /></div>
+  <div className="loaninf"><div className="loan1">Description :</div><div className="loandes2"><textarea
+     className="resizable-textarea3"
+      value={text}
+      onChange={handleInputChange}
+      placeholder="description"
+    ></textarea></div>
   </div>
   </div>
    </div>

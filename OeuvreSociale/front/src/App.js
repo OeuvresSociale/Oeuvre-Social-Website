@@ -36,7 +36,11 @@ import CreeLoan from "./Pages/CreeLoan.jsx";
 import Loan from "./Pages/Loan.jsx";
 import FormularTab from "./Pages/FormularTab.jsx";
 import Dashboard from "./Pages/Admin/Dashboard/Dashboard.jsx";
+
+import ModefyFormtitle from "./Components/ModefyFormtitle.jsx";
+
 import Home from "./Pages/Employee/home/home.jsx";
+
 
 
 const App = () => {
@@ -85,6 +89,8 @@ const App = () => {
           path="/formulaire/formulairedemande/modefyformulaire"
           element={<Modefyformule />}
         />
+        <Route path="/modefyformtitle" element={<ModefyFormtitle/>} />
+        
         <Route path="/FormularTab" element={<FormularTab />} />
 
         {/* .............loan Formular.............................................................................. */}
