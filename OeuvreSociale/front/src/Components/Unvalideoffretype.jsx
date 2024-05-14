@@ -68,8 +68,8 @@ return (
            
            <div className="addoffrewrapp1">
            <div className="mlbtns2">
-  <Link to='/formulaire/ajouteroffre'> <button className="mlrefuse"   >Annuler</button></Link>
-            <Link to='/formulaire/ajouteroffre'> <button className="mlaccepte"   onClick={handleClick} >Modifier</button></Link>
+  <Link to='/offres'> <button className="mlrefuse"   >Annuler</button></Link>
+            <Link to='/offres'> <button className="mlaccepte"   onClick={handleClick} >Modifier</button></Link>
          </div> 
 
 <div className="addoffrewrapp2"> 

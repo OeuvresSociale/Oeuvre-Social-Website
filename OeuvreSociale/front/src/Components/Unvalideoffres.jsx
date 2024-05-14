@@ -41,7 +41,7 @@ const Valideoffres = () => {
                     <FiPlusCircle />
                 </div>
             </div>
-            <Link to='/formulaire/ajouteroffre'> <div className="arrow"><BsArrowLeftCircle /></div> </Link>
+           
   
 
                 <div className="vali7">  <span className="titleaddoffre"> Offres non valides</span>

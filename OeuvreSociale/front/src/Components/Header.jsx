@@ -1,17 +1,31 @@
 import react , { useState } from "react";
 import { IoNotificationsOutline } from "react-icons/io5";
-import { FaUserCircle } from "react-icons/fa";
+import { BsSearch } from "react-icons/bs";
 import "../Styles/Header.css";
 import { Link, useLocation } from "react-router-dom";
 import OIP from "../Assets/OIP.png";
 import Logo from "../Assets/Logo1.png";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Adminpro from "./Adminpro"
+import { FaBell, FaUserCircle, FaSignOutAlt } from "react-icons/fa";
+
 import axios from 'axios';
 
 const Header = () => {
-  const [showpro, setShowpro] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
+
+  
+
+  const handleChange = (event) => {
+    setSearchValue(event.target.value);
+  };
+
+  const handleSearch = () => {
+    // Do something with the searchValue, for example, you can log it
+    setSearchValue( searchValue);
+  };
+
+  
   const [notificationMessage, setNotificationMessage] = useState("");
 
   const notify = async () => {
@@ -31,71 +45,91 @@ const Header = () => {
       console.error('Error sending notification:', error);
     }
   };
-  const location = useLocation();
 
-  const { pathname } = location;
+  // const location = useLocation();
 
-  const renderText = () => {
-    switch (pathname) {
-      case "/formulaire":
-        return "Creation";
-      case "/formulaire/formulairedemande":
-        return "Ajouter formulaire de demande";
-      case "/formulaire/formulairedemande/confirmformulaire":
-        return "Ajouter formulaire de demande";
+  // const { pathname } = location;
 
-      case "/employeelist":
-        return "Gestion des employés";
-      case "/employeelist/Addemployee":
-        return "Gestion des employés";
-      case "/tables":
-        return "Table des demandes";
-      case "/tables/demandetype":
-        return "Detailles des demandes";
-      case "/profile":
-        return "Belink";
+  // const renderText = () => {
+  //   switch (pathname) {
+  //     case "/formulaire":
+  //       return "Creation";
+  //     case "/formulaire/formulairedemande":
+  //       return "Ajouter formulaire de demande";
+  //     case "/formulaire/formulairedemande/confirmformulaire":
+  //       return "Ajouter formulaire de demande";
 
-      case "/formulaire/ajouteroffre/offreformulaire":
-        return "Formulaire d ajoute d offre";
-      case "/formulaire/formulairepret":
-        return "Ajoute formulaire du pret";
-      case "/tables/loantype":
-        return "Detailles des demandes";
-      case "/formulaire/ajouteroffre":
-        return "Ajouter offre";
-      case "/formulaire/ajouteroffre/offresvalides":
-        return "Ajouter offre";
-      case "/formulaire/ajouteroffre/offresunvalides":
-        return "Ajouter offre";
-      case "/demandevalid":
-        return "Demandes valides";
-      case "/formulaire/ajouteroffre/offretype":
-        return "Détails d offre";
+  //     case "/employeelist":
+  //       return "Gestion des employés";
+  //     case "/employeelist/Addemployee":
+  //       return "Gestion des employés";
+  //     case "/tables":
+  //       return "Table des demandes";
+  //     case "/tables/demandetype":
+  //       return "Detailles des demandes";
+  //     case "/profile":
+  //       return "Belink";
 
-      default:
-        return "Dashboard";
-    }
-  };
+  //     case "/formulaire/ajouteroffre/offreformulaire":
+  //       return "Formulaire d ajoute d offre";
+  //     case "/formulaire/formulairepret":
+  //       return "Ajoute formulaire du pret";
+  //     case "/tables/loantype":
+  //       return "Detailles des demandes";
+  //     case "/formulaire/ajouteroffre":
+  //       return "Ajouter offre";
+  //     case "/formulaire/ajouteroffre/offresvalides":
+  //       return "Ajouter offre";
+  //     case "/formulaire/ajouteroffre/offresunvalides":
+  //       return "Ajouter offre";
+  //     case "/demandevalid":
+  //       return "Demandes valides";
+  //     case "/formulaire/ajouteroffre/offretype":
+  //       return "Détails d offre";
+
+  //     default:
+  //       return "Dashboard";
+  //   }
+  // };
+  
 
   return (
     <div className="container">
       <div className="box1">
        
         <img src={Logo} alt="logo" className="logo5" />
-      
-        <div className="em">{renderText()}</div>
-      </div>
-      <div className="box2">
-        <div className="notification">
-          <IoNotificationsOutline onClick={notify} />
+        {/* <div className="em">{renderText()}</div> */}
+        <div className="search">
+        <BsSearch onClick={handleSearch} />
+          <input
+            id="searchInput"
+            className="inp"
+            type="text"
+            placeholder="Rechercher..."
+            pattern=''
+            value={searchValue}
+         onChange={handleChange}
+          />
+           
         </div>
+        
        
-        <img src={OIP} alt="logo" className="profile5" onClick={() => { setShowpro(!showpro); }} />
-     
+      </div>
+      
+      <div className="header-right">
+        <button className="icon-button">
+          <FaBell className="icon" onClick={notify}  />
+        </button>
+       <Link to="/profile/:id"> <button className="icon-button">
+          <FaUserCircle className="icon" />
+        </button></Link>
+        <button className="icon-button">
+          <FaSignOutAlt className="icon" />
+        </button>
       </div>
 
       <ToastContainer />
-      {showpro && <Adminpro closeshowpro={setShowpro}  />}
+   
     </div>
   );
 };

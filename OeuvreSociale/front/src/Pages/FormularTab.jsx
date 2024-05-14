@@ -1,19 +1,21 @@
 import React from 'react';
+import SidebarEmploye from '../Components/SidebarEmployee';
 import Form from '../Components/Form';
 import ListForms from '../Components/ListForms';
-import HeaderUser from '../Components/HeaderUser';
+import Header from '../Components/Header';
 const FormularTab = () => {
     return (
+
+      <div className="containerf"  style={{ backgroundColor: '#EAEDEF' }}>
+      <SidebarEmploye />
+      <div className="contentf">
+        <Header className="header" />
+        <ListForms/>
+      </div>
+  
+ </div>
      
-        <div>
-          <HeaderUser/>
-        <div className="Demand-section">
-       <Form/>
-        </div>
-        <div className="Forms-section">
-       <ListForms/>
-        </div>
-     </div>
+       
 );
     };
     

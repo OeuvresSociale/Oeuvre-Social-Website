@@ -59,18 +59,12 @@ const Addoffreform = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      const formData = new FormData();
-      formData.append("image", image); // Append image to FormData
-      formData.append("title", input.title);
-      formData.append("desc", input.desc);
-      formData.append("dateDebut", input.dateDebut);
-      formData.append("dateFin", input.dateFin);
-
-      await axios.post("http://localhost:8000/api/offre", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
-      });
+      
+    await axios.post("http://localhost:8000/api/offre", input, {
+     headers: {
+       "Content-Type": "multipart/form-data"
+     }
+    });
 
       // Clear form state after successful submission
       setInput({
@@ -80,6 +74,7 @@ const Addoffreform = () => {
         dateFin: ""
       });
       setImage(null);
+      console.log("input",input)
     } catch (error) {
       console.error("Error:", error);
       // Handle error
@@ -89,14 +84,14 @@ const Addoffreform = () => {
   return (
     <div className="addoffrewrapp1">
       <div className="mlbtns2">
-        <Link to="/formulaire/ajouteroffre">
+        <Link to="/offres">
           {" "}
           <button className="mlrefuse">Annuler</button>
         </Link>
-
+        <Link to="/offres">
         <button className="mlaccepte" onClick={handleClick}>
           Créer
-        </button>
+        </button>  </Link>
       </div>
 
       <div className="addoffrewrapp2">

@@ -29,7 +29,7 @@ const Offretype =()=>{
 return (      
            
            <div className="addoffrewrapp11">
-            <Link to='/formulaire/ajouteroffre'> <div className="arrow"><BsArrowLeftCircle /></div> </Link>
+            <Link to='/offres'> <div className="arrow"><BsArrowLeftCircle /></div> </Link>
           
 
 <div className="addoffrewrapp25"> 

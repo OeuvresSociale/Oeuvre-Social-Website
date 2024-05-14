@@ -35,13 +35,6 @@ const handleChangeRowsPerPage = (event) => {
 };
   
 
-  
-
-   
-
-
-
-
 
     const [searchValue, setSearchValue] = useState('');
   useEffect(() => {
@@ -91,7 +84,7 @@ console.log("data :",employees);
   return (
     <div className="box">
       <div className="subbox">
-        <div className="search">
+        {/* <div className="search">
           <input
             id="searchInput"
             className="inp"
@@ -102,7 +95,7 @@ console.log("data :",employees);
          onChange={handleChange}
           />
             <BsSearch onClick={handleSearch} />
-        </div>
+        </div> */}
         
            <Link  to="/employeelist/Addemployee"  >
               <button className="btn">

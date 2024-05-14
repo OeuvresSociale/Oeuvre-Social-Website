@@ -32,16 +32,9 @@ const Valideoffres = () => {
 
     return (
         <div className="addoffrewrapper4">
-             <div className="addformbtn">
-                <div  className="addoffre">
-                    <Link to='/formulaire/ajouteroffre/offreformulaire'><button>Ajouter offre</button></Link>
-                    <FiPlusCircle />
-                </div>
-            </div>
-            <Link to='/formulaire/ajouteroffre'> <div className="arrow"><BsArrowLeftCircle /></div> </Link>
-  
+             
 
-                <div className="vali7">  <span className="titleaddoffre"> Offres valides</span>
+                <div className="vali7">  <span className="titleaddoffre"> Offres</span>
                 <div className="offrecrapv">
                 {validatedOffers.map((offer, index) => (
                         <Link to={`/offre/${offer.id}`} key={index} className="offrecv">

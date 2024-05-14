@@ -21,7 +21,7 @@ import { LuLayoutList } from "react-icons/lu";
 import { HiOutlineSwitchVertical } from "react-icons/hi";
 import { IoListCircleOutline } from "react-icons/io5";
 import { HiBars4 } from "react-icons/hi2";
-import MenuItem from "./MenuItem.jsx";
+import MenuitemEmploye from "./MenuitemEmploye.jsx";
 
 let stt = true;
 
@@ -49,60 +49,7 @@ function Sidebar({ children }) {
   stt = isOpen;//memorize the state of the sidebar
 
   const menuItems = [
-    {
-     
-      name: "Adminisration",
-      
-    },
-    {
-      path: "/dashboard",
-      name: "Dashboard",
-      icon: <MdOutlineSpaceDashboard />,
-    },
-    {
-      path: "/reunions",
-      name: "Réunions",
-      icon: <MdOutlineArchive />,
-    },
-    {
-      path: "/employeelist",
-      name: "Employé",
-      icon: <FaUsers />,
-    },
-    {
-      path: "/tables",
-      name: "Demandes",
-      icon: <FaRegListAlt />,
-    },
-     {
-      path: "/Offres",
-      name: "Offres",
-      icon: <GrAnnounce />,
-    },
-    {
-      path: "/formulaire",
-      name: "Paramétrage",
-      icon: <FaRegPlusSquare />,
-    },
-    {
-      name: "Trésorerie",
-      icon: <FaMoneyBillTrendUp />,
-      subicon: <TfiAngleDown />,
-      subicon2: <TfiAngleRight />,
-      subMenus: [
-       
-        {
-          path: "/transaction",
-          name: "Transaction",
-          icon: <HiOutlineSwitchVertical />,
-        },
-        {
-          path: "/demandevalid",
-          name: "Demande valide",
-          icon: <IoListCircleOutline />,
-        },
-      ],
-    },
+    
     {
     
       name: "Employé",
@@ -120,7 +67,7 @@ function Sidebar({ children }) {
     },
      {
       path: "/offresvalides",
-      name: "Annancement",
+      name: "Offres",
       icon: <GrAnnounce />,
     },
   ];
@@ -139,7 +86,7 @@ function Sidebar({ children }) {
       <div className="mainmenu">
         <ul>
           {menuItems.map((menuItem, index) => (
-            <MenuItem
+            <MenuitemEmploye
               key={index}
               name={menuItem.name}
               path={menuItem.path}

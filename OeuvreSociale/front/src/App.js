@@ -114,13 +114,12 @@ const App = () => {
          path=" "   // where to create new offre
           element={<AddOffreForm />}
         />
-        <Route path="/formulaire/ajouteroffre" element={<OFFers />} /> {/* the page contains the button ajouter offre */}
         <Route
-         path="/formulaire/ajouteroffre/offresvalides"     //all valide offres page 
+         path="/offresvalides"     //all valide offres page 
           element={<ValideOffres />}
         /> 
         <Route
-        path="/formulaire/ajouteroffre/offresunvalides"    // all unvalide offres page
+        path="/offres"    // all unvalide offres page
           element={<UnvalideOffres />}
         />
         <Route
@@ -141,7 +140,7 @@ const App = () => {
         <Route path="/demandevalid" element={<Demande_Valid />} />
 
         {/* Archive.............................................................................. */}
-        <Route path="/Archive" element={<Archive />} />
+        <Route path="/reunions" element={<Archive />} />
 
         {/* 3-Employee part.............................................................................. */}
 
