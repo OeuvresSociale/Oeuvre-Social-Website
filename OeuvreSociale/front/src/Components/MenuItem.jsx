@@ -3,11 +3,14 @@ import { FaSackDollar , FaBoxArchive , FaUserGroup } from "react-icons/fa6";
 import '../Styles/Sidebar.css'
 import { NavLink } from 'react-router-dom';
 
+let mstt=true;
+
 
 const MenuItem =(props) => {
 const { name , icon ,path, subicon,subicon2, subMenus } = props;
-const [expand , setExpand]= useState(false);
+const [expand , setExpand]= useState(mstt);
 const hide = () => setExpand(!expand);
+mstt= expand;
 
 const [activeItem, setActiveItem] = useState(null);
 

@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
-const offreSchema = new mongoose.Schema({
+const offreSchema = new mongoose.Schema({  
     title: { 
         type: String,
         required: true,
-    },
-    desc: {
+    },  
+    desc: {  
         type: String,
         required: false, 
     },

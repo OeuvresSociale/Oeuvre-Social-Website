@@ -17,13 +17,13 @@ const laonRepaymentSchema = new schema({
         
     },
     complete:{
-        type:Boolean,
+        type:Boolean,  
         default:false,
         required:false
     },
     loanId:{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'laon',
+    ref: 'laonModel',
     required: true
     },
     

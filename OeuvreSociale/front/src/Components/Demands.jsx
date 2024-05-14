@@ -2,16 +2,13 @@ import '../Styles/demands.css';
 import React, { useState , useEffect } from 'react';
 import axios from 'axios';
 
-import { Link ,useParams} from 'react-router-dom';
-
-
-// table des demnade d'nu employee en his profile
+// table des demnade d'nu employee en his profile 
 
 function Demands(props) {
 
   const [filterStatus, setFilterStatus] = useState(null); 
 //  const [requests, setRequests] = useState([]);
-//   const [error, setError] = useState(null);
+//   const [error, setError] = useState(null); 
   console.log("props:",props.dataD)
   const requests = props.dataD;
   console.log("requests",requests);

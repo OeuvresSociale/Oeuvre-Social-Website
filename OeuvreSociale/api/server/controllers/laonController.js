@@ -31,34 +31,36 @@ const getMyLaon = async (req, res) => {
 };
 //Get all request for member  with search and pagination
 const getallLaon = async (req, res) => {
-  //current page
+  // Current page
   const page = req.query.page || 1;
   const RequestPerPage = 10;
   const skipRequests = (page - 1) * RequestPerPage;
   const filter = req.query.filter || "";
+  
   try {
     const Requests = await laonModel
-   
-    .find(
-      {
-        $or: [{ state: { $regex: filter } }],
-      },
-      { creationDate: 1, state: 1, motif: 1 }
-    )
-    .populate("employeeId", "familyName firstName")
+      .find(
+        { $or: [{ state: { $regex: filter } }] },
+        { creationDate: 1, state: 1, motif: 1 }
+      )
+      .populate("employeeId", "familyName firstName")
+      .populate("requestTypeId")
       .sort({ creationDate: -1 })
       .skip(skipRequests)
       .limit(RequestPerPage);
-    res.status(200).json(Requests);
-    if (!Requests) {
-      res.status(401).json("there is no  requests here");
+
+    // Check if requests were found
+    if (Requests.length === 0) {
+      return res.status(401).json("There are no requests here");
     }
+
+    // Send response
+    res.status(200).json(Requests);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
-
-  
- };
+};  
+//////////////////////////////////
 //Get one request
 const getLaon = async (req, res) => {
   try {
@@ -67,13 +69,19 @@ const getLaon = async (req, res) => {
         "employeeId",
         "idEmployee familyName firstName dateStartJob email phoneNumber"
       );
-      
+      console.log("id:",req.params.id);
     res.status(200).json(request);
   } catch (err) {
       // Handle errors
       res.status(500).json(err);
   }
 };
+
+    // if (!request) {
+    //   return res.status(404).json({ message: "Request not found" });
+    // }
+
+
 
 // suive request
 
@@ -118,98 +126,210 @@ const suiviLaon = async (req, res) => {
 }
  * 
  */ 
-    const createLaonRequest = async (req, res) => {
-        try {
-            const { employeeId, amount, duration ,purpose} = req.body;   //duration by default 12 months
+    // const createLaonRequest = async (req, res) => {
+    //     try {
+    //         const { requestTypeId,employeeId, amount, duration ,purpose} = req.body;   //duration by default 12 months
           
-            // Retrieve user details from the database
-            const user = await Employee.findById(employeeId);
+    //         // Retrieve user details from the database
+    //         const user = await Employee.findById(employeeId);
             
-            if (!user) {
-              return res.status(404).json({ error: 'User not found' });
-            }
+    //         if (!user) {
+    //           return res.status(404).json({ error: 'User not found' });
+    //         }
           
-            const salary = user.monthlySalary;
-            const percentage = 0.3;   // 30% of monthlySalary
-            const maxAllowedReturnPerMonth = salary * percentage;   //maximum he can return in month < 30%
-            const maxLoanAmount = maxAllowedReturnPerMonth * 12;    //maximum he can laon 
-            // Validate loan amount against maximum allowed loan amount
-            if (amount > maxLoanAmount) {
-              return res.status(400).json({ error: 'Loan amount exceeds maximum allowed' });
-            }
+    //         const salary = user.monthlySalary;
+    //         const percentage = 0.3;   // 30% of monthlySalary
+    //         const maxAllowedReturnPerMonth = salary * percentage;   //maximum he can return in month < 30%
+    //         const maxLoanAmount = maxAllowedReturnPerMonth * 12;    //maximum he can laon 
+    //         // Validate loan amount against maximum allowed loan amount
+    //         if (amount > maxLoanAmount) {
+    //           return res.status(400).json({ error: 'Loan amount exceeds maximum allowed' });
+    //         }
           
-            const repaymentAmountPerMonth = amount / duration;   /**la somme he will return monthly based 
-                                                                  *on amount and duration he coose */
+    //         const repaymentAmountPerMonth = amount / duration;   /**la somme he will return monthly based 
+    //                                                               *on amount and duration he coose */
           
 
-          //  Validate repayment amount per month against maximum allowed
-            if (repaymentAmountPerMonth > maxAllowedReturnPerMonth) {
-              return res.status(400).json({ error: 'Repayment amount per month exceeds maximum allowed' });
-            }
-           console.log(`We will retrieve ${repaymentAmountPerMonth} from your account for ${duration} months.`);
+    //       //  Validate repayment amount per month against maximum allowed
+    //         if (repaymentAmountPerMonth > maxAllowedReturnPerMonth) {
+    //           return res.status(400).json({ error: 'Repayment amount per month exceeds maximum allowed' });
+    //         }
+    //        console.log(`We will retrieve ${repaymentAmountPerMonth} from your account for ${duration} months.`);
         
-        // // Create an array to store repayment amounts for each month
-        // const repaymentSchedule = [];
-        // for (let i = 1; i <= duration; i++) {
-        //   repaymentSchedule.push({
-        //     month: i,
-        //     repaymentAmount: repaymentAmountPerMonth,
-        //   });
-        // }
+    //     // // Create an array to store repayment amounts for each month
+    //     // const repaymentSchedule = [];
+    //     // for (let i = 1; i <= duration; i++) {
+    //     //   repaymentSchedule.push({
+    //     //     month: i,
+    //     //     repaymentAmount: repaymentAmountPerMonth,
+    //     //   });
+    //     // }
 
-      const result = {
-                    duration: duration,
-                    salary: salary,
-                    maxLoanAmount: maxLoanAmount,
-                    loanAmount: amount,
-                    message: "Maximum allowed repayment per month",
-                    maxAllowedRepaymentPerMonth: maxAllowedReturnPerMonth,
-                    repaymentPerMonth: repaymentAmountPerMonth,
+    //   const result = {
+    //                 duration: duration,
+    //                 salary: salary,
+    //                 maxLoanAmount: maxLoanAmount,
+    //                 loanAmount: amount,
+    //                 message: "Maximum allowed repayment per month",
+    //                 maxAllowedRepaymentPerMonth: maxAllowedReturnPerMonth,
+    //                 repaymentPerMonth: repaymentAmountPerMonth,
                              
-                  };               
-                  res.status(200).json(result);
+    //               };               
+    //               res.status(200).json(result);
 
-             const request = new laonModel(req.body);
-             const savedRequest = await request.save();
-             const laonModelId = savedRequest._id;
+    //          const request = new laonModel(req.body);
+    //          const savedRequest = await request.save();
+    //          const laonModelId = savedRequest._id;
             
-             //save result in loanRepayment collection:
+    //          //save result in loanRepayment collection:
 
-             const repmRequest = new laonRepayment({
-              duration: duration,
-              amount: repaymentAmountPerMonth,
-              loanId:savedRequest._id
-             });
-             const savedrepmRequest = await repmRequest.save();
+    //          const repmRequest = new laonRepayment({
+    //           duration: duration,
+    //           amount: repaymentAmountPerMonth,
+    //           loanId:savedRequest._id
+    //          });
+    //          const savedrepmRequest = await repmRequest.save();
 
 
 
-            // Respond with the saved request
-           // res.status(201).json(savedRequest);
-        } catch (error) {
-            // Check if the error is a duplicate key error (code 11000)
-            if (error.code === 11000) {
-                // Handle the duplicate key error
-                console.error('Duplicate key error:', error);
-                // Respond with an appropriate error message
-                res.status(400).json({ error: 'Duplicate key error: This request already exists' });
+    //         // Respond with the saved request
+    //        // res.status(201).json(savedRequest);
+    //     } catch (error) {
+    //         // Check if the error is a duplicate key error (code 11000)
+    //         if (error.code === 11000) {
+    //             // Handle the duplicate key error
+    //             console.error('Duplicate key error:', error);
+    //             // Respond with an appropriate error message
+    //             res.status(400).json({ error: 'Duplicate key error: This request already exists' });
+    //         } else {
+    //             // Handle other types of errors
+    //             console.error('Error saving request:', error);
+    //             // Respond with a generic error message
+    //             res.status(500).json({ error: 'Internal server error' });
+    //         }
+    //     }
+    // };
+    
+
+const createLaonRequest = async (req, res) => {
+      try {
+          const { employeeId, amount, duration ,purpose} = req.body;   //duration by default 12 months
+        
+          // Retrieve user details from the database
+          const user = await Employee.findById(employeeId);
+          
+          if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+          }
+          const exist = await laonRepayment.find({}).populate({
+            path: 'loanId',
+            populate: {
+              path: 'employeeId',
+              match: { _id: employeeId } // Filter by the employeeId you're interested in
+            }
+          });       
+          console.log("exist :",exist);
+        
+        if (exist.length === 0) {
+            console.log("no past laon .... u can demande");
+        } else {
+            if (!exist.complete) {
+                return res.status(400).json({ error: "ur past laon is not complete.... u can not demande" });
             } else {
-                // Handle other types of errors
-                console.error('Error saving request:', error);
-                // Respond with a generic error message
-                res.status(500).json({ error: 'Internal server error' });
+                console.log("ur past laon is complete.... u can demande");
             }
         }
-    };
-    
-    
-
+        
+        // Other code for loan request
+        
+        // res.status(200).json(result);
+        
+          const salary = user.monthlySalary;
+          const durée = req.body.duration;
+          const percentage = 0.3;   // 30% of monthlySalary
+          const maxAllowedReturnPerMonth = salary * percentage;   //maximum he can return in month < 30%
+          const maxLoanAmount = maxAllowedReturnPerMonth * 12;    //maximum he can laon 
+          // Validate loan amount against maximum allowed loan amount
+          if (amount > maxLoanAmount) {
+            return res.status(400).json({ error: 'Loan amount exceeds maximum allowed' });
+          }
+        
+          const repaymentAmountPerMonth = amount / durée;   /**la somme he will return monthly based 
+                                                                *on amount and duration he coose */
+        
+  
+        //  Validate repayment amount per month against maximum allowed
+          if (repaymentAmountPerMonth > maxAllowedReturnPerMonth) {
+            return res.status(400).json({ error: 'Repayment amount per month exceeds maximum allowed' });
+          }
+         console.log(`We will retrieve ${repaymentAmountPerMonth} from your account for ${durée} months.`);
+      
+    const result = {
+                  duration: durée,
+                  salary: salary,
+                  maxLoanAmount: maxLoanAmount,
+                  loanAmount: amount,
+                  maxAllowedRepaymentPerMonth: maxAllowedReturnPerMonth,
+                  repaymentPerMonth: repaymentAmountPerMonth,
+                  message: `We will retrieve ${repaymentAmountPerMonth} from your account for ${durée} months.`,
+                };               
+               
+  
+           const request = new laonModel(req.body);
+           const savedRequest = await request.save();
+           const laonModelId = savedRequest._id;
+           
+           //save result in loanRepayment collection:
+  
+           const repmRequest = new laonRepayment({
+            duration: duration,
+            amount: repaymentAmountPerMonth,
+            loanId:savedRequest._id
+           });
+           const savedrepmRequest = await repmRequest.save();
+  
+  
+           res.status(200).json(result);
+          // Respond with the saved request
+         // res.status(201).json(savedRequest);
+      } catch (error) {
+          // Check if the error is a duplicate key error (code 11000)
+          if (error.code === 11000) {
+              // Handle the duplicate key error
+              console.error('Duplicate key error:', error);
+              // Respond with an appropriate error message
+              res.status(400).json({ error: 'Duplicate key error: This request already exists' });
+          } else {
+              // Handle other types of errors
+              console.error('Error saving request:', error);
+              // Respond with a generic error message
+              res.status(500).json({ error: 'Internal server error' });
+          }
+      }
+  };
+ 
+  // const laonModel= require('../models/Laon');
+// const getReq = async (req, res) => {
+//   try {
+//     const request = await laonModel.findById(req.params.id)
+//       .populate("requestTypeId", "title")
+//       .populate(
+//         "employeeId",
+//         "idEmployee familyName firstName dateStartJob email phoneNumber monthlySalary familysitution "
+//       );
+//     res.status(200).json(request);
+//   } catch (err) {
+//     // Handle errors
+//     res.status(500).json(err);
+//   }
+// };
 module.exports={
   createLaonRequest,
   getMyLaon, 
   getallLaon,
   getLaon,
-  suiviLaon
+  suiviLaon,
+  // getReq
 };
 
   

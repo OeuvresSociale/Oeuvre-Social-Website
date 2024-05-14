@@ -27,6 +27,7 @@ import OFFers from "./Pages/OFFers.jsx";
 import ValideOffres from "./Pages/ValidOffres.jsx";
 import UnvalideOffres from "./Pages/UnvalideOffres.jsx";
 import OffreType from "./Pages/OffreType.jsx";
+import UnvalideOffreType from "./Pages/UnvalideOffretype.jsx";
 
 import Archive from "./Pages/Admin/Archive/Archive.jsx";
 import Transaction from "./Pages/Admin/Transaction/Transaction.jsx";
@@ -35,7 +36,11 @@ import CreeLoan from "./Pages/CreeLoan.jsx";
 import Loan from "./Pages/Loan.jsx";
 import FormularTab from "./Pages/FormularTab.jsx";
 import Dashboard from "./Pages/Admin/Dashboard/Dashboard.jsx";
+
+import ModefyFormtitle from "./Components/ModefyFormtitle.jsx";
+
 import Home from "./Pages/Employee/home/home.jsx";
+
 
 
 const App = () => {
@@ -67,7 +72,7 @@ const App = () => {
 
         {/* ..............Damande Tabele.............................................................................. */}
         {/* .............loan Tabele.............................................................................. */}
-        <Route path="/tables/loantype" element={<LoanType />} />
+        <Route path="/tables/loantype/:id" element={<LoanType />} /> 
         <Route path="/Loan" element={<Loan />} />
 
         {/* ..............Offre Tabele.............................................................................. */}
@@ -84,6 +89,8 @@ const App = () => {
           path="/formulaire/formulairedemande/modefyformulaire"
           element={<Modefyformule />}
         />
+        <Route path="/modefyformtitle" element={<ModefyFormtitle/>} />
+        
         <Route path="/FormularTab" element={<FormularTab />} />
 
         {/* .............loan Formular.............................................................................. */}
@@ -104,22 +111,27 @@ const App = () => {
         {/* ..............Offre Formular............................................................................... */}
 
         <Route
-          path="/formulaire/ajouteroffre/offreformulaire"
+         path=" "   // where to create new offre
           element={<AddOffreForm />}
         />
-        <Route path="/formulaire/ajouteroffre" element={<OFFers />} />
+        <Route path="/formulaire/ajouteroffre" element={<OFFers />} /> {/* the page contains the button ajouter offre */}
         <Route
-          path="/formulaire/ajouteroffre/offresvalides"
+         path="/formulaire/ajouteroffre/offresvalides"     //all valide offres page 
           element={<ValideOffres />}
-        />
+        /> 
         <Route
-          path="/formulaire/ajouteroffre/offresunvalides"
+        path="/formulaire/ajouteroffre/offresunvalides"    // all unvalide offres page
           element={<UnvalideOffres />}
         />
         <Route
-          path="/formulaire/ajouteroffre/offretype"
+          path="/formulaire/ajouteroffre/offretype"  //  when u click on a valide offre 
           element={<OffreType />}
         />
+        <Route
+          path="/formulaire/ajouteroffre/unvalideoffretype"
+          element={<UnvalideOffreType />}   //    when u click on an unvalide offre 
+        />
+
 
         {/* Tresorerie.............................................................................. */}
         {/* ........Transaction table..............................................................*/}

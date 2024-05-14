@@ -6,46 +6,29 @@ import { MdOutlineModeEditOutline } from "react-icons/md";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { BsArrowLeftCircle } from "react-icons/bs";
-
-
+import Logo from "../Assets/Logo1.png";
 
 
 const Valideoffres = () => {
-    // const [openFormtitle, setOpenFormtitle] = useState(false);
-    // const [openDelete, setOpenDeleteform] = useState(false);
-    // const [selectedformularie, setSelectedformularie] = useState(null);
-    // const [formularies, setFormularies] = useState([]);
-    // const [openModefy, setOpenModefy] = useState(false);
 
-    // useEffect(() => {
-    //     const fetchFormularies = async () => {
-    //         try {
-    //             const response = await axios.get("http://localhost:8000/api/typesRequest");
-    //             setFormularies(response.data);
-    //         } catch (error) {
-    //             console.error("Error fetching formularies:", error);
-    //         }
-    //     };
 
-    //     fetchFormularies();
-    // }, [formularies]);
+    const [validatedOffers, setValidatedOffers] = useState([]);
 
-    // const toggleExpand = (id) => {
-    //     setFormularies((prevFormularies) =>
-    //         prevFormularies.map((form) =>
-    //             form._id === id ? { ...form, expand: !form.expand } : form
-    //         )
-    //     );
-    // };
+    useEffect(() => {
+        // Fetch validated offers from the backend when the component mounts
+        const fetchValidatedOffers = async () => {
+            try {
+                const response = await axios.get("http://localhost:8000/api/validated-offres");
+                setValidatedOffers(response.data); // Update state with fetched data
+            } catch (error) {
+                console.error("Error fetching validated offers:", error);
+            }
+        };
 
-    // const fetchFormularieDetails = async (selectedformularieId) => {
-    //     try {
-    //         const response = await axios.get(`http://localhost:8000/api/typesRequest/${selectedformularieId}`);
-    //         setSelectedformularie(response.data);
-    //     } catch (error) {
-    //         console.error('Error fetching formularie details:', error);
-    //     }
-    // };
+        fetchValidatedOffers();
+    }, []); // Empty dependency array to fetch data only once when the component mounts
+
+   
 
     return (
         <div className="addoffrewrapper4">
@@ -60,15 +43,13 @@ const Valideoffres = () => {
 
                 <div className="vali7">  <span className="titleaddoffre"> Offres valides</span>
                 <div className="offrecrapv">
-                       <div className="offrecv">
-                        <img className='offimg3' src={`${process.env.PUBLIC_URL}/images/logo.png`}  />
-                         <Link to='/formulaire/ajouteroffre/offretype'><div className="titoff">Titre d'offre :</div></Link>
-                        <div className="descoff">Titre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offre :</div>
-                   
-                        
-                         
-                        
-                         </div>
+                {validatedOffers.map((offer, index) => (
+                        <Link to={`/offre/${offer.id}`} key={index} className="offrecv">
+                            <img src={Logo} alt="logo" className="offimg3" />
+                            <div className="titoff">{offer.title}</div>
+                            <div className="descoff">{offer.desc}</div>
+                        </Link>
+                    ))}
                     
                     
                      </div>
