@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../Styles/Sidebar.css'
+import '../Styles/Sidebar.css';
 import { NavLink } from 'react-router-dom';
 
 let mstt=true;

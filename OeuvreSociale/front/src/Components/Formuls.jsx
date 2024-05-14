@@ -25,14 +25,6 @@ return(
               
    
     </Link>  
-    <Link  to="/formulaire/ajouteroffre" className="linkwrapper" >
-    
-    
-        <div className="linktodem"> Ajouter offre</div>
-
-              
-   
-    </Link>  
    
 
 </div>

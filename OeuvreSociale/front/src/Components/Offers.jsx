@@ -56,17 +56,13 @@ const Offres = () => {
     //     }
     // };
 
-    const handleClick = async (e) => {
-    
-        e.preventDefault();//not refreshing the page 
-       
-       };
+   
 
     return (
         <div className="addoffrewrapper">
             <div className="addformbtn">
             <Link to='/formulaire/ajouteroffre/offreformulaire'><div  className="addoffre">
-                   <button onClick={handleClick} >Ajouter offre</button>
+                   <button  >Ajouter offre</button>
                     <FiPlusCircle />
                 </div></Link>
             </div>
