@@ -55,11 +55,7 @@ function Sidebar({ children }) {
       name: "Employé",
      
     },
-    {
-      path: "/home",
-      name: "Home",
-      icon: <FaUsers />,
-    },
+   
     {
       path: "/FormularTab",
       name: "Mes demandes",
@@ -69,6 +65,11 @@ function Sidebar({ children }) {
       path: "/offresvalides",
       name: "Offres",
       icon: <GrAnnounce />,
+    },
+    {
+      path: "/home",
+      name: "Contact",
+      icon: <FaUsers />,
     },
   ];
 
