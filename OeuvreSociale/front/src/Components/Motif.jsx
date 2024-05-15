@@ -2,11 +2,13 @@ import React ,{useState}from "react";
 import '../Styles/Motif.css';
 import axios from "axios";
 
-const Motif=({closeMotif , handleRedClick , Request})=>{
-
+const Motif=({closeMotif , handleRedClick ,context, Request,loan})=>{
+ 
     const handlesendClick= async ()=>{
+      if (context === "Loan") {
+        // Handle refusal action for Demande page
          try {
-           const response = await axios.put(`http://localhost:8000/api/Requests/${Request._id}`, { state:"Rejetée", motif: text });
+           const response = await axios.put(`http://localhost:8000/api/LaonRequest/${loan._id}`, { state:"Rejetée", motif: text });
             handleRedClick();
             // Close the motif
             closeMotif(false);
@@ -14,6 +16,19 @@ const Motif=({closeMotif , handleRedClick , Request})=>{
            
             console.error('Error sending motif:', error);
         }
+      } else if (context === "Demande") {
+        // Handle refusal action for Loan page
+        try {
+          const response = await axios.put(`http://localhost:8000/api/Requests/${Request._id}`, { state:"Rejetée", motif: text });
+           handleRedClick();
+           // Close the motif
+           closeMotif(false);
+       } catch (error) {
+          
+           console.error('Error sending motif:', error);
+       }
+      }
+
     };
 
        const [text, setText] = useState(''); // State to store textarea content

@@ -1,21 +1,29 @@
 import "../Styles/new.css";
 import React, { useState, useEffect } from 'react';
-
-const Login = () => {
+import axios from "axios";
+const Login = (email) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setError('Passwords do not match');
     } else {
-      setError('');
-      // Proceed with password change logic
-      console.log('Password changed successfully');
+      try{  
+        // const email="17janvier2004@gmail.com"
+        const response = await axios.put(`http://localhost:8000/api/resetPassword/${email}`, {
+         password: password
+       });
+         console.log(response.data);
+       }
+       catch(error){
+        setError(error.response.data);
+      }
+     };
     }
-  };
+  
 
   return (
     <div className="newwrap">

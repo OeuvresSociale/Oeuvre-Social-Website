@@ -28,11 +28,8 @@ const requestSchema = new mongoose.Schema({
   motif: {
     type: String,
   },
-  amount: {
-    type: Number,
-  },
   files: {
-    type: [
+    type: [ 
       {
         fileName: String,
         fileOriginalName: String,

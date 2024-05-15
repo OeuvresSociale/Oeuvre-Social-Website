@@ -58,27 +58,27 @@ const Addoffreform = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    try {
+    // try {
       
-    await axios.post("http://localhost:8000/api/offre", input, {
-     headers: {
-       "Content-Type": "multipart/form-data"
-     }
-    });
+    // await axios.post("http://localhost:8000/api/offre", input, {
+    //  headers: {
+    //    "Content-Type": "multipart/form-data"
+    //  }
+    // });
 
       // Clear form state after successful submission
-      setInput({
-        title: "",
-        desc: "",
-        dateDebut: "",
-        dateFin: ""
-      });
-      setImage(null);
-      console.log("input",input)
-    } catch (error) {
-      console.error("Error:", error);
-      // Handle error
-    }
+      // setInput({
+      //   title: "",
+      //   desc: "",
+      //   dateDebut: "",
+      //   dateFin: ""
+      // });
+      // setImage(null);
+      // console.log("input",input)
+    // } catch (error) {
+    //   console.error("Error:", error);
+    //   // Handle error
+    // }
   };
 
   return (

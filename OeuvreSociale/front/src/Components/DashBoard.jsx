@@ -6,6 +6,7 @@ import Chart from 'react-apexcharts';
 
 
 const DashBoard = () => {
+
   const [chartData2, setChartData2] = useState({
     series: [40, 30, 30],
         options: {
@@ -18,6 +19,7 @@ const DashBoard = () => {
   });
 
     
+
 
   
 
