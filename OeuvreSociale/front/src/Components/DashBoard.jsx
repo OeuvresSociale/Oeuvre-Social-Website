@@ -112,6 +112,51 @@ const DashBoard = () => {
         fetchData(); // Call the fetchData function when the component mounts
       }, []);
 
+
+      useEffect(() => {
+        const fetchDatacircle = async () => {
+          try {
+            const response = await axios.get('/api/data');
+            const newData = response.data; // Assuming your API returns the same structure as your initial state
+            setChartData2(newData);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        fetchDatacircle(); // Call the fetchData function when the component mounts
+      }, []);
+
+
+      useEffect(() => {
+        const fetchDatagraph = async () => {
+          try {
+            const response = await axios.get('/api/data');
+            const newData = response.data; // Assuming your API returns the same structure as your initial state
+            setchartOptions(newData);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        fetchDatagraph(); // Call the fetchData function when the component mounts
+      }, []);
+
+      const [soldeActuel, setSoldeActuel] = useState(null); // State to store solde actuel data
+
+  useEffect(() => {
+    const fetchSoldeActuel = async () => {
+      try {
+        const response = await axios.get('/api/solde-actuel'); // Replace '/api/solde-actuel' with your actual endpoint
+        setSoldeActuel(response.data); // Assuming the response contains the solde actuel value
+      } catch (error) {
+        console.error('Error fetching solde actuel:', error);
+      }
+    };
+
+    fetchSoldeActuel(); // Fetch solde actuel data when the component mounts
+  }, []);
+
    
     
    
@@ -123,7 +168,7 @@ const DashBoard = () => {
                 <div className="lessommes">
         
                 <div className="somme9"> <div className="st"><div className="somme3">Solde actuel </div></div>
-                <div className="npr9">20000000</div>
+                <div className="npr9">{soldeActuel !== null ? soldeActuel : 'Loading...'}</div>
                 </div>
                 
                
