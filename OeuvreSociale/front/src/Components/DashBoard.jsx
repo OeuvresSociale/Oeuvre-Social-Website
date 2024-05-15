@@ -10,9 +10,7 @@ import { GoTrash } from "react-icons/go";
 
 
 const DashBoard = () => {
-    const [selectedDates, setSelectedDates] = useState([]);
-
-    
+    const [selectedDates, setSelectedDates] = useState([]);  
 
   const handleDateChange = (date) => {
     setSelectedDates([...selectedDates, date]); // Add the selected date to the array

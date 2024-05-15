@@ -10,12 +10,12 @@ const Offretype =()=>{
 
     const { id } = useParams(); // Get the offer ID from the URL
     const [offre, setOffre] = useState(null); // State to store offer details
-
+    console.log("id:",id);
     useEffect(() => {
         // Fetch offer details from the backend when the component mounts
         const fetchOffreDetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/api/offre/${id}`);
+                const response = await axios.get(`http://localhost:8000/api/off/${id}`);
                 setOffre(response.data); // Update state with fetched offer details
             } catch (error) {
                 console.error("Error fetching offer details:", error);

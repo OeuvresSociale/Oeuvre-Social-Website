@@ -8,7 +8,8 @@ const {
   createRequest,
   suiviRequest,
   getFileById,
-  getReq
+  getReq,
+  getOffre
 } = require("../controllers/requestController");
 const { createLaonRequest } = require("../controllers/laonController.js");
 const { Auth } = require("../middleware/auth");
@@ -25,7 +26,8 @@ const router = express.Router();
 // type request
 router.get("/Requests", getallRequests); //
 router.get("/Request/:id", getRequest); //
-router.get("/Req/:id", getReq); //
+router.get("/Req/:id", getReq); // get one loan
+router.get("/off/:id", getOffre);// get one offre
 router.get("/MyRequests/:employeeId", getMyRequests); //
 router.post("/Requests", upload.array("files"), asyncWrapper(createRequest));
 router.put("/Requests/:id", suiviRequest); //

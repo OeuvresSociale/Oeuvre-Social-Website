@@ -134,7 +134,7 @@ console.log("data :",employees);
                 onClick={ async() => {setOpenDelete(true); await fetchEmployeeDetails(employee._id);}
                 } />
                 <MdOutlineModeEditOutline onClick={async() =>  {setOpenModefy(true); await fetchEmployeeDetails(employee._id);}} />
-                <Link to={`/profile/${employee._id}`}  > <MdOutlineModeEditOutline /></Link>
+                {/* <Link to={`/profile/${employee._id}`}  > <MdOutlineModeEditOutline /></Link> */}
               </td>
             </tr>
        ))} 

@@ -111,19 +111,19 @@ const App = () => {
         {/* ..............Offre Formular............................................................................... */}
 
         <Route
-         path=" "   // where to create new offre
+         path=" /formulaire/ajouteroffre"   // where to create new offre
           element={<AddOffreForm />}
         />
         <Route
          path="/offresvalides"     //all valide offres page 
-          element={<ValideOffres />}
+          element={<ValideOffres />} 
         /> 
         <Route
         path="/offres"    // all unvalide offres page
           element={<UnvalideOffres />}
         />
         <Route
-          path="/formulaire/ajouteroffre/offretype"  //  when u click on a valide offre 
+          path="/offre/:id"  //  when u click on a valide offre 
           element={<OffreType />}
         />
         <Route

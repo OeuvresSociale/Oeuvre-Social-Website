@@ -9,9 +9,10 @@ const offreSchema = new mongoose.Schema({
         type: String,
         required: false, 
     },
-    docs: {
-        type: [String],  
-        required: false,
+    imageId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'image',
+        required: true, 
     },
     dateDebut:{ 
         type: Date,
@@ -26,7 +27,7 @@ const offreSchema = new mongoose.Schema({
         default: Date.now,
         required: true
     },
-    invisible:{
+    visible:{
     type:Boolean,  
     default:false
     }
