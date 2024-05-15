@@ -6,9 +6,9 @@ import Header from '../Components/Header';
 const FormularTab = () => {
     return (
 
-      <div className="containerf"  style={{ backgroundColor: '#EAEDEF' }}>
+      <div className="containerdem"  style={{ backgroundColor: '#EAEDEF' }}>
       <SidebarEmploye />
-      <div className="contentf">
+      <div className="contentdem">
         <Header className="header" />
         <ListForms/>
       </div>

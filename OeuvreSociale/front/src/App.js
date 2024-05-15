@@ -78,9 +78,9 @@ const App = () => {
         {/* ..............Offre Tabele.............................................................................. */}
 
         {/* Formulaire.............................................................................. */}
-        <Route path="/formulaire" element={<Formul />} />
+        <Route path="/formulaire" element={<Addoffre />} />
         {/* ..............Damande Formular.............................................................................. */}
-        <Route path="/formulaire/formulairedemande" element={<Addoffre />} />
+       
         <Route
           path="/formulaire/formulairedemande/confirmformulaire"
           element={<Confirmformul />}
@@ -89,7 +89,7 @@ const App = () => {
           path="/formulaire/formulairedemande/modefyformulaire"
           element={<Modefyformule />}
         />
-        <Route path="/modefyformtitle" element={<ModefyFormtitle/>} />
+        <Route path="/formulaire/modefyformtitle" element={<ModefyFormtitle/>} />
         
         <Route path="/FormularTab" element={<FormularTab />} />
 
@@ -98,6 +98,7 @@ const App = () => {
           path="/formulairetable/ajouterpret"
           element={<Addloandemande />}
         />
+        
         <Route path="/formulaire/formulairepret" element={<LoanForm />} />
         <Route
           path="/formulaire/formulairepret/modifierpret"

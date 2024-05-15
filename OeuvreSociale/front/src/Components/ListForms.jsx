@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import '../Styles/listForms.css';
 import { FaRegFilePdf } from "react-icons/fa6";
 import { FaArrowUp } from 'react-icons/fa';
+import Addloandemande from "./Addloandemande";
 
 function Forms() {
 
@@ -41,6 +42,7 @@ function Forms() {
   };
 
   const [showPop, setShowPop] = useState(false);
+  const [showPop2, setShowPop2] = useState(false);
   const [selectedPop, setSelectedPop] = useState(null);
 
   const handleLinkClick = (popId) => {
@@ -64,6 +66,11 @@ function Forms() {
   return (
     <div className="formsrapper">
       <h2 className="title">Types des demandes</h2>
+      <div className="linkrapper" onClick={() => { setShowPop2(true); }}>
+          <div className="linktdem"  >
+            Demander pret 
+          </div>
+        </div>
       {links.map((link, index) => (
         <div key={index} className="linkrapper"onClick={() => handleLinkClick(link.popId)}>
           <div className="linktdem" >
@@ -76,6 +83,7 @@ function Forms() {
           <div className="popContent">
             <h2 className="poptitle">{pops[selectedPop].title}</h2>
             <div className="userInfo">
+              
               <div className="userInfoItem">
                 <div className="userInfoLabel">First Name:</div>
                 <div className="userInfoValue">{user.firstName}</div>
@@ -104,6 +112,7 @@ function Forms() {
           </div>
         </div>
       )}
+       {showPop2 && <Addloandemande closeit={setShowPop2}  />}
     </div>
   );
 }

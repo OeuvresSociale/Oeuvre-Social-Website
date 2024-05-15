@@ -1,11 +1,12 @@
-import React ,{useState}from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import '../Styles/Dashboard.css';
 import Chart from 'react-apexcharts';
 
 
 
 const DashBoard = () => {
-  const chartData2 = {
+  const [chartData2, setChartData2] = useState({
     series: [40, 30, 30],
         options: {
             labels: ['Demands', 'pret', 'offres'],
@@ -14,7 +15,7 @@ const DashBoard = () => {
             },
             colors: ['#4154f1', '#2eca6a', '#ff771d'],
         },
-};
+  });
 
     
 
@@ -51,7 +52,7 @@ const DashBoard = () => {
   });
 
 
-    const chartOptions = {
+    const [chartOptions, setchartOptions] = useState({
         series: [{
             name: 'Demandes',
             data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
@@ -95,7 +96,21 @@ const DashBoard = () => {
             },
             
         },
-    };
+    });
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axios.get('/api/data');
+            const newData = response.data; // Assuming your API returns the same structure as your initial state
+            setChartData(newData);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        fetchData(); // Call the fetchData function when the component mounts
+      }, []);
 
    
     

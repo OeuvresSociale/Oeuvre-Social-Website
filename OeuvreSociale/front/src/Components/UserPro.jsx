@@ -149,7 +149,6 @@ const handleNewPasswordSubmit = () => {
           </div>
           <div className="Info-right">
             <p>{userData.phoneNumber}</p>
-
             <p>{userData.familysitution}</p>
             <p>{userData.monthlySalary}</p>
 

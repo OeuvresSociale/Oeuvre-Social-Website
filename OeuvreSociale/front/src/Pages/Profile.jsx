@@ -90,15 +90,15 @@ console.log("profile requests",requests)
 console.log("profile data",userData)
   return (
     <div>
-  <div className='containerf'>
+  <div className='containeradd'>
       <Sidebar/>
-    <div className='contentf'>
+    <div className='contentadd'>
         <Header/>
-    <div className='content'>
+    
     <UserPro dataP={userData} />
        
        {/* <Demands dataD={requests}/> */}
-        </div>
+       
       </div>
     </div>
     </div>
