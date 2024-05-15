@@ -5,24 +5,24 @@ import Chart from 'react-apexcharts';
 
 
 const DashBoard = () => {
-    const [selectedDates, setSelectedDates] = useState([]);
+  const chartData2 = {
+    series: [40, 30, 30],
+        options: {
+            labels: ['Demands', 'pret', 'offres'],
+            chart: {
+                type: 'pie',
+            },
+            colors: ['#4154f1', '#2eca6a', '#ff771d'],
+        },
+};
 
     
 
-  const handleDateChange = (date) => {
-    setSelectedDates([...selectedDates, date]); // Add the selected date to the array
-  };
+  
 
-  const handleDeleteDate = (index) => {
-    const updatedDates = [...selectedDates];
-    updatedDates.splice(index, 1);
-    setSelectedDates(updatedDates);
-  };
-  const [selectedmeeting, setSelectedmeeting] = useState(''); 
 
-  const handlemeetingChange = (e) => {
-    setSelectedmeeting(e.target.value);
-  };
+
+
 
   const [chartData, setChartData] = useState({
     options: {
@@ -31,15 +31,22 @@ const DashBoard = () => {
       },
       xaxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-      }
+      },
+      colors: ['#4154f1', '#2eca6a'],
+      plotOptions: {
+        bar: {
+            horizontal: false,
+            columnWidth: '70%', // Adjust this value to create the desired gap
+        },
+    },
     },
     series: [{
-      name: 'Sales',
+      name: 'Encassement',
       data: [30, 40, 35, 50, 49, 60, 70, 91, 125, 130, 145, 150]
     },
     {
-      name: 'Sales',
-      data: [30, 40, 35, 50, 49, 60, 70, 91, 125, 130, 145, 150]
+      name: 'Décassement',
+      data: [25, 45, 15, 70, 49, 60, 70, 91, 125, 130, 145, 150]
     }]
   });
 
@@ -140,9 +147,14 @@ const DashBoard = () => {
                
             </div>
             <div className="app88">
+
+           
             <div className="chart-container">
-        <Chart options={chartData.options} series={chartData.series} type="bar" width="400" className="my-chart" />
+        <Chart options={chartData.options} series={chartData.series} type="bar" width="100%" className="my-chart" />
       </div>
+      <div className="circle-chart">
+            <Chart options={chartData2.options} series={chartData2.series} type="pie" height={250} />
+        </div>
     
             </div>
         </div>

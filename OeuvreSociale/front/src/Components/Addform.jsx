@@ -59,7 +59,7 @@ const Addform = () => {
             {openFormtitle && <Formtitle closeFormtitle={setOpenFormtitle} />}
 
             <div className="formulswrapper">
-                {formularies.map((form) => (
+                 {formularies.map((form) => (
                     <div key={form._id} className="formulary">
                         <div className="linkform" onClick={() => { toggleExpand(form._id);  }}>
                             {form.title}
@@ -73,6 +73,7 @@ const Addform = () => {
                        
                         {form.expand && (
                             <div className="docs">
+                            <div className="docname">{form.price}</div>
                                 {form.docs.map((doc, index) => (
                                     <div key={index} className="docname">
                                         {doc}
@@ -81,7 +82,8 @@ const Addform = () => {
                             </div>
                         )}
                     </div>
-                ))}
+                ))} 
+                       
             </div>
             {selectedformularie && (
                 <div>
