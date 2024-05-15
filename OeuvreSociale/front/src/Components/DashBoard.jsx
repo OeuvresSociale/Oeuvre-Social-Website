@@ -1,11 +1,6 @@
 import React ,{useState}from "react";
 import '../Styles/Dashboard.css';
 import Chart from 'react-apexcharts';
-import Calendar from 'react-calendar';
-import 'react-datepicker/dist/react-datepicker.css';
-import 'react-calendar/dist/Calendar.css';
-import { GoTrash } from "react-icons/go";
-
 
 
 
@@ -28,6 +23,25 @@ const DashBoard = () => {
   const handlemeetingChange = (e) => {
     setSelectedmeeting(e.target.value);
   };
+
+  const [chartData, setChartData] = useState({
+    options: {
+      chart: {
+        id: 'basic-bar'
+      },
+      xaxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+      }
+    },
+    series: [{
+      name: 'Sales',
+      data: [30, 40, 35, 50, 49, 60, 70, 91, 125, 130, 145, 150]
+    },
+    {
+      name: 'Sales',
+      data: [30, 40, 35, 50, 49, 60, 70, 91, 125, 130, 145, 150]
+    }]
+  });
 
 
     const chartOptions = {
@@ -85,65 +99,52 @@ const DashBoard = () => {
             <div className="dashcol1">
                 <div className="dashtitle">Dashboard</div>
                 <div className="lessommes">
-              
-                <div className="somme9"> <div className="st"><div className="somme3">La somme totale </div><div className="aujour">Aujourd'hui</div></div>
-                <div className="npr9">20000000</div>
-                </div>
-              
-
-              
-                <div className="somme9"> <div className="st"><div className="somme3">La somme entrante </div><div className="aujour">Aujourd'hui</div></div>
+        
+                <div className="somme9"> <div className="st"><div className="somme3">Solde actuel </div></div>
                 <div className="npr9">20000000</div>
                 </div>
                 
                
                 
-                <div className="somme9"> <div className="st"><div className="somme3">La somme sortante </div><div className="aujour">Aujourd'hui</div></div>
+                <div className="somme9"> <div className="st"><div className="somme3">Total débit </div></div>
                 <div className="npr9">20000000</div>
                 </div>
 
-                <div className="somme8"> <div className="st"><div className="somme4">La somme initiale </div></div>
-                <div className="npr8">20000000</div>
+                <div className="somme9"> <div className="st"><div className="somme3">Total crédit </div></div>
+                <div className="npr9">20000000</div>
                 </div>
-              
-               
-               </div>
+    
+               </div><div className="lessommes">
+        
+        <div className="somme8"> <div className="st"><div className="somme4">Demands </div></div>
+        <div className="npr8">20000000</div>
+        </div>
+        
+       
+        
+        <div className="somme8"> <div className="st"><div className="somme4">pret </div></div>
+        <div className="npr8">20000000</div>
+        </div>
+
+        <div className="somme8"> <div className="st"><div className="somme4">offres </div></div>
+        <div className="npr8">20000000</div>
+        </div>
+
+       </div>
                <div className="graphe9">
-               <div className="graphtitle">Reports</div>
-               <Chart options={chartOptions.options} series={chartOptions.series} type="line" height={350} />
+               <div className="graphtitle">Raport</div>
+               <Chart options={chartOptions.options} series={chartOptions.series} type="line" height={310} />
 
 
                </div>
                
             </div>
             <div className="app88">
-            <Calendar
-        onChange={handleDateChange}
-        value={selectedDates} // Pass the array of selected dates as the value
-        selectRange={false} // Disable range selection
-      />
-      <div>
-        <h2>Dates des réunions :</h2>
-        <ul>
-          {selectedDates.map((date, index) => (
-            <li key={index}>
-                <div className="meetingdate">
-                {date.toLocaleDateString()}
-            <select id="meeting" name="meeting" value={null} onChange={handlemeetingChange}required style={{
-    color: selectedmeeting === 'urgent' ? 'red' : selectedmeeting === 'simple' ? 'green' : 'inherit'
-  }}>
-        <option value="">type</option>
-          <option value="male">urgent</option>
-          <option value="female">simple</option>
-         
-        </select>
-        <GoTrash  onClick={() => handleDeleteDate(index)} />
-        </div>
-        </li>
-          ))}
-        </ul>
+            <div className="chart-container">
+        <Chart options={chartData.options} series={chartData.series} type="bar" width="400" className="my-chart" />
       </div>
-    </div>
+    
+            </div>
         </div>
     );
 };
