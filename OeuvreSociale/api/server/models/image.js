@@ -3,20 +3,24 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 const imageSchema = new schema({
-    name:{
-        type:String,
-        required:true 
+    name: {
+        type: String,
+        required: true
     },
-    image:{
-        data:Buffer,
-        contentType:String
+    imagePath: {
+        type: String,
+        required: true
     },
     employeeId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user',
-        required: true
+        ref: 'user', 
     },
-   
-})
+    offreId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'offre',
+    }
+});
+
 
 module.exports=mongoose.model('imageModel',imageSchema);
+    

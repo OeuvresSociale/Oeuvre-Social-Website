@@ -15,13 +15,13 @@ const laonSchema = new schema({
     type: Number,
     required: false,
     default: 12,
-  },
+  }, 
   reimburse: {
     type: Number,
   },
   complete: {
     type: Boolean,
-    default: true,
+    default: false,
     required: false,
   },
   employeeId: {
@@ -31,7 +31,7 @@ const laonSchema = new schema({
   },
   requestTypeId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "typeloan",
+    ref: "typeLoan",
     required: true,
   },
   creationDate: {

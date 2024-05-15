@@ -5,9 +5,10 @@ const Laon = require("../models/Laon.js");
 const transaction = require("../models/transaction.js");
 const cron = require("node-cron");
 const Budget = require("../models/budget.js");
-const path = require("path");
+const path = require("path");   
 const fs = require("fs");
 const { updateBudget } = require("./budgetController.js");
+
 // valide the request
 const validRequest = async (req, res) => {
   try {
@@ -78,6 +79,10 @@ const validLaon = async (req, res) => {
     }
 
     // Create a new outcome object with the updated request's data
+    const newRepayment = new laonRepayment({
+      amount :updatedRequest.amount,
+      duration:updatedRequest.duration,
+    });
     const newOutcome = new transaction({
       // requestId: updatedRequest._id,
       name:
@@ -86,7 +91,7 @@ const validLaon = async (req, res) => {
         updatedRequest.employeeId.familyName,
       Amount: updatedRequest.amount,
       categorie: "outcome",
-      type: "laon",
+      type: "loan",
       files: req.files.map((file) => ({
         fileName: file.filename, // Use the filename as fileId
         fileOriginalName: file.originalname,
@@ -347,6 +352,7 @@ const calculateOutcomeSummary = async (req, res) => {
 };
 // Schedule the function to run monthly
 //cron.schedule('0 0 1 * *', processRepaymentsMonthly); // At 00:00 on the 1st day of every month
+
 module.exports = {
   validRequest,
   getValid,
