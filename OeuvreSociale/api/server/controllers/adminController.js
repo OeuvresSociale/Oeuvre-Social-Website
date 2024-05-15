@@ -200,7 +200,6 @@ async function register(req,res){
 */
 
 //post : login with jwt session
-
 async function login(req,res){
 
     const { email, password } = req.body;
@@ -223,6 +222,7 @@ async function login(req,res){
                 
                         // Send additional data along with the token
                         const responseData = {
+                            id:user._id,
                             useremail: user.email,
                             role: user.role,
                             salary: user.monthlySalary,
@@ -249,6 +249,7 @@ async function login(req,res){
         return res.status(500).send({error});
     }
 }
+
 
 
 //get : lget a user
@@ -315,34 +316,40 @@ async function updateUser(req, res) {
 
 
 /** GET: http://localhost:8000/api/generateOTP */
-async function generateOTP(req,res){
-    const {email}=req.query;
-    req.app.locals.OTP = await otpGenerator.generate(6, { lowerCaseAlphabets: false, 
-        upperCaseAlphabets: false, specialChars: false})
-    res.status(201).send({ code: req.app.locals.OTP })
-   // res.json(useremail);
+async function generateOTP(req, res) {
+    const { email } = req.query;
+    const generatedOTP = await otpGenerator.generate(6, {
+        lowerCaseAlphabets: false,
+        upperCaseAlphabets: false,
+        specialChars: false
+    });
+    
+    req.app.locals.generatedOTP = generatedOTP; // Store the generated OTP in app locals
     console.log(email);
-
+    
     notification.sendEmail({
         body: {
             to: email,
-            subject:'Your OTP code',
-            message:`Your OTP is: ${req.app.locals.OTP}`
-            
+            subject: 'Your OTP code',
+            message: `Your OTP is: ${generatedOTP}`
         }
-    }, 
-    {});
-    }
-   
-/** GET: http://localhost:8000/api/verifyOTP */
-async function verifyOTP(req,res){
+    }, {});
+    
+    res.status(201).send({ code: generatedOTP });
+}
+
+/** POST: http://localhost:8000/api/verifyOTP */
+async function verifyOTP(req, res) {
     const { otp } = req.body;
-    if(parseInt(req.app.locals.OTP) === parseInt(otp)){
-        req.app.locals.OTP = null; // reset the OTP value
-        req.app.locals.resetSession = true; // start session for reset password
-        return res.status(201).send({ msg: 'Verify Successsfully!'})
+    const generatedOTP = req.app.locals.generatedOTP; // Get the stored OTP from app locals
+    
+    if (parseInt(generatedOTP) === parseInt(otp)) {
+        req.app.locals.generatedOTP = null; // Reset the OTP value
+        req.app.locals.resetSession = true; // Start session for reset password
+        return res.status(201).send({ msg: 'Verification successful!' });
     }
-    return res.status(400).send({ error: "Invalid OTP"});
+    
+    return res.status(400).send({ error: "invalid otp" });
 }
 
 

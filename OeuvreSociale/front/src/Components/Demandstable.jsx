@@ -20,7 +20,7 @@ function Demands() {
       try {
         const response = await axios.get(`http://localhost:8000/api/Requests`, { responseType: 'json', responseEncoding: 'utf8' });
         setRequests(response.data); 
-        alert("hello");
+        // alert("hello");
         console.log("response:",response)
       } catch (error) {
         console.error('Error fetching requests:', error);

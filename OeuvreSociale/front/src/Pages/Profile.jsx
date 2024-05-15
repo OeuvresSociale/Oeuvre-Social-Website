@@ -12,7 +12,9 @@ const Profile = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const { id } = useParams();
+  // const { id } = useParams();
+
+  const id = localStorage.getItem('userId');
 
   useEffect(() => {
     const fetchData = async () => {

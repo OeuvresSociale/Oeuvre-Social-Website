@@ -6,7 +6,7 @@ const fs = require("fs");
 const asyncWrapper = require("../middleware/asyncWrapper");
 const { Console } = require("console");
 
-
+ 
 //Get all request for employee
 const getMyRequests = async (req, res) => {
   //current page
@@ -65,14 +65,14 @@ const getallRequests = async (req, res) => {
   const RequestPerPage = 10;
   const skipRequests = (page - 1) * RequestPerPage;
   const filter = req.query.filter || "";
-  try {
+  try {  
     const Requests = await Request.find(
       {
         $or: [{ state: { $regex: filter } }],
       },
       { creationDate: 1, state: 1, motif: 1 }
     )
-      .populate("requestTypeId", "title")
+      .populate("requestTypeId", "title amount")
       .populate("employeeId", "familyName firstName")
       .sort({ creationDate: -1 })
       .skip(skipRequests)
@@ -90,7 +90,7 @@ const getallRequests = async (req, res) => {
 const getRequest = async (req, res) => {
   try {
     const request = await Request.findById(req.params.id)
-      .populate("requestTypeId", "title")
+      .populate("requestTypeId", "title","amount")
       .populate(
         "employeeId",
         "idEmployee familyName firstName dateStartJob email phoneNumber monthlySalary familysitution "
@@ -240,6 +240,22 @@ async function getFileById(req, res) {
 }
 
 
+
+/////////////////////////////:::::::::::::::::::::::
+// //get one  offre
+const offreModel = require('../models/offres');
+const getOffre= async (req, res) => {
+  try{
+    const offre = await offreModel.findById(req.params.id);
+    console.log("req.params.id:",req.params.id);
+    console.log("offre:",offre); 
+    res.status(200).json(offre);
+  }  
+  catch(err){
+    res.status(500).json(err);
+  }};
+/////////////////////////////.......................
+
 module.exports = {
   getRequest, 
   getallRequests,
@@ -248,5 +264,6 @@ module.exports = {
   suiviRequest,
   getFileById,
   getReq,
+  getOffre,
 
 };

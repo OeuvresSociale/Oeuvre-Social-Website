@@ -1,39 +1,84 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Avatar, IconButton, MenuItem, Select, TextField, Modal, Box, Button } from "@mui/material";
+import { Avatar, IconButton } from "@mui/material";
 import { Edit, PictureAsPdf } from "@mui/icons-material"; 
+import ModifyRowPopup from "../popups/ModifyRowPopup";
+import axios from "axios";
 import "../../Styles/tables/DataGrid.css";
 
 const Transactions_Table = () => {
   const [editableRowId, setEditableRowId] = useState(null);
   const [editableRowData, setEditableRowData] = useState(null);
-  const [rows, setRows] = useState([
-    {
-      id: 1,
-      concerned: "Manel",
-      type: "Mariage",
-      date: "2024-02-20",
-      amount: 1000,
-      direction: "sortant",
-    },
-    {
-      id: 2,
-      concerned: "Manl",
-      type: "Mariage",
-      date: "2024-02-20",
-      amount: 1000,
-      direction: "entrant",
-    },
-    {
-      id: 3,
-      concerned: "Manel",
-      type: "Marge",
-      date: "2024-02-20",
-      amount: 1000,
-      direction: "sortant",
-    },
-  ]);
+  // const [rows, setRows] = useState([
+  //   {
+  //     id: 1,
+  //     name: "Manel",
+  //     type: "Mariage",
+  //     date: "2024-02-20",
+  //     amount: 1000,
+  //     categorie: "sortant",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Manl",
+  //     type: "Mariage",
+  //     date: "2024-02-20",
+  //     amount: 1000,
+  //     categorie: "entrant",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Manel",
+  //     type: "Marge",
+  //     date: "2024-02-20",
+  //     amount: 1000,
+  //     categorie: "sortant",
+  //   },
+  // ]);
   const [open, setOpen] = useState(false);
+  const [rows, setRows] = useState([{
+        id: 1,
+        name: "Manel",
+        type: "Mariage",
+        creationDate: "2024-02-20",
+        Amount: 1000,
+        categorie: "sortant",
+      },]);
+
+  useEffect(() => {
+    getTrans_Data();
+  }, []);
+
+  const getTrans_Data = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/RequestyAll");
+      const data = response.data;
+      //Debugging the fetched Data
+      console.log("The data passed are here:", data);
+      // Map fetched data to match the structure of rows
+      const rowData = data.map((transaction) => ({
+        id: transaction._id,
+        name: transaction.name,
+        type: transaction.type,
+        // creationDate: transaction.creationDate,
+        creationDate: new Date(transaction.creationDate).toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+      }),
+        Amount: transaction.Amount,
+        categorie: transaction.categorie,
+        files: transaction.files,
+      }));
+      // Update the state with the mapped data
+      setRows(rowData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+   
+  
+  //Handle Functions
 
   const handleEdit = (rowId) => {
     setEditableRowId(rowId);
@@ -68,12 +113,14 @@ const Transactions_Table = () => {
     setOpen(false);
   };
 
+  //Declare the colums content
+
   const columns = [
-    { field: "concerned", headerName: "Concerné", width: 275 },
+    { field: "name", headerName: "Concerné", width: 275 },
     { field: "type", headerName: "Type", width: 275 },
-    { field: "date", headerName: "Date d'envoi", width: 275 },
-    { field: "amount", headerName: "Somme", width: 275 },
-    { field: "direction", headerName: "Direction", width: 200 },
+    { field: "creationDate", headerName: "Date d'envoi", width: 275 },
+    { field: "Amount", headerName: "Somme", width: 275 },
+    { field: "categorie", headerName: "categorie", width: 200 },
     {
       field: "pdf",
       headerName: "PDF",
@@ -105,11 +152,8 @@ const Transactions_Table = () => {
           columns={columns}
           editRowsModel={{
             id: editableRowId,
-          }}
-          onEditCellChangeCommitted={(params) => {
-            // Handle data change after editing if needed
-            console.log("Row edited:", params);
-          }}
+          }} 
+        
           sx={{
             textAlign: "center",
             color: "#00194f",
@@ -118,75 +162,17 @@ const Transactions_Table = () => {
             fontSize: "15px",
           }}
         />
-        <Modal
+         </div>
+         {open && (
+        <ModifyRowPopup
           open={open}
-          onClose={handleCancelEdit}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', bgcolor: 'background.paper', boxShadow: 24, p: 4, width: 400 }}>
-            {/* Display a form for editing */}
-            <TextField
-              label="Concerné"
-              value={editableRowData?.concerned || ""}
-              onChange={(e) =>
-                setEditableRowData({
-                  ...editableRowData,
-                  concerned: e.target.value,
-                })
-              }
-            />
-            <TextField
-              label="Type"
-              value={editableRowData?.type || ""}
-              onChange={(e) =>
-                setEditableRowData({
-                  ...editableRowData,
-                  type: e.target.value,
-                })
-              }
-            />
-            <TextField
-              label="Date d'envoi"
-              type="date"
-              value={editableRowData?.date || ""}
-              onChange={(e) =>
-                setEditableRowData({
-                  ...editableRowData,
-                  date: e.target.value,
-                })
-              }
-            />
-            <TextField
-              label="Somme"
-              type="number"
-              value={editableRowData?.amount || ""}
-              onChange={(e) =>
-                setEditableRowData({
-                  ...editableRowData,
-                  amount: e.target.value,
-                })
-              }
-            />
-            <Select
-              label="Direction"
-              value={editableRowData?.direction || ""}
-              onChange={(e) =>
-                setEditableRowData({
-                  ...editableRowData,
-                  direction: e.target.value,
-                })
-              }
-            >
-              <MenuItem value="sortant">Sortant</MenuItem>
-              <MenuItem value="entrant">Entrant</MenuItem>
-            </Select>
-            {/* Add input fields for other editable fields */}
-            <Button variant="contained" onClick={handleSaveEdit}>Save</Button>
-            <Button variant="contained" onClick={handleCancelEdit}>Cancel</Button>
-          </Box>
-        </Modal>
-      </div>
+          editableRowData={editableRowData}
+          handleSaveEdit={handleSaveEdit}
+          handleCancelEdit={handleCancelEdit}
+          setEditableRowData={setEditableRowData}
+        />
+      )}
+     
     </div>
   );
 };

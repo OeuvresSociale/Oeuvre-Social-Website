@@ -24,6 +24,12 @@ const Login = () => {
       const data = response.data;
       console.log("data:",data);
       setAlert({ type: 'success', message: response.data.msg }); // Set success alert message
+      // After a successful login
+      localStorage.setItem('userRole', data.role);
+      localStorage.setItem('userId', data.id);
+      localStorage.setItem('userSalary', data.salary);
+      localStorage.setItem('userEmail', data.useremail);
+
     } catch (error) {
       console.error("Error in login:", error);
       setAlert({ type: 'error', message: error.response?.data?.error || 'Login failed' }); // Set error alert message

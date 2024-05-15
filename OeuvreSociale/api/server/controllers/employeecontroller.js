@@ -1,5 +1,6 @@
 //from new branch
 const Employee = require("../models/user");
+const {uploadImage} = require("./img")
 //Get all employees
 const getEmployees = async (req, res) => {
   try {
@@ -12,15 +13,14 @@ const getEmployees = async (req, res) => {
 //get one
 const getEmployee = async (req, res) => {
   try {
-    const employee = await Employee.findById(req.params.id).select(
-      "-password "
-    );
+    const employee = await Employee.findById(req.params.id).select("-password").populate("profilePicture", "-_id data");
 
     res.status(200).json(employee);
   } catch (err) {
     res.status(500).json(err);
   }
 };
+
 //create
 const addEmployee = async (req, res) => {
   const newEmployee = new Employee(req.body);
@@ -71,6 +71,48 @@ const updateEmployee = async (req, res) => {
     }
   };
   
+  const profilePic = async (req, res) => {
+    try {
+      const employee = await Employee.findById(req.params.id);
+      if (!employee) {
+        return res.status(404).json({ error: "Employee not found" });
+      }
+  
+      // Update the employee data
+      const updatedEmployee = await Employee.findByIdAndUpdate(
+        req.params.id,
+        { $set: req.body },
+        { new: true }
+      ).select("-password");
+  
+      // Call uploadImage function to handle profile picture upload
+      uploadImage(req, res, async (err) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).send('Error uploading image.');
+        }
+  
+        // If image upload is successful, update the user object with the profile picture reference
+        const image = await imageModel.findOne({ name: req.file.originalname }); // Assuming you're storing the image name in the database
+        if (!image) {
+          console.error("Image not found");
+          return res.status(404).send('Image not found.');
+        }
+  
+        // Update the user object with the profile picture reference
+        updatedEmployee.profilePicture = image._id;
+        await updatedEmployee.save();
+  
+        res.status(200).json(updatedEmployee);
+        console.log("Employee has been updated with profile picture");
+      });
+  
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: error.message || "Internal server error" });
+    }
+  };
+  
   
 //delete
 const deleteEmployee = async (req, res) => {
@@ -113,4 +155,5 @@ module.exports = {
   deleteEmployee,
   updateEmployee,
   getEmployeepage,
+  profilePic
 };
