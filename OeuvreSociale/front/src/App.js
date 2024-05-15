@@ -28,7 +28,6 @@ import ValideOffres from "./Pages/ValidOffres.jsx";
 import UnvalideOffres from "./Pages/UnvalideOffres.jsx";
 import OffreType from "./Pages/OffreType.jsx";
 
-import Archive from "./Pages/Admin/Archive/Archive.jsx";
 import Transaction from "./Pages/Admin/Transaction/Transaction.jsx";
 
 import CreeLoan from "./Pages/CreeLoan.jsx";
@@ -36,6 +35,7 @@ import Loan from "./Pages/Loan.jsx";
 import FormularTab from "./Pages/FormularTab.jsx";
 import Dashboard from "./Pages/Admin/Dashboard/Dashboard.jsx";
 
+import Reunionpage from "./Pages/Reunionpage.jsx";
 
 const App = () => {
 
@@ -127,12 +127,12 @@ const App = () => {
         {/* ........Accepted demande..............................................................*/}
         <Route path="/demandevalid" element={<Demande_Valid />} />
 
-        {/* Archive.............................................................................. */}
-        <Route path="/Archive" element={<Archive />} />
+        {/* Meeting.............................................................................. */}
+        <Route path="Reunionpage" element={<Reunionpage />} />
 
         {/* 3-Employee part.............................................................................. */}
 
-     
+
         <Route path="/profile/:id" element={<Profile />} />
 {/* ----------------------- */}
 

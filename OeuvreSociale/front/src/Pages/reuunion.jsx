@@ -1,11 +1,8 @@
 import React from "react";
-import Arch from '../../../Components/Arch';
-
-
 import Header from "../../../Components/Header";
 import Sidebar from "../../../Components/Sidebar";
 
-const Archive = () => {
+const reuunion = () => {
   return (
     <div>
       <div className="containerf">
@@ -15,11 +12,11 @@ const Archive = () => {
         </div>
         </div>
        <div className="containerf">
-        <Arch />
+          <reunion />
     </div>
     </div>
 
   );
 };
 
-export default Archive;
+export default reuunion;
