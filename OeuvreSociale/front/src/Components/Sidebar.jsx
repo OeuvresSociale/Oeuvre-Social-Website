@@ -75,7 +75,7 @@ function Sidebar({ children }) {
       icon: <FaRegListAlt />,
     },
      {
-      path: "/Offres",
+      path: "/unvalideoffres",
       name: "Offres",
       icon: <GrAnnounce />,
     },

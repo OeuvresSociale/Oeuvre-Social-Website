@@ -14,8 +14,8 @@ body{
     align-items: center;
 }
 .rewrapper{
-    width: 580px;
-    height: 400px;
+    width: 600px;
+    height:490px;
     background:#fff ;
     color:#fff ;
     display: grid;
@@ -51,15 +51,15 @@ body{
 
 .bluesection .logo {
     position:absolute;
-    width: 85%; 
+    width: 80%; 
     height:40%;
     border-radius:50%;
-    left:5%;
+    left:7%;
     top:20%;
 }
 .bluesection .titlee{
     position:absolute;
-    left:2%;
+    left:1%;
     font-size: 22px;
     font-weight:400;
     align-self: center;
@@ -71,7 +71,7 @@ body{
 }
 .rewrapper .input-box{
     position: relative;
-    top:4% ;
+    top:10% ;
     left: 10%;
     width: 90%;
     height: 50px; ;
@@ -82,7 +82,7 @@ body{
 }
 .input-box input{
     position:relative;
-    top:5%;
+    top:7%;
     width:70%;
     height:2%;
     left: 2%; 
@@ -99,7 +99,7 @@ body{
 }
 .rewrapper button {
     position: relative;
-    top:4% ;
+    top:12% ;
     left: 10%;
     width: 90%;
     height: 50px; ;

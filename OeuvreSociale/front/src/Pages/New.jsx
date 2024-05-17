@@ -1,7 +1,12 @@
 import "../Styles/new.css";
 import React, { useState, useEffect } from 'react';
+
+import images from "../Assets/images.png"
+
+
 import axios from "axios";
 const Login = (email) => {
+
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
@@ -29,7 +34,8 @@ const Login = (email) => {
     <div className="newwrap">
       <div className="nwrapper">
         <div className="blue--section">
-          <img src="./assets/logo.png" alt="logo" className="logo" />
+        <h1 className="titre"> Belink</h1>
+        <img src={images} alt="logoo" className="logoo" />
         </div>
         <form onSubmit={handleSubmit}>
           <h1>Enter new password</h1>

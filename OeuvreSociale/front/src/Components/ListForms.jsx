@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import '../Styles/listForms.css';
-import { FaRegFilePdf } from "react-icons/fa6";
+import { FaRegFilePdf } from "react-icons/fa";
 import { FaArrowUp } from 'react-icons/fa';
 import Addloandemande from "./Addloandemande";
 
 function Forms() {
-
-   // just to test 
+  const [formData, setFormData] = useState({
+    file: null,
+  });
   const links = [
     { label: "Type de demande 1", popId: "pop1" },
     { label: "Type de demande 2", popId: "pop2" },
     { label: "Type de demande 3", popId: "pop3" }
   ];
-
-  // just to test 
   const pops = {
     pop1: { 
       title: "Pop 1 Title", 
@@ -34,33 +33,57 @@ function Forms() {
       inputNames: ["document1", "document2", "document3", "document4"]
     }
   };
-
-  // User information for testing
   const user = {
     firstName: "Mohammed",
     lastName: "moh"
   };
 
+  // pop-up visibility
   const [showPop, setShowPop] = useState(false);
   const [showPop2, setShowPop2] = useState(false);
   const [selectedPop, setSelectedPop] = useState(null);
+  const [files, setFiles] = useState({});
 
+  // handle link clicks
   const handleLinkClick = (popId) => {
     setSelectedPop(popId);
     setShowPop(true);
   };
 
+  // close the pop-up
   const closePop = () => {
+    setFiles({});
     setShowPop(false);
     setSelectedPop(null);
   };
-  const handleFileUpload = (event) => {
+
+  // handle file upload
+  const handleFileUpload = (event, inputName) => {
     const uploadedFile = event.target.files[0];
-    console.log("Uploaded file:", uploadedFile);
+    if (uploadedFile) {
+      console.log("Uploaded file:", uploadedFile.name);
+      setFiles(prevState => ({
+        ...prevState,
+        [inputName]: uploadedFile.name
+      }));
+    }
   };
 
+  // upload button click
   const handleUploadButtonClick = (inputName) => {
     document.getElementsByName(inputName)[0].click();
+  };
+
+  // handle form submission
+  const handleFormSubmit = () => {
+    console.log("Form Data:", formData);
+    console.log("Files:", files);
+    setFormData({
+      file: null,
+    });
+    setFiles({});
+    setShowPop(false);
+    setSelectedPop(null);
   };
 
   return (
@@ -72,10 +95,8 @@ function Forms() {
           </div>
         </div>
       {links.map((link, index) => (
-        <div key={index} className="linkrapper"onClick={() => handleLinkClick(link.popId)}>
-          <div className="linktdem" >
-            {link.label}
-          </div>
+        <div key={index} className="linkrapper" onClick={() => handleLinkClick(link.popId)}>
+          <div className="linktdem">{link.label}</div>
         </div>
       ))}
       {showPop && (
@@ -96,18 +117,23 @@ function Forms() {
             <ul className="inputList">
               {pops[selectedPop].inputTitles.map((title, index) => (
                 <li key={index}>
-                  <div className="Label">{title} : </div>
-                  <div className="inputWrapper"onClick={() => handleUploadButtonClick(pops[selectedPop].inputNames[index])}>
+                  <div className="Label">{title}:</div>
+                  <div className="inputWrapper" onClick={() => handleUploadButtonClick(pops[selectedPop].inputNames[index])}>
                     <FaRegFilePdf className="pdfIcon" />
-                    <div className="uploadFile" >  <FaArrowUp className="icon" /> Upload File </div>
-                    <input type="file" accept=".pdf" name={pops[selectedPop].inputNames[index]} onChange={handleFileUpload} />
+                    <span className="name">
+                      {files[pops[selectedPop].inputNames[index]] || "Upload File"}
+                    </span>
+                    <div className="uploadFile">
+                      <span>Choose File</span>
+                      <input type="file" accept=".pdf" name={pops[selectedPop].inputNames[index]} onChange={(event) => handleFileUpload(event, pops[selectedPop].inputNames[index])} />
+                    </div>
                   </div>
                 </li>
               ))}
             </ul>
             <div className="buttonsWrapper">
               <button className="cancelButton" onClick={closePop}>Cancel</button>
-              <button className="validateButton" >Validate</button>
+              <button className="validateButton" onClick={handleFormSubmit}>Validate</button>
             </div>
           </div>
         </div>

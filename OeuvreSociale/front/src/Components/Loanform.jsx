@@ -7,6 +7,7 @@ import axios from 'axios';
 const Loanform = () => {
   const [loan, setLoan] = useState({
     _id: "",
+
     maxAmount: "",
     maxMonth: "",
     maxPourcentage: "",
