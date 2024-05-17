@@ -113,7 +113,7 @@ const App = () => {
         {/* ..............Offre Formular............................................................................... */}
 
         <Route
-         path=" /formulaire/ajouteroffre"   // where to create new offre
+         path="/unvalideoffres/ajouteroffre"   // where to create new offre
           element={<AddOffreForm />}
         />
         <Route
@@ -121,7 +121,7 @@ const App = () => {
           element={<ValideOffres />} 
         /> 
         <Route
-        path="/offres"    // all unvalide offres page
+        path="/unvalideoffres"    // all unvalide offres page
           element={<UnvalideOffres />}
         />
         <Route
@@ -129,7 +129,7 @@ const App = () => {
           element={<OffreType />}
         />
         <Route
-          path="/formulaire/ajouteroffre/unvalideoffretype"
+          path="/unvalideoffretype"
           element={<UnvalideOffreType />}   //    when u click on an unvalide offre 
         />
 
