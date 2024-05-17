@@ -4,14 +4,7 @@ import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import { MdOutlineModeEditOutline } from "react-icons/md";
 
-const loans = [
-  {
-    loanId: 1,
-    name: 'Mohammed',
-    date: new Date(2024, 2, 20),
-    status: 'Accepted',
-  },
-];
+
 function Loans() {
     const [error, setError] = useState(null);
     const [searchValue, setSearchValue] = useState('');
@@ -81,18 +74,22 @@ function Loans() {
             <th>Status</th>
           </tr>
         </thead>
-        <tbody>
-          {filteredLoans.map((loan) => (
-            <tr key={loan.loanId}>
-              <td>{loan.loanId}</td>
-              <td>{loan.name}</td>
-              <td>{loan.date.toLocaleDateString()}</td>
-              <td  className={getStatusColor(loan.status)}>{loan.status}</td>
-              {/* <td className="lastcolumn">
+        <tbody> 
+          {laon.map((loan) => (
+            <tr key={loan._id}>
+              <td>1</td>
+              <td>{`${loan.employeeId.familyName} ${loan.employeeId.firstName}`}</td>
+              <td>{new Date(loan.creationDate).toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                })}</td>
+              <td  className={getStatusColor(loan.state)}>{loan.state}</td>
+              <td className="lastcolumn">
 
-                <Link to={`/tables${....}`}> <MdOutlineModeEditOutline /></Link>
+                <Link to={`/tables/loantype/${loan._id}`}> <MdOutlineModeEditOutline /></Link>
                 
-                </td> */}
+                </td>
             </tr>
           ))}
         </tbody>

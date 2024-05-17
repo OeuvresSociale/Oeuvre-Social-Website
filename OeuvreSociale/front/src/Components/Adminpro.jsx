@@ -39,7 +39,7 @@ const AdminProfileModal = () => {
   return (
     <>
       {showModal && (
-        <div className="moodal">
+        <div  className="moodal">
           <div className="moodal-content">
             <div className="profile-pic">
               <img src={profileImage} alt="Profile" />

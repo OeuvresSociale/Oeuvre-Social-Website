@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 const Formtitle = ({ closeFormtitle }) => {
    
     const [textInput, setTextInput] = useState('');
+    const [textInputprix, setTextInputprix] = useState('');
     const navigate = useNavigate();
 
     
@@ -15,9 +16,13 @@ const Formtitle = ({ closeFormtitle }) => {
         setTextInput(event.target.value);
     };
 
+    const handleTextInputprixChange = (event) => {
+        setTextInputprix(event.target.value);
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        navigate(`/formulaire/formulairedemande/confirmformulaire?text=${encodeURIComponent(textInput)}`);
+        navigate(`/formulaire/formulairedemande/confirmformulaire?text=${encodeURIComponent(textInput)}&prix=${encodeURIComponent(textInputprix)}`);
         closeFormtitle(false);
     };
 
@@ -35,6 +40,9 @@ const Formtitle = ({ closeFormtitle }) => {
                     />
                     <input
                         type='text'
+                        id="textInputprix"
+                        value={textInputprix}
+                        onChange={handleTextInputprixChange}
                        
                         placeholder='Prix'
                     />

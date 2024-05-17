@@ -26,26 +26,27 @@
   .search {
     display: flex;
     flex-direction: row;
-    border-radius: 5px;
-    border: 0;
+    gap:15px;
+   
+    border-bottom:#cfcece 1px solid ;
     outline:none;
-   background-color: #F7F7F7 ;
+  
    padding:8px;
 
    position: absolute;
-    left: 24px;
-    top:24px;
+    left: 800px;
+    top:10px;
         
     
    } .search svg{
-      color:#999999;
+      color:#cfcece;
       font-weight: 600;
       background-color: transparent;
     }
    
   .inp{
     background-color: transparent;
-    width:300px;
+    width:200px;
     height: 45;
     border: none;
     outline: none;

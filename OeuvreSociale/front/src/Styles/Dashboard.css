@@ -1,0 +1,143 @@
+:root {
+    --conwidth: 82%; /* Default value */
+  }.dashwrapp{
+   
+    width: var(--conwidth);
+    height:100vh;
+    position: absolute;
+    display: flex;
+    
+    margin-top: 60px;
+    background-color: #EAEDEF;
+}
+.dashcol1{
+    width:60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2%;
+
+}.dashtitle{
+    background-color: #EAEDEF;
+    color:#00194F;
+    font-size: 28px;
+    font-weight: 500;
+    margin-left: 2%;
+    margin-top: 2px;
+   
+}.lessommes{
+    height:10%;
+    width: 100%;
+    display: flex;
+    gap:1%;
+    margin: 2%;
+    
+}
+.somme9{
+    width: 30%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    gap: 13%;
+    box-shadow: 0 0 10px #0000000d;
+
+    align-items: center;
+    padding: 2%;
+
+}
+.somme8{
+    width: 30%;
+    height: 100%;
+    background-color:#dad8c2;
+    color: #fff;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    gap: 23%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+
+    align-items: center;
+    padding: 2%;
+
+}.somme3{
+    color:#00194F;
+    font-size: 18px;
+    font-weight: 500;
+
+}
+.somme4{
+   
+    font-size: 18px;
+    font-weight: 500;
+
+}.st{
+    display: flex;
+    gap:5px;
+}.npr9{
+    color:#00194F;
+    font-size: 30px;
+    font-weight: 500;
+
+}
+.npr8{
+   
+    font-size: 30px;
+    font-weight: 500;
+
+}.graphe9{
+    width: 96%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 7px;
+    padding: 2%;
+    margin: 2%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+
+}.graphtitle{
+   
+    color:#00194F;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 10px;
+
+}.react-calendar {
+    border: 2px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .react-calendar__tile {
+    background-color: #f0f0f0;
+  }
+  
+  .react-calendar__tile--active {
+    background-color: #051d37;
+    color: #fff;
+  }.app88{
+
+    width: 48%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    gap:3%;
+
+    background-color: #fff;
+    border-radius: 7px;
+    padding: 2%;
+    margin: 2%;
+    margin-top: 5.5%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+
+
+
+  }
+
+  .my-chart {
+    /* Add custom styles here */
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  

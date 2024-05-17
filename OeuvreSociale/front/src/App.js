@@ -27,6 +27,7 @@ import OFFers from "./Pages/OFFers.jsx";
 import ValideOffres from "./Pages/ValidOffres.jsx";
 import UnvalideOffres from "./Pages/UnvalideOffres.jsx";
 import OffreType from "./Pages/OffreType.jsx";
+import UnvalideOffreType from "./Pages/UnvalideOffretype.jsx";
 
 import Transaction from "./Pages/Admin/Transaction/Transaction.jsx";
 
@@ -36,6 +37,12 @@ import FormularTab from "./Pages/FormularTab.jsx";
 import Dashboard from "./Pages/Admin/Dashboard/Dashboard.jsx";
 
 import Reunionpage from "./Pages/Reunionpage.jsx";
+
+import ModefyFormtitle from "./Components/ModefyFormtitle.jsx";
+
+import Home from "./Pages/Employee/home/home.jsx";
+
+
 
 const App = () => {
 
@@ -66,15 +73,15 @@ const App = () => {
 
         {/* ..............Damande Tabele.............................................................................. */}
         {/* .............loan Tabele.............................................................................. */}
-        <Route path="/tables/loantype" element={<LoanType />} />
+        <Route path="/tables/loantype/:id" element={<LoanType />} /> 
         <Route path="/Loan" element={<Loan />} />
 
         {/* ..............Offre Tabele.............................................................................. */}
 
         {/* Formulaire.............................................................................. */}
-        <Route path="/formulaire" element={<Formul />} />
+        <Route path="/formulaire" element={<Addoffre />} />
         {/* ..............Damande Formular.............................................................................. */}
-        <Route path="/formulaire/formulairedemande" element={<Addoffre />} />
+       
         <Route
           path="/formulaire/formulairedemande/confirmformulaire"
           element={<Confirmformul />}
@@ -83,6 +90,8 @@ const App = () => {
           path="/formulaire/formulairedemande/modefyformulaire"
           element={<Modefyformule />}
         />
+        <Route path="/formulaire/modefyformtitle" element={<ModefyFormtitle/>} />
+        
         <Route path="/FormularTab" element={<FormularTab />} />
 
         {/* .............loan Formular.............................................................................. */}
@@ -90,6 +99,7 @@ const App = () => {
           path="/formulairetable/ajouterpret"
           element={<Addloandemande />}
         />
+        
         <Route path="/formulaire/formulairepret" element={<LoanForm />} />
         <Route
           path="/formulaire/formulairepret/modifierpret"
@@ -103,22 +113,26 @@ const App = () => {
         {/* ..............Offre Formular............................................................................... */}
 
         <Route
-          path="/formulaire/ajouteroffre/offreformulaire"
+         path=" /formulaire/ajouteroffre"   // where to create new offre
           element={<AddOffreForm />}
         />
-        <Route path="/formulaire/ajouteroffre" element={<OFFers />} />
         <Route
-          path="/formulaire/ajouteroffre/offresvalides"
-          element={<ValideOffres />}
-        />
+         path="/offresvalides"     //all valide offres page 
+          element={<ValideOffres />} 
+        /> 
         <Route
-          path="/formulaire/ajouteroffre/offresunvalides"
+        path="/offres"    // all unvalide offres page
           element={<UnvalideOffres />}
         />
         <Route
-          path="/formulaire/ajouteroffre/offretype"
+          path="/offre/:id"  //  when u click on a valide offre 
           element={<OffreType />}
         />
+        <Route
+          path="/formulaire/ajouteroffre/unvalideoffretype"
+          element={<UnvalideOffreType />}   //    when u click on an unvalide offre 
+        />
+
 
         {/* Tresorerie.............................................................................. */}
         {/* ........Transaction table..............................................................*/}
@@ -126,6 +140,7 @@ const App = () => {
 
         {/* ........Accepted demande..............................................................*/}
         <Route path="/demandevalid" element={<Demande_Valid />} />
+
 
         {/* Meeting.............................................................................. */}
         <Route path="Reunionpage" element={<Reunionpage />} />
@@ -137,6 +152,18 @@ const App = () => {
 {/* ----------------------- */}
 
         {/* <Route path="/image" element={<Images />} /> */}
+
+      
+
+        {/* 3-Employee part.............................................................................. */}
+
+        <Route path ="/home" element={< Home />}/>
+     
+        <Route path="/profile/:id" element={<Profile />} />
+{/* ----------------------- */}
+
+        
+
       
       </Routes>
     </BrowserRouter>

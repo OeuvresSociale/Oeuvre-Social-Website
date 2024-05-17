@@ -1,309 +1,141 @@
-import React, { useEffect, useState } from "react";
-import "../../Styles/tables/DataGrid.css";
+import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Avatar, Container } from "@mui/material";
+import { IconButton } from "@mui/material";
+import { CheckCircle } from "@mui/icons-material";
+import ValidateDemandePopup from "../popups/ValidateDemandePopup";
+import "../../Styles/tables/DataGrid.css";
 import axios from "axios";
-import { type } from "@testing-library/user-event/dist/type";
 
-const DemandeValid_Table = () => {
-  {
-    /*const [data, setData] = useState([]);
-  const getTrans_Data = async () => {
-    await axios
-      .get("http://localhost:8000/api/DemandeValid")
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+const DemandValid_Table = () => {
+  const [openPopup, setOpenPopup] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null); // Store the selected row
+
+  // Handles functions
+
+  const handleClosePopup = () => {
+    setOpenPopup(false);
   };
-    useEffect(() => {
-        getTrans_Data();
-    }, []);
-    //test in console
-    console.log(data);
 
-    const columns = [
-        { field: "concerné", headerName: "Concerné", width: 90 },
-        { field: "type", headerName: "type", width: 150 },
-        { field: "Date", headerName: "Date d'envoi", width: 150 },
-        { field: "Somme", headerName: "Somme", width: 150 },
-        { field: "pdf", headerName: "pdf", width: 150 },
-    ];
+  const handleValidateRow = (row) => {
+    // Store the selected row
+    setSelectedRow(row);
+    // Open the popup
+    setOpenPopup(true);
+  };
 
-    const rows = data.map((demandValid) => {
-        return {
-            id: demandValid._id,
-            conerné: demandValid.conerné,
-            type: demandValid.type,
-            Date: demandValid.Date,
-            Somme: demandValid.Somme,
-            pdf: demandValid.pdf,
-        };
-    */
-  }
-  const rows = [
-    {
-      id: 1,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 2,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 3,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 2700,
-      pdf: "pdf",
-    },
-    {
-      id: 4,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 5,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 6,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 7,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 8,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 9,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 10,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 11,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 12,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 13,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 14,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 15,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 16,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 17,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 18,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 19,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 20,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 21,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 22,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 23,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 24,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 25,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 26,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 27,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-    {
-      id: 28,
-      conerné: "mohammed",
-      type: "Mariage",
-      Date: "2024-02-20",
-      Somme: 1000,
-      pdf: "pdf",
-    },
-  ];
+  const [rows, setRows] = useState([{
+    id: 1,
+    name: "Manel",
+    type: "Mariage",
+    date: "2024-02-20",
+    amount: 1000,
+    categorie: "sortant",
+  },]);
 
+useEffect(() => {
+getTrans_Data();
+}, []);
+
+const getTrans_Data = async () => {
+try {
+
+  const response = await axios.get("http://localhost:8000/api/Requests");
+
+  const data = response.data;
+  //Debugging the fetched Data
+  console.log("The data passed are here:", data);
+  // Map fetched data to match the structure of rows
+  const rowData = data.map((demandValidInfo) => ({
+    id: demandValidInfo._id,
+
+    // concerned: demandValidInfo.employeeId.firstName,
+    concerned: `${demandValidInfo.employeeId.familyName} ${demandValidInfo.employeeId.firstName}`,
+    type: demandValidInfo.requestTypeId.title,
+    date: new Date(demandValidInfo.creationDate).toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+  }),
+    amount: demandValidInfo.requestTypeId.amount,
+
+    categorie: demandValidInfo.categorie,
+    files: demandValidInfo.files,
+  }));
+  // Update the state with the mapped data
+  setRows(rowData);
+} catch (error) {
+  console.error("Error fetching data:", error);
+}
+};
+  //Declare columns content
   const columns = [
-    { field: "conerné", headerName: "Concerné", width: 280 },
-    { field: "type", headerName: "type", width: 280, type: "singleSelect" },
-    { field: "Date", headerName: "Date d'envoi", width: 280 },
-    { field: "Somme", headerName: "Somme", width: 280 },
+    { field: "concerned", headerName: "Concerné", width: 315 },
+    { field: "type", headerName: "Type", width: 315 },
+    { field: "date", headerName: "Date d'envoi", width: 315 },
+    { field: "amount", headerName: "Somme", width: 315 },
+
     {
-      field: "pdf",
-      headerName: "pdf",
-      width: 280,
-      renderCell: (params) => <Avatar src="params.row.data" />,
-      sortable: false,
-      filterable: false,
+      field: "validation",
+      headerName: "Validation",
+      width: 250,
+      renderCell: (params) => (
+        <IconButton onClick={() => handleValidateRow(params.row)}>
+          <CheckCircle color="#999999" />
+        </IconButton>
+      ),
     },
   ];
+
+  // const rows = [
+  //   {
+  //     id: 1,
+  //     concerned: "Manel",
+  //     type: "Mariage",
+  //     date: "2024-02-20",
+  //     amount: 1000,
+  //     validated: true,
+  //   },
+  //   {
+  //     id: 2,
+  //     concerned: "Manl",
+  //     type: "Mariage",
+  //     date: "2024-02-20",
+  //     amount: 1000,
+  //     validated: false,
+  //   },
+  //   {
+  //     id: 3,
+  //     concerned: "Manel",
+  //     type: "Marge",
+  //     date: "2024-02-20",
+  //     amount: 1000,
+  //     validated: true,
+  //   },
+  // ];
 
   return (
-  
-      <DataGrid
-        autoHeight
-        rowsPerPageOptions={[5, 10, 20]}
-        pagination
-        rows={rows}
-        columns={columns}
-        sx={{
-          textAlign: "center",
-          color: "#00194f",
-          border: "none",
-          padding: "30px",
-          fontSize: "15px",
-        }}
-       
+    <div style={{ width: "100%" }}>
+      <div style={{ height: "auto", width: "100%" }}>
+        <DataGrid
+          autoHeight
+          rows={rows}
+          columns={columns}
+          sx={{
+            textAlign: "center",
+            color: "#00194f",
+            border: "none",
+            padding: "30px",
+            fontSize: "15px",
+          }}
+        />
+      </div>
+      <ValidateDemandePopup
+        openPopup={openPopup}
+        handleClosePopup={handleClosePopup}
+        selectedRow={selectedRow}
       />
-
+    </div>
   );
 };
 
-export default DemandeValid_Table;
+export default DemandValid_Table;

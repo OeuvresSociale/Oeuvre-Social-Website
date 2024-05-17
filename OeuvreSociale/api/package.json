@@ -39,7 +39,6 @@
     "fs": "^0.0.1-security",
     "method-override": "^3.0.0",
     "mongodb": "^5.9.2",
-    "mongoose-auto-increment": "^5.0.1",
     "node-cron": "^3.0.3",
     "path": "^0.12.7"
   }

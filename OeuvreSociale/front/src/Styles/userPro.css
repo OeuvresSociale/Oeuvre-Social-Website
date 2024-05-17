@@ -1,6 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700 &display=swap');
+:root {
+  --conwidth: 82%; /* Default value */
+}.profile{
+ 
+    position: absolute;
+    width: var(--conwidth);
+    height: 100vh;
+   
+   
+    background-color: #EAEDEF;
+
+   
+
+
+    
+
+}
 .profile-title {
-    position:absolute;
+  position: absolute;
     top: 10%;
     left:10%;
     font-size: 20px; 
@@ -40,7 +57,7 @@
 
 .left, .right , .Info-left , .Info-right{
   position:absolute;
-  width:30%;
+  width:20%;
   display:flexbox;
   font-weight: 500;
   padding:20px;

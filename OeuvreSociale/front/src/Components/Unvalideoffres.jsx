@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { BsArrowLeftCircle } from "react-icons/bs";
 import Deleteoffre from './Deleteoffre';
 import Validateoffrepopup from './Validateoffrepopup';
+import Logo from "../Assets/Logo1.png";
 
 
 
@@ -15,35 +16,23 @@ const Valideoffres = () => {
     const [openDeleteoffre, setopenDeleteoffre] = useState(false);
      const [openvalidateoffre, setopenvalidateoffre] = useState(false);
    
-    // useEffect(() => {
-    //     const fetchFormularies = async () => {
-    //         try {
-    //             const response = await axios.get("http://localhost:8000/api/typesRequest");
-    //             setFormularies(response.data);
-    //         } catch (error) {
-    //             console.error("Error fetching formularies:", error);
-    //         }
-    //     };
+     const [unvalidatedOffers, setunValidatedOffers] = useState([]);
 
-    //     fetchFormularies();
-    // }, [formularies]);
-
-    // const toggleExpand = (id) => {
-    //     setFormularies((prevFormularies) =>
-    //         prevFormularies.map((form) =>
-    //             form._id === id ? { ...form, expand: !form.expand } : form
-    //         )
-    //     );
-    // };
-
-    // const fetchFormularieDetails = async (selectedformularieId) => {
-    //     try {
-    //         const response = await axios.get(`http://localhost:8000/api/typesRequest/${selectedformularieId}`);
-    //         setSelectedformularie(response.data);
-    //     } catch (error) {
-    //         console.error('Error fetching formularie details:', error);
-    //     }
-    // };
+     useEffect(() => {
+         // Fetch validated offers from the backend when the component mounts
+         const fetchunValidatedOffers = async () => {
+             try {
+                 const response = await axios.get("http://localhost:8000/api/offres");
+                 setunValidatedOffers(response.data); // Update state with fetched data
+                 console.log("response:",response.data)
+             } catch (error) {
+                 console.error("Error fetching validated offers:", error);
+             }
+         };
+ 
+         fetchunValidatedOffers();
+     }, []); // Empty dependency array to fetch data only once when the component mounts
+ 
 
     return (
         <div className="addoffrewrapper4">
@@ -58,24 +47,16 @@ const Valideoffres = () => {
 
                 <div className="vali7">  <span className="titleaddoffre"> Offres non valides</span>
                 <div className="offrecrapv">
-                        <div className="offrecv">
-                        <img className='offimg2' src={`${process.env.PUBLIC_URL}/images/logo.png`}  />
-                        <Link to='/formulaire/ajouteroffre/unvalideoffretype'><div className="titoff">Titre d'offre :</div></Link>
-                        <div className="descoff">Titre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offre :</div>
+                {unvalidatedOffers.map((offer, index) => (<Link to='/formulaire/ajouteroffre/unvalideoffretype' className="offrecv">
+                        <img src={Logo} alt="logo" className="offimg2" />
+                        <div className="titoff">{offer.title}</div>
+                        <div className="descoff">{offer.desc}</div>
                         <div className="offbtns"><button onClick={() => { setopenDeleteoffre(true); }} className="offdel">Supprimer</button>
                         <button  className="offvalid" onClick={() => {setopenvalidateoffre(true); }}>Valider</button></div>
 
                         
-                         </div>
-                         <div className="offrecv">
-                        <img className='offimg2' src={`${process.env.PUBLIC_URL}/images/logo.png`}  />
-                        <div className="titoff">Titre d'offre :</div>
-                        <div className="descoff">Titre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offreTitre d'offre :</div>
-                        <div className="offbtns"><button  className="offdel">Supprimer</button>
-                        <button  className="offvalid">Valider</button></div>
-
-                        
-                         </div>
+                      </Link>  ))}
+                         
                     
                         
                        

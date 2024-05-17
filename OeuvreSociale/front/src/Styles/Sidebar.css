@@ -18,6 +18,7 @@ body {
     overflow: hidden;
     background-color: #00194F; 
     color: #fff;
+   
     
   }
   
@@ -39,6 +40,8 @@ body {
     overflow: hidden;
     background-color: #00194F; 
     color: #fff;
+   
+   
     
   }
   .inactive  span{
@@ -50,6 +53,7 @@ body {
   .top-section {
     background-color: #00194F; /* Adjust the top section color */
     color: #fff;
+    height:7%;
     
     text-align: center;
   }
@@ -69,6 +73,7 @@ body {
     cursor: pointer;
     font-size: 30px;
     background-color: #00194F;
+   
   }  .toggle-menu-btn2 svg{
     background-color: transparent;
   }
@@ -107,7 +112,7 @@ body {
 
   }.menuicon svg{
     background-color: transparent;
-    padding:19px;
+    padding:8px 17px;
     /* font-size: 20px; */
    
   }
@@ -122,20 +127,21 @@ cursor: pointer;
 
   .submenu {
     list-style: none;
-    padding :0px;
+    padding : 8px 0px;
     margin: 0;
+   
     background-color: #00194F;
     
     
   }
   
   .ayhaja {
-    padding:8px 8px;
+    padding:0 8px;
     color:#fff;
     background-color: #00194F;
     display:inline-block;
     align-items: center;
-    
+    margin-left: 30px;
     text-decoration: none;
     display: flex;
     
@@ -148,9 +154,12 @@ cursor: pointer;
   .ayhaja:not(.active):hover{
 
      
-      color:#b2b5b7;
+      color:#128582;
    
   }.ayhaja.active{
+    border-radius: 10px;
+    margin-left: 10px;
+    
     
     background-color: #EAEDEF;
       color:#00194F;
@@ -160,7 +169,9 @@ cursor: pointer;
   
   
   .ayhaja.active a{
-   
+     border-radius: 10px;
+  margin-left: 10px;
+  
     background-color: #EAEDEF;
     color:#00194F;
   }.ayhaja.active span{
@@ -188,7 +199,7 @@ cursor: pointer;
    
   } .ayhaja svg {
     /* font-size: 30px; */
-    padding: 10px;
+    padding: 7px;
     background-color: transparent;
   }
   
@@ -200,16 +211,16 @@ cursor: pointer;
     padding: 10px;
     background-color: transparent;
   }.menuitem:not(.active):hover{
-    color:#b2b5b7;
+    color:#128582;
   }.menuitem:not(.active):hover span{
     
-    color:#b2b5b7;
+    color:#128582;
   } 
   
   
   
   .menuitem:not(.active):hover a {
-    color:#b2b5b7;
+    color:#128582;
    
   }
 a{
@@ -222,30 +233,54 @@ a{
    
     text-align: left;
     list-style: none;
-    font-size: 23px;
+    font-size: 20px;
   
   }
-  a.active{
-    
+   /* a.active{
+   
     background-color: #EAEDEF;
     color:#00194F;
-  
-  }.active .menuicon {
+  }*/
+  .active{
+    background-color: #EAEDEF;
+    color:#00194F;
+    border-radius: 10px;
+    margin-right: 15px;
+  }
+ .active .menuicon {
+   margin-left: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
     background-color: #EAEDEF;
     color:#00194F;
    
-  }.active .link-taxt{
+  }  /*
+  .active span{
+    padding:8px;
+    padding-right:70px ;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
     background-color: #EAEDEF;
     color:#00194F;
-    /* pointer-events: none; */
-  }
+    /* pointer-events: none; 
+  } */
   .subicon{
     position:absolute;
     right:4% ;
    
    font-size: 12px;
   }
+  .noicon{
+    width: 100%;
+    border-top: #b2b5b7 1px solid;
+    color: #fff;
+    margin-left: 14px;
+    margin-bottom: 20px;
+    padding-top: 5px;
+    pointer-events: none;
 
+  }
+ 
    
   
   

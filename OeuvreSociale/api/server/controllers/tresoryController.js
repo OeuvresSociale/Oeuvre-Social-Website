@@ -1,12 +1,15 @@
-const Request = require("../models/request");
-const Offre = require("../models/offres");
-const laonRepayment = require("../models/loanRepaymen");
-const Laon = require("../models/Laon");
-const transaction = require("../models/transaction");
+const Request = require("../models/request.js");
+const Offre = require("../models/offres.js");
+const laonRepayment = require("../models/loanRepaymen.js");
+const Laon = require("../models/Laon.js");
+const transaction = require("../models/transaction.js");
 const cron = require("node-cron");
-const Budget = require("../models/budget");
-const path = require("path");
+const Budget = require("../models/budget.js");
+const path = require("path");   
 const fs = require("fs");
+const { updateBudget } = require("./budgetController.js");
+
+// valide the request
 const validRequest = async (req, res) => {
   try {
     // Find the request by ID and update its validated to true
@@ -57,7 +60,7 @@ const validRequest = async (req, res) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 };
-
+// valude loan
 const validLaon = async (req, res) => {
   try {
     // Find the request by ID and update its validated to true
@@ -76,6 +79,10 @@ const validLaon = async (req, res) => {
     }
 
     // Create a new outcome object with the updated request's data
+    const newRepayment = new laonRepayment({
+      amount :updatedRequest.amount,
+      duration:updatedRequest.duration,
+    });
     const newOutcome = new transaction({
       // requestId: updatedRequest._id,
       name:
@@ -84,7 +91,7 @@ const validLaon = async (req, res) => {
         updatedRequest.employeeId.familyName,
       Amount: updatedRequest.amount,
       categorie: "outcome",
-      type: "laon",
+      type: "loan",
       files: req.files.map((file) => ({
         fileName: file.filename, // Use the filename as fileId
         fileOriginalName: file.originalname,
@@ -199,6 +206,7 @@ const processRepaymentsMonthly = async (req, res) => {
       if (repayment.duration <= 0) {
         repayment.complete = true; // Set complete to true if duration is zero or negative
       }
+
       await repayment.save();
     }
     console.log("Repayments processed successfully");
@@ -243,73 +251,6 @@ const deleteTransaction = async (req, res) => {
     }
   }
 };
-// Function to initialize the Budget
-const initializeBudget = async (req, res) => {
-  try {
-    const { initialAmount } = req.body;
-    // Delete all documents from the "budget" collection
-    const deletionResult = await Budget.deleteMany();
-    // Create an initial history entry with the initial amount
-    const initialHistoryEntry = {
-      amount: initialAmount,
-      updatedDate: new Date(),
-    };
-
-    const budget = new Budget({
-      initialAmount: initialAmount,
-      history: [initialHistoryEntry],
-    });
-
-    const savedBudget = await budget.save();
-    console.log("Budget initialized successfully:", savedBudget);
-    res.status(200).json(savedBudget);
-  } catch (error) {
-    console.error("Error initializing budget:", error);
-    res.status(500).json({ error: "Failed to initialize budget" });
-  }
-};
-
-//budget updating
-async function updateBudget(transaction) {
-  try {
-    let budget = await Budget.findOne();
-
-    if (!budget) {
-      console.error("Budget not found!");
-      return;
-    }
-
-    // Calculate the current amount based on the latest amount in the history
-    let currentAmount = budget.initialAmount;
-    if (budget.history.length > 0) {
-      // Get the latest history entry
-      const latestHistoryEntry = budget.history[budget.history.length - 1];
-      currentAmount = latestHistoryEntry.amount;
-    }
-
-    // the current amount based on the transaction category
-    if (transaction.categorie === "income") {
-      currentAmount += transaction.Amount;
-    } else if (transaction.categorie === "outcome") {
-      currentAmount -= transaction.Amount;
-    } else {
-      console.error("Invalid transaction category!");
-      return;
-    }
-
-    // Add the current amount to the budget history
-    budget.history.push({
-      amount: currentAmount,
-      updatedDate: transaction.creationDate,
-    });
-
-    await budget.save();
-
-    console.log("Budget updated successfully!");
-  } catch (error) {
-    console.error("Error updating budget:", error);
-  }
-}
 
 //function to display the files
 const uploadsDir = path.join(__dirname, "../uploads");
@@ -338,11 +279,81 @@ async function getFileById(req, res) {
     res.status(500).send("Internal Server Error");
   }
 }
+
+// calculate total income,percentage income transactions, and the number of income transactions
+const calculateIncomeSummary = async (req, res) => {
+  try {
+    const incomes = await transaction.aggregate([
+      { $match: { categorie: "income" } },
+      {
+        $group: {
+          _id: null,
+          totalIncome: { $sum: "$Amount" },
+          count: { $sum: 1 },
+        },
+      }, // Calculate total income and count of income transactions
+    ]);
+    const totalTransactions = await transaction.aggregate([
+      { $group: { _id: null, totalCount: { $sum: 1 } } }, // Calculate total count of all transactions
+    ]);
+
+    const totalIncome = incomes.length > 0 ? incomes[0].totalIncome : 0;
+    const incomeCount = incomes.length > 0 ? incomes[0].count : 0;
+    const totalCount =
+      totalTransactions.length > 0 ? totalTransactions[0].totalCount : 0;
+    // Calculate income percentage
+    const incomePercentage = (incomeCount / totalCount) * 100;
+    res.status(200).json({
+      totalIncome,
+      incomeCount,
+      incomePercentage,
+    });
+  } catch (error) {
+    console.error("Error calculating income summary:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+//  calculate total outcome,  percentage , and the number of outcome transactions
+const calculateOutcomeSummary = async (req, res) => {
+  try {
+    const outcomes = await transaction.aggregate([
+      { $match: { categorie: "outcome" } },
+      {
+        $group: {
+          _id: null,
+          totalOutcome: { $sum: "$Amount" },
+          count: { $sum: 1 },
+        },
+      }, // Calculate total outcome and count of outcome transactions
+    ]);
+
+    const totalTransactions = await transaction.aggregate([
+      { $group: { _id: null, totalCount: { $sum: 1 } } }, // Calculate total count of all transactions
+    ]);
+
+    const totalOutcome = outcomes.length > 0 ? outcomes[0].totalOutcome : 0;
+    const outcomeCount = outcomes.length > 0 ? outcomes[0].count : 0;
+    const totalCount =
+      totalTransactions.length > 0 ? totalTransactions[0].totalCount : 0;
+
+    // Calculate outcome percentage
+    const outcomePercentage = (outcomeCount / totalCount) * 100;
+
+    res.status(200).json({
+      totalOutcome,
+      outcomeCount,
+      outcomePercentage,
+    });
+  } catch (error) {
+    console.error("Error calculating outcome summary:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 // Schedule the function to run monthly
 //cron.schedule('0 0 1 * *', processRepaymentsMonthly); // At 00:00 on the 1st day of every month
+
 module.exports = {
-  initializeBudget,
-  updateBudget,
   validRequest,
   getValid,
   validLaon,
@@ -352,4 +363,6 @@ module.exports = {
   deleteTransaction,
   processRepaymentsMonthly,
   getFileById,
+  calculateIncomeSummary,
+  calculateOutcomeSummary,
 };

@@ -8,34 +8,53 @@ import axios from 'axios';
 import {useParams} from 'react-router-dom';
 
   
-function UserPro(props) {
-  const [profileImage, setProfileImage] = useState(OIP); 
+function UserPro(props) { 
+  const [profileImage, setProfileImage] = useState(OIP);  
 
   const handleProfileImageUpload = (event) => {
     const file = event.target.files[0]; 
     if (file && file.type.includes('image/')) {
       const reader = new FileReader();
       reader.onload = () => {
-        setProfileImage(reader.result);
+        setProfileImage(reader.result); 
       };
       reader.readAsDataURL(file);
     }
   };
  // const [userData, setUserData] = useState([]);
-  const [showPasswordModal, setShowPasswordModal] = useState(false);
+const [showPasswordModal, setShowPasswordModal] = useState(false);
 const [password, setPassword] = useState('');
+const [email, setEmail] = useState('');
 const [error, setError] = useState(null);
+const [otp, setOTP] = useState([]);
 
-const handlePasswordSubmit = () => {
+
+const userData = props.dataP;
+console.log("userData",userData);
+console.log("id:",userData._id);
+
+//generate new otp
+const handlePasswordSubmit =async (e) => {
   // Here you would check if the entered password is correct
-  // For demonstration, let's assume the password is correct
-  setShowPasswordModal(false);
-  setShowOTPModal(true);
+ 
+    e.preventDefault();//not refreshing the page 
+   try{  
+    const response = await axios.get("http://localhost:8000/api/generateOTP",{ params: { email: userData.email } });
+     setOTP(response.data)
+     setShowPasswordModal(false);
+    setShowOTPModal(true);
+   }
+   catch(error){
+    setError(error.response.data);
+  }
+  console.log("otp:",otp);
   
   // Proceed to the next step (OTP verification)
 };
 const [showOTPModal, setShowOTPModal] = useState(false);
+
 const [otp, setOtp] = useState(['', '', '', '', '', '']);
+
 
 const handleChange = (index, value) => {
   const updatedOtp = [...otp];
@@ -43,11 +62,41 @@ const handleChange = (index, value) => {
   setOtp(updatedOtp);
 };
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  const enteredOtp = otp.join(''); 
-  console.log(enteredOtp);
-  
+
+const handleOTPKeyDown = (e, index) => {
+  if (e.key === 'Backspace' && index > 0 && !otp[index]) {
+    const newOTP = [...otp];
+    newOTP[index - 1] = '';
+    setOTP(newOTP.join(''));
+    const prevInput = document.getElementById(`otpInput${index - 1}`);
+    prevInput && prevInput.focus();
+  } else if (e.key.length === 1 && index < 5) {
+    const nextInput = document.getElementById(`otpInput${index + 1}`);
+    nextInput && nextInput.focus();
+  }
+};
+const handleOTPFocus = (e, index) => {
+  const otpValue = e.target.value;
+  if (otpValue) {
+    const newOTP = [...otp];
+    newOTP[index] = '';
+    setOTP(newOTP.join(''));
+  }
+};
+
+// verify otp validation
+const handleOTPSubmit =async (e) => {
+  // Here you would check if the entered OTP is correct
+  e.preventDefault();//not refreshing the page 
+  try{  
+  //  const response = await axios.get("http://localhost:8000/api/verifyOTP",{ params: { code: "422495" } });
+    setShowOTPModal(false);
+    setShowNewPasswordModal(true);
+    // console.log ("resonse:",response.data);
+  }
+  catch(error){
+  //  setError(error.response.data);
+ } 
 };
 
 
@@ -55,41 +104,37 @@ const [showNewPasswordModal, setShowNewPasswordModal] = useState(false);
 const [newPassword, setNewPassword] = useState('');
 const [confirmNewPassword, setConfirmNewPassword] = useState('');
 
-const handleNewPasswordSubmit = () => {
+// reset password
+const handleNewPasswordSubmit = async(e) => {
   // Here you would handle the submission of the new password
-  // For demonstration, let's assume the new password is updated successfully
-  setShowNewPasswordModal(false);
-  // Reset input values
+  e.preventDefault();//not refreshing the page 
+  try{  
+   const response = await axios.put(`http://localhost:8000/api/resetPassword/${userData._id}`, {
+    password: newPassword
+  });
+    // setOTP(response.data)
+    console.log(response.data);
+    setShowNewPasswordModal(false);
+  }
+  catch(error){
+   setError(error.response.data);
+ }
+ console.log("email:",userData.email);
+    console.log("password:",newPassword);
+//   // Reset input values
   setPassword('');
   setOtp('');
   setNewPassword('');
   setConfirmNewPassword('');
 };
-// const {id}=useParams();
-// console.log("id",id);
 
-  // useEffect(() => {
-   
-  //   const fetchRequests =  async () => {
-  //     try {
-  //       const response = await axios.get(`http://localhost:8000/api/employees/${id}`, { responseType: 'json', responseEncoding: 'utf8' });
 
-  //       setUserData(response.data); 
-  //     } catch (error) {
-  //       console.error('Error fetching requests:', error);
-  //       setError(error);
-  //       setUserData([]);
-  //     }
-  //   };
-  //   fetchRequests(); 
-  // },[]);
- const userData = props.dataP;
-  console.log("userData",userData);
+
+
    if (!userData) {
     return <div>Loading...</div>;
 
  }
-
   return (
     <div className="profile">
       <h1 className="profile-title">Employee Profile</h1>
@@ -127,15 +172,19 @@ const handleNewPasswordSubmit = () => {
           </div>
           <div className="Info-right">
             <p>{userData.phoneNumber}</p>
-
             <p>{userData.familysitution}</p>
             <p>{userData.monthlySalary}</p>
 
           </div>
         </div>
+
+{/*------------------------------------------------------------------------------------*/}
+
         <button className="button" onClick={() => setShowPasswordModal(true)}>
       Change Password <FontAwesomeIcon icon={faPen} size="sm" />
     </button>
+{/*------------------------------------------------------------------------------------*/}
+
     {showPasswordModal && (
       <div className='formtitlewrapper'>
       <div className="modal">
@@ -144,13 +193,21 @@ const handleNewPasswordSubmit = () => {
           type="password"
           value={password}
           placeholder='tap your password'
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          onChange={(e) => setPassword(e.target.value)} />
+          <h2>Enter Your email</h2>
+        <input
+          type="email"
+          value={email}
+          placeholder='tap your email'
+          onChange={(e) => setEmail(e.target.value)} />
         <button className="canceel" onClick={() => setShowPasswordModal(false)}>Cancel</button>
         <button className="Enteer" onClick= {handlePasswordSubmit}>Enter </button>
       </div>
       </div>
     )}
+
+{/*------------------------------------------------------------------------------------*/}
+
     {showOTPModal && (
   <div className='formtitlewrapper'>
     <div className="modal">
@@ -229,6 +286,9 @@ const handleNewPasswordSubmit = () => {
     </div>
   </div>
 )}
+
+{/*------------------------------------------------------------------------------------*/}
+
 {showNewPasswordModal && (
   <div className='formtitlewrapper'>
   <div className="modal">
