@@ -4,7 +4,7 @@ import "../../../Styles//Admin/global/structureDuPage.css";
 import Header from "../../../Components/Header";
 import Sidebar from "../../../Components/Sidebar";
 import DemandValid_Table from "../../../Components/tabeles/DemandValid_Table.jsx";
-
+import Page_Header from "../../../Components/Admin/bar_menu/Page_Header.jsx"
 
 const DemandValid = () => {
   return (
@@ -13,19 +13,7 @@ const DemandValid = () => {
         <Sidebar />
         <div className="dataContainer">
           <Header />
-          <Typography
-            variant="h3"
-            component="h3"
-            sx={{
-              textAlign: "left",
-              mt: 3,
-              mb: 3,
-              color: "#00194f",
-              margin: "20px",
-            }}
-          >
-            Table de DemandValid
-          </Typography>
+          <Page_Header title = "Demande Valide" subtitle="Table des demandes valider par les jurés"/>
           <div className="componentContainer">
             <DemandValid_Table />
           </div>

@@ -42,7 +42,7 @@ const Confirmform = () => {
         try {
             const formData = {
                 title: textInputValue,
-                prix: textInputprix,
+                amount: textInputprix,
                 docs: previewWords,
             };
             const response = await axios.post('http://localhost:8000/api/typesRequest', formData);
@@ -58,7 +58,7 @@ const Confirmform = () => {
     
     return (
         <div className="confirmwrapper">
-            <Link to='/formulaire/formulairedemande'> <div className="arrow"><BsArrowLeftCircle /></div> </Link>
+            <Link to='/formulaire'> <div className="arrow"><BsArrowLeftCircle /></div> </Link>
             <div className="confirmform">
                 {/* Removed unnecessary Link wrapper */}
                 <button onClick={handleConfirmForm}>Confirmer</button>

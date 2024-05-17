@@ -75,7 +75,7 @@ function Sidebar({ children }) {
       icon: <FaRegListAlt />,
     },
      {
-      path: "/Offres",
+      path: "/unvalideoffres",
       name: "Offres",
       icon: <GrAnnounce />,
     },
@@ -108,11 +108,7 @@ function Sidebar({ children }) {
       name: "Employé",
      
     },
-    {
-      path: "/home",
-      name: "Home",
-      icon: <FaUsers />,
-    },
+   
     {
       path: "/FormularTab",
       name: "Mes demandes",

@@ -43,7 +43,7 @@ const Recover = () => {
     onChange={(e) => {
       handleChange(0, e.target.value);
       if (e.target.value.length === 1) {
-        e.target.nextElementSibling.focus(); // Focus next element
+        e.target.nextElementSibling.focus();
       }
     }}
     required

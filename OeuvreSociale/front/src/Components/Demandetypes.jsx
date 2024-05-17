@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+ import React, { useState, useEffect } from "react";
 import "../Styles/Demandetypes.css";
 import { Link, useParams } from "react-router-dom";
 import Motif from "./Motif";

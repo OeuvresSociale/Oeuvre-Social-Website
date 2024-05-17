@@ -46,51 +46,51 @@ const Header = () => {
     }
   };
 
-  // const location = useLocation();
+  const location = useLocation();
 
-  // const { pathname } = location;
+  const { pathname } = location;
 
-  // const renderText = () => {
-  //   switch (pathname) {
-  //     case "/formulaire":
-  //       return "Creation";
-  //     case "/formulaire/formulairedemande":
-  //       return "Ajouter formulaire de demande";
-  //     case "/formulaire/formulairedemande/confirmformulaire":
-  //       return "Ajouter formulaire de demande";
+  const renderText = () => {
+    switch (pathname) {
+      case "/formulaire":
+        return "Creation";
+      case "/formulaire/formulairedemande":
+        return "Ajouter formulaire de demande";
+      case "/formulaire/formulairedemande/confirmformulaire":
+        return "Ajouter formulaire de demande";
 
-  //     case "/employeelist":
-  //       return "Gestion des employés";
-  //     case "/employeelist/Addemployee":
-  //       return "Gestion des employés";
-  //     case "/tables":
-  //       return "Table des demandes";
-  //     case "/tables/demandetype":
-  //       return "Detailles des demandes";
-  //     case "/profile":
-  //       return "Belink";
+      case "/employeelist":
+        return "Gestion des employés";
+      case "/employeelist/Addemployee":
+        return "Gestion des employés";
+      case "/tables":
+        return "Table des demandes";
+      case "/tables/demandetype":
+        return "Detailles des demandes";
+      case "/profile":
+        return "Belink";
 
-  //     case "/formulaire/ajouteroffre/offreformulaire":
-  //       return "Formulaire d ajoute d offre";
-  //     case "/formulaire/formulairepret":
-  //       return "Ajoute formulaire du pret";
-  //     case "/tables/loantype":
-  //       return "Detailles des demandes";
-  //     case "/formulaire/ajouteroffre":
-  //       return "Ajouter offre";
-  //     case "/formulaire/ajouteroffre/offresvalides":
-  //       return "Ajouter offre";
-  //     case "/formulaire/ajouteroffre/offresunvalides":
-  //       return "Ajouter offre";
-  //     case "/demandevalid":
-  //       return "Demandes valides";
-  //     case "/formulaire/ajouteroffre/offretype":
-  //       return "Détails d offre";
+      case "/formulaire/ajouteroffre/offreformulaire":
+        return "Formulaire d ajoute d offre";
+      case "/formulaire/formulairepret":
+        return "Ajoute formulaire du pret";
+      case "/tables/loantype":
+        return "Detailles des demandes";
+      case "/Offres":
+        return "Ajouter offre";
+      case "/formulaire/ajouteroffre/offresvalides":
+        return "Ajouter offre";
+      case "/formulaire/ajouteroffre/offresunvalides":
+        return "Ajouter offre";
+      case "/demandevalid":
+        return "Demandes valides";
+      case "/formulaire/ajouteroffre/offretype":
+        return "Détails d offre";
 
-  //     default:
-  //       return "Dashboard";
-  //   }
-  // };
+      default:
+        return "Dashboard";
+    }
+  };
   
 
   return (
@@ -98,7 +98,7 @@ const Header = () => {
       <div className="box1">
        
         <img src={Logo} alt="logo" className="logo5" />
-        {/* <div className="em">{renderText()}</div> */}
+        <div className="em">{renderText()}</div>
         <div className="search">
         <BsSearch onClick={handleSearch} />
           <input

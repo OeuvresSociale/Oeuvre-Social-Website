@@ -1,44 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Grid, TextField, Button, Typography } from "@mui/material";
-import "./Transaction_form.css";
-// import axios from "axios"; // Import Axios library
 import { InsertDriveFile } from "@mui/icons-material";
+import axios from "axios";
+import "./Transaction_form.css";
 
 const Transaction_form = () => {
   const [formData, setFormData] = useState({
-    concerned: "",
+    name: "",
     type: "",
     date: "",
-    amount: "",
-    direction: "",
-    file: null,
+    Amount: "",
+    categorie: "",
+    files: null,
   });
-
-  // useEffect(() => {
-  //     const submitForm = async () => {
-  //       if (formData.concerned && formData.type && formData.date && formData.amount && formData.direction && formData.file) {
-  //         try {
-  //           const response = await axios.post("/api/transactions", formData);
-  //           console.log("Form submitted:", response.data);
-  //           // Clear form data after successful submission
-  //           setFormData({
-  //             concerned: "",
-  //             type: "",
-  //             date: "",
-  //             amount: "",
-  //             direction: "",
-  //             file: null,
-  //           });
-  //           alert("Transaction saved successfully");
-  //         } catch (error) {
-  //           console.error("Error submitting form:", error);
-  //           alert("Failed to save transaction. Please try again.");
-  //         }
-  //       }
-  //     };
-
-  //     submitForm();
-  //   }, [formData]);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -46,41 +20,61 @@ const Transaction_form = () => {
       ...formData,
       [name]: files ? files[0] : value,
     });
-  
-    if (name === 'file') {
+
+    if (name === "files" && files) {
       const fileName = files[0].name;
-      document.querySelector('.file-text').textContent = fileName;
+      document.querySelector(".file-text").textContent = fileName;
     }
   };
 
   const handleCancel = () => {
     setFormData({
-      concerned: "",
+      name: "",
       type: "",
       date: "",
-      amount: "",
-      direction: "",
-      file: null,
+      Amount: "",
+      categorie: "",
+      files: null,
     });
+    document.querySelector(".file-text").textContent = "Importer Le récépissé de dépot";
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     // Check if all fields are filled
     const isFormValid = Object.values(formData).every((value) => !!value);
 
-    if (isFormValid) {
-      // Submit the form
-      console.log("Form submitted:", formData);
-    } else {
+    if (!isFormValid) {
       alert("Please fill in all fields.");
+      return;
+    }
+
+    const formDataToSubmit = new FormData();
+    for (const key in formData) {
+      formDataToSubmit.append(key, formData[key]);
+    }
+
+    try {
+      const response = await axios.post("http://localhost:8000/api/addTransaction", formDataToSubmit, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log("Form submitted:", response.data);
+      // Clear form data after successful submission
+      handleCancel();
+      alert("Transaction saved successfully");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Failed to save transaction. Please try again.");
     }
   };
 
   return (
     <form className="transaction-form" onSubmit={handleSubmit}>
       <Grid container spacing={2}>
-        <Grid>
+        <Grid item xs={12}>
           <Typography
             variant="h4"
             component="h4"
@@ -98,8 +92,8 @@ const Transaction_form = () => {
         <Grid item xs={12}>
           <TextField
             label="Concerné"
-            name="concerned"
-            value={formData.concerned}
+            name="name"
+            value={formData.name}
             onChange={handleChange}
             variant="outlined"
             fullWidth
@@ -135,8 +129,8 @@ const Transaction_form = () => {
         <Grid item xs={12}>
           <TextField
             label="Somme"
-            name="amount"
-            value={formData.amount}
+            name="Amount"
+            value={formData.Amount}
             onChange={handleChange}
             variant="outlined"
             fullWidth
@@ -147,8 +141,8 @@ const Transaction_form = () => {
           <TextField
             select
             label="Direction"
-            name="direction"
-            value={formData.direction}
+            name="categorie"
+            value={formData.categorie}
             onChange={handleChange}
             variant="outlined"
             fullWidth
@@ -158,8 +152,8 @@ const Transaction_form = () => {
             required
           >
             <option value=""></option>
-            <option value="sortant">Sortant</option>
-            <option value="entrant">Entrant</option>
+            <option value="outcome">Sortant</option>
+            <option value="income">Entrant</option>
           </TextField>
         </Grid>
         <Grid item xs={12}>
@@ -168,7 +162,7 @@ const Transaction_form = () => {
               <input
                 type="file"
                 accept=".pdf"
-                name="file"
+                name="files"
                 onChange={handleChange}
                 required
                 className="file-input"

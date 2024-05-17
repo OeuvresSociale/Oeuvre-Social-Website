@@ -84,18 +84,7 @@ console.log("data :",employees);
   return (
     <div className="box">
       <div className="subbox">
-        {/* <div className="search">
-          <input
-            id="searchInput"
-            className="inp"
-            type="text"
-            placeholder="id , employe nom , role"
-            pattern=''
-            value={searchValue}
-         onChange={handleChange}
-          />
-            <BsSearch onClick={handleSearch} />
-        </div> */}
+       
         
            <Link  to="/employeelist/Addemployee"  >
               <button className="btn">

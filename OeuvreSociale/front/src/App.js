@@ -29,13 +29,14 @@ import UnvalideOffres from "./Pages/UnvalideOffres.jsx";
 import OffreType from "./Pages/OffreType.jsx";
 import UnvalideOffreType from "./Pages/UnvalideOffretype.jsx";
 
-import Archive from "./Pages/Admin/Archive/Archive.jsx";
 import Transaction from "./Pages/Admin/Transaction/Transaction.jsx";
 
 import CreeLoan from "./Pages/CreeLoan.jsx";
 import Loan from "./Pages/Loan.jsx";
 import FormularTab from "./Pages/FormularTab.jsx";
 import Dashboard from "./Pages/Admin/Dashboard/Dashboard.jsx";
+
+import Reunionpage from "./Pages/Reunionpage.jsx";
 
 import ModefyFormtitle from "./Components/ModefyFormtitle.jsx";
 
@@ -78,9 +79,9 @@ const App = () => {
         {/* ..............Offre Tabele.............................................................................. */}
 
         {/* Formulaire.............................................................................. */}
-        <Route path="/formulaire" element={<Formul />} />
+        <Route path="/formulaire" element={<Addoffre />} />
         {/* ..............Damande Formular.............................................................................. */}
-        <Route path="/formulaire/formulairedemande" element={<Addoffre />} />
+       
         <Route
           path="/formulaire/formulairedemande/confirmformulaire"
           element={<Confirmformul />}
@@ -89,7 +90,7 @@ const App = () => {
           path="/formulaire/formulairedemande/modefyformulaire"
           element={<Modefyformule />}
         />
-        <Route path="/modefyformtitle" element={<ModefyFormtitle/>} />
+        <Route path="/formulaire/modefyformtitle" element={<ModefyFormtitle/>} />
         
         <Route path="/FormularTab" element={<FormularTab />} />
 
@@ -98,6 +99,7 @@ const App = () => {
           path="/formulairetable/ajouterpret"
           element={<Addloandemande />}
         />
+        
         <Route path="/formulaire/formulairepret" element={<LoanForm />} />
         <Route
           path="/formulaire/formulairepret/modifierpret"
@@ -111,7 +113,7 @@ const App = () => {
         {/* ..............Offre Formular............................................................................... */}
 
         <Route
-         path=" /formulaire/ajouteroffre"   // where to create new offre
+         path="/unvalideoffres/ajouteroffre"   // where to create new offre
           element={<AddOffreForm />}
         />
         <Route
@@ -119,7 +121,7 @@ const App = () => {
           element={<ValideOffres />} 
         /> 
         <Route
-        path="/offres"    // all unvalide offres page
+        path="/unvalideoffres"    // all unvalide offres page
           element={<UnvalideOffres />}
         />
         <Route
@@ -127,7 +129,7 @@ const App = () => {
           element={<OffreType />}
         />
         <Route
-          path="/formulaire/ajouteroffre/unvalideoffretype"
+          path="/unvalideoffretype"
           element={<UnvalideOffreType />}   //    when u click on an unvalide offre 
         />
 
@@ -139,8 +141,19 @@ const App = () => {
         {/* ........Accepted demande..............................................................*/}
         <Route path="/demandevalid" element={<Demande_Valid />} />
 
-        {/* Archive.............................................................................. */}
-        <Route path="/reunions" element={<Archive />} />
+
+        {/* Meeting.............................................................................. */}
+        <Route path="Reunionpage" element={<Reunionpage />} />
+
+        {/* 3-Employee part.............................................................................. */}
+
+
+        <Route path="/profile/:id" element={<Profile />} />
+{/* ----------------------- */}
+
+        {/* <Route path="/image" element={<Images />} /> */}
+
+      
 
         {/* 3-Employee part.............................................................................. */}
 
@@ -150,6 +163,7 @@ const App = () => {
 {/* ----------------------- */}
 
         
+
       
       </Routes>
     </BrowserRouter>

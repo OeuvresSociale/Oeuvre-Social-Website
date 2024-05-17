@@ -1,22 +1,28 @@
-import React from 'react';
-import Menu from '../Components/Menu';
-import Demandstable from '../Components/Demandstable';
-import Header from '../Components/Header';
-import Sidebar from '../Components/Sidebar';
-import '../Styles/Tabledemandes.css';
+import React from "react";
+import Menu from "../Components/Menu";
+import DemandRecever_Table from "../Components/tabeles/DemandRecever_Table.jsx";
+import Header from "../Components/Header";
+import Sidebar from "../Components/Sidebar";
+import Page_Header from "../Components/Admin/bar_menu/Page_Header.jsx";
+import "../Styles/Admin/global/structureDuPage.css";
+
 const TableDemands = () => {
-    return ( 
-      <div className='containerdem'>
-        <Sidebar/>
-        <div className='contentdem'>
-          <Header/>
-         <Menu />
-        <div className="Demand-section">
-       <Demandstable/>
+  return (
+    <div>
+      <div className="body_space">
+        <Sidebar />
+        <div className="dataContainer">
+          {/* <TopMenu /> */}
+          <Header />
+         <Page_Header title="Les Demande Recever" subtitle="les tables des demande et loan recever"/>
+
+          <div className="componentContainer">
+            <DemandRecever_Table />
+          </div>
         </div>
-     </div></div>
-);
-    };
-    
-    export default  TableDemands;
-    
+      </div>
+    </div>
+  );
+};
+
+export default TableDemands;

@@ -1,0 +1,248 @@
+.gestion-des-reunions-page {
+  top:8%;
+  position: absolute;
+  width:82%;
+  height:92%;
+  left:18%;
+  display: flex;
+  justify-content: space-between;
+}
+.meeting-container {
+  position: absolute;
+  width:30%;
+  top:0%;
+  height:98%;
+  left:1%;
+  flex: 1;
+}
+.met{
+  position: absolute;
+  top:3%;
+  left:4%;
+  color: #1E2648;
+}
+.meeting-list {
+  position: absolute;
+  top:20%;
+  width:95%;
+  left:2%;
+  overflow-y: auto;
+  max-height: 600px; 
+}
+
+.meeting-item {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #fff; 
+  display: flex;
+  justify-content: left;   
+  align-items:center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  text-decoration: none;
+}
+
+.meeting-item:hover {
+  background-color: #1E2648;
+}
+
+.meeting-details {
+  padding:20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+.meeting-form {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+/* Styling for React Calendar */
+.calendar-container {
+  position: absolute;
+  width: 64%;
+  left:32%;
+  top:2.5%;
+  height: 92%;
+  padding: 20px;
+  /* background-color: aqua; */
+}
+
+
+/* Styles for the react-calendar component */
+.react-calendar {
+  width: 100%;
+  height: 90%;
+  top: 0%;
+  max-width: none;
+  border-radius: 5px;
+  font-size: 1.2em; 
+}
+
+.react-calendar__tile {
+  height: 85px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.react-calendar__navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.react-calendar__navigation__label {
+  font-size: 0.8em; 
+  font-weight: bold;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 0 10px;
+  cursor: pointer;
+  background-color:#1E2648;
+}
+
+
+.react-calendar__navigation__arrow {
+  font-size: 0.8em; 
+  padding: 10px;
+  background-color:#1E2648;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.meeting-form-popup {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 550px;
+padding: 20px;
+background-color: #fff;
+border: 1px solid #ddd;
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+z-index: 1000; /* Ensure the pop-up is on top */
+border-radius: 10px;
+text-align: center;
+}
+
+.meeting-form-popup h2 {
+margin-bottom: 10px;
+}
+
+.meeting-form-popup p {
+font-size: 1.2em;
+margin-bottom: 20px;
+font-weight: bold;
+}
+
+/* Styles for input and textarea elements in the pop-up */
+.meeting-form-popup input,
+.meeting-form-popup textarea {
+display: block;
+width: 100%;
+margin-bottom: 10px;
+padding: 10px;
+border: 1px solid #ddd;
+border-radius: 5px;
+box-sizing: border-box;
+justify-content: center;
+}
+
+.meeting-form-popup button {
+width: 25%;
+padding: 10px;
+margin: 5px;
+background-color:rgba(19, 133, 130, 1);
+;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.meeting-form-popup button.cancel {
+background-color:rgba(142, 202, 230, 1);
+}
+.meeting-form-popup .buttons {
+  position: relative;
+  width:50%;
+  left:45% ;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.meeting-edit-form-popup {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: white;
+padding: 45px;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.meeting-edit-form-popup h2 {
+font-size: 1.5rem;
+margin-bottom: 10px;
+}
+
+.meeting-edit-form-popup p {
+margin-bottom: 10px;
+}
+
+.pdf-input-container {
+background-color: rgba(217, 217, 217, 0.2);
+color: rgba(153, 153, 153, 1);
+border: 1px solid rgba(153, 153, 153, 0.5);
+padding:8px;
+border-radius: 2px;
+margin-left: auto;
+margin-bottom:20px;
+margin-top:30px;
+font-size: 12px; 
+display: flex; 
+align-items: center; 
+}
+
+.pdf-input-container label {
+display: flex;
+align-items: center;
+cursor: pointer;
+}
+
+.pdf-icon {
+margin-right: 10px;
+}
+
+.pdf-input-container input[type="file"] {
+display: none;
+}
+
+.buttons {
+display: flex;
+}
+.buttons button {
+  background-color:rgba(142, 202, 230, 0);
+  border: 1px solid rgba(153, 153, 153, 1);
+  color:rgba(153, 153, 153, 1);
+  padding: 10px 20px;
+  border-radius: 7px;
+  cursor: pointer;
+  margin-left: 40px;
+}
+.buttons button:focus {
+  outline: none;
+}
+.buttons .valid{
+  color:rgba(255, 255, 255, 0.8);
+  background-color: rgba(19, 133, 130, 1);
+}

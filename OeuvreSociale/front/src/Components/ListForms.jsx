@@ -1,109 +1,155 @@
-import React, { useState } from "react";
-import '../Styles/listForms.css';
-import { FaRegFilePdf } from "react-icons/fa6";
-import { FaArrowUp } from 'react-icons/fa';
-
+import React, { useState, useEffect } from "react";
+import "../Styles/listForms.css";
+import { FaRegFilePdf, FaArrowUp } from "react-icons/fa";
+import Addloandemande from "./Addloandemande";
+import axios from "axios";
+import { InsertDriveFile } from "@mui/icons-material";
 function Forms() {
-
-   // just to test 
-  const links = [
-    { label: "Type de demande 1", popId: "pop1" },
-    { label: "Type de demande 2", popId: "pop2" },
-    { label: "Type de demande 3", popId: "pop3" }
-  ];
-
-  // just to test 
-  const pops = {
-    pop1: { 
-      title: "Pop 1 Title", 
-      numInputs: 3,
-      inputTitles: ["Input 1 Title", "Input 2 Title", "Input 3 Title"],
-      inputNames: ["input1", "input2", "input3"]
-    },
-    pop2: { 
-      title: "Pop 2 Title", 
-      numInputs: 2,
-      inputTitles: ["File 1 Title", "File 2 Title"],
-      inputNames: ["file1", "file2"]
-    },
-    pop3: { 
-      title: "Pop 3 Title", 
-      numInputs: 4,
-      inputTitles: ["Document 1 Title", "Document 2 Title", "Document 3 Title", "Document 4 Title"],
-      inputNames: ["document1", "document2", "document3", "document4"]
-    }
-  };
-
-  // User information for testing
-  const user = {
-    firstName: "Mohammed",
-    lastName: "moh"
-  };
-
+  const [links, setLinks] = useState([]);
   const [showPop, setShowPop] = useState(false);
-  const [selectedPop, setSelectedPop] = useState(null);
+  const [selectedPopDetails, setSelectedPopDetails] = useState(null);
+  const [files, setFiles] = useState([]); // State to store uploaded files
+  const [fileNames, setFileNames] = useState([]); // State to store selected file names
+  const [showPop2, setShowPop2] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    type: "",
+    date: "",
+    Amount: "",
+    categorie: "",
+    files: null,
 
-  const handleLinkClick = (popId) => {
-    setSelectedPop(popId);
-    setShowPop(true);
+
+  });
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/typesRequest");
+        setLinks(response.data);
+      } catch (error) {
+        console.error('Error fetching type requests:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleSubmit = async () => {
+  try {
+    const formData = new FormData();
+    formData.append('requestTypeId', selectedPopDetails._id);
+    formData.append('employeeId', '662b6d845103d0588235a182'); // Remplacez 'EMPLOYEE_ID' par l'ID réel de l'employé
+
+    // Ajoutez le type de demande aux données envoyées
+
+    for (let i = 0; i < files.length; i++) {
+      formData.append('files', files[i]);
+    }
+
+    const response = await axios.post("http://localhost:8000/api/Requests", formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+    
+    console.log('Response:', response.data);
+    alert("request saved successfully");
+     setShowPop(false);
+  } catch (error) {
+    console.error('Error submitting request:', error);
+    alert("Failed to save request. Please try again.");
+     setShowPop(false);
+  }
+};
+
+  const handleLinkClick = async (popId) => {
+    try {
+      const response = await axios.get(`http://localhost:8000/api/typesRequest/${popId}`);
+      setSelectedPopDetails(response.data);
+      setShowPop(true);
+    
+      
+    } catch (error) {
+      console.error('Error fetching type request details:', error);
+       
+    }
   };
 
   const closePop = () => {
     setShowPop(false);
-    setSelectedPop(null);
+    setSelectedPopDetails(null);
   };
-  const handleFileUpload = (event) => {
-    const uploadedFile = event.target.files[0];
-    console.log("Uploaded file:", uploadedFile);
-  };
+  const handleChange = (e, docIndex) => {
+  const uploadedFiles = e.target.files;
+  const newFiles = [...files]; // Copiez la liste des fichiers existante
+  
+  // Vérifiez si des fichiers sont sélectionnés
+  if (uploadedFiles && uploadedFiles.length > 0) {
+    // Remplacez le fichier existant à l'index donné par le nouveau fichier
+    newFiles[docIndex] = uploadedFiles[0];
+    
+    // Mettez à jour le nom du fichier pour l'affichage
+    const newFileNames = [...fileNames];
+    newFileNames[docIndex] = uploadedFiles[0].name;
+    setFileNames(newFileNames);
+  }
+  
+  setFiles(newFiles); // Mettez à jour la liste des fichiers dans le state
+};
 
-  const handleUploadButtonClick = (inputName) => {
-    document.getElementsByName(inputName)[0].click();
-  };
 
   return (
     <div className="formsrapper">
       <h2 className="title">Types des demandes</h2>
+      <div className="linkrapper" onClick={() => { setShowPop2(true); }}>
+        <div className="linktdem">
+          Demander pret 
+        </div>
+      </div>
       {links.map((link, index) => (
-        <div key={index} className="linkrapper"onClick={() => handleLinkClick(link.popId)}>
-          <div className="linktdem" >
-            {link.label}
+        <div key={index} className="linkrapper" onClick={() => handleLinkClick(link._id)}>
+          <div className="linktdem">
+            {link.title}
           </div>
         </div>
       ))}
       {showPop && (
         <div className="popModal">
           <div className="popContent">
-            <h2 className="poptitle">{pops[selectedPop].title}</h2>
-            <div className="userInfo">
-              <div className="userInfoItem">
-                <div className="userInfoLabel">First Name:</div>
-                <div className="userInfoValue">{user.firstName}</div>
-              </div>
-              <div className="userInfoItem">
-                <div className="userInfoLabel">Last Name:</div>
-                <div className="userInfoValue">{user.lastName}</div>
-              </div>
-            </div>
+            <h2 className="poptitle">{selectedPopDetails.title}</h2>
             <ul className="inputList">
-              {pops[selectedPop].inputTitles.map((title, index) => (
-                <li key={index}>
-                  <div className="Label">{title} : </div>
-                  <div className="inputWrapper"onClick={() => handleUploadButtonClick(pops[selectedPop].inputNames[index])}>
-                    <FaRegFilePdf className="pdfIcon" />
-                    <div className="uploadFile" >  <FaArrowUp className="icon" /> Upload File </div>
-                    <input type="file" accept=".pdf" name={pops[selectedPop].inputNames[index]} onChange={handleFileUpload} />
-                  </div>
+              {selectedPopDetails.docs.map((doc, index) => (
+                <li key={index}> 
+                  <div className="Label">{doc} : </div>
+               <div className="pdf-field">
+      <label className="file-label">
+        <input
+          type="file"
+          accept=".pdf"
+          name={`files_${index}`} // Nom unique pour chaque champ de fichier
+          onChange={(e) => handleChange(e, index)} // Passez l'index du document à handleChange
+          required
+          className="file-input"
+        />
+        <span className="file-icon">
+          <InsertDriveFile />
+        </span>
+        <span className="file-text">{fileNames[index]}</span> {/* Utilisez l'index pour le texte du fichier */}
+      </label>
+    </div>
                 </li>
               ))}
             </ul>
             <div className="buttonsWrapper">
               <button className="cancelButton" onClick={closePop}>Cancel</button>
-              <button className="validateButton" >Validate</button>
+              <button className="validateButton" onClick={handleSubmit}>Validate</button>
             </div>
           </div>
         </div>
       )}
+      {showPop2 && <Addloandemande closeit={setShowPop2} />}
     </div>
   );
 }
