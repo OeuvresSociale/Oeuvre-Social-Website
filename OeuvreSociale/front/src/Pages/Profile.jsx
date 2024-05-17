@@ -52,7 +52,7 @@ const Profile = () => {
   }
 
   return (
-    <div>
+   
 
   <div className='containeradd'>
       <Sidebar/>

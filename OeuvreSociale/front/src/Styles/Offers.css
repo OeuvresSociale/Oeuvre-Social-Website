@@ -34,8 +34,9 @@
  
    display: flex;
    align-items: center;
-   gap:20px;
+   
    justify-content: center;
+   gap:20px;
    padding: 8px 12px; 
    font-size: 30px;
    font-weight: 400;
@@ -46,7 +47,7 @@
 
 
 }.addoffre button{
-    transform: translateY(-7px);
+   
     font-size: 22px;
     background-color: #148582; 
     color: #fff; 
@@ -74,7 +75,7 @@
     background-color: #EAEDEF;
     color:#00194F;
     font-size: 28px;
-    font-weight: 400;
+    font-weight: 500;
     transform: translateY(-20px);
     position: absolute;
  

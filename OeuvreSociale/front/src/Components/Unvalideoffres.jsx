@@ -37,15 +37,15 @@ const Valideoffres = () => {
     return (
         <div className="addoffrewrapper4">
              <div className="addformbtn">
-                <div  className="addoffre">
-                    <Link to='/formulaire/ajouteroffre/offreformulaire'><button>Ajouter offre</button></Link>
+                 <Link to='/formulaire/ajouteroffre/offreformulaire'><div  className="addoffre">
+                   <button>Ajouter offre</button>
                     <FiPlusCircle />
-                </div>
+                </div></Link>
             </div>
-            <Link to='/formulaire/ajouteroffre'> <div className="arrow"><BsArrowLeftCircle /></div> </Link>
+           
   
 
-                <div className="vali7">  <span className="titleaddoffre"> Offres non valides</span>
+                <div className="vali7">  <span className="titleaddoffre"> Offres non valides :</span>
                 <div className="offrecrapv">
                 {unvalidatedOffers.map((offer, index) => (<Link to='/formulaire/ajouteroffre/unvalideoffretype' className="offrecv">
                         <img src={Logo} alt="logo" className="offimg2" />

@@ -55,7 +55,6 @@ function Demands() {
 
   // Render the table and other UI elements here
 
-  /////////////////////////////////////////////////////////////////////////
 
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);
