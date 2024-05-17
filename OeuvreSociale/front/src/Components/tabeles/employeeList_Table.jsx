@@ -27,16 +27,16 @@ function DemandRecever_Table() {
 
   const getDemandeReceived_data = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/api/Requests");
+      const response = await axios.get('http://localhost:8000/api/employees');
       const data = response.data;
       console.log("The data passed are here:", data);
       // Map fetched data to match the structure of rows
       const rowData = data.map((RecievedDemand) => ({
-        id: RecievedDemand._id,
-        name: RecievedDemand.name,
-        type: RecievedDemand.type,
-        date: RecievedDemand.date,
-        Status: RecievedDemand.Status,
+        id: RecievedDemand.idEmployee,
+        name: `${RecievedDemand.familyName} ${RecievedDemand.firstName}`
+        email: RecievedDemand.email,
+        salaire: RecievedDemand.monthlySalary,
+        role: RecievedDemand.role,
       }));
       // Update the state with the mapped data
       setRows(rowData);
@@ -45,40 +45,25 @@ function DemandRecever_Table() {
     }
   };
 
-  //Clorize the status
-  const getStatusColor = (status) => {
-    switch (status) {
-      case "En attente":
-        return "status-pending";
-      case "Refuser":
-        return "status-rejected";
-      case "Accepter":
-        return "status-accepted";
-      default:
-        return "status-pending";
-    }
-  };
   
 
   // Declare the columns content
 
   const columns = [
-    { field: "id", headerName: "N°", width: 200 },
+    { field: "id", headerName: "ID", width: 200 },
     { field: "name", headerName: "Employee ", width: 275 },
-    { field: "type", headerName: "Type", width: 275 },
-    { field: "date", headerName: "Date d'envoi", width: 275 },
-    {
-      field: "Status",
-      headerName: "Status",
-      width: 275,
-      renderCell: (params) => (
-        <span className={getStatusColor(params.value)}>{params.value}</span>
-      ),
-    }, 
+    { field: "email", headerName: "Email", width: 275 },
+    { field: "salaire", headerName: "Salaire", width: 275 },
+    { field: "role", headerName: "Role", width: 275 }, 
     {
       field: "Details",
       headerName: "Details",
       width: 140,
+      renderCell: (params) => (
+        <IconButton onClick={() => handleDetails(params.row.id)}>
+          <Edit />
+        </IconButton>
+      ),
     },
     {
         field: "edit",
@@ -95,7 +80,7 @@ function DemandRecever_Table() {
         headerName: "Delete",
         width: 140,
         renderCell: (params) => (
-          <IconButton onClick={() => handleEdit(params.row.id)}>
+          <IconButton onClick={() => handleDelete(params.row.id)}>
             <Edit />
           </IconButton>
         ),

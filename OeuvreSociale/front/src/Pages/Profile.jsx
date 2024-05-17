@@ -62,7 +62,7 @@ const Profile = () => {
     <UserPro dataP={userData} />
        
        {/* <Demands dataD={requests}/> */}
-       
+       </div>
 
       </div>
     </div>
