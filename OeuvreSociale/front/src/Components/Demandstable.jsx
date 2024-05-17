@@ -129,7 +129,7 @@ return (
             <tr key={request._id} >
 
               <td>1</td>
-              <td>2</td>
+              <td>{`${request.employeeId.familyName} ${request.employeeId.firstName}`}</td>
               <td>{request.requestTypeId.title }</td>
               <td> {new Date(request.creationDate).toLocaleDateString("en-GB", {
                   day: "2-digit",
