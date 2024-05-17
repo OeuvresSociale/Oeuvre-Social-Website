@@ -5,7 +5,7 @@ import { Edit, PictureAsPdf } from "@mui/icons-material";
 import ModifyRowPopup from "../popups/ModifyRowPopup";
 import axios from "axios";
 import "../../Styles/tables/DataGrid.css";
-
+import { Link } from "react-router-dom";
 const Transactions_Table = () => {
   const [editableRowId, setEditableRowId] = useState(null);
   const [editableRowData, setEditableRowData] = useState(null);
@@ -99,16 +99,24 @@ const Transactions_Table = () => {
     { field: "creationDate", headerName: "Date d'envoi", width: 275 },
     { field: "Amount", headerName: "Somme", width: 275 },
     { field: "categorie", headerName: "categorie", width: 200 },
-    {
-      field: "pdf",
-      headerName: "PDF",
+   {
+     field: 'pdf',
+      headerName: 'PDF',
       width: 140,
-      renderCell: () => (
-        <Avatar>
-          <PictureAsPdf />
-        </Avatar>
-      ),
-    },
+      renderCell: (params) => {
+        const transactionId = params.row.id;
+        const fileId = params.row.files[0]?._id; // Suppose you have a file ID
+        const link = `http://localhost:8000/api/transactions/${transactionId}/${fileId}`;
+
+        return (
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            <Avatar>
+              <PictureAsPdf />
+            </Avatar>
+          </a>
+        );
+      },
+  },
     {
       field: "edit",
       headerName: "Edit",
