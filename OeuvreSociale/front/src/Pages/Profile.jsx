@@ -65,7 +65,7 @@ const Profile = () => {
        </div>
 
       </div>
-   
+
   );
   
 };

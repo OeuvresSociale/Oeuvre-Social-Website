@@ -46,7 +46,7 @@ cursor: pointer;
 }
 .linktdem{
     position: absolute;
-    color: #1E2648;
+    color: #0b0b0c;
     font-weight: 400;
     font-size:22px;
     text-decoration: none;
@@ -157,8 +157,13 @@ li {
 }
 .pdfIcon {
   position: relative;
-    left:30px;
+  left:30px;
   }
+  .name{
+    position: relative;
+    left:60px;
+    font-size: 16px; 
+}
 .uploadFile {
   background-color: rgba(217, 217, 217, 0.2);
   color: rgba(153, 153, 153, 1);
