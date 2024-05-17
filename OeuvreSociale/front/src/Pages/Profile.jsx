@@ -64,7 +64,7 @@ const Profile = () => {
        {/* <Demands dataD={requests}/> */}
        </div>
 
-      </div>
+      
     </div>
   );
   

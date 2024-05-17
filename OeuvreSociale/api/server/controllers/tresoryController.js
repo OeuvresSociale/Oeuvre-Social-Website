@@ -5,7 +5,7 @@ const Laon = require("../models/Laon.js");
 const transaction = require("../models/transaction.js");
 const cron = require("node-cron");
 const Budget = require("../models/budget.js");
-const path = require("path");   
+const path = require("path");
 const fs = require("fs");
 const { updateBudget } = require("./budgetController.js");
 
@@ -80,8 +80,8 @@ const validLaon = async (req, res) => {
 
     // Create a new outcome object with the updated request's data
     const newRepayment = new laonRepayment({
-      amount :updatedRequest.amount,
-      duration:updatedRequest.duration,
+      amount: updatedRequest.amount,
+      duration: updatedRequest.duration,
     });
     const newOutcome = new transaction({
       // requestId: updatedRequest._id,
@@ -352,6 +352,35 @@ const calculateOutcomeSummary = async (req, res) => {
 };
 // Schedule the function to run monthly
 //cron.schedule('0 0 1 * *', processRepaymentsMonthly); // At 00:00 on the 1st day of every month
+const calculateTransactionSummaryByType = async (req, res) => {
+  try {
+    const totalTransactions = await transaction.countDocuments();
+
+    const transactionsByType = await transaction.aggregate([
+      {
+        $group: {
+          _id: "$type",
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          type: "$_id",
+          count: 1,
+          percentage: {
+            $multiply: [{ $divide: ["$count", totalTransactions] }, 100],
+          },
+        },
+      },
+    ]);
+
+    res.status(200).json(transactionsByType);
+  } catch (error) {
+    console.error("Error calculating transaction summary by type:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 
 module.exports = {
   validRequest,
@@ -365,4 +394,5 @@ module.exports = {
   getFileById,
   calculateIncomeSummary,
   calculateOutcomeSummary,
+  calculateTransactionSummaryByType,
 };
