@@ -9,32 +9,7 @@ import "../../Styles/tables/DataGrid.css";
 const Transactions_Table = () => {
   const [editableRowId, setEditableRowId] = useState(null);
   const [editableRowData, setEditableRowData] = useState(null);
-  // const [rows, setRows] = useState([
-  //   {
-  //     id: 1,
-  //     name: "Manel",
-  //     type: "Mariage",
-  //     date: "2024-02-20",
-  //     amount: 1000,
-  //     categorie: "sortant",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Manl",
-  //     type: "Mariage",
-  //     date: "2024-02-20",
-  //     amount: 1000,
-  //     categorie: "entrant",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Manel",
-  //     type: "Marge",
-  //     date: "2024-02-20",
-  //     amount: 1000,
-  //     categorie: "sortant",
-  //   },
-  // ]);
+
   const [open, setOpen] = useState(false);
   const [rows, setRows] = useState([{
         id: 1,
@@ -60,12 +35,14 @@ const Transactions_Table = () => {
         id: transaction._id,
         name: transaction.name,
         type: transaction.type,
+
         // creationDate: transaction.creationDate,
         creationDate: new Date(transaction.creationDate).toLocaleDateString("en-GB", {
           day: "2-digit",
           month: "2-digit",
           year: "numeric",
       }),
+
         Amount: transaction.Amount,
         categorie: transaction.categorie,
         files: transaction.files,
@@ -118,6 +95,7 @@ const Transactions_Table = () => {
   const columns = [
     { field: "name", headerName: "Concerné", width: 275 },
     { field: "type", headerName: "Type", width: 275 },
+
     { field: "creationDate", headerName: "Date d'envoi", width: 275 },
     { field: "Amount", headerName: "Somme", width: 275 },
     { field: "categorie", headerName: "categorie", width: 200 },

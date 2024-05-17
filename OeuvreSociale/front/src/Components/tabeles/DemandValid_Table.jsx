@@ -22,7 +22,7 @@ const DemandValid_Table = () => {
     // Open the popup
     setOpenPopup(true);
   };
- 
+
   const [rows, setRows] = useState([{
     id: 1,
     name: "Manel",
@@ -38,13 +38,16 @@ getTrans_Data();
 
 const getTrans_Data = async () => {
 try {
+
   const response = await axios.get("http://localhost:8000/api/Requests");
+
   const data = response.data;
   //Debugging the fetched Data
   console.log("The data passed are here:", data);
   // Map fetched data to match the structure of rows
   const rowData = data.map((demandValidInfo) => ({
     id: demandValidInfo._id,
+
     // concerned: demandValidInfo.employeeId.firstName,
     concerned: `${demandValidInfo.employeeId.familyName} ${demandValidInfo.employeeId.firstName}`,
     type: demandValidInfo.requestTypeId.title,
@@ -54,6 +57,7 @@ try {
       year: "numeric",
   }),
     amount: demandValidInfo.requestTypeId.amount,
+
     categorie: demandValidInfo.categorie,
     files: demandValidInfo.files,
   }));

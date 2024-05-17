@@ -4,7 +4,9 @@ import "../../../Styles/Admin/Admin_pages.css"
 import Sidebar from "../../../Components/Sidebar.jsx";
 import Transaction_Table from "../../../Components/tabeles/Transaction_Table.jsx";
 import Transaction_form from "../../../Components/Admin/Transaction/Transaction_form.jsx"
-import TopMenu from "../../../Components/Admin/bar_menu/TopMenu.jsx";
+//import TopMenu from "../../../Components/Admin/bar_menu/TopMenu.jsx";
+import Header from '../../../Components/Header.jsx';
+import Page_Header from "../../../Components/Admin/bar_menu/Page_Header.jsx";
 
 
 
@@ -14,21 +16,9 @@ const Transaction = () => {
       <div className="admin-container">
         <Sidebar />
         <div className="admin-content">
-          <TopMenu />
-          <Typography
-            variant="h3"
-            component="h3"
-            sx={{
-              textAlign: "left",
-              mt: 3,
-              mb: 3,
-              color: "#00194f",
-              margin: "20px",
-            }}
-          >
-            Table de Transaction
-          </Typography>  
-           <Transaction_form />
+          {/* <TopMenu /> */}
+          <Header/>
+          <Page_Header title="Table de Transaction" subtitle="WIWIWI"/>
           
           <div className="componentContainer">
             <Transaction_Table />

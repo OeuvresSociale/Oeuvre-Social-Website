@@ -68,3 +68,28 @@
   background-color: #ffffff;
   color: #000000;
 }
+
+.popup_button {
+  display: flex;
+}
+
+.popup_button .MuiButton-containedPrimary {
+  background-color: #148582;
+  color: #fff;
+  margin: 10px;
+}
+
+.popup_button .MuiButton-containedSecondary {
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+.popup_button .MuiButton-containedPrimary:hover {
+  background-color: #1fd8d2;
+  color: #fff;
+}
+
+.popup_button .MuiButton-containedSecondary:hover {
+background-color: #ffffff;
+color: #000000;
+}
