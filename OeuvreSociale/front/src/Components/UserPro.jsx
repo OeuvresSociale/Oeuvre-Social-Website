@@ -53,11 +53,16 @@ const handlePasswordSubmit =async (e) => {
 };
 const [showOTPModal, setShowOTPModal] = useState(false);
 
-const handleOTPInputChange = (e, index) => {
-  const newOTP = [...otp];
-  newOTP[index] = e.target.value;
-  setOTP(newOTP.join(''));
+const [otp, setOtp] = useState(['', '', '', '', '', '']);
+
+
+const handleChange = (index, value) => {
+  const updatedOtp = [...otp];
+  updatedOtp[index] = value;
+  setOtp(updatedOtp);
 };
+
+
 const handleOTPKeyDown = (e, index) => {
   if (e.key === 'Backspace' && index > 0 && !otp[index]) {
     const newOTP = [...otp];
@@ -94,6 +99,7 @@ const handleOTPSubmit =async (e) => {
  } 
 };
 
+
 const [showNewPasswordModal, setShowNewPasswordModal] = useState(false);
 const [newPassword, setNewPassword] = useState('');
 const [confirmNewPassword, setConfirmNewPassword] = useState('');
@@ -117,7 +123,7 @@ const handleNewPasswordSubmit = async(e) => {
     console.log("password:",newPassword);
 //   // Reset input values
   setPassword('');
-  setOTP('');
+  setOtp('');
   setNewPassword('');
   setConfirmNewPassword('');
 };
@@ -207,21 +213,76 @@ const handleNewPasswordSubmit = async(e) => {
     <div className="modal">
       <h3 className='otptitle'> Enter OTP Sent to Your Email</h3>
       <div className="otpInputWrapper">
-        {[...Array(6)].map((_, index) => (
-          <input
-            key={index}
-            type="text"
-            maxLength={1}
-            value={otp[index] || ''}
-            onChange={(e) => handleOTPInputChange(e, index)}
-            onKeyDown={(e) => handleOTPKeyDown(e, index)}
-            onFocus={(e) => handleOTPFocus(e, index)}
-            id={`otpInput${index}`} // Unique identifier for each input
-          />
-        ))}
+      <input
+    type="text"
+    maxLength="1"
+    value={otp[0]}
+    onChange={(e) => {
+      handleChange(0, e.target.value);
+      if (e.target.value.length === 1) {
+        e.target.nextElementSibling.focus();
+      }
+    }}
+    required
+  />
+  <input
+    type="text"
+    maxLength="1"
+    value={otp[1]}
+    onChange={(e) => {
+      handleChange(1, e.target.value);
+      if (e.target.value.length === 1) {
+        e.target.nextElementSibling.focus(); // Focus next element
+      }
+    }}
+    required
+  />
+  <input
+    type="text"
+    maxLength="1"
+    value={otp[2]}
+    onChange={(e) => {
+      handleChange(2, e.target.value);
+      if (e.target.value.length === 1) {
+        e.target.nextElementSibling.focus(); 
+      }
+    }}
+    required
+  />
+  <input
+    type="text"
+    maxLength="1"
+    value={otp[3]}
+    onChange={(e) => {
+      handleChange(3, e.target.value);
+      if (e.target.value.length === 1) {
+        e.target.nextElementSibling.focus(); 
+      }
+    }}
+    required
+  />
+  <input
+    type="text"
+    maxLength="1"
+    value={otp[4]}
+    onChange={(e) => {
+      handleChange(4, e.target.value);
+      if (e.target.value.length === 1) {
+        e.target.nextElementSibling.focus(); 
+      }
+    }}
+    required
+  />
+  <input
+    type="text"
+    maxLength="1"
+    value={otp[5]}
+    onChange={(e) => handleChange(5, e.target.value)}
+    required
+  />
       </div>
       <button className="canceel" onClick={() => setShowOTPModal(false)}>Cancel</button>
-      <button className='Enteer' onClick={handleOTPSubmit}>Confirm </button>
+      <button className='Enteer' onClick={handleSubmit}>Confirm </button>
     </div>
   </div>
 )}

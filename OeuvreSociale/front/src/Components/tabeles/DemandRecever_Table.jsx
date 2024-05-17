@@ -63,14 +63,14 @@ function DemandRecever_Table() {
   // Declare the columns content
 
   const columns = [
-    { field: "id", headerName: "N°", width: 200 },
-    { field: "name", headerName: "Employee ", width: 275 },
-    { field: "type", headerName: "Type", width: 275 },
-    { field: "date", headerName: "Date d'envoi", width: 275 },
+    { field: "id", headerName: "N°", width: 130 },
+    { field: "name", headerName: "Employee ", width: 190 },
+    { field: "type", headerName: "Type", width: 190 },
+    { field: "date", headerName: "Date d'envoi", width: 180 },
     {
       field: "Status",
       headerName: "Status",
-      width: 275,
+      width: 190,
       renderCell: (params) => (
         <span className={getStatusColor(params.value)}>{params.value}</span>
       ),
@@ -78,7 +78,7 @@ function DemandRecever_Table() {
     {
       field: "Details",
       headerName: "Details",
-      width: 140,
+      width: 150,
     },
   ];
 

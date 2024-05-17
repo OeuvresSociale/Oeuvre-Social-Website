@@ -1,25 +1,30 @@
-import React , {useState ,  useRef }from "react";
+import React, { useState, useRef , useEffect } from "react";
 import '../Styles/Addoffreform.css';
-import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import { Link } from "react-router-dom";
+import axios from 'axios';
 import { GoTrash } from "react-icons/go";
 import { MdOutlineImage } from "react-icons/md";
+import { Link, useNavigate } from "react-router-dom";
 
+const Addoffreform = ({ offer }) => {
+  const navigate = useNavigate();
+  const fileInputRef = useRef(null);
+  const [image, setImage] = useState( null);
+  const [title, setTitle] = useState( '');
+  const [startDate, setStartDate] = useState( '');
+  const [endDate, setEndDate] = useState('');
+  const [description, setDescription] = useState( '');
 
+  const [error, setError] = useState(null);
 
-
-const Addoffreform =()=>{
-  
-       
-        const handleClick = async (e) => {
-    
-          e.preventDefault();//not refreshing the page 
-         
-         };
-
-        const fileInputRef = useRef(null);
-  const [image, setImage] = useState(null);
+  useEffect(() => {
+    if (offer) {
+      setImage(offer.image || null);
+      setTitle(offer.title || '');
+      setStartDate(offer.dateDebut || '');
+      setEndDate(offer.dateFin || '');
+      setDescription(offer.desc || '');
+    }
+  }, [offer]);
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -54,103 +59,150 @@ const Addoffreform =()=>{
     setImage(null);
   };
 
-
-  const [text, setText] = useState(''); // State to store textarea content
-
-  const handleInputChange = (event) => {
-    setText(event.target.value);
+  const handleInputChange = (setter) => (event) => {
+    setter(event.target.value);
   };
-        
 
-return (
-    
-       
-           
-           <div className="addoffrewrapp1">
-           <div className="mlbtns2">
-  <Link to='/offres'> <button className="mlrefuse"   >Annuler</button></Link>
-            <Link to='/offres'> <button className="mlaccepte"   onClick={handleClick} >Modifier</button></Link>
-         </div> 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+   
+    setError(null);
 
-<div className="addoffrewrapp2"> 
-<div className="ddimg"> <div>Télécharger un image :</div>
+    try {
+      const payload = {
+        title,
+        startDate,
+        endDate,
+        description,
+        image
+      };
 
+      await axios.put(`/api/offres/${offer.id}`, payload);
+      
+      navigate('/offres');
+    } catch (err) {
+     
+      // setError('Une erreur est survenue lors de la modification.');
+    }
+  };
 
-      <div
-        className="drop-zone"
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-      >
-        {image ? (
-          <div>
-          <div className="deleteimg" onClick={handleDeleteImage}>
-            <GoTrash />
+  return (
+    <div className="addoffrewrapp1">
+      <div className="mlbtns2">
+        <Link to='/offres'>
+          <button className="mlrefuse">Annuler</button>
+        </Link>
+        <button className="mlaccepte" onClick={handleSubmit} >
+          Modifier
+        </button>
+      </div>
+
+      <div className="addoffrewrapp2">
+        <div className="ddimg">
+          <div>Télécharger une image :</div>
+          <div
+            className="drop-zone"
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+          >
+            {image ? (
+              <div>
+                <div className="deleteimg" onClick={handleDeleteImage}>
+                  <GoTrash />
+                </div>
+                <img
+                  src={image}
+                  alt="Dropped"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover"
+                  }}
+                />
+              </div>
+            ) : (
+              <button
+                onClick={handleButtonClick}
+                style={{
+                  height: '100%',
+                  width: '100%',
+                  backgroundColor: 'rgba(0,0,0,0.2)',
+                  borderRadius: '7px',
+                  fontSize: '100px',
+                  color: '#999999',
+                  border: 'none',
+                  cursor: 'pointer',
+                  marginTop: '10px',
+                }}
+              >
+                <MdOutlineImage />
+              </button>
+            )}
           </div>
-          <img
-            src={image}
-            alt="Dropped"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover"
-            }}
+          <input
+            type="file"
+            ref={fileInputRef}
+            accept="image/*"
+            onChange={handleFileChange}
+            style={{ display: 'none' }}
           />
         </div>
-        ) : (
-            <button onClick={handleButtonClick}
-            style={{
-              height:'100%',
-              width:'100%',
-              backgroundColor: 'rgba(0,0,0,0.2)', // Blue background color
-              borderRadius: '7px',
-              fontSize :'100px',
-              color:'#999999',// Rounded corners
-              border: 'none', // No border
-              cursor: 'pointer', // Pointer cursor on hover
-              marginTop: '10px', // Space from drop zone
-            }}><MdOutlineImage /></button>
-        )}
+
+        <div className="loaninfst">
+          <div className="colloaninft">
+            <div className="loaninf">
+              <div className="loan1">Titre de l'offre :</div>
+              <div className="loan2">
+                <input
+                  type="text"
+                  value={title}
+                  onChange={handleInputChange(setTitle)}
+                  placeholder="Entrer un titre d'offre"
+                />
+              </div>
+            </div>
+            <div className="datesoffre">
+              <div style={{ width: '50%' }} className="loaninf">
+                <div className="loan1">Date de début :</div>
+                <div className="loan2">
+                  <input
+                    type="date"
+                    value={startDate}
+                    onChange={handleInputChange(setStartDate)}
+                    placeholder="Date de début"
+                  />
+                </div>
+              </div>
+              <div style={{ width: '50%' }} className="loaninf">
+                <div className="loan1">Date de fin :</div>
+                <div className="loan2">
+                  <input
+                    type="date"
+                    value={endDate}
+                    onChange={handleInputChange(setEndDate)}
+                    placeholder="Date de fin"
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="loaninf">
+              <div className="loan1">Description :</div>
+              <div className="loandes2">
+                <textarea
+                  className="resizable-textarea3"
+                  value={description}
+                  onChange={handleInputChange(setDescription)}
+                  placeholder="Description"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {error && <div className="error">{error}</div>}
       </div>
-      
-      <input
-        type="file"
-        ref={fileInputRef}
-        accept="image/*"
-        onChange={handleFileChange}
-        style={{ display: 'none' }}
-      />
-    
-      
     </div>
+  );
+};
 
-<div className="loaninfst">
-   <div className="colloaninft">
-    <div className="loaninf"><div className="loan1">Titre de l'offre :</div><div className="loan2"><input  type="text"  placeholder="Entrer un titre d'offre" /></div></div>
-   <div className="datesoffre"> <div style={{ width: '50%' }} className="loaninf"><div className="loan1">Date du début :</div><div  className="loan2"><input   type="date" name="dateStartJob" placeholder="date de recrutement" /></div></div>
-    <div style={{ width: '50%' }} className="loaninf"><div  className="loan1">Date du fin :</div><div className="loan2"><input   type="date" name="dateStartJob" placeholder="date de recrutement" /></div></div>
-    </div>
-    
- 
-  <div className="loaninf"><div className="loan1">Description :</div><div className="loandes2"><textarea
-     className="resizable-textarea3"
-      value={text}
-      onChange={handleInputChange}
-      placeholder="description"
-    ></textarea></div>
-  </div>
-  </div>
-   </div>
-
-
-
-
-</div>
-</div>
-
-
-
-)
-
-}
 export default Addoffreform;
-    

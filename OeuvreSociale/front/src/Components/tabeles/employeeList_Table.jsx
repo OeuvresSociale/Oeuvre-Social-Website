@@ -33,7 +33,7 @@ function DemandRecever_Table() {
       // Map fetched data to match the structure of rows
       const rowData = data.map((RecievedDemand) => ({
         id: RecievedDemand.idEmployee,
-        name: `${RecievedDemand.familyName} ${RecievedDemand.firstName}`
+        name: `${RecievedDemand.familyName} ${RecievedDemand.firstName}`,
         email: RecievedDemand.email,
         salaire: RecievedDemand.monthlySalary,
         role: RecievedDemand.role,
