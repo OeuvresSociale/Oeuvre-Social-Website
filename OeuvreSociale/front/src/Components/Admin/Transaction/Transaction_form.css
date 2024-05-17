@@ -7,9 +7,8 @@
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow */
   border: none; /* Custom border color */
   width: 90%;
-  height: 15%;
+  
   display: flex;
-
   justify-content: left;
   align-items: center;
   text-decoration: none;
@@ -67,4 +66,62 @@
 .transaction-form .MuiButton-containedSecondary:hover {
   background-color: #ffffff;
   color: #000000;
+}
+
+.popup_button {
+  display: flex;
+}
+
+.popup_button .MuiButton-containedPrimary {
+  background-color: #148582;
+  color: #fff;
+  margin: 10px;
+}
+
+.popup_button .MuiButton-containedSecondary {
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+.popup_button .MuiButton-containedPrimary:hover {
+  background-color: #1fd8d2;
+  color: #fff;
+}
+
+.popup_button .MuiButton-containedSecondary:hover {
+background-color: #ffffff;
+color: #000000;
+}
+
+
+/* Mobile devices */
+@media (max-width: 600px) {
+  .transaction-form {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the start */
+    padding: 20px;
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+}
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 900px) {
+  .transaction-form {
+    padding: 25px;
+    width: 95%;
+    margin-left: 20px;
+    margin-bottom: 25px;
+  }
+}
+
+/* Small laptops */
+@media (min-width: 901px) and (max-width: 1200px) {
+  .transaction-form {
+    padding: 28px;
+    width: 90%;
+    margin-left: 30px;
+    margin-bottom: 28px;
+  }
 }
