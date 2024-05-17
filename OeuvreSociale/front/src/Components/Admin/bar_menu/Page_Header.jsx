@@ -6,14 +6,28 @@ const Page_Header = ({ title, subtitle }) => {
   return (
     <Box>
       <Typography
-        variant="h2"
-        color="#00194f"
-        fontWeight="bold"
-        sx={{ mb: "5px" }}
+        variant="h3"
+        component="h3"
+        sx={{
+          textAlign: "left",
+          color: "#00194f",
+          margin: "20px",
+          marginBottom: "0px",
+        }}
       >
         {title}
       </Typography>
-      <Typography variant="h5" color="#999999">
+      <Typography
+        variant="h6"
+        component="h6"
+        sx={{
+          textAlign: "left",
+          color: "#999999",
+          margin: "20px",
+          marginTop: "0",
+          marginBottom: "40px",
+        }}
+      >
         {subtitle}
       </Typography>
     </Box>

@@ -9,32 +9,6 @@ import "../../Styles/tables/DataGrid.css";
 const Transactions_Table = () => {
   const [editableRowId, setEditableRowId] = useState(null);
   const [editableRowData, setEditableRowData] = useState(null);
-  // const [rows, setRows] = useState([
-  //   {
-  //     id: 1,
-  //     name: "Manel",
-  //     type: "Mariage",
-  //     date: "2024-02-20",
-  //     amount: 1000,
-  //     categorie: "sortant",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Manl",
-  //     type: "Mariage",
-  //     date: "2024-02-20",
-  //     amount: 1000,
-  //     categorie: "entrant",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Manel",
-  //     type: "Marge",
-  //     date: "2024-02-20",
-  //     amount: 1000,
-  //     categorie: "sortant",
-  //   },
-  // ]);
   const [open, setOpen] = useState(false);
   const [rows, setRows] = useState([{
         id: 1,
