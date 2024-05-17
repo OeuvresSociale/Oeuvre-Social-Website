@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaRegListAlt } from "react-icons/fa";
 import { FaUsers, FaMoneyBillTrendUp } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
+import { GrAnnounce } from "react-icons/gr";
 import "../Styles/Sidebar.css";
 import {
   MdOutlineSpaceDashboard,
@@ -19,6 +20,7 @@ import { FaRegPlusSquare } from "react-icons/fa";
 import { LuLayoutList } from "react-icons/lu";
 import { HiOutlineSwitchVertical } from "react-icons/hi";
 import { IoListCircleOutline } from "react-icons/io5";
+import { HiBars4 } from "react-icons/hi2";
 import MenuItem from "./MenuItem.jsx";
 
 let stt = true;
@@ -48,9 +50,19 @@ function Sidebar({ children }) {
 
   const menuItems = [
     {
+     
+      name: "Adminisration",
+      
+    },
+    {
       path: "/dashboard",
       name: "Dashboard",
       icon: <MdOutlineSpaceDashboard />,
+    },
+    {
+      path: "/reunions",
+      name: "Réunions",
+      icon: <MdOutlineArchive />,
     },
     {
       path: "/employeelist",
@@ -59,12 +71,17 @@ function Sidebar({ children }) {
     },
     {
       path: "/tables",
-      name: "Tables",
+      name: "Demandes",
       icon: <FaRegListAlt />,
+    },
+     {
+      path: "/Offres",
+      name: "Offres",
+      icon: <GrAnnounce />,
     },
     {
       path: "/formulaire",
-      name: "Formulaire",
+      name: "Paramétrage",
       icon: <FaRegPlusSquare />,
     },
     {
@@ -87,9 +104,20 @@ function Sidebar({ children }) {
       ],
     },
     {
-      path: "/archive",
-      name: "Archive",
-      icon: <MdOutlineArchive />,
+    
+      name: "Employé",
+     
+    },
+   
+    {
+      path: "/FormularTab",
+      name: "Mes demandes",
+      icon: <FaRegListAlt />,
+    },
+     {
+      path: "/offresvalides",
+      name: "Annancement",
+      icon: <GrAnnounce />,
     },
   ];
 
@@ -98,9 +126,9 @@ function Sidebar({ children }) {
       <div className="top-section">
         <div className={isOpen ? "toggle-menu-btn" : "toggle-menu-btn2"}>
           {isOpen ? (
-            <TfiAngleLeft onClick={toggle} />
+           <HiBars4  onClick={toggle}/>
           ) : (
-            <TfiAngleRight onClick={toggle} />
+            <HiBars4 className="vertical" onClick={toggle}/>
           )}
         </div>
       </div>

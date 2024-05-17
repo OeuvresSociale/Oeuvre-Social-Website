@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { getEmployee, addEmployee,deleteEmployee,updateEmployee, getEmployeepage} = require("../controllers/employeecontroller");
+const { getEmployee, addEmployee,deleteEmployee,updateEmployee, getEmployeepage,profilePic} = require("../controllers/employeecontroller");
 
 const router=express.Router();
 
@@ -9,6 +9,8 @@ router.get("/employees/:id",getEmployee);
 router.post("/employee",addEmployee);
 router.put("/employee/:id",updateEmployee);
 router.delete("/employee/:id",deleteEmployee);
+
+router.put("/addPic/:id",profilePic);
 
 //const { getEmpolyees, addEmpolyee,deleteEmpolyee,updateEmpolyee, getEmpolyeepage} = require("../controllers/employeecontroller");
 //const {verifyRole} = require ('../middleware/roles.js');

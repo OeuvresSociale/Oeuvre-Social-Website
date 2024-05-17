@@ -12,7 +12,9 @@ const Profile = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const { id } = useParams();
+  // const { id } = useParams();
+
+  const id = localStorage.getItem('userId');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,19 +53,17 @@ const Profile = () => {
 
   return (
     <div>
-      <div className='containerf'>
-        <Sidebar />
-        <div className='contentf'>
-          <Header />  
-          <div className='content'>
-            <UserPro dataP={userData} />
-            {Object.keys(requests).length > 0 ? (
-              <Demands dataD={requests} />
-            ) : (
-              <p>No requests found.</p>
-            )}
-          </div>
-        </div>
+
+  <div className='containeradd'>
+      <Sidebar/>
+    <div className='contentadd'>
+        <Header/>
+    
+    <UserPro dataP={userData} />
+       
+       {/* <Demands dataD={requests}/> */}
+       
+
       </div>
     </div>
   );

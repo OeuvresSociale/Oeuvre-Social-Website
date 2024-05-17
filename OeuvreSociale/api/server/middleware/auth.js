@@ -43,17 +43,19 @@ async function Auth(req, res, next) {
     }
 } 
 
-
- function localVariables(req, res, next){
-     req.app.locals = {
-         OTP : null,
-         resetSession : false
-     }
-    next()
- }
-
-
-
+function localVariables(req, res, next){
+    if (!req.app.locals) {
+        req.app.locals = {
+            OTP : null,
+            resetSession : false
+        };
+    }
+    next();
+}
 
 
-module.exports = {Auth};
+
+
+
+
+module.exports = {Auth,localVariables};

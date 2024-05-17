@@ -4,7 +4,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 
-const Addloandemande = () => {
+const Addloandemande = ({closeit}) => {
     const [formData, setFormData] = useState({
         amount: '',
         duration: '',
@@ -52,6 +52,7 @@ const Addloandemande = () => {
         } catch (error) {
             console.error("Error submitting loan request:", error);
         }
+        closeit(false);
     };
 
     return (
@@ -99,7 +100,7 @@ const Addloandemande = () => {
                         </div>
                     </div>
                     <div className="aldb">
-                        <button className="b1">Annuler</button>
+                        <button className="b1" onClick={() => closeit(false)}>Annuler</button>
                         <button className="b2" onClick={handleSubmit}>Valider</button>
                     </div>
                 </div>

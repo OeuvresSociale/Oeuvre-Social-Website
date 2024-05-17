@@ -3,13 +3,13 @@ import'./Addoffre.css';
 
  import Valideoffres from '../Components/Valideoffres';
 import Header from '../Components/Header';
-import Sidebar from '../Components/Sidebar';
+import SidebarEmployee from '../Components/SidebarEmployee';
 
 const ValideOffres = () => {
   return (
     <div>
      <div className="containeradd">
-      <Sidebar  />
+      <SidebarEmployee  />
       <div className="contentadd">
         <Header  />
        <Valideoffres />

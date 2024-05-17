@@ -58,11 +58,7 @@
   
     width:90%;
     height:39%;
-    border-top: #999999 1px solid;
     display: flex;
-    
-   
-   
     position: relative;
     
    
@@ -72,11 +68,8 @@
     height:8%;
     display: flex;
     position: relative;
-   
     color:#fff;
     text-decoration: none;
-    
-
 }.titleaddoffre{
     background-color: #EAEDEF;
     color:#00194F;

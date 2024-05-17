@@ -1,7 +1,7 @@
-const express =require("express");
+const express =require("express"); 
 const dotenv =require("dotenv").config();
 const bodyParser =require("body-parser");
-const mongoose = require ("mongoose");
+const mongoose = require ("mongoose");  
 const {connectDB}=require('./server/config/db');
 const router = require('./server/routes/admin.js');
 const employeeRouter = require('./server/routes/EmployeeManagement.js');

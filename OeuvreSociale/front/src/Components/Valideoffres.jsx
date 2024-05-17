@@ -18,8 +18,9 @@ const Valideoffres = () => {
         // Fetch validated offers from the backend when the component mounts
         const fetchValidatedOffers = async () => {
             try {
-                const response = await axios.get("http://localhost:8000/api/validated-offres");
+                const response = await axios.get("http://localhost:8000/api/offres");
                 setValidatedOffers(response.data); // Update state with fetched data
+                console.log("response:",response.data)
             } catch (error) {
                 console.error("Error fetching validated offers:", error);
             }
@@ -44,7 +45,7 @@ const Valideoffres = () => {
                 <div className="vali7">  <span className="titleaddoffre"> Offres valides</span>
                 <div className="offrecrapv">
                 {validatedOffers.map((offer, index) => (
-                        <Link to={`/offre/${offer.id}`} key={index} className="offrecv">
+                       <Link to={`/offre/${offer._id}`} key={index} className="offrecv">
                             <img src={Logo} alt="logo" className="offimg3" />
                             <div className="titoff">{offer.title}</div>
                             <div className="descoff">{offer.desc}</div>

@@ -78,9 +78,9 @@ const App = () => {
         {/* ..............Offre Tabele.............................................................................. */}
 
         {/* Formulaire.............................................................................. */}
-        <Route path="/formulaire" element={<Formul />} />
+        <Route path="/formulaire" element={<Addoffre />} />
         {/* ..............Damande Formular.............................................................................. */}
-        <Route path="/formulaire/formulairedemande" element={<Addoffre />} />
+       
         <Route
           path="/formulaire/formulairedemande/confirmformulaire"
           element={<Confirmformul />}
@@ -89,7 +89,7 @@ const App = () => {
           path="/formulaire/formulairedemande/modefyformulaire"
           element={<Modefyformule />}
         />
-        <Route path="/modefyformtitle" element={<ModefyFormtitle/>} />
+        <Route path="/formulaire/modefyformtitle" element={<ModefyFormtitle/>} />
         
         <Route path="/FormularTab" element={<FormularTab />} />
 
@@ -98,6 +98,7 @@ const App = () => {
           path="/formulairetable/ajouterpret"
           element={<Addloandemande />}
         />
+        
         <Route path="/formulaire/formulairepret" element={<LoanForm />} />
         <Route
           path="/formulaire/formulairepret/modifierpret"
@@ -111,20 +112,19 @@ const App = () => {
         {/* ..............Offre Formular............................................................................... */}
 
         <Route
-         path=" "   // where to create new offre
+         path=" /formulaire/ajouteroffre"   // where to create new offre
           element={<AddOffreForm />}
         />
-        <Route path="/formulaire/ajouteroffre" element={<OFFers />} /> {/* the page contains the button ajouter offre */}
         <Route
-         path="/formulaire/ajouteroffre/offresvalides"     //all valide offres page 
-          element={<ValideOffres />}
+         path="/offresvalides"     //all valide offres page 
+          element={<ValideOffres />} 
         /> 
         <Route
-        path="/formulaire/ajouteroffre/offresunvalides"    // all unvalide offres page
+        path="/offres"    // all unvalide offres page
           element={<UnvalideOffres />}
         />
         <Route
-          path="/formulaire/ajouteroffre/offretype"  //  when u click on a valide offre 
+          path="/offre/:id"  //  when u click on a valide offre 
           element={<OffreType />}
         />
         <Route
@@ -141,7 +141,7 @@ const App = () => {
         <Route path="/demandevalid" element={<Demande_Valid />} />
 
         {/* Archive.............................................................................. */}
-        <Route path="/Archive" element={<Archive />} />
+        <Route path="/reunions" element={<Archive />} />
 
         {/* 3-Employee part.............................................................................. */}
 

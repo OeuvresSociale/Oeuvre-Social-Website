@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { FaSackDollar , FaBoxArchive , FaUserGroup } from "react-icons/fa6";
 import '../Styles/Sidebar.css'
 import { NavLink } from 'react-router-dom';
 
@@ -20,31 +19,44 @@ const handleItemClick = (index) => {
 return (
 <li >
  
-{path ? (<NavLink to={path} onClick={hide}  className="menuitem" activeclassname='active' >
- <a  className="menuitem">
-    <div className="menuicon">
-    {icon}
-    
-    </div> </a>
-    <span className="link-taxt">{name}</span>
-    <div className="subicon"  style={{ backgroundColor: 'transparent' }} >
-    {expand ? subicon2 : subicon }
+{path ? (
+  <NavLink
+    to={path}
+    onClick={hide}
+    className="menuitem"
+    activeClassName='active'
+  >
+    <a className="menuitem">
+      <div className="menuicon">
+        {icon}
+      </div>
+    </a>
+    <span className="link-text">{name}</span>
+    <div className="subicon" style={{ backgroundColor: 'transparent' }}>
+      {expand ? subicon2 : subicon}
     </div>
-    
-    </NavLink>): (
-        <div  onClick={hide} className="menuitem">
-          <a className="menuitem">
-            <div className="menuicon">{icon}</div>{" "}
-          </a>{" "}
-          <span className="link-taxt">{name}</span>{" "}
-          <div
-            className="subicon"
-            style={{ backgroundColor: "transparent" }}
-          >
-            {expand ? subicon2 : subicon}
-          </div>{" "}
-        </div>
-      )}
+  </NavLink>
+) : (
+  <div onClick={hide} className="menuitem">
+    {icon ? (
+      <>
+      <a className="menuitem">
+          <div className="menuicon">{icon}</div>{" "}
+        </a>{" "}
+        <span className="link-text">{name}</span>{" "}
+        <div className="subicon" style={{ backgroundColor: "transparent" }}>
+          {expand ? subicon2 : subicon}
+        </div>{" "}
+      </>
+    ) : (
+      <>
+        
+        <span className="noicon">{name}</span>{" "}
+       
+      </>
+    )}
+  </div>
+)}
 
  {subMenus && subMenus.length > 0 ? (
     <ul className={expand ?  "ai" : 'submenu'} >
