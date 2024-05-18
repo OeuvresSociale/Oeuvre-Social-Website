@@ -10,7 +10,7 @@ const DashBoard = () => {
   const [chartData2, setChartData2] = useState({
     series: [40, 30, 30],
         options: {
-            labels: ['Demands', 'pret', 'offres'],
+            labels: ['Demands', 'pretes', 'offres'],
             chart: {
                 type: 'pie',
             },
@@ -144,24 +144,61 @@ const DashBoard = () => {
         fetchDatagraph(); // Call the fetchData function when the component mounts
       }, []);
 
-      const [soldeActuel, setSoldeActuel] = useState(null); // State to store solde actuel data
+
+    const [soldeActuel, setSoldeActuel] = useState(null);
+
+    useEffect(() => {
+      const fetchSoldeActuel = async () => {
+        try {
+          const response = await axios.get("http://localhost:8000/api/currentAmount");
+          setSoldeActuel(response.data.currentAmount); // Assurez-vous que la réponse contient le champ `amount`
+        } catch (error) {
+          console.error("Erreur lors de la récupération du solde actuel:", error);
+        }
+      };
+
+      fetchSoldeActuel();
+    }, [soldeActuel]);
+  
+    
+ 
+    const [incomeSummary, setIncomeSummary] = useState({
+      totalIncome: null,
+      incomeCount: null,
+      incomePercentage: null
+    });
+
+    useEffect(() => {
+      const fetchIncomeSummary = async () => {
+        try {
+          const response = await axios.get("http://localhost:8000/api/income-summary");
+          setIncomeSummary(response.data);
+        } catch (error) {
+          console.error("Erreur lors de la récupération du résumé des revenus:", error);
+        }
+      };
+
+      fetchIncomeSummary();
+    }, [incomeSummary]);
+  
+const [outcomeSummary, setOutcomeSummary] = useState({
+    totalOutcome: null,
+    outcomeCount: null,
+    outcomePercentage: null
+  });
 
   useEffect(() => {
-    const fetchSoldeActuel = async () => {
+    const fetchOutcomeSummary = async () => {
       try {
-        const response = await axios.get('/api/solde-actuel'); // Replace '/api/solde-actuel' with your actual endpoint
-        setSoldeActuel(response.data); // Assuming the response contains the solde actuel value
+        const response = await axios.get("http://localhost:8000/api/outcome-summary");
+        setOutcomeSummary(response.data);
       } catch (error) {
-        console.error('Error fetching solde actuel:', error);
+        console.error("Erreur lors de la récupération du résumé des dépenses:", error);
       }
     };
 
-    fetchSoldeActuel(); // Fetch solde actuel data when the component mounts
-  }, []);
-
-   
-    
-   
+    fetchOutcomeSummary();
+  }, [outcomeSummary]);
 
     return (
         <div className="dashwrapp" >
@@ -169,18 +206,21 @@ const DashBoard = () => {
                 <div className="dashtitle">Dashboard</div>
                 <div className="lessommes">
         
-                <div className="somme9"> <div className="st"><div className="somme3">Solde actuel </div></div>
-                <div className="npr9">{soldeActuel !== null ? soldeActuel : 'Loading...'}</div>
-                </div>
+                <div className="somme9">
+      <div className="st">
+        <div className="somme3">Solde actuel</div>
+      </div>
+      <div className="npr9">{soldeActuel !== null ? soldeActuel : 'Loading...'}</div>
+    </div>
                 
                
                 
                 <div className="somme9"> <div className="st"><div className="somme3">Total débit </div></div>
-                <div className="npr9">20000000</div>
+                <div className="npr9">{outcomeSummary.totalOutcome !== null ? outcomeSummary.totalOutcome : 'Loading...'}</div>
                 </div>
 
                 <div className="somme9"> <div className="st"><div className="somme3">Total crédit </div></div>
-                <div className="npr9">20000000</div>
+                <div className="npr9">{incomeSummary.totalIncome !== null ? incomeSummary.totalIncome : 'Loading...'}</div>
                 </div>
     
                </div><div className="lessommes">

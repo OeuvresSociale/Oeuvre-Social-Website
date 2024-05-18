@@ -76,7 +76,7 @@ const Header = () => {
         return "Ajoute formulaire du pret";
       case "/tables/loantype":
         return "Detailles des demandes";
-      case "/formulaire/ajouteroffre":
+      case "/Offres":
         return "Ajouter offre";
       case "/formulaire/ajouteroffre/offresvalides":
         return "Ajouter offre";
