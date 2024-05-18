@@ -59,7 +59,7 @@ const GestionDesReunionsPage = () => {
         <Calendar onChange={handleDayClick} value={selectedDay} />
       </div>
       <div className="meeting-container">
-        <h2 className="met">Meetings</h2>
+        <h2 className="met">Réunions :</h2>
         <div className="meeting-list">
           {meetings.map(meeting => (
             <div key={meeting.id} className="meeting-item" onClick={() => handleMeetingEdit(meeting)}>
@@ -71,18 +71,20 @@ const GestionDesReunionsPage = () => {
       </div>
       {/* MeetingForm pop-up */}
       {showMeetingForm && (
+        <div className='formtitlewrapper'>
       <MeetingForm
         selectedDay={selectedDay}
         onCreateMeeting={handleMeetingCreate}
         onCancel={() => setShowMeetingForm(false)} 
-  />
+  /></div>
 )}
 
       {/* MeetingEditForm pop-up */}
       {showMeetingEditForm && (
+          <div className='formtitlewrapper'>
         <MeetingEditForm meeting={selectedMeeting} onMeetingFinish={handleMeetingFinish} 
         onCancel={() => setShowMeetingEditForm(false)}
-         />
+         /></div>
       )}
     </div>
   );
