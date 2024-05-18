@@ -29,7 +29,7 @@ function LoanRecever_Table() {
 
   const getDemandeReceived_data = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/api/Requests");
+      const response = await axios.get("http://localhost:8000/api/laonRequest");
       const data = response.data;
       console.log("The data passed are here:", data);
       // Map fetched data to match the structure of rows

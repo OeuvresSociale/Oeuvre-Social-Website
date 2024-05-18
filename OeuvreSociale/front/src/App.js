@@ -129,7 +129,7 @@ const App = () => {
           element={<OffreType />}
         />
         <Route
-          path="/unvalideoffretype"
+          path="/unvalideoffres/unvalideoffrestype"
           element={<UnvalideOffreType />}   //    when u click on an unvalide offre 
         />
 
@@ -143,7 +143,7 @@ const App = () => {
 
 
         {/* Meeting.............................................................................. */}
-        <Route path="Reunionpage" element={<Reunionpage />} />
+        <Route path="/reunions" element={<Reunionpage />} />
 
         {/* 3-Employee part.............................................................................. */}
 

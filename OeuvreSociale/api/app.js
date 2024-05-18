@@ -4,7 +4,7 @@ const bodyParser =require("body-parser");
 const mongoose = require ("mongoose");  
 const {connectDB}=require('./server/config/db');
 const router = require('./server/routes/admin.js');
-const employeeRouter = require('./server/routes/EmployeeManagement.js');
+const employeeRouter = require('./server/routes/employeeManagement.js');
 const typeRequestRouter = require('./server/routes/requestType.js');
 const requestRouter = require('./server/routes/request.js'); 
 const MongoStore =require('connect-mongo');
@@ -14,8 +14,8 @@ const helmet = require('helmet');
 const session = require('express-session');
 const morgan=require('morgan');
 const tresuryRouter = require('./server/routes/tresury.js');
-const offreRouter = require('./server/routes/offre.js')
-
+const offreRouter = require('./server/routes/offre.js');
+const reunionRouter = require("./server/routes/reunions.js");
 
 const app = express();
 const cors = require("cors");
@@ -65,7 +65,7 @@ app.use('/api',typeRequestRouter);
 app.use('/api',requestRouter);
 app.use('/api',tresuryRouter);
 app.use('/api',offreRouter);
-
+app.use('/api',reunionRouter);
 
 // Assume 'YourModel' is the Mongoose model representing your collection
 // const RequestModel = require("./server/models/request.js");

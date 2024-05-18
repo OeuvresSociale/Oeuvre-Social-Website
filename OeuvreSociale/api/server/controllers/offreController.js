@@ -1,21 +1,7 @@
 const offreModel = require('../models/offres');
 const {uploadImage,getImage} =require('../controllers/img');
 
-// const addOffre = async (req,res)=>{
-//     try {
-//         if (!req.body.title) {
-//             return res.status(400).json({ error: "Title is required" });
-//           }
-//           const newOffre = new offreModel(req.body);
-//           const saveOffre = await newOffre.save();
-//           res.status(200).json(saveOffre);
-//           console.log("new offre has been created");
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ error: "Internal server error" }); 
-//     }
-// } 
- 
+
 const addOffre = async (req, res) => {
   try {
       if (!req.body.title) {
@@ -44,8 +30,6 @@ const addOffre = async (req, res) => {
       res.status(500).json({ error: "Internal server error" });
   }
 };
-
-
 
 //delete offre
 const deleteOffre = async (req, res) => {
@@ -86,7 +70,6 @@ const getOffres = async (req, res) => {
 // }};
 
 
-
 //update
 const updateOffre = async (req, res) => {
       try {    
@@ -120,11 +103,32 @@ const updateOffre = async (req, res) => {
     }
 };
 
+const visibleOffres = async (req, res) => {
+  try {
+    const offres = await offreModel.find({ visible: true }); // Filtering based on the 'visible' field
+    res.status(200).json(offres);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }  
+};
+
+
+const invisibleOffres = async (req, res) => {
+  try {
+    const offre = await offreModel.find({ visible: false });
+    res.status(200).json(offre);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }  
+};
+
 
 module.exports={ 
     addOffre,
     deleteOffre,
     getOffres,
     updateOffre,
-    validOffre
+    validOffre,
+    invisibleOffres,
+    visibleOffres
 };

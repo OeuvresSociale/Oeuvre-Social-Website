@@ -165,21 +165,26 @@ color: white;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+width:40%;
+font-size: 15px;
 }
 
-.meeting-form-popup button.cancel {
-background-color:rgba(142, 202, 230, 1);
+.meeting-form-popup button.cancel3 {
+background-color:#148582;
+color: #fff;
+
 }
 .meeting-form-popup .buttons {
   position: relative;
   width:50%;
   left:45% ;
   display: flex;
-  justify-content: space-between;
+
   margin-top: 5px;
 }
 
 .meeting-edit-form-popup {
+  width: 450px;
 position: fixed;
 top: 50%;
 left: 50%;
@@ -188,6 +193,8 @@ background-color: white;
 padding: 45px;
 border-radius: 10px;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+
 }
 
 .meeting-edit-form-popup h2 {
@@ -229,6 +236,8 @@ display: none;
 
 .buttons {
 display: flex;
+margin-left: 20%;
+gap:2%;
 }
 .buttons button {
   background-color:rgba(142, 202, 230, 0);
@@ -237,7 +246,10 @@ display: flex;
   padding: 10px 20px;
   border-radius: 7px;
   cursor: pointer;
-  margin-left: 40px;
+ 
+  width:30%;
+font-size: 15px;
+ 
 }
 .buttons button:focus {
   outline: none;
