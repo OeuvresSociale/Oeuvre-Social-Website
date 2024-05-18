@@ -52,7 +52,7 @@ const DashBoard = () => {
       data: [25, 45, 15, 70, 49, 60, 70, 91, 125, 130, 145, 150]
     }]
   });
-
+ 
 
     const [chartOptions, setchartOptions] = useState({
         series: [{

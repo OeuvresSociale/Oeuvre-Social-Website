@@ -7,7 +7,7 @@ const router=express.Router();
 router.get("/employees",getEmployeepage);
 router.get("/employees/:id",getEmployee);
 router.post("/employee",addEmployee);
-router.put("/employee/:id",updateEmployee);
+router.put("/employee/:id",updateEmployee); 
 router.delete("/employee/:id",deleteEmployee);
 
 router.put("/addPic/:id",profilePic);

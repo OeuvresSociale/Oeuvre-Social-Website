@@ -6,7 +6,7 @@ const factureSchema = new schema({
     outcomeId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'outcome',
-        required: true
+        required: true  
     },
     creationDate:{
         type:Date,
@@ -17,8 +17,8 @@ const factureSchema = new schema({
         filename: String
     }]
     
-})
+}) 
 
 const facture =mongoose.model('facture',factureSchema);
 
-module.exports=facture;
+module.exports=facture;  

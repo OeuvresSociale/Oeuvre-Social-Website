@@ -51,8 +51,11 @@ const Valideoffres = () => {
                         <img src={Logo} alt="logo" className="offimg2" />
                         <div className="titoff">{offer.title}</div>
                         <div className="descoff">{offer.desc}</div>
-                        <div className="offbtns"><button onClick={() => { setopenDeleteoffre(true); }} className="offdel">Supprimer</button>
-                        <button  className="offvalid" onClick={() => {setopenvalidateoffre(true); }}>Valider</button></div>
+                        <div className="offbtns"><button onClick={() => setopenDeleteoffre(true)} className="offdel">Supprimer</button>
+
+                        <button onClick={() => setopenvalidateoffre(true)} className="offvalid">Valider</button>
+
+                         </div>
 
                         
                       </Link>  ))}
