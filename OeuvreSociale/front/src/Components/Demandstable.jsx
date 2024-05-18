@@ -61,6 +61,9 @@ function Demands() {
 <<<<<<< Updated upstream
 =======
 /////////////////////////////////////////////////////////////////////////
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 const demands = [
   {
@@ -93,7 +96,10 @@ function Demands() {
     ? demands.filter((demand) => demand.status === filterStatus)
     : demands;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 

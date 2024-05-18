@@ -69,24 +69,20 @@ const Valideoffres = () => {
                         <img src={Logo} alt="logo" className="offimg2" />
                         <div className="titoff">{offer.title}</div>
                         <div className="descoff">{offer.desc}</div>
-                        <div className="offbtns"><button onClick={() => { setopenDeleteoffre(true); }} className="offdel">Supprimer</button>
-                        <button  className="offvalid" onClick={() => {setopenvalidateoffre(true); }}>Valider</button></div>
-
-                        
-                        </div>  ))}
-                   {/* <div onClick={handleCardClick} className="offrecv">
-                      
-                        <img src={Logo} alt="logo" className="offimg2" />
-                        <div className="titoff">.title</div>
-                        <div className="descoff">desc</div>
                         <div className="offbtns"><button onClick={handleDeleteClick} className="offdel">Supprimer</button>
                         <button  className="offvalid" onClick={handleValidateClick}>Valider</button></div>
 
-                        </div>
-                       */}
-                         
-                    
                         
+                        </div>  ))}
+                        {/* <div onClick={handleCardClick} className="offrecv">
+                        <img src={Logo} alt="logo" className="offimg2" />
+                        <div className="titoff">offer.title</div>
+                        <div className="descoff">offer.desc</div>
+                        <div className="offbtns"><button onClick={handleDeleteClick} className="offdel">Supprimer</button>
+                        <button  className="offvalid" onClick={handleValidateClick}>Valider</button></div>
+
+                        
+                        </div>  */}
                        
                      </div>
 
