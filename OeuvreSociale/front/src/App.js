@@ -143,7 +143,7 @@ const App = () => {
 
 
         {/* Meeting.............................................................................. */}
-        <Route path="Reunionpage" element={<Reunionpage />} />
+        <Route path="/reunions" element={<Reunionpage />} />
 
         {/* 3-Employee part.............................................................................. */}
 

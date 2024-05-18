@@ -26,7 +26,7 @@ const [showPasswordModal, setShowPasswordModal] = useState(false);
 const [password, setPassword] = useState('');
 const [email, setEmail] = useState('');
 const [error, setError] = useState(null);
-const [otp, setOTP] = useState([]);
+const [OTP, setOTP] = useState([]);
 
 
 const userData = props.dataP;
@@ -44,13 +44,14 @@ const handlePasswordSubmit =async (e) => {
      setShowPasswordModal(false);
     setShowOTPModal(true);
    }
-   catch(error){
-    setError(error.response.data);
-  }
-  console.log("otp:",otp);
+   catch(error){setError(error.response.data);
+   }
+   console.log("otp:",OTP);
+   
+   // Proceed to the next step (OTP verification)
+ };
   
-  // Proceed to the next step (OTP verification)
-};
+ 
 const [showOTPModal, setShowOTPModal] = useState(false);
 
 const [otp, setOtp] = useState(['', '', '', '', '', '']);
@@ -282,7 +283,7 @@ const handleNewPasswordSubmit = async(e) => {
   />
       </div>
       <button className="canceel" onClick={() => setShowOTPModal(false)}>Cancel</button>
-      <button className='Enteer' onClick={handleSubmit}>Confirm </button>
+      <button className='Enteer' >Confirm </button>  {/*onClick={handleSubmit} */}
     </div>
   </div>
 )}
