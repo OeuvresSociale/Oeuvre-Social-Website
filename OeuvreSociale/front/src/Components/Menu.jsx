@@ -1,39 +1,48 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import '../Styles/menu.css';
-import { Link } from 'react-router-dom';
 
-
-const Menu = () => {
+const Menu = ({ components }) => {
+  const location = useLocation();
   const [activeItem, setActiveItem] = useState('');
+
+  useEffect(() => {
+    const path = location.pathname;
+    if (path.includes('/tables')) {
+      setActiveItem('demands');
+    } else if (path.includes('/loan')) {
+      setActiveItem('loan');
+    }
+  }, [location.pathname]);
+
+ 
 
   const handleClick = (item) => {
     setActiveItem(item);
   };
 
+  const ActiveComponent = components[activeItem];
+
   return (
-    <div className="header">
+    <div >
       <div className="menu">
         <Link
           to="/tables"
           className={`menu-item ${activeItem === 'demands' ? 'active' : ''}`}
-          onClick={() => handleClick('demands')} // Update active item on click
+          onClick={() => handleClick('demands')}
         >
           Demands
         </Link>
         <Link
-          to="/offres"
-          className={`menu-item ${activeItem === 'offres' ? 'active' : ''}`}
-          onClick={() => handleClick('offres')}
-        >
-          Offres
-        </Link>
-        <Link
-          to="/loan"
+          to="/tables"
           className={`menu-item ${activeItem === 'loan' ? 'active' : ''}`}
           onClick={() => handleClick('loan')}
         >
           Loan
         </Link>
+      </div>
+      <div className="componentContainer">
+        {ActiveComponent ? <ActiveComponent /> : <div>Component not found</div>}
       </div>
     </div>
   );
