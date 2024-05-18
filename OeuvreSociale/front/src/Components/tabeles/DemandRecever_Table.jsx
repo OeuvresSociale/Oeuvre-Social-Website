@@ -36,7 +36,7 @@ function DemandRecever_Table() {
       // Map fetched data to match the structure of rows
       const rowData = data.map((RecievedDemand) => ({
         id: RecievedDemand._id,
-        name:  `${RecievedDemand.familyName} ${RecievedDemand.firstName}`,
+        name:  `${RecievedDemand.employeeId.familyName} ${RecievedDemand.employeeId.firstName}`,
         type: RecievedDemand.requestTypeId.title,
         date: new Date( RecievedDemand.creationDate).toLocaleDateString("en-GB", {
           day: "2-digit",
