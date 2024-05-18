@@ -31,12 +31,12 @@ function DemandRecever_Table() {
       const data = response.data;
       console.log("The data passed are here:", data);
       // Map fetched data to match the structure of rows
-      const rowData = data.map((RecievedDemand) => ({
-        id: RecievedDemand.idEmployee,
-        name: `${RecievedDemand.familyName} ${RecievedDemand.firstName}`
-        email: RecievedDemand.email,
-        salaire: RecievedDemand.monthlySalary,
-        role: RecievedDemand.role,
+      const rowData = data.map((employeeInfo) => ({
+        id: employeeInfo.idEmployee,
+        name: `${employeeInfo.familyName} ${employeeInfo.firstName}`
+        email: employeeInfo.email,
+        salaire: employeeInfo.monthlySalary,
+        role: employeeInfo.role,
       }));
       // Update the state with the mapped data
       setRows(rowData);

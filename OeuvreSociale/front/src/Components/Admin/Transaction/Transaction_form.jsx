@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Grid, TextField, Button, Typography } from "@mui/material";
-import "./Transaction_form.css";
-import axios from "axios"; // Import Axios library
+import axios from "axios";
 import { InsertDriveFile } from "@mui/icons-material";
+import "./Transaction_form.css";
 
 const Transaction_form = () => {
   const [formData, setFormData] = useState({
@@ -14,40 +14,14 @@ const Transaction_form = () => {
     file: null,
   });
 
-  useEffect(() => {
-      const submitForm = async () => {
-        if (formData.name && formData.type && formData.date && formData.amount && formData.categorie && formData.files) {
-          try {
-            const response = await axios.post("http://localhost:8000/api/RequestyAll", formData);
-            console.log("Form li submitinaha:", response.data);
-            // Supprimer form data after successful submission
-            setFormData({
-              name: "",
-              type: "",
-              date: "",
-              amount: "",
-              categorie: "",
-              files: null,
-            });
-            alert("Transaction saved successfully");
-          } catch (error) {
-            console.error("Error submitting form:", error);
-            alert("Failed to save transaction. Please try again.");
-          }
-        }
-      };
-
-      submitForm();
-    }, [formData]);
-
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     setFormData({
       ...formData,
       [name]: files ? files[0] : value,
     });
-  
-    if (name === 'file') {
+
+    if (name === 'file' && files.length > 0) {
       const fileName = files[0].name;
       document.querySelector('.file-text').textContent = fileName;
     }
@@ -60,18 +34,38 @@ const Transaction_form = () => {
       date: "",
       amount: "",
       categorie: "",
-      files: null,
+      file: null,
     });
+    document.querySelector('.file-text').textContent = 'Importer Le récépissé de dépot';
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // check if all fields are filled
     const isFormValid = Object.values(formData).every((value) => !!value);
 
     if (isFormValid) {
-      // Submit the form
-      console.log("info of the form submitted:", formData);
+      try {
+        const formDataToSend = new FormData();
+        for (const key in formData) {
+          formDataToSend.append(key, formData[key]);
+        }
+
+        const response = await axios.post("http://localhost:8000/api/RequestyAll", formDataToSend, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+
+        console.log("Form li submitinaha:", response.data);
+
+        // Clear form data after successful submission
+        handleCancel();
+
+        alert("Transaction saved successfully");
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        alert("Failed to save transaction. Please try again.");
+      }
     } else {
       alert("Please fill in all fields.");
     }
@@ -166,9 +160,9 @@ const Transaction_form = () => {
           <div className="pdf-field">
             <label className="file-label">
               <input
-                type="files"
+                type="file"
                 accept=".pdf"
-                name="files"
+                name="file"
                 onChange={handleChange}
                 required
                 className="file-input"

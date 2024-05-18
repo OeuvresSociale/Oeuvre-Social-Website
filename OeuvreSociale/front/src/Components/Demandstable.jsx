@@ -83,7 +83,7 @@ function Demands() {
   };
   return (
     <div className="dtwrapper">
-      {/* <div className="subbox">
+      <div className="subbox">
         <div className="search">
           <input
             id="searchInput"
@@ -96,9 +96,9 @@ function Demands() {
           />
           <BsSearch onClick={handleSearch} />
         </div>
-      </div> */}
+      </div>
 
-      {/* <div className="filter">
+      <div className="filter">
         <select value={filterStatus} onChange={handleFilterChange}>
           <option value="">All</option>
           <option value="Accepted" className="green">
@@ -111,7 +111,7 @@ function Demands() {
             Pending
           </option>
         </select>
-      </div> */}
+      </div>
       <div className="demands">
         <table className="tabl">
           <thead>
