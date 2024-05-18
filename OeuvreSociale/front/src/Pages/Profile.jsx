@@ -12,7 +12,7 @@ const Profile = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  y
+  const id = localStorage.getItem('userId');
   console.log("User ID:", id);
   
   useEffect(() => {
