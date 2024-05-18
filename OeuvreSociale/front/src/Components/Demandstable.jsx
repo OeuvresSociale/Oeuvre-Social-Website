@@ -47,7 +47,7 @@ function Demands() {
     }
   };
 
-<<<<<<< Updated upstream
+
   const [filterStatus, setFilterStatus] = useState(null);
 
   const filteredDemands = filterStatus
@@ -56,13 +56,8 @@ function Demands() {
 
   // Render the table and other UI elements here
 
-=======
-  // Render the table and other UI elements here
-};
 
 
-
-/////////////////////////////////////////////////////////////////////////
 const demands = [
   {
     demandId: 1,
@@ -93,10 +88,7 @@ function Demands() {
   const filteredDemands = filterStatus
     ? demands.filter((demand) => demand.status === filterStatus)
     : demands;
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);
@@ -124,7 +116,7 @@ function Demands() {
   };
   return (
     <div className="dtwrapper">
-      {/* <div className="subbox">
+      <div className="subbox">
         <div className="search">
           <input
             id="searchInput"
@@ -137,9 +129,9 @@ function Demands() {
           />
           <BsSearch onClick={handleSearch} />
         </div>
-      </div> */}
+      </div>
 
-      {/* <div className="filter">
+      <div className="filter">
         <select value={filterStatus} onChange={handleFilterChange}>
           <option value="">All</option>
           <option value="Accepted" className="green">
@@ -152,7 +144,11 @@ function Demands() {
             Pending
           </option>
         </select>
-      </div> */}
+
+
+
+     
+
       <div className="demands">
         <table className="tabl">
           <thead>
@@ -163,6 +159,7 @@ function Demands() {
               <th>Date</th>
               <th>Status</th>
               <th></th>
+
             </tr>
           </thead>
           <tbody>
