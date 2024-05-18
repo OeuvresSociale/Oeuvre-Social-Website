@@ -42,14 +42,13 @@ const [idRequest, setIdRequest] = useState(null);
   useEffect(() => {
     const fetchRequestDetails = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8000/api/Request/${id}`
-        );
-
+        console.log("hello:")
+        const response = await axios.get(`http://localhost:8000/api/Request/${id}`);
+        console.log("response:",response)
         setRequest(response.data);
         // Assuming data is an object containing details of the selected employee
       } catch (error) {
-        alert(error.response.data);
+        // alert(error.response.data);
         console.error("Error fetching request details:", error);
       }
     };
