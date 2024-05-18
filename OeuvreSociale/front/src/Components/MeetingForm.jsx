@@ -50,7 +50,7 @@ const MeetingForm = ({ selectedDay, onCreateMeeting, onCancel }) => {
 
   return (
     <div className="meeting-form-popup">
-      <h2>New Meeting</h2>
+      <h2>Nouveau réunion</h2>
       <p>{selectedDay && selectedDay.toDateString()}</p>
       <input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
       <input type="text" placeholder="Start Time" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
@@ -58,9 +58,9 @@ const MeetingForm = ({ selectedDay, onCreateMeeting, onCancel }) => {
       <textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
       <div className="buttons">
         <button onClick={handleCreateMeeting} disabled={loading}>
-          {loading ? 'Creating...' : 'Create'}
+          {loading ? 'Creating...' : 'Créer'}
         </button>
-        <button className="cancel" onClick={handleCancel} disabled={loading}>Cancel</button>
+        <button className="cancel3" onClick={handleCancel} disabled={loading}>Annuler</button>
       </div>
     </div>
   );

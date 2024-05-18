@@ -5,16 +5,14 @@ import Sidebar from "../Components/Sidebar";
 
 const Reunionpage = () => {
   return (
-    <div>
-      <div className="containerf">
+    
+      <div className="containerdem">
         <Sidebar />
-        <div className="contentf">
+        <div className="contentdem">
           <Header />
+          <Meeting />
         </div>
-        </div>
-       <div className="containerf">
-        <Meeting />
-    </div>
+       
     </div>
 
   );

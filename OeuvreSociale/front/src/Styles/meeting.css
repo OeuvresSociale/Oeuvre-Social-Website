@@ -167,8 +167,8 @@ border-radius: 5px;
 cursor: pointer;
 }
 
-.meeting-form-popup button.cancel {
-background-color:rgba(142, 202, 230, 1);
+.meeting-form-popup button.cancel3 {
+background-color:#148582;
 }
 .meeting-form-popup .buttons {
   position: relative;
