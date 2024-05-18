@@ -58,6 +58,7 @@ function Demands() {
   // Render the table and other UI elements here
 
 
+
 const demands = [
   {
     demandId: 1,

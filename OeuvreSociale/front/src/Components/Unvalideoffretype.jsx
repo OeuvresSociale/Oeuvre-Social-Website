@@ -79,7 +79,7 @@ const Addoffreform = ({ offer }) => {
 
       await axios.put(`/api/offres/${offer._id}`, payload);
       
-      navigate('/offres');
+      navigate('/unvalideoffres');
     } catch (err) {
      
       // setError('Une erreur est survenue lors de la modification.');
@@ -89,7 +89,7 @@ const Addoffreform = ({ offer }) => {
   return (
     <div className="addoffrewrapp1">
       <div className="mlbtns2">
-        <Link to='/offres'>
+        <Link to='/unvalideoffres'>
           <button className="mlrefuse">Annuler</button>
         </Link>
         <button className="mlaccepte" onClick={handleSubmit} >
