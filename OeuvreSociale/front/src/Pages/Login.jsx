@@ -29,6 +29,7 @@ const Login = () => {
       localStorage.setItem('userId', data.id);
       localStorage.setItem('userSalary', data.salary);
       localStorage.setItem('userEmail', data.useremail);
+////////////////////////////////////
 
     } catch (error) {
       console.error("Error in login:", error);
