@@ -26,7 +26,9 @@ const [showPasswordModal, setShowPasswordModal] = useState(false);
 const [password, setPassword] = useState('');
 const [email, setEmail] = useState('');
 const [error, setError] = useState(null);
+
 const [OTP, setOTP] = useState([]);
+
 
 
 const userData = props.dataP;
@@ -44,12 +46,14 @@ const handlePasswordSubmit =async (e) => {
      setShowPasswordModal(false);
     setShowOTPModal(true);
    }
+
    catch(error){setError(error.response.data);
    }
    console.log("otp:",OTP);
    
    // Proceed to the next step (OTP verification)
  };
+
   
  
 const [showOTPModal, setShowOTPModal] = useState(false);

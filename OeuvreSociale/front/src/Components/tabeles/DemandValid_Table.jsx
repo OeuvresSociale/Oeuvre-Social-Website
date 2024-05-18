@@ -25,11 +25,11 @@ const DemandValid_Table = () => {
 
   const [rows, setRows] = useState([{
     id: 1,
-    name: "Manel",
-    type: "Mariage",
-    date: "2024-02-20",
-    amount: 1000,
-    categorie: "sortant",
+    // name: "Manel",
+    // type: "Mariage",
+    // date: "2024-02-20",
+    // amount: 1000,
+    // categorie: "sortant",
   },]);
 
 useEffect(() => {
@@ -39,7 +39,7 @@ getTrans_Data();
 const getTrans_Data = async () => {
 try {
 
-  const response = await axios.get("http://localhost:8000/api/Requests");
+  const response = await axios.get("http://localhost:8000/api/Requestsapproved");
 
   const data = response.data;
   //Debugging the fetched Data
