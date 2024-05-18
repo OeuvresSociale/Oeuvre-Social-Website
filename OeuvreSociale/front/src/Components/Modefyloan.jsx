@@ -47,8 +47,8 @@ console.log(formData); // Log the response data
 };
 
   return (
-    <div className="loanformwrapp">
-          <form >
+  
+          <form   className="loanformwrapp">
         <div className="loaninfs2">
           <div className="colloaninf">
             <div className="loaninf">
@@ -86,7 +86,7 @@ console.log(formData); // Log the response data
           <button type="submit" className="mlaccepte" onClick={handleSubmit}>Modifier</button>
         </div>
       </form>
-    </div>
+   
   );
 };
 

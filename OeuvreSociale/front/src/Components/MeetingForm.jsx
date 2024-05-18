@@ -57,10 +57,10 @@ const MeetingForm = ({ selectedDay, onCreateMeeting, onCancel }) => {
       <input type="text" placeholder="End Time" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
       <textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
       <div className="buttons">
-        <button onClick={handleCreateMeeting} disabled={loading}>
-          {loading ? 'Creating...' : 'Créer'}
+        <button onClick={handleCancel} disabled={loading}>
+        Annuler
         </button>
-        <button className="cancel3" onClick={handleCancel} disabled={loading}>Annuler</button>
+        <button className="cancel3" onClick={handleCreateMeeting} disabled={loading}> {loading ? 'Creating...' : 'Créer'}</button>
       </div>
     </div>
   );
