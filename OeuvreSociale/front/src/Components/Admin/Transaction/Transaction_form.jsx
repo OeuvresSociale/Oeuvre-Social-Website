@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Grid, TextField, Button, Typography } from "@mui/material";
-import { InsertDriveFile } from "@mui/icons-material";
+
 import axios from "axios";
+import { InsertDriveFile } from "@mui/icons-material";
+
 import "./Transaction_form.css";
 
 const Transaction_form = () => {
@@ -21,7 +23,9 @@ const Transaction_form = () => {
       [name]: files ? files[0] : value,
     });
 
-    if (name === "files" && files) {
+
+    if (name === 'file' && files.length > 0) {
+
       const fileName = files[0].name;
       document.querySelector(".file-text").textContent = fileName;
     }
@@ -34,18 +38,43 @@ const Transaction_form = () => {
       date: "",
       Amount: "",
       categorie: "",
-      files: null,
+      file: null,
     });
-    document.querySelector(".file-text").textContent = "Importer Le récépissé de dépot";
+
+    document.querySelector('.file-text').textContent = 'Importer Le récépissé de dépot';
+
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if all fields are filled
     const isFormValid = Object.values(formData).every((value) => !!value);
 
-    if (!isFormValid) {
+    if (isFormValid) {
+      try {
+        const formDataToSend = new FormData();
+        for (const key in formData) {
+          formDataToSend.append(key, formData[key]);
+        }
+
+        const response = await axios.post("http://localhost:8000/api/RequestyAll", formDataToSend, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+
+        console.log("Form li submitinaha:", response.data);
+
+        // Clear form data after successful submission
+        handleCancel();
+
+        alert("Transaction saved successfully");
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        alert("Failed to save transaction. Please try again.");
+      }
+    } else {
+
       alert("Please fill in all fields.");
       return;
     }
@@ -162,7 +191,7 @@ const Transaction_form = () => {
               <input
                 type="file"
                 accept=".pdf"
-                name="files"
+                name="file"
                 onChange={handleChange}
                 required
                 className="file-input"
