@@ -1,3 +1,4 @@
+
 import "../Styles/Demandstable.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -57,11 +58,6 @@ function Demands() {
   // Render the table and other UI elements here
 
 
-
-<<<<<<< Updated upstream
-=======
-/////////////////////////////////////////////////////////////////////////
->>>>>>> Stashed changes
 const demands = [
   {
     demandId: 1,
@@ -92,10 +88,7 @@ function Demands() {
   const filteredDemands = filterStatus
     ? demands.filter((demand) => demand.status === filterStatus)
     : demands;
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);
