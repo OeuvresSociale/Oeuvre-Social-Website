@@ -9,11 +9,12 @@ const { Console } = require("console");
  
 //Get all request for employee
 const getMyRequests = async (req, res) => {
-  //current page
+  // Current page
   const page = req.query.page || 1;
   const RequestsPerPage = 10;
   const skipRequests = (page - 1) * RequestsPerPage;
   const filtre = req.query.filtre || "";
+  
   try {
     const Requests = await Request.find(
       {
@@ -27,14 +28,21 @@ const getMyRequests = async (req, res) => {
       .skip(skipRequests)
       .limit(RequestsPerPage)
       .exec();
-    res.status(200).json(Requests);
+      
     if (Requests.length === 0) {
-      res.status(401).json("there is no  requests here");
+      // If there are no requests, send a 404 status with an appropriate message
+      return res.status(404).json("There are no requests here");
     }
+    
+    // If there are requests, send them as a JSON response
+    res.status(200).json(Requests);
+    
   } catch (error) {
-    res.status(404).json({ message: error.message });
+    // Handle errors
+    res.status(500).json({ message: error.message });
   }
 };
+
 //Get all request for member with search and pagination maybe used in the main
 const getRequests = async (req, res) => {
   //current page
@@ -144,7 +152,7 @@ const createRequest = async (req, res) => {
       newRequest.files = files;
       await newRequest.save();
     }
-
+    console.log("request created successfully!")
     res.status(201).json({
       message: "Request created successfully",
       request: newRequest.toObject(), // Convert to plain JavaScript object

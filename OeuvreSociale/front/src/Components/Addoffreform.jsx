@@ -59,11 +59,11 @@ const Addoffreform = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      
     await axios.post("http://localhost:8000/api/offre", input, {
-     headers: {
-       "Content-Type": "multipart/form-data"
-     }
+    //  headers: {
+    //    "Content-Type": "multipart/form-data"
+    //  }
+
     });
 
       // Clear form state after successful submission

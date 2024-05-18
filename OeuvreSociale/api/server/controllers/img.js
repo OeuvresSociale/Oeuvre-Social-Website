@@ -1,13 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 const imageModel = require('../models/image')
-const multer = require('multer');
+const multer = require('multer'); 
 
 async function uploadImage(req, res) {
     const upload = multer({ dest: 'uploadsimage/' }).single('testImage'); // Set destination folder for multer
     
     upload(req, res, (err) => {
-        if (err) {
+        if (err) { 
             console.log(err);
             return res.status(500).send('Error uploading image.');
         }

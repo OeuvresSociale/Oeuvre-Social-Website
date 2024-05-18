@@ -71,13 +71,13 @@ const Addoffreform = ({ offer }) => {
     try {
       const payload = {
         title,
-        startDate,
+        startDate, 
         endDate,
         description,
         image
       };
 
-      await axios.put(`/api/offres/${offer.id}`, payload);
+      await axios.put(`/api/offres/${offer._id}`, payload);
       
       navigate('/unvalideoffres');
     } catch (err) {

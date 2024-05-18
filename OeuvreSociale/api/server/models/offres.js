@@ -4,15 +4,14 @@ const offreSchema = new mongoose.Schema({
     title: { 
         type: String,
         required: true,
-    },  
+    },   
     desc: {  
-        type: String,
+        type: String,  
         required: false, 
     },
     imageId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'image',
-        required: true, 
     },
     dateDebut:{ 
         type: Date,
