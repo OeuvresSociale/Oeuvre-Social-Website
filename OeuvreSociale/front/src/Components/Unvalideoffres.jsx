@@ -47,7 +47,7 @@ const Valideoffres = () => {
       const navigate = useNavigate();
 
   const handleCardClick = () => {
-    navigate('/formulaire/ajouteroffre/unvalideoffretype');
+    navigate('/unvalideoffres/unvalideoffrestype');
   };
 
  
@@ -74,7 +74,7 @@ const Valideoffres = () => {
 
                         
                         </div>  ))}
-                      {/* <div onClick={handleCardClick} className="offrecv">
+                   {/* <div onClick={handleCardClick} className="offrecv">
                       
                         <img src={Logo} alt="logo" className="offimg2" />
                         <div className="titoff">.title</div>
@@ -83,7 +83,7 @@ const Valideoffres = () => {
                         <button  className="offvalid" onClick={handleValidateClick}>Valider</button></div>
 
                         </div>
-                      */}
+                       */}
                          
                     
                         
