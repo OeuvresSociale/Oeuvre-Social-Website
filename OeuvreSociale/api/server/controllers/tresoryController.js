@@ -142,7 +142,7 @@ const addTransaction = async (req, res) => {
   try {
     const data = new transaction({
       name: req.body.name,
-      creationDate: new Date(),
+      creationDate: req.body.creationDate,
       title: req.body.title,
       type: req.body.type,
       Amount: req.body.Amount,
@@ -381,6 +381,120 @@ const calculateTransactionSummaryByType = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+//////////////////////////////////////////////////////////////
+// const calculateMonthlyOutcome = async (req, res) => {
+//   try {
+//     const outcomes = await transaction.aggregate([
+//       {
+//         $match: {
+//           categorie: "outcome",
+//           createdAt: {
+//             $gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+//             $lt: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1),
+//           },
+//         },
+//       },
+//       {
+//         $group: {
+//           _id: null,
+//           totalOutcome: { $sum: "$Amount" },
+//         },
+//       },
+//     ]);
+
+//     const totalOutcome = outcomes.length > 0 ? outcomes[0].totalOutcome : 0;
+
+//     res.status(200).json({
+//       totalOutcome,
+//     });
+//   } catch (error) {
+//     console.error("Error calculating monthly outcome:", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// };
+   
+
+const calculateAllMonthlyOutcome = async (req, res) => {
+  try {
+    const allMonths = Array.from({ length: 12 }, (_, i) => i + 1); // Generate an array of numbers from 1 to 12 representing months
+
+    const monthlyOutcomes = await transaction.aggregate([
+      {
+        $match: {
+          categorie: "outcome",
+          creationDate: {
+            $gte: new Date(new Date().getFullYear(), 0, 1), // Start of the year
+            $lt: new Date(new Date().getFullYear() + 1, 0, 1) // Start of next year
+          },
+        },
+      },
+      {
+        $group: {
+          _id: { $month: "$creationDate" },
+          totalOutcome: { $sum: "$Amount" },
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+
+    // Merge the monthly outcome data with the list of all months
+    const mergedData = allMonths.map(month => {
+      const monthData = monthlyOutcomes.find(item => item._id === month);
+      return {
+        month,
+        totalOutcome: monthData ? monthData.totalOutcome : 0,
+        count: monthData ? monthData.count : 0
+      };
+    });
+
+    res.status(200).json(mergedData);
+  } catch (error) {
+    console.error("Error calculating monthly outcome:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+const calculateAllMonthlyIncome = async (req, res) => {
+  try {
+    const allMonths = Array.from({ length: 12 }, (_, i) => i + 1); // Generate an array of numbers from 1 to 12 representing months
+
+    const monthlyIncomes = await transaction.aggregate([
+      {
+        $match: {
+          categorie: "income",
+          creationDate: {
+            $gte: new Date(new Date().getFullYear(), 0, 1), // Start of the year
+            $lt: new Date(new Date().getFullYear() + 1, 0, 1) // Start of next year
+          },
+        },
+      },
+      {
+        $group: {
+          _id: { $month: "$creationDate" },
+          totalIncome: { $sum: "$Amount" },
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+
+    // Merge the monthly income data with the list of all months
+    const mergedData = allMonths.map(month => {
+      const monthData = monthlyIncomes.find(item => item._id === month);
+      return {
+        month,
+        totalIncome: monthData ? monthData.totalIncome : 0,
+        count: monthData ? monthData.count : 0
+      };
+    });
+
+    res.status(200).json(mergedData);
+  } catch (error) {
+    console.error("Error calculating monthly income:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+
+
 
 module.exports = {
   validRequest,
@@ -395,4 +509,6 @@ module.exports = {
   calculateIncomeSummary,
   calculateOutcomeSummary,
   calculateTransactionSummaryByType,
+  calculateAllMonthlyOutcome,
+  calculateAllMonthlyIncome
 };
