@@ -6,26 +6,48 @@ import Chart from 'react-apexcharts';
 
 
 const DashBoard = () => {
-
+///link de cercle///////////////////////////////////////////////////////////////////////////////////
   const [chartData2, setChartData2] = useState({
-    series: [40, 30, 30],
-        options: {
-            labels: ['Demands', 'pretes', 'offres'],
-            chart: {
-                type: 'pie',
-            },
-            colors: ['#4154f1', '#2eca6a', '#ff771d'],
-        },
+    series: [],
+    options: {
+      labels: [],
+      chart: {
+        type: 'pie',
+      },
+      colors: ['#4154f1', '#2eca6a', '#ff771d', '#00aaff'],
+    },
   });
 
-    
+  useEffect(() => {
+    const fetchTransactionSummary = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/api/transaction-summary-by-type');
+        const data = response.data;
 
+        // Log the response data for debugging
+        console.log('Transaction Summary Data:', data);
 
-  
+        // Filter out null or undefined values
+        const validData = data.filter(item => item && item.type && item.percentage != null);
 
+        const series = validData.map(item => item.percentage);
+        const labels = validData.map(item => item.type);
 
+        setChartData2(prevChartData => ({
+          series: series,
+          options: {
+            ...prevChartData.options,
+            labels: labels,
+          },
+        }));
+      } catch (error) {
+        console.error('Error fetching transaction summary:', error);
+      }
+    };
 
-
+    fetchTransactionSummary();
+  }, []);
+ ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
 
   const [chartData, setChartData] = useState({
     options: {
@@ -38,10 +60,10 @@ const DashBoard = () => {
       colors: ['#4154f1', '#2eca6a'],
       plotOptions: {
         bar: {
-            horizontal: false,
-            columnWidth: '70%', // Adjust this value to create the desired gap
+          horizontal: false,
+          columnWidth: '70%', // Adjust this value to create the desired gap
         },
-    },
+      },
     },
     series: [{
       name: 'Encassement',
@@ -52,9 +74,11 @@ const DashBoard = () => {
       data: [25, 45, 15, 70, 49, 60, 70, 91, 125, 130, 145, 150]
     }]
   });
- 
 
-    const [chartOptions, setchartOptions] = useState({
+
+  //link of linechart//////////////////////////////////////////////////////////////////////////////////////
+const [chartOptions, setchartOptions] = useState({
+
         series: [{
             name: 'Demandes',
             data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
@@ -99,7 +123,7 @@ const DashBoard = () => {
             
         },
     });
-
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     useEffect(() => {
         const fetchData = async () => {
           try {
@@ -231,7 +255,7 @@ const [outcomeSummary, setOutcomeSummary] = useState({
         
        
         
-        <div className="somme8"> <div className="st"><div className="somme4">pret </div></div>
+        <div className="somme8"> <div className="st"><div className="somme4">pretes </div></div>
         <div className="npr8">20000000</div>
         </div>
 
@@ -242,7 +266,9 @@ const [outcomeSummary, setOutcomeSummary] = useState({
        </div>
                <div className="graphe9">
                <div className="graphtitle">Raport</div>
-               <Chart options={chartOptions.options} series={chartOptions.series} type="line" height={310} />
+               <Chart  options={chartOptions.options}
+          series={chartOptions.series}
+          type="line" height={310} />
 
 
                </div>
@@ -255,7 +281,11 @@ const [outcomeSummary, setOutcomeSummary] = useState({
         <Chart options={chartData.options} series={chartData.series} type="bar" width="100%" className="my-chart" />
       </div>
       <div className="circle-chart">
-            <Chart options={chartData2.options} series={chartData2.series} type="pie" height={250} />
+             <Chart
+         options={chartData2.options}
+        series={chartData2.series}
+        type="pie"
+       height={250} />
         </div>
     
             </div>

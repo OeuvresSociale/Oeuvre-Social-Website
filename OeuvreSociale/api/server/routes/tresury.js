@@ -15,8 +15,12 @@ const {
   calculateIncomeSummary,
   calculateOutcomeSummary,
   calculateTransactionSummaryByType,
+
+  createbilan,
+
   calculateAllMonthlyOutcome,
   calculateAllMonthlyIncome
+
 } = require("../controllers/tresoryController.js");
 
 const {initializeBudget, getCurrentAmount,} = require("../controllers/budgetController.js");
@@ -44,9 +48,13 @@ router.get("/income-summary", calculateIncomeSummary);
 router.get("/outcome-summary", calculateOutcomeSummary);
 router.get("/transaction-summary-by-type", calculateTransactionSummaryByType);
 
+router.post("/generate-bilan", createbilan);
+
+
 
 router.get("/allMonthlyOutcome", calculateAllMonthlyOutcome);
 router.get("/allMonthlyIncome", calculateAllMonthlyIncome);
+
 
 
 module.exports = router;

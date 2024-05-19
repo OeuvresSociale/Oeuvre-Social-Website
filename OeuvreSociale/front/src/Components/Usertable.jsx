@@ -19,9 +19,31 @@ const Usertable = () => {
   const [employees, setEmployees] = useState([]);
   const [error, setError] = useState(null);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
-
-
-
+//////////////////////////////////////////////////////////////////////
+ const handleGeneratePDF = async () => {
+       try {
+      const response = await axios.post("http://localhost:8000/api/generate-bilan", {
+        bilanData: [], // Mettez vos données ici
+        startDate: "2024-01-01", // Remplacez par votre date de début
+        endDate: "2024-01-31", // Remplacez par votre date de fin
+        fileName: "votre_nom_de_fichier", // Remplacez par le nom du fichier
+      }, {
+        responseType: "blob",
+      });
+      // Téléchargez le fichier PDF généré
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "your_filename.pdf");
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+      // Gérer les erreurs
+    }
+    };
+/////////////////////////////////////////////////////////////////////
   const [page, setPage] = useState(0);
 const [rowsPerPage, setRowsPerPage] = useState(5); // Default rows per page
 
@@ -91,6 +113,7 @@ console.log("data :",employees);
               Ajouter employé <IoPersonAddOutline />
             </button>
             </Link>
+            
            </div>
 
 
@@ -153,7 +176,13 @@ console.log("data :",employees);
            {openDelete && selectedEmployee && <Deleteuser  closeDelete={setOpenDelete} selectedEmployee={selectedEmployee} />}
 
 
-          
+         <div className="subbox">
+            <Link to="#" onClick={handleGeneratePDF}>
+                <button className="btn">
+                    Bilan <IoPersonAddOutline />
+                </button>
+            </Link>
+        </div>
       </div>
 
 

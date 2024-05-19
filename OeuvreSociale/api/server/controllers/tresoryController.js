@@ -381,6 +381,324 @@ const calculateTransactionSummaryByType = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+///////////////////////////////////////////////////////////////////////
+const getLineChartData = async (req, res) => {
+  try {
+    const transactions = await transaction.find({});
+    const seriesData = {
+      Demandes: [],
+      Prets: [],
+      Offres: [],
+    };
+
+    transactions.forEach((transaction) => {
+      if (transaction.type === "demande") {
+        seriesData.Demandes.push(transaction.value);
+      } else if (transaction.type === "prete") {
+        seriesData.Prets.push(transaction.value);
+      } else if (transaction.type === "offre") {
+        seriesData.Offres.push(transaction.value);
+      }
+    });
+
+    res.status(200).json(seriesData);
+  } catch (error) {
+    console.error("Error fetching line chart data:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+const calculateCashFlows = async (startDate, endDate) => {
+  try {
+    const transactions = await transaction.find({
+      creationDate: { $gte: startDate, $lte: endDate }, // Filtrer les transactions entre les dates spécifiées
+    });
+
+    // Initialiser les flux de trésorerie
+    const cashFlows = { income: [], expense: [] }; // Initialize income and expense as arrays
+
+    // Parcourir les transactions et les ajouter aux flux de trésorerie appropriés
+    transactions.forEach((transaction) => {
+      const type = transaction.categorie === "income" ? "income" : "expense";
+
+      // Rechercher l'indice de la transaction dans le tableau correspondant
+      const index = cashFlows[type].findIndex(
+        (item) => item.type === transaction.type
+      );
+
+      // Si la transaction existe déjà, mettre à jour les totaux
+      if (index !== -1) {
+        cashFlows[type][index].totalAmount += transaction.Amount;
+        cashFlows[type][index].totalCount++;
+      } else {
+        // Si la transaction n'existe pas, l'ajouter au tableau
+        cashFlows[type].push({
+          type: transaction.type,
+          totalAmount: transaction.Amount,
+          totalCount: 1,
+        });
+      }
+    });
+
+    return cashFlows;
+  } catch (error) {
+    throw new Error("Erreur lors du calcul des flux de trésorerie :", error);
+  }
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+const calculateOfferTransactions = async (startDate, endDate) => {
+  try {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    // Calculer le nombre de transactions de type "offre" dans l'intervalle de dates spécifié
+    const offerTransactionsCount = await transaction.countDocuments({
+      type: "offre",
+      creationDate: { $gte: start, $lte: end },
+    });
+
+    return offerTransactionsCount;
+  } catch (error) {
+    throw new Error(
+      "Erreur lors du calcul du nombre de transactions d'offre :",
+      error
+    );
+  }
+};
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+const PDFDocument = require("pdfkit");
+
+const createbilan = async (req, res) => {
+  // const { startDate, endDate } = req.body;
+
+  // if ( !startDate || !endDate ) {
+  //   return res.status(400).send("Invalid request body");
+  // }
+
+  // // Convertir les dates de début et de fin en objets Date
+  // const start = new Date(startDate);
+  // const end = new Date(endDate);
+  const start = new Date("2024-01-01");
+  const end = new Date("2024-06-10");
+
+  const schoolLogoPath = path.join(__dirname, "../src", "esilogo.png");
+  const companyLogoPath = path.join(__dirname, "../src", "logo.png");
+
+  // Calculer les flux de trésorerie
+  const cashFlows = await calculateCashFlows(start, end);
+  const activities = {
+    // offers: await calculateOfferTransactions(start, end),
+    offers: 20,
+    meetings: 5,
+  };
+  const fileName = "bilan.pdf";
+  // Vérifier la validité des dates
+  if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+    return res.status(400).send("Invalid date format");
+  }
+
+  // Crée un nouveau document PDF
+  const doc = new PDFDocument();
+  const uniqueFilename = `${Date.now()}-${fileName}.pdf`;
+  const filePath = path.join(__dirname, "../uploads", uniqueFilename);
+
+  // Utiliser une promesse pour gérer l'écriture du fichier PDF
+  const writeStream = fs.createWriteStream(filePath);
+
+  return new Promise((resolve, reject) => {
+    doc.pipe(writeStream);
+
+    // Insérer les logos de l'école et de l'entreprise
+    doc.image(schoolLogoPath, { width: 70, align: "left" });
+    doc.moveUp();
+    //doc.image(companyLogoPath, { width: 70, align: "right" });
+    doc.moveDown();
+    doc.moveDown();
+    doc.moveDown();
+    doc.moveDown();
+    doc.moveDown();
+    doc.moveDown();
+    doc.moveDown();
+    // Fonction pour centrer le texte
+    function centerText(doc, text, fontSize) {
+      const pageWidth = doc.page.width;
+      const textWidth = doc.widthOfString(text, { size: fontSize });
+      const x = (pageWidth - textWidth) / 2;
+      doc.text(text, x, doc.y);
+    }
+
+    // Titre du document
+    doc.font("Helvetica");
+    doc.fontSize(20);
+    centerText(doc, "Bilan", 20);
+    doc.moveDown();
+
+    // Période du bilan
+    doc.fontSize(14);
+    centerText(
+      doc,
+      `Bilan du ${start.toDateString()} au ${end.toDateString()}`,
+      14
+    );
+    doc.moveDown();
+
+    // Tableau de flux de trésorerie
+    doc.fontSize(16);
+    centerText(doc, "Tableau de flux de trésorerie", 16);
+    doc.moveDown();
+
+    // Encaissements
+    doc.fontSize(14);
+    centerText(doc, "Encaissements", 14);
+    doc.moveDown();
+
+    // Créer un tableau pour les encaissements
+    const incomeTable = [
+      ["Type de transaction", "Nombre de transactions", "Montant total"],
+      ...cashFlows.income.map((transaction) => [
+        transaction.type,
+        transaction.totalCount,
+        transaction.totalAmount,
+      ]),
+    ];
+
+    // Calculer la somme totale des montants des encaissements
+    const totalIncomeAmount = cashFlows.income.reduce(
+      (acc, transaction) => acc + transaction.totalAmount,
+      0
+    );
+
+    drawTable(doc, incomeTable, {
+      startY: doc.y,
+      columnWidth: 150,
+      rowHeight: 20,
+      padding: 5,
+    });
+    doc.moveDown();
+    // Afficher la somme totale des encaissements
+    doc.text(`Somme totale des encaissements: ${totalIncomeAmount} DA`, {
+      align: "left",
+    });
+
+    // Décaissements
+
+    doc.moveDown();
+    doc.fontSize(14);
+    centerText(doc, "Décaissements", 14);
+    doc.moveDown();
+
+    // Créer un tableau pour les décaissements
+    const expenseTable = [
+      ["Type de transaction", "Nombre de transactions", "Montant total"],
+      ...cashFlows.expense.map((transaction) => [
+        transaction.type,
+        transaction.totalCount,
+        transaction.totalAmount,
+      ]),
+    ];
+
+    // Calculer la somme totale des montants des décaissements
+    const totalExpenseAmount = cashFlows.expense.reduce(
+      (acc, transaction) => acc + transaction.totalAmount,
+      0
+    );
+
+    drawTable(doc, expenseTable, {
+      startY: doc.y,
+      columnWidth: 150,
+      rowHeight: 20,
+      padding: 5,
+    });
+    doc.moveDown();
+    // Afficher la somme totale des décaissements
+    doc.text(`Somme totale des décaissements: ${totalExpenseAmount} DA`, {
+      align: "left",
+    });
+
+    // Définir la fonction drawTable
+    function drawTable(doc, data, options) {
+      const { startY, columnWidth, rowHeight, padding } = options;
+      const tableWidth = data[0].length * columnWidth;
+      const pageWidth = doc.page.width;
+      const startX = (pageWidth - tableWidth) / 2;
+
+      // Définir la taille de la police et de la colonne
+      doc.fontSize(12);
+
+      // Dessiner les cellules avec du padding
+      for (let i = 0; i < data.length; i++) {
+        for (let j = 0; j < data[i].length; j++) {
+          doc.text(
+            data[i][j],
+            startX + j * columnWidth + padding,
+            startY + i * rowHeight + padding,
+            {
+              width: columnWidth - padding * 2,
+              height: rowHeight - padding * 2,
+            }
+          );
+        }
+      }
+
+      // Dessiner les lignes horizontales
+      for (let i = 0; i <= data.length; i++) {
+        doc
+          .moveTo(startX, startY + i * rowHeight)
+          .lineTo(startX + tableWidth, startY + i * rowHeight)
+          .stroke();
+      }
+
+      // Dessiner les lignes verticales
+      for (let j = 0; j <= data[0].length; j++) {
+        doc
+          .moveTo(startX + j * columnWidth, startY)
+          .lineTo(startX + j * columnWidth, startY + rowHeight * data.length)
+          .stroke();
+      }
+    }
+
+    // Section Activités
+    doc.moveDown();
+    doc.moveDown();
+    doc.fontSize(16);
+    centerText(doc, "Activités", 16);
+    doc.moveDown();
+
+    // Aligné à gauche (au bord de la page)
+    const leftMargin = 75; // Define a left margin for the text to align to the left edge
+    doc.fontSize(14);
+    doc.text(`Nombre d'offres: ${activities.offers}`, leftMargin, doc.y);
+    doc.moveDown();
+    doc.text(`Nombre de réunions: ${activities.meetings}`, leftMargin, doc.y);
+    doc.moveDown();
+
+    // Ajouter un espace après la section
+    doc.moveDown();
+
+    // Finaliser le document PDF
+    doc.end();
+    writeStream.on("finish", () => {
+      resolve();
+    });
+
+    writeStream.on("error", (err) => {
+      reject(err);
+    });
+  })
+    .then(() => {
+      if (!fs.existsSync(filePath)) {
+        return res.status(404).send("File not found");
+      }
+      // Serve the file
+      res.sendFile(filePath);
+    })
+    .catch((err) => {
+      console.error("Error generating the PDF:", err);
+      res.status(500).send("Error generating the PDF");
+    });
+};
+=======
 //////////////////////////////////////////////////////////////
 // const calculateMonthlyOutcome = async (req, res) => {
 //   try {
@@ -496,7 +814,10 @@ const calculateAllMonthlyIncome = async (req, res) => {
 
 
 
+
 module.exports = {
+  createbilan,
+  getLineChartData,
   validRequest,
   getValid,
   validLaon,
