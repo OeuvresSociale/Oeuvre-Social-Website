@@ -26,7 +26,7 @@ const transactionSchema = new schema({
   },
   creationDate: {
     type: Date,
-    default: Date.now,
+
   },
   files: {
     type: [
