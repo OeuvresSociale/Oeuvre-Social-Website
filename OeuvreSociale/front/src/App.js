@@ -41,6 +41,8 @@ import Reunionpage from "./Pages/Reunionpage.jsx";
 import ModefyFormtitle from "./Components/ModefyFormtitle.jsx";
 
 import Home from "./Pages/Employee/home/home.jsx";
+import Historique from "./Pages/Admin/Meeting/Historique.jsx";
+import LastYearsMeeting from "./Pages/Admin/Meeting/LastYearsMeeting.jsx"
 
 
 
@@ -144,6 +146,9 @@ const App = () => {
 
         {/* Meeting.............................................................................. */}
         <Route path="/reunions" element={<Reunionpage />} />
+        <Route path="/reunions/historique" element={<Historique />} />
+        <Route path="/reunions/historique/listreunion" element={<LastYearsMeeting />} />
+        
 
         {/* 3-Employee part.............................................................................. */}
 

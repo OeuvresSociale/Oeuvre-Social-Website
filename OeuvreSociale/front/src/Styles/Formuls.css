@@ -6,9 +6,9 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    margin-top: 100px;
     align-items: center;
-    gap:8%;
+    gap:4%;
     background-color: #EAEDEF;
 
    
@@ -19,7 +19,7 @@
 .linkwrapper{
 
 width:90%;
-height:15%;
+height:8%;
 background-color: #fff; 
 display: flex;
 
@@ -42,7 +42,7 @@ color: #1E2648;
     background-color: #1E2648;
 }
 .linktodem{
-    position: absolute;
+   padding-right: 10%;
     color: #1E2648;
    
     font-weight: 400;

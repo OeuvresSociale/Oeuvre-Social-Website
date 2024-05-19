@@ -3,6 +3,7 @@ import '../Styles/meeting.css';
 import Calendar from 'react-calendar';
 import MeetingForm from './MeetingForm'; 
 import MeetingEditForm from './MeetingEditForm';
+import { Link } from 'react-router-dom';
 
 // testing
 const testMeetings = [
@@ -55,6 +56,11 @@ const GestionDesReunionsPage = () => {
 
   return (
     <div className="gestion-des-reunions-page">
+      <Link  to="/reunions/historique"  >
+              <button className="btn3">
+             Historique
+            </button>
+            </Link>
       <div className="calendar-container">
         <Calendar onChange={handleDayClick} value={selectedDay} />
       </div>
@@ -64,6 +70,7 @@ const GestionDesReunionsPage = () => {
           {meetings.map(meeting => (
             <div key={meeting.id} className="meeting-item" onClick={() => handleMeetingEdit(meeting)}>
               <div>{meeting.title}</div>
+             <div>{meeting && meeting.date.toDateString()}</div>
               <div>{meeting.timeStart} - {meeting.timeEnd}</div>
             </div>
           ))}
