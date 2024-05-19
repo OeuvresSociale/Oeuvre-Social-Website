@@ -15,6 +15,7 @@ const {
   calculateIncomeSummary,
   calculateOutcomeSummary,
   calculateTransactionSummaryByType,
+  createbilan,
 } = require("../controllers/tresoryController.js");
 const {
   initializeBudget,
@@ -49,4 +50,5 @@ router.get("/transactions/:transactionId/:fileId", getFileById); //to display th
 router.get("/income-summary", calculateIncomeSummary);
 router.get("/outcome-summary", calculateOutcomeSummary);
 router.get("/transaction-summary-by-type", calculateTransactionSummaryByType);
+router.post("/generate-bilan", createbilan);
 module.exports = router;
