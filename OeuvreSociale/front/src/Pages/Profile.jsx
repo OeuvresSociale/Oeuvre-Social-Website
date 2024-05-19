@@ -12,32 +12,38 @@ const Profile = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // const { id } = useParams();
-
   const id = localStorage.getItem('userId');
-
+  console.log("User ID:", id);
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [userDataResponse, requestsResponse] = await Promise.all([
-          axios.get(`http://localhost:8000/api/employees/${id}`),
-          axios.get(`http://localhost:8000/api/MyRequests/${id}`)
-        ]);
-
-        if (!requestsResponse || !requestsResponse.data) {
-          throw new Error('Invalid response from the server');
+        const userDataResponse = await axios.get(`http://localhost:8000/api/employees/${id}`);
+        
+        // Check if userDataResponse is successful
+        if (userDataResponse.status === 200) {
+          setUserData(userDataResponse.data);
+        } else {
+          throw new Error('Failed to fetch user data');
         }
-        setUserData(userDataResponse.data);
-        setRequests(requestsResponse.data);
-        console.log("data:", requestsResponse.data);
+        
+        const requestsResponse = await axios.get(`http://localhost:8000/api/MyRequests/${id}`);
+        
+        // Check if requestsResponse is successful
+        if (requestsResponse.status === 200) {
+          setRequests(requestsResponse.data);
+        } else {
+          throw new Error('Failed to fetch requests data');
+        }
+        
+        // If both requests are successful, setLoading(false)
         setIsLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
         setError(error);
         setIsLoading(false);
       }
-    };
-    
+    } 
     fetchData();
   }, [id]);
 
@@ -52,24 +58,22 @@ const Profile = () => {
   }
 
   return (
-   
-
-  <div className='containeradd'>
-      <Sidebar/>
-    <div className='contentadd'>
-        <Header/>
-    
-    <UserPro dataP={userData} />
-       
-       {/* <Demands dataD={requests}/> */}
-       </div>
-
-
-      
+    <div>
+      <div className='containerf'>
+        <Sidebar />
+        <div className='contentf'>
+          <Header />  
+          <div className='content'>
+            <UserPro dataP={userData} />
+            {Object.keys(requests).length > 0 ? (
+              <Demands dataD={requests} />
+            ) : (
+              <p>No requests found.</p>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
-
-    
-
   );
   
 };

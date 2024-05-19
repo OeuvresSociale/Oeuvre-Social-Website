@@ -29,17 +29,13 @@ const Loanform = () => {
     fetchLoanData();
   }, []);
 
-  const handleClick = async (e) => {
-    e.preventDefault(); // not refreshing the page
-    // Your logic here
-  };
-
+  
   return (
     <div className="loanformwrapp">
       <Link to='/formulaire/formulairepret/modifierpret'>
         <div>
           <div className="modefypret">
-            <button onClick={handleClick}>Modifier</button>
+            <button >Modifier</button>
           </div>
         </div>
       </Link>

@@ -24,7 +24,7 @@ const router = express.Router();
 
 // type request
 router.get("/Requests", getallRequests); //
-router.get("/Request/:id", getRequest); //
+router.get("/Request/:id", getRequest); //   
 router.get("/Req/:id", getReq); // get one loan
 router.get("/off/:id", getOffre); // get one offre
 router.get("/MyRequests/:employeeId", getMyRequests); //

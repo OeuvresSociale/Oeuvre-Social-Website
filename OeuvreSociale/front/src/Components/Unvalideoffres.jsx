@@ -4,6 +4,7 @@ import { FiPlusCircle } from "react-icons/fi";
 import { GoTrash } from "react-icons/go";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { BsArrowLeftCircle } from "react-icons/bs";
 import Deleteoffre from './Deleteoffre';
@@ -22,7 +23,7 @@ const Valideoffres = () => {
          // Fetch validated offers from the backend when the component mounts
          const fetchunValidatedOffers = async () => {
              try {
-                 const response = await axios.get("http://localhost:8000/api/offres");
+                 const response = await axios.get("http://localhost:8000/api/invisibleOffres");
                  setunValidatedOffers(response.data); // Update state with fetched data
                  console.log("response:",response.data)
              } catch (error) {
@@ -32,6 +33,23 @@ const Valideoffres = () => {
  
          fetchunValidatedOffers();
      }, []); // Empty dependency array to fetch data only once when the component mounts
+
+     const handleDeleteClick = (event) => {
+        event.stopPropagation();
+        setopenDeleteoffre(true);
+      };
+    
+      const handleValidateClick = (event) => {
+        event.stopPropagation();
+        setopenvalidateoffre(true);
+      };
+
+      const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate('/unvalideoffres/unvalideoffrestype');
+  };
+
  
 
     return (
@@ -47,18 +65,27 @@ const Valideoffres = () => {
 
                 <div className="vali7">  <span className="titleaddoffre"> Offres non valides :</span>
                 <div className="offrecrapv">
-                {unvalidatedOffers.map((offer, index) => (<Link to='/formulaire/ajouteroffre/unvalideoffretype' className="offrecv">
+                {unvalidatedOffers.map((offer, index) => ( <div onClick={handleCardClick} className="offrecv">
                         <img src={Logo} alt="logo" className="offimg2" />
                         <div className="titoff">{offer.title}</div>
                         <div className="descoff">{offer.desc}</div>
-                        <div className="offbtns"><button onClick={() => { setopenDeleteoffre(true); }} className="offdel">Supprimer</button>
-                        <button  className="offvalid" onClick={() => {setopenvalidateoffre(true); }}>Valider</button></div>
+
+                        <div className="offbtns"><button onClick={handleDeleteClick} className="offdel">Supprimer</button>
+                        <button  className="offvalid" onClick={handleValidateClick}>Valider</button></div>
 
                         
-                      </Link>  ))}
-                         
-                    
+
                         
+                        </div>  ))}
+                        {/* <div onClick={handleCardClick} className="offrecv">
+                        <img src={Logo} alt="logo" className="offimg2" />
+                        <div className="titoff">offer.title</div>
+                        <div className="descoff">offer.desc</div>
+                        <div className="offbtns"><button onClick={handleDeleteClick} className="offdel">Supprimer</button>
+                        <button  className="offvalid" onClick={handleValidateClick}>Valider</button></div>
+
+                        
+                        </div>  */}
                        
                      </div>
 

@@ -18,7 +18,7 @@ const Valideoffres = () => {
         // Fetch validated offers from the backend when the component mounts
         const fetchValidatedOffers = async () => {
             try {
-                const response = await axios.get("http://localhost:8000/api/offres");
+                const response = await axios.get("http://localhost:8000/api/visibleOffres");
                 setValidatedOffers(response.data); // Update state with fetched data
                 console.log("response:",response.data)
             } catch (error) {
@@ -45,6 +45,7 @@ const Valideoffres = () => {
                             <div className="descoff">{offer.desc}</div>
                         </Link>
                     ))}
+                    
                     
                     
                      </div>

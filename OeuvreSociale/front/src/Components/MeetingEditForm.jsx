@@ -30,20 +30,20 @@ const MeetingEditForm = ({ meeting, onMeetingFinish, onCancel }) => {
 
   return (
     <div className="meeting-edit-form-popup">
-      <h2>Edit Meeting</h2>
+      <h2> Réunion</h2>
       <p>{meeting && meeting.date.toDateString()}</p>
-      <p>Title: {meeting && meeting.title}</p>
+      <p>Titre: {meeting && meeting.title}</p>
       <p>Description: {meeting && meeting.description}</p>
       <div className="pdf-input-container">
         <label htmlFor="pdfUpload">
           <FaFilePdf className="pdf-icon" />
-          {pdfFileName || 'Upload PV'}
+          {pdfFileName || 'télécharger PV'}
         </label>
         <input type="file" id="pdfUpload" accept=".pdf" onChange={handleFileChange} />
       </div>
       <div className="buttons">
-        <button className="valid"onClick={handleFinishMeeting}>Validate</button>
-        <button className="cancel" onClick={handleCancel}>Cancel</button>
+        <button className="cancel3" onClick={handleCancel}>Annuler</button>
+        <button className="valid" onClick={handleFinishMeeting}>Valider</button>
       </div>
     </div>
   );
