@@ -3,9 +3,10 @@ import { Button, Grid, Alert, AlertTitle } from "@mui/material";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
+import Typography from "@mui/material/Typography";
 import "../Styles/Formulaire.css";
 
-const Formulaire = ({FormVisibility}) => {
+const Formulaire = ({ FormVisibility }) => {
   const [inputs, setInputs] = useState({
     idEmployee: "",
     familyName: "",
@@ -92,7 +93,24 @@ const Formulaire = ({FormVisibility}) => {
       )}
       <div className="formulaire">
         <div className="f1">
-          <div style={{ width: "50%" }} >
+          <div style={{ width: "100%" }}>
+            <div>
+              <Typography
+                variant="h4"
+                component="h4"
+                sx={{
+                  textAlign: "left",
+                  color: "#148582",
+                }}
+              >
+                Ajouter un employée:
+              </Typography>
+            </div>
+          </div>
+        </div>
+
+        <div className="f1">
+          <div style={{ width: "50%" }}>
             <TextField
               className="textfieldStyle"
               fullWidth
@@ -102,7 +120,7 @@ const Formulaire = ({FormVisibility}) => {
               required
             />
           </div>
-          <div style={{ width: "50%" }} >
+          <div style={{ width: "50%" }}>
             <TextField
               fullWidth
               label="Prénom"
@@ -115,7 +133,7 @@ const Formulaire = ({FormVisibility}) => {
         </div>
         <div className="f1">
           <div style={{ width: "33%" }}>
-            <div >
+            <div>
               <TextField
                 fullWidth
                 label="ID"
@@ -126,7 +144,7 @@ const Formulaire = ({FormVisibility}) => {
               />
             </div>
           </div>
-          <div style={{ width: "33%" }} >
+          <div style={{ width: "33%" }}>
             <TextField
               fullWidth
               label="Salaire"
@@ -137,7 +155,7 @@ const Formulaire = ({FormVisibility}) => {
               className="textfieldStyle"
             />
           </div>
-          <div style={{ width: "33%" }} >
+          <div style={{ width: "33%" }}>
             <TextField
               fullWidth
               type="date"
@@ -152,7 +170,7 @@ const Formulaire = ({FormVisibility}) => {
         </div>
         <div className="f1">
           <div style={{ width: "50%" }}>
-            <div >
+            <div>
               <TextField
                 fullWidth
                 label="Adresse email"
@@ -165,7 +183,7 @@ const Formulaire = ({FormVisibility}) => {
             </div>
           </div>
           <div style={{ width: "50%" }}>
-            <div >
+            <div>
               <TextField
                 fullWidth
                 label="Numéro de téléphone"
@@ -180,7 +198,7 @@ const Formulaire = ({FormVisibility}) => {
         </div>
         <div className="f1">
           <div style={{ width: "100%" }}>
-            <div >
+            <div>
               <TextField
                 fullWidth
                 label="Compte bancaire"
@@ -194,7 +212,7 @@ const Formulaire = ({FormVisibility}) => {
           </div>
         </div>
         <div className="f1">
-          <div style={{ width: "33%" }} >
+          <div style={{ width: "33%" }}>
             <div className="select-container">
               <TextField
                 select
@@ -211,72 +229,83 @@ const Formulaire = ({FormVisibility}) => {
               </TextField>
             </div>
           </div>
-          <div style={{ width: "33%" }} >
+          <div style={{ width: "33%" }}>
             <div className="select-container">
-            <TextField
-            select
-            fullWidth
-            label="Situation familiale"
-            name="sitfam"
-            value={selectedsitfam}
-            onChange={handlesitfamChange}
-            required
-            className="textfieldStyle"
-          >
-            <MenuItem value="Marie">Marié</MenuItem>
-            <MenuItem value="celibataire">célibataire</MenuItem>
-          </TextField>
+              <TextField
+                select
+                fullWidth
+                label="Situation familiale"
+                name="sitfam"
+                value={selectedsitfam}
+                onChange={handlesitfamChange}
+                required
+                className="textfieldStyle"
+              >
+                <MenuItem value="Marie">Marié</MenuItem>
+                <MenuItem value="celibataire">célibataire</MenuItem>
+              </TextField>
             </div>
           </div>
-          <div style={{ width: "33%" }} >
+          <div style={{ width: "33%" }}>
             <div className="select-container">
-            <TextField
-            select
-            fullWidth
-            label="Rôle"
-            name="role"
-            value={selectedrole}
-            onChange={handleroleChange}
-            required
-            className="textfieldStyle"
-          >
-            <MenuItem value="president">président</MenuItem>
-            <MenuItem value="tresorerie">trésorerie</MenuItem>
-            <MenuItem value="membre">membre</MenuItem>
-            <MenuItem value="employe">employé</MenuItem>
-          </TextField>
+              <TextField
+                select
+                fullWidth
+                label="Rôle"
+                name="role"
+                value={selectedrole}
+                onChange={handleroleChange}
+                required
+                className="textfieldStyle"
+              >
+                <MenuItem value="president">président</MenuItem>
+                <MenuItem value="tresorerie">trésorerie</MenuItem>
+                <MenuItem value="membre">membre</MenuItem>
+                <MenuItem value="employe">employé</MenuItem>
+              </TextField>
             </div>
           </div>
         </div>
         <div className="f1">
           {selectedsitfam === "Marie" && (
-            <div style={{ width: "200px", marginLeft: "35%" }} >
-             <TextField
-              fullWidth
-              label="Nombre d'enfants"
-              name="numberOfChild"
-              type="number"
-              onChange={handleChange}
-              className="textfieldStyle"
-            />
+            <div style={{ width: "200px", marginLeft: "35%" }}>
+              <TextField
+                fullWidth
+                label="Nombre d'enfants"
+                name="numberOfChild"
+                type="number"
+                onChange={handleChange}
+                className="textfieldStyle"
+              />
             </div>
           )}
-          <Grid item xs={12} className="popup_button">
-            <Grid container justifyContent="flex-end" spacing={2}>
-              <Grid item>
-                <Button variant="contained" color="secondary" onClick={FormVisibility}>
-                  Annuler
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleClick}
-                >
-                  Enregistrer
-                </Button>
+        </div>
+
+        <div className="f1">
+          <div style={{ width: "100%" }}>
+            <div>
+              <Grid className="popup_button">
+                <Grid container justifyContent="flex-end" spacing={2}>
+                  <Grid item>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={FormVisibility}
+                    >
+                      Annuler
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={handleClick}
+                    >
+                      Enregistrer
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
-            </Grid>
-          </Grid>
+            </div>
+          </div>
         </div>
       </div>
     </div>
