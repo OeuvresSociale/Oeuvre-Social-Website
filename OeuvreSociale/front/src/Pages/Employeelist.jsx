@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
 import EmployeeList_Table from "../Components/tabeles/employeeList_Table";
@@ -7,9 +7,15 @@ import "../Styles/Admin/global/structureDuPage.css";
 import { IoPersonAddOutline } from "react-icons/io5";
 import Formulaire from "../Components/Formulaire";
 import Button from "@mui/material/Button";
-import "../Styles/Usertable.css";
+import "../Styles/Formulaire.css";
 
 const Employeelist = () => {
+  const [showForm, setShowForm] = useState(false);
+
+  const FormVisibility = () => {
+    setShowForm((prevShowForm) => !prevShowForm);
+  };
+
   return (
     <div className="body_space">
       <Sidebar />
@@ -21,13 +27,10 @@ const Employeelist = () => {
             subtitle="hnaya la liste t3 les employee sahbi"
           />
           <div>
-            <Button
-                variant="contained"
-                color="primary"
-              >
-               <IoPersonAddOutline />
-              </Button>
-              <Formulaire className='forme'/>
+            <Button variant="contained" color="primary" onClick={FormVisibility}>
+              <IoPersonAddOutline />
+            </Button>
+            {showForm && <Formulaire FormVisibility={FormVisibility} />}
           </div>
         </div>
         <div className="componentContainer">

@@ -1,4 +1,36 @@
-.boxf {
+.formulaire {
+  justify-self: center;
+  background-color: #fff;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  height: 420px;
+  padding: 40px 50px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 12px rgba(90, 90, 90, 0.2);
+}
+
+.f1 {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  gap: 20px;
+}
+
+.textfieldStyle {
+  height: 100%;
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+/* .boxf {
   
 
   height: 100%;
@@ -223,7 +255,7 @@ position: absolute;
   
 }
 
-/* Style for the action icons (e.g., delete and edit) */
+
 
 .boxf.tablef table.lastcolumn svg {
   cursor: pointer;
@@ -379,7 +411,6 @@ position: absolute;
 
 .pagination-button {
   border: 3px solid  #148582;
- /* Adjust the border-radius as needed */
  color:#000;
  font-weight: 500;
   padding: 5px 10px;
@@ -388,7 +419,7 @@ position: absolute;
 }
 
 .pagination-button.active2 {
-  background-color: #148582; /* Active page button color */
+  background-color: #148582; 
   color: #fff;
 }.pagination-button1{
   color:#148582;
@@ -397,31 +428,4 @@ position: absolute;
  border: none;
   background-color: #fff;
   cursor: pointer;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}*/
