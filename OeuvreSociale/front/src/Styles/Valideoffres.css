@@ -6,9 +6,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap:2%;
+   
     background-color: #EAEDEF;
-    margin-top: 40px;
+   
 
    
 
@@ -18,7 +18,9 @@
     width:90%;
     height:80%;
     display: flex;
+    flex-direction: column;
 position: relative;
+transform: translateY(-20px);
 
 }
 .gallery-wrapper {
