@@ -1,3 +1,4 @@
+
 import '../Styles/userPro.css';
 import OIP from "../Assets/OIP.png"
 import { FaCamera } from 'react-icons/fa';
@@ -53,13 +54,13 @@ const handlePasswordSubmit =async (e) => {
 };
 const [showOTPModal, setShowOTPModal] = useState(false);
 
-const [otp, setOtp] = useState(['', '', '', '', '', '']);
+// const [otp, setOtp] = useState(['', '', '', '', '', '']);
 
 
 const handleChange = (index, value) => {
   const updatedOtp = [...otp];
   updatedOtp[index] = value;
-  setOtp(updatedOtp);
+  setOTP(updatedOtp);
 };
 
 
@@ -123,7 +124,7 @@ const handleNewPasswordSubmit = async(e) => {
     console.log("password:",newPassword);
 //   // Reset input values
   setPassword('');
-  setOtp('');
+  setOTP('');
   setNewPassword('');
   setConfirmNewPassword('');
 };
@@ -282,7 +283,7 @@ const handleNewPasswordSubmit = async(e) => {
   />
       </div>
       <button className="canceel" onClick={() => setShowOTPModal(false)}>Cancel</button>
-      <button className='Enteer' onClick={handleSubmit}>Confirm </button>
+      <button className='Enteer' onClick={handleOTPSubmit}>Confirm </button>
     </div>
   </div>
 )}

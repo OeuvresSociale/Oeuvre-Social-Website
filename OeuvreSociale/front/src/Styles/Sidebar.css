@@ -21,6 +21,44 @@ body {
    
     
   }
+  /* Responsive adjustments */
+@media (max-width: 1200px) {
+  
+  .sidemenu  {
+    width: 15%;
+  }
+}
+
+@media (max-width: 992px) {
+  
+  .sidemenu  {
+    width: 10%;
+  }
+}
+
+@media (max-width: 768px) {
+ 
+  .sidemenu  {
+    width: 5%;
+    
+  }
+}
+
+@media (max-width: 576px) {
+ 
+  .sidemenu  {
+    width: 2%;
+    
+  }
+}
+
+@media (max-width: 400px) {
+ 
+  .sidemenu  {
+    width: 0%;
+   
+  }
+}
   
   .inactive {
     

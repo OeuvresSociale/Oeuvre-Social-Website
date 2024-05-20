@@ -1,204 +1,206 @@
-.formsrapper{
-    position: absolute;
-    top:12%;
-    width:30%;
-    height:98%;
-    left:70%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap:3%;
-    background-color:transparent;
+.formsrapper {
+  position: absolute;
+  top: 20%;
+  width: 19%;
+  height: 98%;
+  left: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; 
+  background-color: transparent;
 }
-.title{
-position:absolute;
-top:2%;
-width:90%;
-height:8%;
-color:  rgba(0, 25, 79, 1);
-font-weight: 400;
-size:22;
-line-height:26.86px;
-}
-.linkrapper{
-position:absolute;
-top:15%;
-width:90%;
-height:10%;
-background-color: #fff; 
-display: flex;
-justify-content: left;   
-align-items:center;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-border-radius: 7px;
-text-decoration: none;
-padding-left:2%;
-position: relative;
-color: #1E2648;
-cursor: pointer;
 
-}.linkrapper:hover {
-  background-color: #1E2648;
+.title {
+  position: relative; 
+  top: 2%;
+  width: 90%;
+  height: 5%;
+  color: rgba(0, 25, 79, 1);
+  font-weight: 400;
+  font-size: 25px; 
+  font-weight:500;
+  line-height: 26.86px;
 }
-.linkrapper:hover .linktdem{
-    color: #fff;
-    background-color: #1E2648;
-}
-.linktdem{
-    position: absolute;
-    color: #0b0b0c;
-    font-weight: 400;
-    font-size:22px;
-    text-decoration: none;
-    display:inline-block;
-    line-height: 26.86px;
-    padding-left: 20px;
 
+.linkrapper {
+  position: relative; 
+  width: 95%;
+  height: 40px;
+  background-color: #fff;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  text-decoration: none;
+  padding-left: 2%;
+  color: #1e2648;
+  cursor: pointer;
+  margin-top: 10px;
 }
+
+.linkrapper:hover {
+  background-color: #1e2648;
+}
+.linkrapper:hover .linktdem {
+  color: #fff;
+  background-color: #1e2648;
+}
+
+.linktdem {
+  position: relative;
+  color: #00194f;
+  font-weight: 400;
+  font-size: 16px;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 26.86px;
+  padding-left: 20px;
+}
+
 .popModal {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    position:fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 1;
-  }
-  
-  .popContent {
-    background-color: #fff;
-    padding:20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 60%;
-    height: 87%;
-    overflow-y: auto;
-    position:absolute;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.popContent {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  height: 87%;
+  overflow-y: auto;
+  position: absolute;
+}
 .poptitle {
-    position: relative;
-    text-align: center;
-    margin-bottom: 10px;
-    font-size: 30px;
-    line-height:36.57px;
-    font-weight: 500;
-    color: rgba(0, 25, 79, 1);
-  }
+  position: relative;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 30px;
+  line-height: 36.57px;
+  font-weight: 500;
+  color: rgba(0, 25, 79, 1);
+}
 ul {
-    list-style: none;
-    padding: 0;
-  }
+  list-style: none;
+  padding: 0;
+}
 li {
-    margin-bottom: 10px;
-  }
-  
-  .userInfo {
-    margin-bottom: 20px;
-  }
-  
-  .userInfoItem {
-    margin-bottom: 10px;
-    position: relative;
-    left:10%;
-    width:80% ;
-  }
-  .userInfoLabel{
-    font-size: 15px;
-    line-height:36.57px;
-    font-weight: 500;
-    color: rgba(0, 25, 79, 1); 
-  }
-  
-  .Label {
-    font-size: 15px;
-    line-height:36.57px;
-    font-weight: 500;
-    color: rgba(0, 25, 79, 1);   
-    margin-right: 10px;
-    margin-bottom: 10px;
-    position: relative;
-    left:10%;
-    width:80% ;
-  }
-  
-  .userInfoValue {
-    border: 1px solid rgba(153, 153, 153, 0.5);
-    padding: 8px;
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    margin-top: 5px;
-    background-color: rgba(217, 217, 217, 0.05);
-    border-radius: 2px;
-    padding-left: 30px;
-  }  
-  .inputList {
-    list-style: none;
-    padding: 0;
-    
-  }
-  
-  .inputWrapper {
-    display:flex;
-    padding:4px;
-    align-items: center;
-    border:1px solid rgba(153, 153, 153, 0.5);
-    border-radius: 2px;
-    margin-top: 5px;
-    box-sizing: border-box;
-    background-color: rgba(217, 217, 217, 0.05);
-    margin-bottom: 10px;
-    position: relative;
-    left:10%;
-    width:80% ;
+  margin-bottom: 10px;
+}
+
+.userInfo {
+  margin-bottom: 20px;
+}
+
+.userInfoItem {
+  margin-bottom: 10px;
+  position: relative;
+  left: 10%;
+  width: 80%;
+}
+.userInfoLabel {
+  font-size: 15px;
+  line-height: 36.57px;
+  font-weight: 500;
+  color: rgba(0, 25, 79, 1);
+}
+
+.Label {
+  font-size: 15px;
+  line-height: 36.57px;
+  font-weight: 500;
+  color: rgba(0, 25, 79, 1);
+  margin-right: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  left: 10%;
+  width: 80%;
+}
+
+.userInfoValue {
+  border: 1px solid rgba(153, 153, 153, 0.5);
+  padding: 8px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 5px;
+  background-color: rgba(217, 217, 217, 0.05);
+  border-radius: 2px;
+  padding-left: 30px;
+}
+.inputList {
+  list-style: none;
+  padding: 0;
+}
+
+.inputWrapper {
+  display: flex;
+  padding: 4px;
+  align-items: center;
+  border: 1px solid rgba(153, 153, 153, 0.5);
+  border-radius: 2px;
+  margin-top: 5px;
+  box-sizing: border-box;
+  background-color: rgba(217, 217, 217, 0.05);
+  margin-bottom: 10px;
+  position: relative;
+  left: 10%;
+  width: 80%;
 }
 .pdfIcon {
   position: relative;
-  left:30px;
-  }
-  .name{
-    position: relative;
-    left:60px;
-    font-size: 16px; 
+  left: 30px;
+}
+.name {
+  position: relative;
+  left: 60px;
+  font-size: 16px;
 }
 .uploadFile {
   background-color: rgba(217, 217, 217, 0.2);
   color: rgba(153, 153, 153, 1);
   border: 1px solid rgba(153, 153, 153, 0.5);
-  padding:8px;
+  padding: 8px;
   border-radius: 2px;
   margin-left: auto;
-  font-size: 12px; 
-  display: flex; 
-  align-items: center; 
-
+  font-size: 12px;
+  display: flex;
+  align-items: center;
 }
 .inputWrapper input[type="file"] {
-    display: none;
-  }
-  
+  display: none;
+}
+
 .buttonsWrapper {
-    display: flex;
-    justify-content: flex-end; 
-    margin-top:40px;
-    margin-right: 40px;
-  }
-  
-  .cancelButton,
-  .validateButton {
-    background-color:rgba(142, 202, 230, 0);
-    border: 1px solid rgba(153, 153, 153, 1);
-    color:rgba(153, 153, 153, 1);
-    padding: 10px 20px;
-    border-radius: 7px;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-  
-  .validateButton {
-    color:rgba(255, 255, 255, 0.8);
-    background-color: rgba(19, 133, 130, 1);
-  }
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 40px;
+  margin-right: 40px;
+}
+
+.cancelButton,
+.validateButton {
+  background-color: rgba(142, 202, 230, 0);
+  border: 1px solid rgba(153, 153, 153, 1);
+  color: rgba(153, 153, 153, 1);
+  padding: 10px 20px;
+  border-radius: 7px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.validateButton {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(19, 133, 130, 1);
+}
