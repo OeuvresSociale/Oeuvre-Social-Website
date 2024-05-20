@@ -5,17 +5,18 @@
   margin: 0;
   padding: 0;
   display: flex;
-  height: 100vmax;
-  width: 100vmax;
+  height: 100vh;
+  width: 100%;
   background-color: #f8f7f7;
 }
 
 .dataContainer {
   display: block;
+  padding:0px, 10px;
   margin-left: var(--dynamic-margin-left);
   margin-top: 70px;
   background-color: #f8f7f7;
-  height: calc(100% - 70px); /* Adjust height considering the margin-top */
+  height: calc(100% - 70px);
   width: 90%;
   overflow: auto;
   justify-content: center;

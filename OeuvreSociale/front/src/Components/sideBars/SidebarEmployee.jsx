@@ -21,7 +21,7 @@ import { LuLayoutList } from "react-icons/lu";
 import { HiOutlineSwitchVertical } from "react-icons/hi";
 import { IoListCircleOutline } from "react-icons/io5";
 import { HiBars4 } from "react-icons/hi2";
-import MenuItem from "./MenuItem.jsx";
+import MenuitemEmploye from "../MenuitemEmploye.jsx";
 
 let stt = true;
 
@@ -46,67 +46,28 @@ function Sidebar({ children }) {
     }
   };
 
-  stt = isOpen;//memorize the state of the sidebar
+  stt = isOpen; //memorize the state of the sidebar
 
   const menuItems = [
     {
-     
-      name: "Adminisration",
-      
-    },
-    {
-      path: "/dashboard",
-      name: "Dashboard",
-      icon: <MdOutlineSpaceDashboard />,
-    },
-    {
-      path: "/reunions",
-      name: "Réunions",
-      icon: <MdOutlineArchive />,
-    },
-   
-    
-     
-    
-    {
-      name: "Trésorerie",
-      icon: <FaMoneyBillTrendUp />,
-      subicon: <TfiAngleDown />,
-      subicon2: <TfiAngleRight />,
-      subMenus: [
-       
-        {
-          path: "/transaction",
-          name: "Transaction",
-          icon: <HiOutlineSwitchVertical />,
-        },
-        {
-          path: "/demandevalid",
-          name: "Demande valide",
-          icon: <IoListCircleOutline />,
-        },
-      ],
-    },
-    {
-    
       name: "Employé",
-     
     },
-   
+
     {
       path: "/FormularTab",
       name: "Mes demandes",
       icon: <FaRegListAlt />,
     },
-     {
+    {
       path: "/offresvalides",
-      name: "Annancement",
+      name: "Offres",
       icon: <GrAnnounce />,
-    },{
-        path: "/home",
-        name: "Contact",
-        icon: <FaUsers />,
-      },
+    },
+    {
+      path: "/home",
+      name: "Contact",
+      icon: <FaUsers />,
+    },
   ];
 
   return (
@@ -114,16 +75,16 @@ function Sidebar({ children }) {
       <div className="top-section">
         <div className={isOpen ? "toggle-menu-btn" : "toggle-menu-btn2"}>
           {isOpen ? (
-           <HiBars4  onClick={toggle}/>
+            <HiBars4 onClick={toggle} />
           ) : (
-            <HiBars4 className="vertical" onClick={toggle}/>
+            <HiBars4 className="vertical" onClick={toggle} />
           )}
         </div>
       </div>
       <div className="mainmenu">
         <ul>
           {menuItems.map((menuItem, index) => (
-            <MenuItem
+            <MenuitemEmploye
               key={index}
               name={menuItem.name}
               path={menuItem.path}
