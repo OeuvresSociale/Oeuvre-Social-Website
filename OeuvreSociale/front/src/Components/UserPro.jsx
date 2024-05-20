@@ -58,31 +58,31 @@ const handlePasswordSubmit =async (e) => {
  
 const [showOTPModal, setShowOTPModal] = useState(false);
 
-const handleOTPInputChange = (e, index) => {
-  const newOTP = [...otp];
-  newOTP[index] = e.target.value;
-  setOTP(newOTP.join(''));
-};
-const handleOTPKeyDown = (e, index) => {
-  if (e.key === 'Backspace' && index > 0 && !otp[index]) {
-    const newOTP = [...otp];
-    newOTP[index - 1] = '';
-    setOTP(newOTP.join(''));
-    const prevInput = document.getElementById(`otpInput${index - 1}`);
-    prevInput && prevInput.focus();
-  } else if (e.key.length === 1 && index < 5) {
-    const nextInput = document.getElementById(`otpInput${index + 1}`);
-    nextInput && nextInput.focus();
-  }
-};
-const handleOTPFocus = (e, index) => {
-  const otpValue = e.target.value;
-  if (otpValue) {
-    const newOTP = [...otp];
-    newOTP[index] = '';
-    setOTP(newOTP.join(''));
-  }
-};
+// const handleOTPInputChange = (e, index) => {
+//   const newOTP = [...otp];
+//   newOTP[index] = e.target.value;
+//   setOTP(newOTP.join(''));
+// };
+// const handleOTPKeyDown = (e, index) => {
+//   if (e.key === 'Backspace' && index > 0 && !otp[index]) {
+//     const newOTP = [...otp];
+//     newOTP[index - 1] = '';
+//     setOTP(newOTP.join(''));
+//     const prevInput = document.getElementById(`otpInput${index - 1}`);
+//     prevInput && prevInput.focus();
+//   } else if (e.key.length === 1 && index < 5) {
+//     const nextInput = document.getElementById(`otpInput${index + 1}`);
+//     nextInput && nextInput.focus();
+//   }
+// };
+// const handleOTPFocus = (e, index) => {
+//   const otpValue = e.target.value;
+//   if (otpValue) {
+//     const newOTP = [...otp];
+//     newOTP[index] = '';
+//     setOTP(newOTP.join(''));
+//   }
+// };
 
 // verify otp validation
 const handleOTPSubmit =async (e) => {
@@ -218,10 +218,10 @@ const handleNewPasswordSubmit = async(e) => {
             key={index}
             type="text"
             maxLength={1}
-            value={otp[index] || ''}
-            onChange={(e) => handleOTPInputChange(e, index)}
-            onKeyDown={(e) => handleOTPKeyDown(e, index)}
-            onFocus={(e) => handleOTPFocus(e, index)}
+            // value={otp[index] || ''}
+            // onChange={(e) => handleOTPInputChange(e, index)}
+            // onKeyDown={(e) => handleOTPKeyDown(e, index)}
+            // onFocus={(e) => handleOTPFocus(e, index)}
             id={`otpInput${index}`} // Unique identifier for each input
           />
         ))}

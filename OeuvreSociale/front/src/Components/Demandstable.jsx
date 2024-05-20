@@ -59,6 +59,16 @@ function Demands() {
 
 
 
+<<<<<<< Updated upstream
+=======
+/////////////////////////////////////////////////////////////////////////
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 const demands = [
   {
     demandId: 1,
@@ -89,7 +99,16 @@ function Demands() {
   const filteredDemands = filterStatus
     ? demands.filter((demand) => demand.status === filterStatus)
     : demands;
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);

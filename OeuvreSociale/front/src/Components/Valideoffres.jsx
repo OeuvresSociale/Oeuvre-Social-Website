@@ -7,6 +7,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { BsArrowLeftCircle } from "react-icons/bs";
 import Logo from "../Assets/Logo1.png";
+import Page_Header from "./Admin/bar_menu/Page_Header";
 
 
 const Valideoffres = () => {
@@ -36,7 +37,7 @@ const Valideoffres = () => {
              
   
 
-                <div className="vali7">  <span className="titleaddoffre"> Offres valides :</span>
+                <div className="vali7">   <Page_Header title="Offres "  />
                 <div className="offrecrapv">
                 {validatedOffers.map((offer, index) => (
                        <Link to={`/offre/${offer._id}`} key={index} className="offrecv">
@@ -44,8 +45,13 @@ const Valideoffres = () => {
                             <div className="titoff">{offer.title}</div>
                             <div className="descoff">{offer.desc}</div>
                         </Link>
-                    ))}
-                    
+                   ))}
+                      {/* //  <Link to={`/offre/`} className="offrecv">
+                    //         <img src={Logo} alt="logo" className="offimg3" />
+                    //         <div className="titoff">offer.title</div>
+                    //         <div className="descoff">/c</div>
+                    //     </Link>
+                     */}
                     
                     
                      </div>

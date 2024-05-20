@@ -10,6 +10,7 @@ import { BsArrowLeftCircle } from "react-icons/bs";
 import Deleteoffre from './Deleteoffre';
 import Validateoffrepopup from './Validateoffrepopup';
 import Logo from "../Assets/Logo1.png";
+import Page_Header from './Admin/bar_menu/Page_Header'
 
 
 
@@ -54,16 +55,16 @@ const Valideoffres = () => {
 
     return (
         <div className="addoffrewrapper4">
-             <div className="addformbtn">
+             
                  <Link to='/unvalideoffres/ajouteroffre'><div  className="addoffre">
                    <button>Ajouter offre</button>
                     <FiPlusCircle />
                 </div></Link>
-            </div>
+           
            
   
 
-                <div className="vali7">  <span className="titleaddoffre"> Offres non valides :</span>
+                <div className="vali7">   <Page_Header title="Offres non valides"  />
                 <div className="offrecrapv">
                 {unvalidatedOffers.map((offer, index) => ( <div onClick={handleCardClick} className="offrecv">
                         <img src={Logo} alt="logo" className="offimg2" />
@@ -77,7 +78,7 @@ const Valideoffres = () => {
 
                         
                         </div>  ))}
-                        {/* <div onClick={handleCardClick} className="offrecv">
+                       <div onClick={handleCardClick} className="offrecv">
                         <img src={Logo} alt="logo" className="offimg2" />
                         <div className="titoff">offer.title</div>
                         <div className="descoff">offer.desc</div>
@@ -85,7 +86,71 @@ const Valideoffres = () => {
                         <button  className="offvalid" onClick={handleValidateClick}>Valider</button></div>
 
                         
-                        </div>  */}
+                        </div><div onClick={handleCardClick} className="offrecv">
+                        <img src={Logo} alt="logo" className="offimg2" />
+                        <div className="titoff">offer.title</div>
+                        <div className="descoff">offer.desc</div>
+                        <div className="offbtns"><button onClick={handleDeleteClick} className="offdel">Supprimer</button>
+                        <button  className="offvalid" onClick={handleValidateClick}>Valider</button></div>
+
+                        
+                        </div><div onClick={handleCardClick} className="offrecv">
+                        <img src={Logo} alt="logo" className="offimg2" />
+                        <div className="titoff">offer.title</div>
+                        <div className="descoff">offer.desc</div>
+                        <div className="offbtns"><button onClick={handleDeleteClick} className="offdel">Supprimer</button>
+                        <button  className="offvalid" onClick={handleValidateClick}>Valider</button></div>
+
+                        
+                        </div><div onClick={handleCardClick} className="offrecv">
+                        <img src={Logo} alt="logo" className="offimg2" />
+                        <div className="titoff">offer.title</div>
+                        <div className="descoff">offer.desc</div>
+                        <div className="offbtns"><button onClick={handleDeleteClick} className="offdel">Supprimer</button>
+                        <button  className="offvalid" onClick={handleValidateClick}>Valider</button></div>
+
+                        
+                        </div><div onClick={handleCardClick} className="offrecv">
+                        <img src={Logo} alt="logo" className="offimg2" />
+                        <div className="titoff">offer.title</div>
+                        <div className="descoff">offer.desc</div>
+                        <div className="offbtns"><button onClick={handleDeleteClick} className="offdel">Supprimer</button>
+                        <button  className="offvalid" onClick={handleValidateClick}>Valider</button></div>
+
+                        
+                        </div><div onClick={handleCardClick} className="offrecv">
+                        <img src={Logo} alt="logo" className="offimg2" />
+                        <div className="titoff">offer.title</div>
+                        <div className="descoff">offer.desc</div>
+                        <div className="offbtns"><button onClick={handleDeleteClick} className="offdel">Supprimer</button>
+                        <button  className="offvalid" onClick={handleValidateClick}>Valider</button></div>
+
+                        
+                        </div><div onClick={handleCardClick} className="offrecv">
+                        <img src={Logo} alt="logo" className="offimg2" />
+                        <div className="titoff">offer.title</div>
+                        <div className="descoff">offer.desc</div>
+                        <div className="offbtns"><button onClick={handleDeleteClick} className="offdel">Supprimer</button>
+                        <button  className="offvalid" onClick={handleValidateClick}>Valider</button></div>
+
+                        
+                        </div><div onClick={handleCardClick} className="offrecv">
+                        <img src={Logo} alt="logo" className="offimg2" />
+                        <div className="titoff">offer.title</div>
+                        <div className="descoff">offer.desc</div>
+                        <div className="offbtns"><button onClick={handleDeleteClick} className="offdel">Supprimer</button>
+                        <button  className="offvalid" onClick={handleValidateClick}>Valider</button></div>
+
+                        
+                        </div><div onClick={handleCardClick} className="offrecv">
+                        <img src={Logo} alt="logo" className="offimg2" />
+                        <div className="titoff">offer.title</div>
+                        <div className="descoff">offer.desc</div>
+                        <div className="offbtns"><button onClick={handleDeleteClick} className="offdel">Supprimer</button>
+                        <button  className="offvalid" onClick={handleValidateClick}>Valider</button></div>
+
+                        
+                        </div> 
                        
                      </div>
 

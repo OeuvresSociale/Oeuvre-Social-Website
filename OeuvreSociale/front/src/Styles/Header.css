@@ -120,4 +120,36 @@ background: #fff;
     display: flex;
     align-items: center;
     top:5px;
+  }.search {
+    display: flex;
+    flex-direction: row;
+    gap:15px;
+   
+    border-bottom:#cfcece 1px solid ;
+    outline:none;
+  
+   padding:8px;
+
+   position: absolute;
+    left: 65%;
+    top:10px;
+        
+    
+   } .search svg{
+      color:#cfcece;
+      font-weight: 600;
+      background-color: transparent;
+    }
+   
+  .inp{
+    background-color: transparent;
+    width:200px;
+    height: 45;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    
+    font-size: 15px;
+    
   }
+  
