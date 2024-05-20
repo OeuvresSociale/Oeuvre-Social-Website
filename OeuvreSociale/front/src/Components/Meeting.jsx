@@ -4,6 +4,7 @@ import Calendar from 'react-calendar';
 import MeetingForm from './MeetingForm'; 
 import MeetingEditForm from './MeetingEditForm';
 import { Link } from 'react-router-dom';
+import Page_Header from './Admin/bar_menu/Page_Header';
 
 // testing
 const testMeetings = [
@@ -25,9 +26,17 @@ const GestionDesReunionsPage = () => {
     setMeetings(testMeetings); 
   }, []);
 
-  const handleDayClick = (day) => {
-    setSelectedDay(day);
-    setShowMeetingForm(true); // Open MeetingForm 
+  const handleDayClick = (value) => {
+    const today = new Date();
+    // Set the time of today to midnight to compare only dates
+    today.setHours(0, 0, 0, 0);
+    if (value < today) {
+      alert("Vous pouvez pas sélécter une date passée");
+      setShowMeetingForm(false);
+    } else {
+      setSelectedDay(value);
+      setShowMeetingForm(true);
+    }
   };
 
   const handleMeetingCreate = (meetingData) => {
@@ -65,7 +74,7 @@ const GestionDesReunionsPage = () => {
         <Calendar onChange={handleDayClick} value={selectedDay} />
       </div>
       <div className="meeting-container">
-        <h2 className="met">Réunions :</h2>
+      <Page_Header title="Réunions" />     
         <div className="meeting-list">
           {meetings.map(meeting => (
             <div key={meeting.id} className="meeting-item" onClick={() => handleMeetingEdit(meeting)}>

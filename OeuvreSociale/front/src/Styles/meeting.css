@@ -49,6 +49,7 @@
 
 .meeting-item:hover {
   background-color: #1E2648;
+  color: #fff;
 }
 
 .meeting-details {
@@ -69,7 +70,7 @@
   width: 50%;
   left:46%;
   top:8%;
-  height: 98%;
+  height: 99%;
   padding: 20px;
   /* background-color: aqua; */
 }
@@ -78,7 +79,7 @@
 /* Styles for the react-calendar component */
 .react-calendar {
   width: 90%;
-  height: 74%;
+  height: 78%;
   top: 0%;
   max-width: none;
   border-radius: 5px;
@@ -86,7 +87,7 @@
   border: none;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  padding: 30px;
+ 
 }
 
 .react-calendar__tile {
@@ -94,9 +95,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fbf9f9;
+  background-color: #fff;
 }
 .react-calendar__navigation {
+  padding: 10px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,22 +108,55 @@
 .react-calendar__navigation__label {
   font-size: 0.8em; 
   font-weight: bold;
-  color: white;
+  
   padding: 5px;
   border-radius: 5px;
   margin: 0 10px;
   cursor: pointer;
-  background-color:#1E2648;
+  background-color: #fff;
+  border: none;
+   color: #148582;
 }
 
 
 .react-calendar__navigation__arrow {
-  font-size: 0.8em; 
+  font-size: 1em; 
   padding: 10px;
-  background-color:#1E2648;
-  color: white;
+ background-color: #fff;
+ border: none;
+  color: #148582;
   border-radius: 50%;
   cursor: pointer;
+}.react-calendar__month-view__weekdays {
+  color: #bcbaba;
+  border-bottom: #ddd 2px solid;
+  margin-left: 4%;
+
+ text-decoration: none;
+}.react-calendar__month-view__days__day {
+  display: flex;
+  border: none;
+  text-decoration: none;
+  
+ }
+ 
+
+.react-calendar__month-view__weekdays__weekday abbr {
+  
+ 
+  border: none;
+  text-decoration: none;
+}.react-calendar__tile--now {
+  background-color: #27346b;
+}
+
+.react-calendar__tile--active {
+  /* margin:5%; */
+  
+ 
+  background-color: #148582;
+  border-radius: 40px;
+  color: white;
 }
 
 .meeting-form-popup {
