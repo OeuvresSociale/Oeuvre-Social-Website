@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import '../../../Pages/Employee/home/home.css';
 
 function ContactForm() {
-  return (
+  return (<  div className='contactus'>
     <Paper elevation={3} className="contactForm">
       <Typography variant="h4" align="center">Contact Us</Typography>
       <form>
@@ -39,6 +39,15 @@ function ContactForm() {
         </Button>
       </form>
     </Paper>
+    <div className='contactForm2'>
+
+
+
+    </div>
+    
+    
+    
+    </div>
   );
 }
 
