@@ -67,7 +67,7 @@ function Sidebar({ children }) {
       icon: <GrAnnounce />,
     },
     {
-      path: "/home",
+      path: "/contact",
       name: "Contact",
       icon: <FaUsers />,
     },

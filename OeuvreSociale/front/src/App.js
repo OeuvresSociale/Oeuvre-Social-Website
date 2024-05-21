@@ -39,7 +39,7 @@ import Dashboard from "./Pages/Admin/Dashboard/Dashboard.jsx";
 import Reunionpage from "./Pages/Reunionpage.jsx";
 
 import ModefyFormtitle from "./Components/ModefyFormtitle.jsx";
-
+import Contact from "./Pages/Employee/home/Contact.jsx";
 import Home from "./Pages/Employee/home/home.jsx";
 import Historique from "./Pages/Admin/Meeting/Historique.jsx";
 import LastYearsMeeting from "./Pages/Admin/Meeting/LastYearsMeeting.jsx"
@@ -163,6 +163,7 @@ const App = () => {
         {/* 3-Employee part.............................................................................. */}
 
         <Route path ="/home" element={< Home />}/>
+        <Route path ="/contact" element={< Contact />}/>
      
         <Route path="/profile/:id" element={<Profile />} />
 {/* ----------------------- */}
