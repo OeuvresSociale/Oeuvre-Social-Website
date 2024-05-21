@@ -18,7 +18,7 @@ function Home() {
      <div>
       <Header />
       <ContactSection />
-      <Footer />
+      
     </div>
    </div>
  </div>
