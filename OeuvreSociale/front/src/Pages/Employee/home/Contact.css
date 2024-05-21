@@ -22,10 +22,12 @@
     /* transform: translateY(-60px); */
     justify-content: center;
     align-items: center;
-    margin-left: 10%;
+    
   }.contactForm {
     padding: 20px;
     max-width: 500px;
+    display: block;
+    gap:10%;
   
     
   }.contactForm2 {
@@ -35,7 +37,7 @@
    width: 400px;
    height: 400px;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+   
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -50,4 +52,7 @@
     color:#148582;
     font-weight: 500;
     font-size: 18px;
+  }.cur{
+   width: 100%;
+   background-color: #fff;
   }

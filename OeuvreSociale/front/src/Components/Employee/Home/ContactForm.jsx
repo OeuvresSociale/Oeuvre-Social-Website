@@ -1,21 +1,49 @@
 // ContactForm.jsx
-import React from 'react';
+import React , { useState } from 'react';
+import axios from 'axios';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import '../../../Pages/Employee/home/home.css';
+import '../../../Pages/Employee/home/Contact.css';
 import { MdEmail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
 import { SiGooglemaps } from "react-icons/si";
 import Page_Header from '../../Admin/bar_menu/Page_Header';
 
 function ContactForm() {
-  return (<div >
+  const [formData, setFormData] = useState({
+    name: '',
+    title: '',
+    message: ''
+  });
+
+  
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData({
+      ...formData,
+      [id]: value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://your-backend-api-endpoint/contact', formData);
+      alert("Message envoyé avec succès!");
+    } catch (error) {
+      alert("Erreur lors de l\'envoi du message.");
+    }
+  };
+
+
+  return (<div className='cur'>
     <Page_Header title="Contactez nous" subtitle="vous pouvez envoyer des messages à l'administration"/> 
     < div className='contactus'>
      <div className='contactForm2'>
-
+     <Typography variant="h4" align="left">Contactez nous sur :</Typography>
     <div className='emailos'><MdEmail /> Email</div>
     <div>oeuvresSocial@gmail.com</div>
    <div className='emailos'> <FaPhoneAlt /> Numéro de téléphone</div>
@@ -26,13 +54,15 @@ function ContactForm() {
     </div>
 
     <div className="contactForm">
-      <Typography variant="h4" align="center">Contactez nous</Typography>
-      <form>
+      
+      <form onSubmit={handleSubmit}>
         <TextField
           id="name"
           label="Nom"
           variant="outlined"
           fullWidth
+          value={formData.name}
+          onChange={handleChange}
           margin="normal"
           sx={{
             '& .MuiOutlinedInput-root': {
@@ -58,10 +88,12 @@ function ContactForm() {
           }}
         />
         <TextField
-          id="email"
+          id="title"
           label="Titre"
           variant="outlined"
           fullWidth
+          value={formData.title}
+          onChange={handleChange}
           margin="normal"
           sx={{
             '& .MuiOutlinedInput-root': {
@@ -92,6 +124,8 @@ function ContactForm() {
           variant="outlined"
           fullWidth
           multiline
+          value={formData.message}
+          onChange={handleChange}
           rows={4}
           margin="normal"
           sx={{
@@ -117,15 +151,17 @@ function ContactForm() {
             
           }}
         />
-        <Button variant="contained"  sx={{
+        <Button variant="contained" type="submit"
+            sx={{
             backgroundColor: '#148582',
             '&:hover': {
               backgroundColor: '#148582',
             },
-          }} fullWidth>
+          }} >
           Envoyer
         </Button>
       </form>
+     
     </div>
     
     
