@@ -48,7 +48,7 @@ function Sidebar({ children }) {
 
   stt = isOpen; //memorize the state of the sidebar
 
-  const menuItems = [
+  const EmployeeMenuItems = [
     {
       name: "Employé",
     },

@@ -3,7 +3,7 @@ import { FaRegListAlt } from "react-icons/fa";
 import { FaUsers, FaMoneyBillTrendUp } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import { GrAnnounce } from "react-icons/gr";
-import "../Styles/Sidebar.css";
+import "../../Styles/Sidebar.css";
 import {
   MdOutlineSpaceDashboard,
   MdOutlineArchive,
