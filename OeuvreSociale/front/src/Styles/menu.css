@@ -9,7 +9,7 @@
     font-weight: bold;
     padding: 0.5rem 1rem; 
     cursor: pointer; 
-    transition: color 0.2s ease-in-out;
+   
   }
   
   .menu-item:hover {

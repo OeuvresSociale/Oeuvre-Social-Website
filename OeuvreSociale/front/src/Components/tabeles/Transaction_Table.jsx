@@ -278,19 +278,19 @@ const Transactions_Table = () => {
       field: 'pdf',
       headerName: 'PDF',
       width: 140,
-      renderCell: (params) => {
-        const transactionId = params.row.id;
-        const fileId = params.row.files[0]?._id; // Suppose you have a file ID
-        const link = `http://localhost:8000/api/transactions/${transactionId}/${fileId}`;
+      // renderCell: (params) => {
+      //   const transactionId = params.row.id;
+      //   const fileId = params.row.files[0]?._id; // Suppose you have a file ID
+      //   const link = `http://localhost:8000/api/transactions/${transactionId}/${fileId}`;
 
-        return (
-          <a href={link} target="_blank" rel="noopener noreferrer">
-            <Avatar>
-              <PictureAsPdf />
-            </Avatar>
-          </a>
-        );
-      },
+      //   return (
+      //     <a href={link} target="_blank" rel="noopener noreferrer">
+      //       <Avatar>
+      //         <PictureAsPdf />
+      //       </Avatar>
+      //     </a>
+      //   );
+      // },
     },
     {
       field: "edit",
@@ -306,7 +306,7 @@ const Transactions_Table = () => {
 
   return (
     <div style={{ width: "100%" }}>
-      <div style={{ height: 400, width: "100%" }}>
+      <div style={{ height: "auto", width: "100%" }}>
         <DataGrid
           autoHeight
           rows={rows}

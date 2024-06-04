@@ -1,29 +1,54 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FaRegListAlt } from "react-icons/fa";
 import { FaUsers, FaMoneyBillTrendUp } from "react-icons/fa6";
+import { NavLink } from "react-router-dom";
 import { GrAnnounce } from "react-icons/gr";
-import "../Styles/Sidebar.css";
+import "../../Styles/Sidebar.css";
 import {
   MdOutlineSpaceDashboard,
   MdOutlineArchive,
+  MdOutlineDashboard,
 } from "react-icons/md";
 import {
+  TfiAnnouncement,
+  TfiWrite,
   TfiAngleRight,
+  TfiAngleLeft,
   TfiAngleDown,
 } from "react-icons/tfi";
 import { FaRegPlusSquare } from "react-icons/fa";
+import { LuLayoutList } from "react-icons/lu";
 import { HiOutlineSwitchVertical } from "react-icons/hi";
 import { IoListCircleOutline } from "react-icons/io5";
 import { HiBars4 } from "react-icons/hi2";
-import MenuItem from "./MenuItem.jsx";
+import MenuItem from "../MenuItem.jsx";
 
 let stt = true;
 
-function Sidebar({ children }) {
+function SidebarAdmin({ children }) {
   const root = document.documentElement;
   const [isOpen, setIsOpen] = useState(stt);
 
-  const adminMenuItems = [
+  // Get the root element
+
+  const toggle = () => {
+    setIsOpen(!isOpen);
+    if (isOpen) {
+      root.style.setProperty("--dynamic-margin-left", "6%");
+      root.style.setProperty("--dynamic-width", "94%");
+      root.style.setProperty("--conwidth", "94%");
+      root.style.setProperty("--dtwidth", "90%");
+    } else {
+      root.style.setProperty("--dynamic-margin-left", "18%");
+      root.style.setProperty("--dynamic-width", "82%");
+      root.style.setProperty("--conwidth", "82%");
+      root.style.setProperty("--dtwidth", "79%");
+    }
+  };
+
+  stt = isOpen; //memorize the state of the Admin
+
+  const menuItems = [
     {
       name: "Adminisration",
     },
@@ -78,6 +103,7 @@ function Sidebar({ children }) {
     {
       name: "Employé",
     },
+
     {
       path: "/FormularTab",
       name: "Mes demandes",
@@ -89,58 +115,6 @@ function Sidebar({ children }) {
       icon: <GrAnnounce />,
     },
   ];
-
-  const employeeMenuItems = [
-    {
-      name: "Employé",
-    },
-    {
-      path: "/FormularTab",
-      name: "Mes demandes",
-      icon: <FaRegListAlt />,
-    },
-    {
-      path: "/offresvalides",
-      name: "Offres",
-      icon: <GrAnnounce />,
-    },
-    {
-      path: "/home",
-      name: "Contact",
-      icon: <FaUsers />,
-    },
-  ];
-
-  
-
- 
-  const [menuItems, setMenuItems] = useState(adminMenuItems);
-  useEffect(() => {
-    // const role = localStorage.getItem('role');
-    const role = 'admin';
-    if (role === 'employee') {
-      setMenuItems(employeeMenuItems);
-    } else {
-      setMenuItems(adminMenuItems);
-    } 
-  }, []);
-
-  const toggle = () => {
-    setIsOpen(!isOpen);
-    if (isOpen) {
-      root.style.setProperty("--dynamic-margin-left", "6%");
-      root.style.setProperty("--dynamic-width", "94%");
-      root.style.setProperty("--conwidth", "94%");
-      root.style.setProperty("--dtwidth", "90%");
-    } else {
-      root.style.setProperty("--dynamic-margin-left", "18%");
-      root.style.setProperty("--dynamic-width", "82%");
-      root.style.setProperty("--conwidth", "82%");
-      root.style.setProperty("--dtwidth", "79%");
-    }
-  };
-
-  stt = isOpen; // memorize the state of the sidebar
 
   return (
     <div className={isOpen ? "sidemenu" : "inactive"}>
@@ -173,4 +147,4 @@ function Sidebar({ children }) {
   );
 }
 
-export default Sidebar;
+export default SidebarAdmin;

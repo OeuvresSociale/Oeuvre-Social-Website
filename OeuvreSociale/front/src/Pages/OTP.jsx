@@ -4,7 +4,7 @@ import images from "../Assets/images.png";
 import axios from "axios";
 // import { useHistory } from "react-router-dom";
 
-const Recover = () => {
+const OTP = () => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   // const history = useHistory();
   const handleChange = (index, value) => {
@@ -116,4 +116,4 @@ const Recover = () => {
   );
 };
 
-export default Recover;
+export default OTP;

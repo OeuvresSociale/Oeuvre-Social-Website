@@ -1,328 +1,315 @@
-import React, { useState ,useEffect} from "react";
-import { IoPersonAddOutline } from "react-icons/io5";
-import { GoTrash } from "react-icons/go";
-import { MdOutlineModeEditOutline } from "react-icons/md";
-import { Link } from 'react-router-dom';
-import '../Styles/Formulaire.css';
-import { BsSearch } from "react-icons/bs";
-import Deleteuser from "./Deleteuser";
-import Modefyuser from "./Modefyuser";
-import {  TfiAngleRight , TfiAngleLeft} from "react-icons/tfi";
-import { BiError } from "react-icons/bi";
-import { IoMdCheckmarkCircleOutline } from "react-icons/io";
-import axios from 'axios';
-import TablePagination from '@mui/material/TablePagination';
+import React, { useState, useEffect } from "react";
+import { Button, Grid, Alert, AlertTitle } from "@mui/material";
+import axios from "axios";
+import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
+import Typography from "@mui/material/Typography";
+import "../Styles/Formulaire.css";
 
-const Formulaire = () => {
-  const[openDelete,setOpenDelete]=useState(false);
-  const[openModefy,setOpenModefy]=useState(false);
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5); // Default rows per page
-  
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-  
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0); // Reset page to 0 when rows per page changes
-  };
-    
-  
- 
-
- 
-
-  
-  const [inputs, setInputs]=useState({
-    idEmployee:"",
-    familyName:"", 
-    firstName:"",
-    email:"", 
-    phoneNumber: "" ,
-    sexe:"",
-    familysitution:"",
-    numberOfChild:"",
-    bankAccount:"",
-    monthlySalary:"",
-    dateStartJob:"",
-    password:"",
-    role:"",
-    
-    
+const Formulaire = ({ FormVisibility }) => {
+  const [inputs, setInputs] = useState({
+    idEmployee: "",
+    familyName: "",
+    firstName: "",
+    email: "",
+    phoneNumber: "",
+    sexe: "",
+    familysitution: "",
+    numberOfChild: "",
+    bankAccount: "",
+    monthlySalary: "",
+    dateStartJob: "",
+    password: "",
+    role: "",
   });
-  //set erreur 
-  const [err, setErr]=useState(null);
-  // Effect to update inputs state when gender, role, or sitfam change
+
+  const [err, setErr] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [selectedGender, setSelectedGender] = useState("");
+  const [selectedrole, setSelectedrole] = useState("");
+  const [selectedsitfam, setSelectedsitfam] = useState("");
+
   const handleGenderChange = (e) => {
     setSelectedGender(e.target.value);
   };
-
-  const [selectedrole, setSelectedrole] = useState(''); 
 
   const handleroleChange = (e) => {
     setSelectedrole(e.target.value);
   };
 
-  const [selectedsitfam, setSelectedsitfam] = useState(''); 
-
   const handlesitfamChange = (e) => {
     setSelectedsitfam(e.target.value);
   };
-  const handleChange = (e) =>{
-    setInputs((prev)=>({...prev,[e.target.name]:e.target.value}));
+
+  const handleChange = (e) => {
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  const [selectedGender, setSelectedGender] = useState(''); 
 
-  
-  /** */
-    // Effect to update inputs state when gender, role, or sitfam change
-useEffect(() => {
-  setInputs(prevInputs => ({
-    ...prevInputs,
-    sexe: selectedGender,
-    role: selectedrole,
-    familysitution: selectedsitfam
-  }));
-}, [selectedGender, selectedrole, selectedsitfam]);
-
+  useEffect(() => {
+    setInputs((prevInputs) => ({
+      ...prevInputs,
+      sexe: selectedGender,
+      role: selectedrole,
+      familysitution: selectedsitfam,
+    }));
+  }, [selectedGender, selectedrole, selectedsitfam]);
 
   const handleClick = async (e) => {
-    
-   e.preventDefault();//not refreshing the page 
-  try{
-   
-    await axios.post("http://localhost:8000/api/register",inputs);
-    
-  }
-  catch(error){
-  setErr(error.response.data);
- 
-  
-  }
-  };
-  
-  //const errorMessage = error && error.error ? error.error : ""; 
-//for  user table 
-
-const [employees, setEmployees] = useState([]);
-const [error, setError] = useState(null);
-const [selectedEmployee, setSelectedEmployee] = useState(null);
-  const [searchValue, setSearchValue] = useState('');
-useEffect(() => { 
-  const fetchEmployees = async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/employees?page=1&search=${searchValue}`, { responseType: 'json', responseEncoding: 'utf8' });
-      setEmployees(response.data); // Assuming response.data is an array of employee objects
+      await axios.post("http://localhost:8000/api/register", inputs);
+      setSuccess("Employee registered successfully!");
     } catch (error) {
-      console.error('Error fetching employees:', error);
-      setError(error);
-      setEmployees([]);
+      const errorMessage =
+        error.response && error.response.data
+          ? error.response.data
+          : "An error occurred";
+      setErr(errorMessage);
+      setSuccess(null);
+      setTimeout(() => setErr(null), 1500);
     }
   };
 
-  fetchEmployees();
-  
-}, [searchValue]); // Fetch employees whenever searchValue changes
+  return (
+    <div>
+      {err && (
+        <Alert
+          severity="error"
+          onClose={() => setErr(null)}
+          sx={{ position: "fixed", top: 0, width: "100%", zIndex: 1000 }}
+        >
+          <AlertTitle>Error</AlertTitle>
+          {err}
+        </Alert>
+      )}
+      {success && (
+        <Alert
+          severity="success"
+          onClose={() => setSuccess(null)}
+          sx={{ position: "fixed", top: 0, width: "100%", zIndex: 1000 }}
+        >
+          <AlertTitle>Success</AlertTitle>
+          {success}
+        </Alert>
+      )}
+      <div className="formulaire">
+        <div className="f1">
+          <div style={{ width: "100%" }}>
+            <div>
+              <Typography
+                variant="h4"
+                component="h4"
+                sx={{
+                  textAlign: "left",
+                  color: "#148582",
+                }}
+              >
+                Ajouter un employée:
+              </Typography>
+            </div>
+          </div>
+        </div>
 
+        <div className="f1">
+          <div style={{ width: "50%" }}>
+            <TextField
+              className="textfieldStyle"
+              fullWidth
+              label="Nom"
+              name="familyName"
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div style={{ width: "50%" }}>
+            <TextField
+              fullWidth
+              label="Prénom"
+              name="firstName"
+              onChange={handleChange}
+              required
+              className="textfieldStyle"
+            />
+          </div>
+        </div>
+        <div className="f1">
+          <div style={{ width: "33%" }}>
+            <div>
+              <TextField
+                fullWidth
+                label="ID"
+                name="idEmployee"
+                onChange={handleChange}
+                required
+                className="textfieldStyle"
+              />
+            </div>
+          </div>
+          <div style={{ width: "33%" }}>
+            <TextField
+              fullWidth
+              label="Salaire"
+              name="monthlySalary"
+              type="number"
+              onChange={handleChange}
+              required
+              className="textfieldStyle"
+            />
+          </div>
+          <div style={{ width: "33%" }}>
+            <TextField
+              fullWidth
+              type="date"
+              label="Date de recrutement"
+              name="dateStartJob"
+              InputLabelProps={{ shrink: true }}
+              onChange={handleChange}
+              required
+              className="textfieldStyle"
+            />
+          </div>
+        </div>
+        <div className="f1">
+          <div style={{ width: "50%" }}>
+            <div>
+              <TextField
+                fullWidth
+                label="Adresse email"
+                name="email"
+                type="email"
+                onChange={handleChange}
+                required
+                className="textfieldStyle"
+              />
+            </div>
+          </div>
+          <div style={{ width: "50%" }}>
+            <div>
+              <TextField
+                fullWidth
+                label="Numéro de téléphone"
+                name="phoneNumber"
+                type="tel"
+                onChange={handleChange}
+                required
+                className="textfieldStyle"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="f1">
+          <div style={{ width: "100%" }}>
+            <div>
+              <TextField
+                fullWidth
+                label="Compte bancaire"
+                name="bankAccount"
+                type="text"
+                onChange={handleChange}
+                required
+                className="textfieldStyle"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="f1">
+          <div style={{ width: "33%" }}>
+            <div className="select-container">
+              <TextField
+                select
+                fullWidth
+                label="Sexe"
+                name="gender"
+                value={selectedGender}
+                onChange={handleGenderChange}
+                required
+                className="textfieldStyle"
+              >
+                <MenuItem value="male">Male</MenuItem>
+                <MenuItem value="female">Female</MenuItem>
+              </TextField>
+            </div>
+          </div>
+          <div style={{ width: "33%" }}>
+            <div className="select-container">
+              <TextField
+                select
+                fullWidth
+                label="Situation familiale"
+                name="sitfam"
+                value={selectedsitfam}
+                onChange={handlesitfamChange}
+                required
+                className="textfieldStyle"
+              >
+                <MenuItem value="Marie">Marié</MenuItem>
+                <MenuItem value="celibataire">célibataire</MenuItem>
+              </TextField>
+            </div>
+          </div>
+          <div style={{ width: "33%" }}>
+            <div className="select-container">
+              <TextField
+                select
+                fullWidth
+                label="Rôle"
+                name="role"
+                value={selectedrole}
+                onChange={handleroleChange}
+                required
+                className="textfieldStyle"
+              >
+                <MenuItem value="president">président</MenuItem>
+                <MenuItem value="tresorerie">trésorerie</MenuItem>
+                <MenuItem value="membre">membre</MenuItem>
+                <MenuItem value="employe">employé</MenuItem>
+              </TextField>
+            </div>
+          </div>
+        </div>
+        <div className="f1">
+          {selectedsitfam === "Marie" && (
+            <div style={{ width: "200px", marginLeft: "35%" }}>
+              <TextField
+                fullWidth
+                label="Nombre d'enfants"
+                name="numberOfChild"
+                type="number"
+                onChange={handleChange}
+                className="textfieldStyle"
+              />
+            </div>
+          )}
+        </div>
 
-// Function to fetch details of a single employee
-const fetchEmployeeDetails = async (employeeId) => {
-try {
-  const response = await axios.get(`http://localhost:8000/api/employees/${employeeId}`
- // , { responseType: 'json', responseEncoding: 'utf8' }
+        <div className="f1">
+          <div style={{ width: "100%" }}>
+            <div>
+              <Grid className="popup_button">
+                <Grid container justifyContent="flex-end" spacing={2}>
+                  <Grid item>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={FormVisibility}
+                    >
+                      Annuler
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={handleClick}
+                    >
+                      Enregistrer
+                    </Button>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
-  setSelectedEmployee(response.data); // Assuming data is an object containing details of the selected employee
-} catch (error) {
-  console.error('Error fetching employee details:', error);
-}
-}
-
-
-
-
-const handleSearch = () => {
-  // Do something with the searchValue, for example, you can log it
-  setSearchValue( searchValue);
 };
 
-    return (
-      <div className="boxf">
-        <div className="subboxf">
-           <div className="searchf">
-            <input  className='inpf' type="text" placeholder="rechercher..." />
-            <BsSearch />
-           </div>
-           
-           </div>
-<div className="formulaire">
-<div className="f1">
- <div style={{ width: '50%' }} className="f2" ><input type="text" name="familyName" placeholder="Nom" onChange={handleChange} required/></div>
- <div style={{ width: '50%' }} className="f2"  ><input type="text"name="firstName" placeholder="Prénom" onChange={handleChange} required/></div>
-
- </div >
- <div className="f1">
- <div style={{ width: '33%'}}><div  className="f2" ><input type="text"  name="idEmployee" placeholder="ID" onChange={handleChange}required /></div></div>
- <div  style={{ width: '33%'}} className="f2"><input   name="monthlySalary" placeholder="Salaire" onChange={handleChange}required /></div>
- <div style={{ width: '33%'}} className="f2"><input  style={{ width: '240px' }}  type="date" name="dateStartJob" placeholder="date de recrutement" onChange={handleChange} required/></div>
-
- </div>
- <div className="f1">
- 
- <div  style={{ width: '50%' }}><div  className="f2"><input type="text"  name="email" placeholder="address email" onChange={handleChange} required/></div> </div>
-<div style={{ width: '50%' }}><div  className="f2"><input  type="text"  name="phoneNumber" placeholder="Phone Number" onChange={handleChange}required /></div></div>
- </div>
- <div className="f1">
- 
-
- <div style={{ width: '100%' }}><div   className="f2"><input type="text" name="bankAccount" placeholder="compte bancaire" onChange={handleChange} required/></div></div>
-
- </div>
- <div className="f1">
- <div style={{ width: '33%' }} className="f2" >
-
- 
-      <div className="select-container">
-        <select id="gender" name="gender" value={null} onChange={handleGenderChange}required>
-        <option value="">sexe</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-         
-        </select>
-       </div> 
-      </div>
-      <div style={{ width: '33%' }} className="f2" >
-      <div className="select-container">
-        <select id="sitfam" name="sitfam" value={null} onChange={handlesitfamChange}required>
-        <option value="">situation familialle</option>
-          <option value="Marie">Marié</option>
-          <option value="celibataire">célibataire</option>
-         
-        </select>
-       </div> 
-      </div>
-      <div style={{ width: '33%' }} className="f2" >
-      
-      <div className="select-container">
-        <select id="role" name="role" value={null} onChange={handleroleChange}required>
-         
-          <option value="president">président</option>
-          <option value="tresorerie">trésorerie</option>
-          <option value="membre">membre</option>
-          <option value="employe">employé</option>
-         
-        </select>
-        </div> 
-      </div>
-
-
-      
-
- 
-    
-
- </div>
-
- <div className="f1">
-  
- {selectedsitfam === 'Marie' &&(
- <div style={{ width: '200px',  marginLeft: '35%' }}className="f2"><input type="text"  name="numberOfChild" placeholder="nombre d'enfants" onChange={handleChange} /></div> )}
-
-<div className="btns">
-    <Link to='/employeelist'><button className="cancel">Annuler</button> </Link>
-     <button className="add" onClick={handleClick}>Ajouter</button>
-</div>
- </div>
- <p>
-  { //affiche le message d'erreur
-//errorMessage
-}</p>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-<div className="tableu">
-           <table>
-      <thead >
-        <tr>
-          <th>ID</th>
-          <th>Nom de l'employé</th>
-          <th>Email</th>
-          <th>Salaire</th>
-          <th>Rôle</th>
-          <th></th>
-          
-        </tr>
-      </thead>
-      <tbody>
-       
-         
-
-      {employees.map(employee => (
-            <tr key={employee._id}>
-              <td>{employee.idEmployee}</td>
-              <td>{`${employee.familyName} ${employee.firstName}`}</td>
-              <td>{employee.email}</td>
-              <td>{employee.monthlySalary}</td>
-              <td>{employee.role}</td>
-              <td className="lastcolumn">
-                <GoTrash 
-                onClick={ async() => {setOpenDelete(true); await fetchEmployeeDetails(employee._id);}
-                } />
-                <MdOutlineModeEditOutline onClick={async() =>  {setOpenModefy(true); await fetchEmployeeDetails(employee._id);}} />
-              </td>
-            </tr>
-       ))}
-      </tbody>
-    </table>
-   
-
-
-
-
-
-           </div>
-           <TablePagination  className='tablepag'
-  // Options for rows per page
-  component="div"
-  count={employees.length} // Total number of rows
-  rowsPerPage={rowsPerPage}
-  page={page}
-  onPageChange={handleChangePage}
-  onRowsPerPageChange={handleChangeRowsPerPage}
-/>
-
-           {console.log(selectedEmployee)}
-           {openModefy && selectedEmployee && <Modefyuser closeModefy={setOpenModefy} selectedEmployee={selectedEmployee} />}
-      
-
-           {openDelete && selectedEmployee && <Deleteuser  closeDelete={setOpenDelete} selectedEmployee={selectedEmployee} />}
-
-
-          
-
-
-       <div className="errorm"> <div className="error1" > <BiError />message d'erreur</div>
-     <div className="error2" > <IoMdCheckmarkCircleOutline />message d'erreur</div></div> 
-
-          
-      </div>
-
-
-        );
-    };
-    
-    export default Formulaire ;
+export default Formulaire;

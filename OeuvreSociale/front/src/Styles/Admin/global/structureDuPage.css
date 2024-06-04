@@ -5,35 +5,23 @@
   margin: 0;
   padding: 0;
   display: flex;
-  height: 100vmax;
-  width: 100vmax;
+  height: 100vh;
+  width: 100%;
   background-color: #f8f7f7;
-  /* overflow: hidden; */
 }
+
 .dataContainer {
-  /* flex: 1;
-      display: flex;
-      flex-direction: column;  */
   display: block;
+  padding: 0px, 10px;
   margin-left: var(--dynamic-margin-left);
   margin-top: 70px;
-
   background-color: #f8f7f7;
-  height: 100%;
+  height: calc(100% - 70px);
   width: 90%;
   overflow: auto;
+  justify-content: center;
 }
 
-/* .componentContainer{
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-    margin-left:50px;
-    padding: 100px,100px,100px,100px;
-    background-color: #ffffff;
-    height: 100%;
-    width: min-content;
-  } */
 .componentContainer {
   display: flex;
   flex-direction: column;
@@ -42,13 +30,27 @@
   margin-right: 50px;
   margin-bottom: 10px;
   justify-content: center;
-  align-items: center; /* Center the items vertically */
-  padding: 10px; /* Modified padding value */
+  align-items: center;
+  padding: 10px;
   background-color: #ffffff;
   height: auto;
   width: min-content;
   border-radius: 10px; /* Rounded corners */
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increased shadow effect */
+}
+
+@media (max-width: 768px) {
+  .componentContainer {
+    margin: 10px 2%;
+    width: 96%;
+  }
+}
+
+@media (max-width: 480px) {
+  .componentContainer {
+    margin: 10px 1%;
+    width: 98%;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -57,5 +59,53 @@
   }
   .componentContainer {
     width: 100%;
+  }
+}
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  :root {
+    --dynamic-margin-left: 15%;
+  }
+  .dataContainer {
+    width: 85%;
+  }
+}
+
+@media (max-width: 992px) {
+  :root {
+    --dynamic-margin-left: 10%;
+  }
+  .dataContainer {
+    width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --dynamic-margin-left: 5%;
+  }
+  .dataContainer {
+    width: 75%;
+    margin-top: 50px; /* Adjust for smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --dynamic-margin-left: 2%;
+  }
+  .dataContainer {
+    width: 95%;
+    margin-top: 30px; /* Further adjust for smallest screens */
+  }
+}
+
+@media (max-width: 400px) {
+  :root {
+    --dynamic-margin-left: 0;
+  }
+  .dataContainer {
+    width: 100%;
+    margin-top: 20px; /* Further adjust for smallest screens */
   }
 }

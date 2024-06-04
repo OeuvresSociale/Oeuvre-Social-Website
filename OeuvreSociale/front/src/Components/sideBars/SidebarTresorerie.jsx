@@ -3,7 +3,7 @@ import { FaRegListAlt } from "react-icons/fa";
 import { FaUsers, FaMoneyBillTrendUp } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import { GrAnnounce } from "react-icons/gr";
-import "../Styles/Sidebar.css";
+import "../../Styles/Sidebar.css";
 import {
   MdOutlineSpaceDashboard,
   MdOutlineArchive,
@@ -21,7 +21,7 @@ import { LuLayoutList } from "react-icons/lu";
 import { HiOutlineSwitchVertical } from "react-icons/hi";
 import { IoListCircleOutline } from "react-icons/io5";
 import { HiBars4 } from "react-icons/hi2";
-import MenuItem from "./MenuItem.jsx";
+import MenuItem from "../MenuItem.jsx";
 
 let stt = true;
 
@@ -46,13 +46,11 @@ function Sidebar({ children }) {
     }
   };
 
-  stt = isOpen;//memorize the state of the sidebar
+  stt = isOpen; //memorize the state of the sidebar
 
   const menuItems = [
     {
-     
       name: "Adminisration",
-      
     },
     {
       path: "/dashboard",
@@ -64,17 +62,13 @@ function Sidebar({ children }) {
       name: "Réunions",
       icon: <MdOutlineArchive />,
     },
-   
-    
-     
-    
+
     {
       name: "Trésorerie",
       icon: <FaMoneyBillTrendUp />,
       subicon: <TfiAngleDown />,
       subicon2: <TfiAngleRight />,
       subMenus: [
-       
         {
           path: "/transaction",
           name: "Transaction",
@@ -88,25 +82,24 @@ function Sidebar({ children }) {
       ],
     },
     {
-    
       name: "Employé",
-     
     },
-   
+
     {
       path: "/FormularTab",
       name: "Mes demandes",
       icon: <FaRegListAlt />,
     },
-     {
+    {
       path: "/offresvalides",
       name: "Annancement",
       icon: <GrAnnounce />,
-    },{
-        path: "/home",
-        name: "Contact",
-        icon: <FaUsers />,
-      },
+    },
+    {
+      path: "/home",
+      name: "Contact",
+      icon: <FaUsers />,
+    },
   ];
 
   return (
@@ -114,9 +107,9 @@ function Sidebar({ children }) {
       <div className="top-section">
         <div className={isOpen ? "toggle-menu-btn" : "toggle-menu-btn2"}>
           {isOpen ? (
-           <HiBars4  onClick={toggle}/>
+            <HiBars4 onClick={toggle} />
           ) : (
-            <HiBars4 className="vertical" onClick={toggle}/>
+            <HiBars4 className="vertical" onClick={toggle} />
           )}
         </div>
       </div>

@@ -4,7 +4,7 @@ import { InsertDriveFile } from "@mui/icons-material";
 import axios from "axios";
 import "./Transaction_form.css";
 
-const Transaction_form = () => {
+const Transaction_form = ({FormVisibility}) => {
   const [formData, setFormData] = useState({
     name: "",
     type: "",
@@ -180,7 +180,7 @@ const Transaction_form = () => {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={handleCancel}
+                onClick={FormVisibility}
               >
                 Annuler
               </Button>
