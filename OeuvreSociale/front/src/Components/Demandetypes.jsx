@@ -3,6 +3,7 @@ import "../Styles/Demandetypes.css";
 import { Link, useParams } from "react-router-dom";
 import Motif from "./Motif";
 import { PiFilePdfLight } from "react-icons/pi";
+import { BsArrowLeftCircle } from "react-icons/bs";
 import axios from "axios";
 
 //info sur une demande cote admin ( traitement de demande)
@@ -86,9 +87,9 @@ const [idRequest, setIdRequest] = useState(null);
       className="demandetype"
     >
       <div className="return">
-        <Link to="/tables">
-          <button>Return</button>
-        </Link>
+      <Link  to="/tables"  >
+           <div className="arrow2"><BsArrowLeftCircle /></div>
+            </Link>
       </div>
 
       <div className="td">{request.requestTypeId.title}</div>
