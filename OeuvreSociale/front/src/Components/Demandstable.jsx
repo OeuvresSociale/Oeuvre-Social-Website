@@ -1,3 +1,4 @@
+
 import "../Styles/Demandstable.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -84,9 +85,74 @@ function Demands() {
   // function Demands() {
   //   const [filterStatus, setFilterStatus] = useState(null);
 
+<<<<<<< HEAD
   //   const filteredDemands = filterStatus
   //     ? demands.filter((demand) => demand.status === filterStatus)
   //     : demands;
+=======
+<<<<<<< Updated upstream
+=======
+/////////////////////////////////////////////////////////////////////////
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+const demands = [
+  {
+    demandId: 1,
+    Employee:"mohammed",
+    type: 'Mariage',
+    date: new Date(2024, 2, 20),
+    status: 'Accepted',
+  },
+  {
+    demandId: 2,
+    type: 'Advance',
+    Employee:"mohammed",
+    date: new Date(2024, 2, 15),
+    status: 'Refused',
+  },
+  {
+    demandId: 3,
+    Employee:"mohammed",
+    type: 'Advance',
+    date: new Date(2024, 2, 18),
+    status: 'Pending',
+  },
+];
+
+function Demands() {
+  const [filterStatus, setFilterStatus] = useState(null);
+
+  const filteredDemands = filterStatus
+    ? demands.filter((demand) => demand.status === filterStatus)
+    : demands;
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+>>>>>>> 66864742dc019a7c09f18859083545e44e977a11
 
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);

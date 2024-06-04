@@ -3,7 +3,7 @@ const Employee = require("../models/user");
 const {uploadImage} = require("./img")
 //Get all employees
 const getEmployees = async (req, res) => {
-  try {
+  try { 
     const Employees = await Employee.find().select("idEmployee");
     res.status(200).json(Employees);
   } catch (error) {
@@ -21,7 +21,7 @@ const getEmployee = async (req, res) => {
   }
 };
 
-//create
+//create 
 const addEmployee = async (req, res) => {
   const newEmployee = new Employee(req.body);
   try {

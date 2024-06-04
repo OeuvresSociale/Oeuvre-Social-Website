@@ -27,7 +27,9 @@ const [showPasswordModal, setShowPasswordModal] = useState(false);
 const [password, setPassword] = useState('');
 const [email, setEmail] = useState('');
 const [error, setError] = useState(null);
-const [otp, setOTP] = useState([]);
+
+const [OTP, setOTP] = useState([]);
+
 
 
 const userData = props.dataP;
@@ -45,45 +47,43 @@ const handlePasswordSubmit =async (e) => {
      setShowPasswordModal(false);
     setShowOTPModal(true);
    }
-   catch(error){
-    setError(error.response.data);
-  }
-  console.log("otp:",otp);
+
+   catch(error){setError(error.response.data);
+   }
+   console.log("otp:",OTP);
+   
+   // Proceed to the next step (OTP verification)
+ };
+
   
-  // Proceed to the next step (OTP verification)
-};
+ 
 const [showOTPModal, setShowOTPModal] = useState(false);
 
-// const [otp, setOtp] = useState(['', '', '', '', '', '']);
-
-
-const handleChange = (index, value) => {
-  const updatedOtp = [...otp];
-  updatedOtp[index] = value;
-  setOTP(updatedOtp);
-};
-
-
-const handleOTPKeyDown = (e, index) => {
-  if (e.key === 'Backspace' && index > 0 && !otp[index]) {
-    const newOTP = [...otp];
-    newOTP[index - 1] = '';
-    setOTP(newOTP.join(''));
-    const prevInput = document.getElementById(`otpInput${index - 1}`);
-    prevInput && prevInput.focus();
-  } else if (e.key.length === 1 && index < 5) {
-    const nextInput = document.getElementById(`otpInput${index + 1}`);
-    nextInput && nextInput.focus();
-  }
-};
-const handleOTPFocus = (e, index) => {
-  const otpValue = e.target.value;
-  if (otpValue) {
-    const newOTP = [...otp];
-    newOTP[index] = '';
-    setOTP(newOTP.join(''));
-  }
-};
+// const handleOTPInputChange = (e, index) => {
+//   const newOTP = [...otp];
+//   newOTP[index] = e.target.value;
+//   setOTP(newOTP.join(''));
+// };
+// const handleOTPKeyDown = (e, index) => {
+//   if (e.key === 'Backspace' && index > 0 && !otp[index]) {
+//     const newOTP = [...otp];
+//     newOTP[index - 1] = '';
+//     setOTP(newOTP.join(''));
+//     const prevInput = document.getElementById(`otpInput${index - 1}`);
+//     prevInput && prevInput.focus();
+//   } else if (e.key.length === 1 && index < 5) {
+//     const nextInput = document.getElementById(`otpInput${index + 1}`);
+//     nextInput && nextInput.focus();
+//   }
+// };
+// const handleOTPFocus = (e, index) => {
+//   const otpValue = e.target.value;
+//   if (otpValue) {
+//     const newOTP = [...otp];
+//     newOTP[index] = '';
+//     setOTP(newOTP.join(''));
+//   }
+// };
 
 // verify otp validation
 const handleOTPSubmit =async (e) => {
@@ -99,7 +99,6 @@ const handleOTPSubmit =async (e) => {
   //  setError(error.response.data);
  } 
 };
-
 
 const [showNewPasswordModal, setShowNewPasswordModal] = useState(false);
 const [newPassword, setNewPassword] = useState('');
@@ -173,6 +172,7 @@ const handleNewPasswordSubmit = async(e) => {
           </div>
           <div className="Info-right">
             <p>{userData.phoneNumber}</p>
+
             <p>{userData.familysitution}</p>
             <p>{userData.monthlySalary}</p>
 
@@ -214,76 +214,23 @@ const handleNewPasswordSubmit = async(e) => {
     <div className="modal">
       <h3 className='otptitle'> Enter OTP Sent to Your Email</h3>
       <div className="otpInputWrapper">
-      <input
-    type="text"
-    maxLength="1"
-    value={otp[0]}
-    onChange={(e) => {
-      handleChange(0, e.target.value);
-      if (e.target.value.length === 1) {
-        e.target.nextElementSibling.focus();
-      }
-    }}
-    required
-  />
-  <input
-    type="text"
-    maxLength="1"
-    value={otp[1]}
-    onChange={(e) => {
-      handleChange(1, e.target.value);
-      if (e.target.value.length === 1) {
-        e.target.nextElementSibling.focus(); // Focus next element
-      }
-    }}
-    required
-  />
-  <input
-    type="text"
-    maxLength="1"
-    value={otp[2]}
-    onChange={(e) => {
-      handleChange(2, e.target.value);
-      if (e.target.value.length === 1) {
-        e.target.nextElementSibling.focus(); 
-      }
-    }}
-    required
-  />
-  <input
-    type="text"
-    maxLength="1"
-    value={otp[3]}
-    onChange={(e) => {
-      handleChange(3, e.target.value);
-      if (e.target.value.length === 1) {
-        e.target.nextElementSibling.focus(); 
-      }
-    }}
-    required
-  />
-  <input
-    type="text"
-    maxLength="1"
-    value={otp[4]}
-    onChange={(e) => {
-      handleChange(4, e.target.value);
-      if (e.target.value.length === 1) {
-        e.target.nextElementSibling.focus(); 
-      }
-    }}
-    required
-  />
-  <input
-    type="text"
-    maxLength="1"
-    value={otp[5]}
-    onChange={(e) => handleChange(5, e.target.value)}
-    required
-  />
+        {[...Array(6)].map((_, index) => (
+          <input
+            key={index}
+            type="text"
+            maxLength={1}
+            // value={otp[index] || ''}
+            // onChange={(e) => handleOTPInputChange(e, index)}
+            // onKeyDown={(e) => handleOTPKeyDown(e, index)}
+            // onFocus={(e) => handleOTPFocus(e, index)}
+            id={`otpInput${index}`} // Unique identifier for each input
+          />
+        ))}
       </div>
       <button className="canceel" onClick={() => setShowOTPModal(false)}>Cancel</button>
-      <button className='Enteer' onClick={handleOTPSubmit}>Confirm </button>
+
+      <button className='Enteer' >Confirm </button>  {/*onClick={handleSubmit} */}
+
     </div>
   </div>
 )}

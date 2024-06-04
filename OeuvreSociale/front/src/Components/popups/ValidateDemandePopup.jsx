@@ -9,6 +9,7 @@ import {
   Grid,
 } from "@mui/material";
 import { InsertDriveFile } from "@mui/icons-material";
+import axios from "axios";
 
 const ValidateDemandePopup = ({ openPopup, handleClosePopup, selectedRow }) => {
   const [pdfFile, setPdfFile] = useState(null);
@@ -17,7 +18,6 @@ const ValidateDemandePopup = ({ openPopup, handleClosePopup, selectedRow }) => {
     const file = event.target.files[0];
     if (file) {
       setPdfFile(file);
-
       const fileName = file.name;
       const fileTextElement = document.querySelector(".file-text");
       if (fileTextElement) {
@@ -26,8 +26,31 @@ const ValidateDemandePopup = ({ openPopup, handleClosePopup, selectedRow }) => {
     }
   };
 
-  const handleSubmit = () => {
-    //  submit code oumb3d
+  const handleSubmit = async () => {
+    if (selectedRow && pdfFile) {
+      const formData = new FormData();
+      formData.append("files", pdfFile); // Append the file to formData
+      
+      try {
+        const response = await axios.put(
+          `http://localhost:8000/api/Requestvalide/${selectedRow.id}`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          alert("Request updated and moved successfully");
+          handleClosePopup();
+        }
+      } catch (error) {
+        alert("Error validating request:", error.message);
+        handleClosePopup();
+      }
+    }
   };
 
   return (
@@ -108,7 +131,7 @@ const ValidateDemandePopup = ({ openPopup, handleClosePopup, selectedRow }) => {
                 variant="contained"
                 color="primary"
                 onClick={handleSubmit}
-                disabled={!pdfFile} // Disable button if PDF file is not selected
+                disabled={!pdfFile}
               >
                 Valider
               </Button>

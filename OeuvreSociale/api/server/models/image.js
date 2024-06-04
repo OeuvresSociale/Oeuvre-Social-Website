@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 const imageSchema = new schema({
-    name: {
+    name: { 
         type: String,
         required: true
     },
@@ -14,6 +14,7 @@ const imageSchema = new schema({
     employeeId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user', 
+        required: true
     },
     offreId: {
         type: mongoose.Schema.Types.ObjectId,

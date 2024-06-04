@@ -1,4 +1,4 @@
- import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../Styles/Demandetypes.css";
 import { Link, useParams } from "react-router-dom";
 import Motif from "./Motif";
@@ -42,14 +42,13 @@ const [idRequest, setIdRequest] = useState(null);
   useEffect(() => {
     const fetchRequestDetails = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8000/api/Request/${id}`
-        );
-
+        console.log("hello:")
+        const response = await axios.get(`http://localhost:8000/api/Request/${id}`);
+        console.log("response:",response)
         setRequest(response.data);
         // Assuming data is an object containing details of the selected employee
       } catch (error) {
-        alert(error.response.data);
+        // alert(error.response.data);
         console.error("Error fetching request details:", error);
       }
     };
@@ -65,7 +64,7 @@ const [idRequest, setIdRequest] = useState(null);
   const handleGreenClick =async () => {
     try {
       const response = await axios.put(`http://localhost:8000/api/Requests/${request._id}`, {
-        state:"Approuvée", motif: ""
+        state:"Approuvée",
       });
       setbordercolor("green");
       setshowbuttons(false);
@@ -168,13 +167,23 @@ const [idRequest, setIdRequest] = useState(null);
       </div>
       {showbuttons && (
         <div className="dtbtns">
-          <button className="refuse" onClick={() => {setOpenMotif(true);}}> Réfuser </button>
-          <button className="accepte" onClick={handleGreenClick}> Accepter </button>
+          <button
+            className="refuse"
+            onClick={() => {
+              setOpenMotif(true);
+             
+            }}
+          >
+            Réfuser
+          </button>
+          <button className="accepte" onClick={handleGreenClick}>
+            Accepter
+          </button>
         </div>
       )}
 
       {openMotif && (
-        <Motif closeMotif={setOpenMotif} handleRedClick={handleRedClick} Request={request} context="Demande"/>
+        <Motif closeMotif={setOpenMotif} handleRedClick={handleRedClick} Request={request} />
       )}
     </div>
   );

@@ -15,7 +15,35 @@ const Usertable = () => {
   const [employees, setEmployees] = useState([]);
   const [error, setError] = useState(null);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
+<<<<<<< HEAD
 
+=======
+//////////////////////////////////////////////////////////////////////
+ const handleGeneratePDF = async () => {
+       try {
+      const response = await axios.post("http://localhost:8000/api/generate-bilan", {
+        bilanData: [], // Mettez vos données ici
+        startDate: "2024-01-01", // Remplacez par votre date de début
+        endDate: "2024-01-31", // Remplacez par votre date de fin
+        fileName: "votre_nom_de_fichier", // Remplacez par le nom du fichier
+      }, {
+        responseType: "blob",
+      });
+      // Téléchargez le fichier PDF généré
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "your_filename.pdf");
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+      // Gérer les erreurs
+    }
+    };
+/////////////////////////////////////////////////////////////////////
+>>>>>>> 66864742dc019a7c09f18859083545e44e977a11
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5); // Default rows per page
 
@@ -74,11 +102,91 @@ const Usertable = () => {
   return (
     <div className="box">
       <div className="subbox">
+<<<<<<< HEAD
         <Link to="/employeelist/Addemployee">
           <button className="btn">
             Ajouter employé <IoPersonAddOutline />
           </button>
         </Link>
+=======
+       
+        
+           <Link  to="/employeelist/Addemployee"  >
+              <button className="btn">
+              Ajouter employé <IoPersonAddOutline />
+            </button>
+            </Link>
+            
+           </div>
+
+
+           <div className="tableu">
+           <table>
+      <thead >
+        <tr>
+          <th>ID</th>
+          <th>Nom de l'employé</th>
+          <th>Email</th>
+          <th>Salaire</th>
+          <th>Rôle</th>
+          <th></th>
+          <th></th> 
+        </tr>
+      </thead>
+      <tbody>
+       
+         
+
+      {employees.map(employee => (
+            <tr key={employee._id}>
+              <td>{employee.idEmployee}</td>
+              <td>{`${employee.familyName} ${employee.firstName}`}</td>
+              <td>{employee.email}</td>
+              <td>{employee.monthlySalary}</td>
+              <td>{employee.role}</td>
+              <td className="lastcolumn">
+                <GoTrash 
+                onClick={ async() => {setOpenDelete(true); await fetchEmployeeDetails(employee._id);}
+                } />
+                <MdOutlineModeEditOutline onClick={async() =>  {setOpenModefy(true); await fetchEmployeeDetails(employee._id);}} />
+                {/* <Link to={`/profile/${employee._id}`}  > <MdOutlineModeEditOutline /></Link> */}
+              </td>
+            </tr>
+       ))} 
+      </tbody>
+    </table>
+    
+
+
+
+
+
+           </div>
+
+           <TablePagination  className='tablepag'
+  // Options for rows per page
+  component="div"
+  count={employees.length} // Total number of rows
+  rowsPerPage={rowsPerPage}
+  page={page}
+  onPageChange={handleChangePage}
+  onRowsPerPageChange={handleChangeRowsPerPage}
+/>
+           {console.log(selectedEmployee)}
+           {openModefy && selectedEmployee && <Modefyuser closeModefy={setOpenModefy} selectedEmployee={selectedEmployee} />}
+      
+
+           {openDelete && selectedEmployee && <Deleteuser  closeDelete={setOpenDelete} selectedEmployee={selectedEmployee} />}
+
+
+         <div className="subbox">
+            <Link to="#" onClick={handleGeneratePDF}>
+                <button className="btn">
+                    Bilan <IoPersonAddOutline />
+                </button>
+            </Link>
+        </div>
+>>>>>>> 66864742dc019a7c09f18859083545e44e977a11
       </div>
 
       <div className="tableu">

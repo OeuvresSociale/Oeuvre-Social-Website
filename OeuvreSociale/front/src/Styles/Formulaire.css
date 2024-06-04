@@ -155,14 +155,14 @@
   font-weight: 600;
   color: #999999;
   cursor: pointer;
-}
-.add {
-  width: 120px;
-  height: 35px;
-  border-color: transparent;
+ 
+}.add{
+  width:120px;
+  height:35px;
+ border-color: transparent;
   border-radius: 5px;
   border-width: 1px;
-  box-shadow: rgba(20, 133, 130, 5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
   background-color: #148582;
   color: #fff;

@@ -6,14 +6,14 @@ const fs = require("fs");
 const asyncWrapper = require("../middleware/asyncWrapper");
 const { Console } = require("console");
 
- 
 //Get all request for employee
 const getMyRequests = async (req, res) => {
-  //current page
+  // Current page
   const page = req.query.page || 1;
   const RequestsPerPage = 10;
   const skipRequests = (page - 1) * RequestsPerPage;
   const filtre = req.query.filtre || "";
+  
   try {
     const Requests = await Request.find(
       {
@@ -27,14 +27,21 @@ const getMyRequests = async (req, res) => {
       .skip(skipRequests)
       .limit(RequestsPerPage)
       .exec();
-    res.status(200).json(Requests);
+      
     if (Requests.length === 0) {
-      res.status(401).json("there is no  requests here");
+      // If there are no requests, send a 404 status with an appropriate message
+      return res.status(404).json("There are no requests here");
     }
+    
+    // If there are requests, send them as a JSON response
+    res.status(200).json(Requests);
+    
   } catch (error) {
-    res.status(404).json({ message: error.message });
+    // Handle errors
+    res.status(500).json({ message: error.message });
   }
 };
+
 //Get all request for member with search and pagination maybe used in the main
 const getRequests = async (req, res) => {
   //current page
@@ -65,7 +72,7 @@ const getallRequests = async (req, res) => {
   const RequestPerPage = 10;
   const skipRequests = (page - 1) * RequestPerPage;
   const filter = req.query.filter || "";
-  try {  
+  try {
     const Requests = await Request.find(
       {
         $or: [{ state: { $regex: filter } }],
@@ -90,22 +97,28 @@ const getallRequests = async (req, res) => {
 const getRequest = async (req, res) => {
   try {
     const request = await Request.findById(req.params.id)
-      .populate("requestTypeId", "title","amount")
+      .populate("requestTypeId", "title amount")
       .populate(
         "employeeId",
-        "idEmployee familyName firstName dateStartJob email phoneNumber monthlySalary familysitution "
+        "idEmployee familyName firstName dateStartJob email phoneNumber monthlySalary familysitution"
       );
+
+    if (!request) {
+      return res.status(404).json({ message: "Request not found" });
+    }
 
     res.status(200).json(request);
   } catch (err) {
-    // Handle errors
-    res.status(500).json(err);
+    console.error("Error fetching request details:", err);
+    res.status(500).json({ message: "Server error", error: err.message });
   }
 };
-const laonModel= require('../models/Laon');
+
+const laonModel = require("../models/Laon");
 const getReq = async (req, res) => {
   try {
-    const request = await laonModel.findById(req.params.id)
+    const request = await laonModel
+      .findById(req.params.id)
       .populate("requestTypeId", "title")
       .populate(
         "employeeId",
@@ -144,7 +157,7 @@ const createRequest = async (req, res) => {
       newRequest.files = files;
       await newRequest.save();
     }
-
+    console.log("request created successfully!")
     res.status(201).json({
       message: "Request created successfully",
       request: newRequest.toObject(), // Convert to plain JavaScript object
@@ -154,7 +167,6 @@ const createRequest = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //update my  request we dont use it in our app
@@ -185,7 +197,7 @@ const updateMyRequest = async (req, res) => {
   }
 };
 // suive request
- 
+
 const suiviRequest = async (req, res) => {
   try {
     const request = await Request.findById(req.params.id);
@@ -239,25 +251,49 @@ async function getFileById(req, res) {
   }
 }
 
-
-
 /////////////////////////////:::::::::::::::::::::::
+const getapprovedRequests = async (req, res) => {
+  const { page = 1, limit = 10 } = req.query; // Get page and limit from query params, default to page 1 and limit 10
+  const skipRequests = (page - 1) * limit;
+
+  try {
+    const approvedRequests = await Request.find({
+      state: "Approuvée",
+      validated: "false",
+    })
+      .populate("requestTypeId", "title amount")
+      .populate("employeeId", "familyName firstName")
+      .sort({ creationDate: -1 })
+      .skip(skipRequests)
+      .limit(parseInt(limit));
+
+    if (!approvedRequests || approvedRequests.length === 0) {
+      return res.status(404).json("There are no approved requests here");
+    }
+
+    res.status(200).json(approvedRequests);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+////////////////////////////////////////////////////
 // //get one  offre
-const offreModel = require('../models/offres');
-const getOffre= async (req, res) => {
-  try{
+const offreModel = require("../models/offres");
+const getOffre = async (req, res) => {
+  try {
     const offre = await offreModel.findById(req.params.id);
-    console.log("req.params.id:",req.params.id);
-    console.log("offre:",offre); 
+    console.log("req.params.id:", req.params.id);
+    console.log("offre:", offre);
     res.status(200).json(offre);
-  }  
-  catch(err){
+  } catch (err) {
     res.status(500).json(err);
-  }};
+  }
+};
 /////////////////////////////.......................
 
 module.exports = {
-  getRequest, 
+  getapprovedRequests,
+  getRequest,
   getallRequests,
   getMyRequests,
   createRequest,
@@ -265,5 +301,4 @@ module.exports = {
   getFileById,
   getReq,
   getOffre,
-
 };

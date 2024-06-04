@@ -80,7 +80,7 @@ const Addform = () => {
                        
                         {form.expand && (
                             <div className="docs">
-                            <div className="docname">{form.price}
+                            <div className="docname"> Prix : {form.price}
                             <div className="addicons">
                                 <Link to="/formulaire/modefyformtitle">
                                     <MdOutlineModeEditOutline  />

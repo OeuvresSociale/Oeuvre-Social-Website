@@ -111,69 +111,18 @@ function Sidebar({ children }) {
     },
   ];
 
-  const tresorMenuItems = [
-    {
-      name: "Adminisration",
-    },
-    {
-      path: "/dashboard",
-      name: "Dashboard",
-      icon: <MdOutlineSpaceDashboard />,
-    },
-    {
-      path: "/reunions",
-      name: "Réunions",
-      icon: <MdOutlineArchive />,
-    },
-    {
-      name: "Trésorerie",
-      icon: <FaMoneyBillTrendUp />,
-      subicon: <TfiAngleDown />,
-      subicon2: <TfiAngleRight />,
-      subMenus: [
-        {
-          path: "/transaction",
-          name: "Transaction",
-          icon: <HiOutlineSwitchVertical />,
-        },
-        {
-          path: "/demandevalid",
-          name: "Demande valide",
-          icon: <IoListCircleOutline />,
-        },
-      ],
-    },
-    {
-      name: "Employé",
-    },
-    {
-      path: "/FormularTab",
-      name: "Mes demandes",
-      icon: <FaRegListAlt />,
-    },
-    {
-      path: "/offresvalides",
-      name: "Annancement",
-      icon: <GrAnnounce />,
-    },
-    {
-      path: "/home",
-      name: "Contact",
-      icon: <FaUsers />,
-    },
-  ];
+  
 
  
   const [menuItems, setMenuItems] = useState(adminMenuItems);
   useEffect(() => {
-    const role = localStorage.getItem('role');
-    if (role === 'admin') {
-      setMenuItems(adminMenuItems);
-    } else if (role === 'employee') {
+    // const role = localStorage.getItem('role');
+    const role = 'admin';
+    if (role === 'employee') {
       setMenuItems(employeeMenuItems);
-    } else if (role === 'tresorerie') {
-      setMenuItems(tresorMenuItems);
-    }
+    } else {
+      setMenuItems(adminMenuItems);
+    } 
   }, []);
 
   const toggle = () => {

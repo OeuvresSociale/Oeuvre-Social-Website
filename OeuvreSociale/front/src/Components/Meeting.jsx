@@ -3,6 +3,8 @@ import '../Styles/meeting.css';
 import Calendar from 'react-calendar';
 import MeetingForm from './MeetingForm'; 
 import MeetingEditForm from './MeetingEditForm';
+import { Link } from 'react-router-dom';
+import Page_Header from './Admin/bar_menu/Page_Header';
 
 // testing
 const testMeetings = [
@@ -24,9 +26,17 @@ const GestionDesReunionsPage = () => {
     setMeetings(testMeetings); 
   }, []);
 
-  const handleDayClick = (day) => {
-    setSelectedDay(day);
-    setShowMeetingForm(true); // Open MeetingForm 
+  const handleDayClick = (value) => {
+    const today = new Date();
+    // Set the time of today to midnight to compare only dates
+    today.setHours(0, 0, 0, 0);
+    if (value < today) {
+      alert("Vous pouvez pas sélécter une date passée");
+      setShowMeetingForm(false);
+    } else {
+      setSelectedDay(value);
+      setShowMeetingForm(true);
+    }
   };
 
   const handleMeetingCreate = (meetingData) => {
@@ -55,15 +65,21 @@ const GestionDesReunionsPage = () => {
 
   return (
     <div className="gestion-des-reunions-page">
+      <Link  to="/reunions/historique"  >
+              <button className="btn3">
+             Historique
+            </button>
+            </Link>
       <div className="calendar-container">
         <Calendar onChange={handleDayClick} value={selectedDay} />
       </div>
       <div className="meeting-container">
-        <h2 className="met">Meetings</h2>
+      <Page_Header title="Réunions" />     
         <div className="meeting-list">
           {meetings.map(meeting => (
             <div key={meeting.id} className="meeting-item" onClick={() => handleMeetingEdit(meeting)}>
               <div>{meeting.title}</div>
+             <div>{meeting && meeting.date.toDateString()}</div>
               <div>{meeting.timeStart} - {meeting.timeEnd}</div>
             </div>
           ))}
@@ -71,18 +87,20 @@ const GestionDesReunionsPage = () => {
       </div>
       {/* MeetingForm pop-up */}
       {showMeetingForm && (
+        <div className='formtitlewrapper'>
       <MeetingForm
         selectedDay={selectedDay}
         onCreateMeeting={handleMeetingCreate}
         onCancel={() => setShowMeetingForm(false)} 
-  />
+  /></div>
 )}
 
       {/* MeetingEditForm pop-up */}
       {showMeetingEditForm && (
+          <div className='formtitlewrapper'>
         <MeetingEditForm meeting={selectedMeeting} onMeetingFinish={handleMeetingFinish} 
         onCancel={() => setShowMeetingEditForm(false)}
-         />
+         /></div>
       )}
     </div>
   );
