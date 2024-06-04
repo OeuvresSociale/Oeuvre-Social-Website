@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Motif from "./Motif";
 import { PiFilePdfLight } from "react-icons/pi";
 import { useParams } from 'react-router-dom';
+import { BsArrowLeftCircle } from "react-icons/bs";
 import axios from 'axios';
 
 
@@ -78,10 +79,8 @@ const Loantype =()=>{
    return(
 <div style={{ borderColor: bordercolor, borderStyle: 'solid',borderWidth:'1px' ,paddingBottom:padding}} className= 'demandetype'>
        <div className="return">
-           <Link  to="/loan"  >
-              <button>
-              Return
-            </button>
+           <Link  to="/tables"  >
+           <div className="arrow2"><BsArrowLeftCircle /></div>
             </Link>
       </div>
       <div className="td">Demande de pret</div>

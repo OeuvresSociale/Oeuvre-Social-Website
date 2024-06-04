@@ -52,6 +52,28 @@ const Header = () => {
 
   const renderText = () => {
     switch (pathname) {
+      case "/FormularTab":
+        return "Mes demandes";
+        case "/offresvalides":
+        return "Offres";
+        case "/contact":
+          return "contactez nous";
+          case "/offre/${offer._id}":
+            return"détailles d'offre";
+
+            case "/reunions":
+              return"Ajouter réunion"
+              case "/reunions/historique":
+                return"Historique des réunions";
+                case "/reunions/historique/listreunion":
+                return"Historique des réunions";
+
+                case "/unvalideoffres":
+                  return"Gestion des Offres";
+                  case "/unvalideoffres/unvalideoffrestype":
+                    return"Détailles d'Offres";
+
+
       case "/formulaire":
         return "Creation";
       case "/formulaire/formulairedemande":
@@ -70,22 +92,22 @@ const Header = () => {
       case "/profile":
         return "Belink";
 
-      case "/formulaire/ajouteroffre/offreformulaire":
-        return "Formulaire d ajoute d offre";
+      
       case "/formulaire/formulairepret":
-        return "Ajoute formulaire du pret";
+        return " Formulaire du pret";
+        case"/formulaire/formulairepret/modifierpret":
+        return"modification du formulaire ";
       case "/tables/loantype":
         return "Detailles des demandes";
-      case "/Offres":
-        return "Ajouter offre";
-      case "/formulaire/ajouteroffre/offresvalides":
-        return "Ajouter offre";
-      case "/formulaire/ajouteroffre/offresunvalides":
-        return "Ajouter offre";
-      case "/demandevalid":
-        return "Demandes valides";
-      case "/formulaire/ajouteroffre/offretype":
-        return "Détails d offre";
+
+
+        case"/transaction":
+        return"Gestion des fonds";
+        case "/demandevalid":
+          return"Table des demandes valides"
+      
+      
+     
 
       default:
         return "Dashboard";
