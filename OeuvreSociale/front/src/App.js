@@ -101,6 +101,7 @@ const App = () => {
           path="/formulairetable/ajouterpret"
           element={<Addloandemande />}
         />
+       
         
         <Route path="/formulaire/formulairepret" element={<LoanForm />} />
         <Route
