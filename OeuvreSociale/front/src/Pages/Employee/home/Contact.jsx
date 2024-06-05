@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../../../Components/Header';
 import ContactSection from '../../../Components/Employee/Home/ContactSection';
 import Footer from '../../../Components/Employee/Home/Footer';
-import SidebarEmployee from '../../../Components/SidebarEmployee';
+import Sidebar from '../../../Components/Sidebar';
 
 function Home() {
   return (
@@ -12,7 +12,7 @@ function Home() {
 
   <div>
   <div className="containeradd">
-   <SidebarEmployee />
+   <Sidebar />
    <div className="contentadd">
      <Header  />
      <div>
