@@ -66,11 +66,11 @@ const DashBoard = () => {
       },
     },
     series: [{
-      name: 'Encassement',
+      name: 'Encaissement',
       data: [30, 40, 35, 50, 49, 60, 70, 91, 125, 130, 145, 150]
     },
     {
-      name: 'Décassement',
+      name: 'Décaissement',
       data: [25, 45, 15, 70, 49, 60, 70, 91, 125, 130, 145, 150]
     }]
   });
