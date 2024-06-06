@@ -116,9 +116,9 @@ function Sidebar({ children }) {
  
   const [menuItems, setMenuItems] = useState(adminMenuItems);
   useEffect(() => {
-    // const role = localStorage.getItem('role');
-    const role = 'admin';
-    if (role === 'employee') {
+     const role = localStorage.getItem('userRole');
+    //const role = 'admin';  
+    if (role === 'employe') {
       setMenuItems(employeeMenuItems);
     } else {
       setMenuItems(adminMenuItems);

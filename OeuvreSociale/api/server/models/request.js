@@ -5,7 +5,7 @@ const requestSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
     required: true,
-  },
+  }, 
   requestTypeId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "typeRequest",

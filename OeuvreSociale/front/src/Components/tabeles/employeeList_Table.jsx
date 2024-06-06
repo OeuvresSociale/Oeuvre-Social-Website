@@ -127,7 +127,7 @@ function EmployeeListTable() {
    
 
     <div style={{ width: "100%" }}>
-      <div style={{ height: 400, width: "100%" }}>
+      <div style={{ height: "auto", width: "100%" }}>
         <DataGrid
           autoHeight
           rows={rows}

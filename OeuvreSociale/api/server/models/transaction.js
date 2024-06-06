@@ -5,7 +5,7 @@ const schema = mongoose.Schema;
 const transactionSchema = new schema({
   id: {
     type: Number,
-    // Remove this field from here
+    // Remove this field from here    
   },
   name: {
     type: String,
@@ -15,7 +15,7 @@ const transactionSchema = new schema({
   }, 
   type: {
     type: String,
-    enum: ["demande", "loan", "annoce", "Repayment", "autre"],
+    enum: ["demande", "loan", "annonce", "Repayment", "autre"],
   },
   categorie: {
     type: String,

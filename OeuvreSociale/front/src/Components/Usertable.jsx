@@ -15,9 +15,7 @@ const Usertable = () => {
   const [employees, setEmployees] = useState([]);
   const [error, setError] = useState(null);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
-<<<<<<< HEAD
 
-=======
 //////////////////////////////////////////////////////////////////////
  const handleGeneratePDF = async () => {
        try {
@@ -43,7 +41,7 @@ const Usertable = () => {
     }
     };
 /////////////////////////////////////////////////////////////////////
->>>>>>> 66864742dc019a7c09f18859083545e44e977a11
+
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5); // Default rows per page
 
@@ -102,14 +100,14 @@ const Usertable = () => {
   return (
     <div className="box">
       <div className="subbox">
-<<<<<<< HEAD
+
         <Link to="/employeelist/Addemployee">
           <button className="btn">
             Ajouter employé <IoPersonAddOutline />
           </button>
         </Link>
-=======
-       
+
+{/*        
         
            <Link  to="/employeelist/Addemployee"  >
               <button className="btn">
@@ -150,7 +148,7 @@ const Usertable = () => {
                 } />
                 <MdOutlineModeEditOutline onClick={async() =>  {setOpenModefy(true); await fetchEmployeeDetails(employee._id);}} />
                 {/* <Link to={`/profile/${employee._id}`}  > <MdOutlineModeEditOutline /></Link> */}
-              </td>
+              {/* </td>
             </tr>
        ))} 
       </tbody>
@@ -185,8 +183,8 @@ const Usertable = () => {
                     Bilan <IoPersonAddOutline />
                 </button>
             </Link>
-        </div>
->>>>>>> 66864742dc019a7c09f18859083545e44e977a11
+        </div> */}
+
       </div>
 
       <div className="tableu">
