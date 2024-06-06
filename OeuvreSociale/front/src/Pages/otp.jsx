@@ -12,7 +12,8 @@ const Recover = () => {
     updatedOtp[index] = value;
     setOtp(updatedOtp);
   };
-
+  
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

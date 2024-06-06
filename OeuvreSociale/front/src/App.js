@@ -41,9 +41,9 @@ const App = () => {
 
   useEffect(() => {
     const getRole = localStorage.getItem('role');
-    //setRole(getRole);
+    setRole(getRole);
     setRole('admin');
-    // setRole('employee');
+     //setRole('employee');
   }, []);
 
   const GeneralRoute = () => {
@@ -98,7 +98,7 @@ const App = () => {
           <Route path="/demandevalid" element={<Demande_Valid />} />
           <Route path="/reunions" element={<Reunionpage />} />
           <Route path="/reunions/historique" element={<Historique />} />
-          <Route path="/reunions/historique/listreunion" element={<LastYearsMeeting />} />
+          <Route path="/reunions/historique/listreunion/:year" element={<LastYearsMeeting />} />
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="*" element={<Navigate to="/dashboard" />} />
         </Routes>
