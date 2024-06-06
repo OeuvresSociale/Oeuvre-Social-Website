@@ -12,13 +12,12 @@ import { SiGooglemaps } from "react-icons/si";
 import Page_Header from '../../Admin/bar_menu/Page_Header';
 
 function ContactForm() {
+
   const [formData, setFormData] = useState({
     name: '',
     title: '',
     message: ''
   });
-
-  
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -31,10 +30,10 @@ function ContactForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://your-backend-api-endpoint/contact', formData);
-      alert("Message envoyé avec succès!");
+      const response = await axios.post('http://localhost:8000/api/receiveEmail', formData);
+      alert("email envoyé avec succès!");
     } catch (error) {
-      alert("Erreur lors de l\'envoi du message.");
+      alert("Erreur lors de l\'envoi du email.");
     }
   };
 

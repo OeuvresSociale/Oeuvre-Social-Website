@@ -21,7 +21,7 @@ const Addoffreform = ({ offer }) => {
       setImage(offer.image || null);
       setTitle(offer.title || '');
       setStartDate(offer.dateDebut || '');
-      setEndDate(offer.dateFin || '');
+      setEndDate(offer.dateFin || ''); 
       setDescription(offer.desc || '');
     }
   }, [offer]);

@@ -3,7 +3,7 @@ import '../Styles/Deleteoffre.css';
 import axios from 'axios';
 import { GoChecklist } from "react-icons/go";
 
-const DeleteOffre = ({ closeValidateoffre,offer }) => {
+const DeleteOffre = ({ closeValidateoffre,offer }) => { 
 
    
     const [error, setError] = useState(null);
@@ -11,10 +11,10 @@ const DeleteOffre = ({ closeValidateoffre,offer }) => {
     const handleValidate = async () => {
        
         try {
-            await axios.post(`/api/offres/validate/${offer.id}`);
+            await axios.post(`/api/validOffre/${offer.id}`);
            
             closeValidateoffre(false);
-          
+           
         } catch (err) {
            
             setError('Une erreur est survenue lors de la validation.');

@@ -28,7 +28,7 @@ const [password, setPassword] = useState('');
 const [email, setEmail] = useState('');
 const [error, setError] = useState(null);
 
-const [OTP, setOTP] = useState([]);
+const [otp, setOTP] = useState([]);
 
 
 
@@ -50,12 +50,11 @@ const handlePasswordSubmit =async (e) => {
 
    catch(error){setError(error.response.data);
    }
-   console.log("otp:",OTP);
+   console.log("otp:",otp);
    
    // Proceed to the next step (OTP verification)
  };
 
-  
  
 const [showOTPModal, setShowOTPModal] = useState(false);
 
