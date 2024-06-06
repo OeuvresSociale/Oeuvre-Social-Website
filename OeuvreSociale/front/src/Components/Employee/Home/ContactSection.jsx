@@ -8,10 +8,10 @@ import Footer from './Footer'
 function ContactSection() {
   return (
     <section className="contactSectionwrap">
-      <Container>
+     
         <ContactForm />
         
-      </Container>
+
     </section>
   );
 }

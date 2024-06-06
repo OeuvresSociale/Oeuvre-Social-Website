@@ -4,8 +4,7 @@
     width:82%;
     height:100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+  
     background-color: #EAEDEF;
 }.footer {
     background-color: #808080;
@@ -17,22 +16,43 @@
     width: 79.3%;
   }.contactus{
     width:100%;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    /* box-shadow: 0 0 10px rgba(0,0,0,0.5); */
     display: flex;
-
+    /* background-color: #e5e0e0; */
+    /* transform: translateY(-60px); */
+    justify-content: center;
+    align-items: center;
+    
   }.contactForm {
     padding: 20px;
-    max-width: 400px;
+    max-width: 500px;
+    display: block;
+    gap:10%;
   
-    background-color: #fff;
-    border-radius: 5px;
+    
   }.contactForm2 {
+    transform: translateX(-5px);
     padding: 20px;
+    padding-left: 50px;
    width: 400px;
    height: 400px;
-   
     background-color: #fff;
+   
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    justify-content: center;
+    
+    
+  }.contactForm2 svg{
+    font-size: 22px;
+   color:#148582;
+  }.emailos{
+    color:#148582;
+    font-weight: 500;
+    font-size: 18px;
+  }.cur{
+   width: 100%;
+   background-color: #fff;
   }
-  
-  

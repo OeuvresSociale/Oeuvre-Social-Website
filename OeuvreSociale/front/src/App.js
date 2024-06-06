@@ -109,6 +109,7 @@ const App = () => {
   return (
     <BrowserRouter>
       {GeneralRoute()}
+
     </BrowserRouter>
   );
 };
