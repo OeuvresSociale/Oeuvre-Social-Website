@@ -49,7 +49,12 @@ const DashBoard = () => {
   const [chartData, setChartData] = useState({
     options: {
       chart: {
-        id: 'basic-bar'
+        id: 'basic-bar',
+        toolbar: {
+          tools: {
+            download: false // Disables the download icon
+          }
+        }
       },
       xaxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -57,6 +62,7 @@ const DashBoard = () => {
       colors: ['#4154f1', '#2eca6a'],
       plotOptions: {
         bar: {
+         
           horizontal: false,
           columnWidth: '70%',
         },

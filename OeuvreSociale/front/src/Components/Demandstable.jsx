@@ -58,6 +58,7 @@ function Demands() {
 
 
 
+
 const demands = [
   {
     demandId: 1,
@@ -81,6 +82,16 @@ const demands = [
     status: 'Pending',
   },
 ];
+
+
+function Demands() {
+  const [filterStatus, setFilterStatus] = useState(null);
+
+  const filteredDemands = filterStatus
+    ? demands.filter((demand) => demand.status === filterStatus)
+    : demands;
+
+
 
   const handleFilterChange = (event) => {
     setFilterStatus(event.target.value);

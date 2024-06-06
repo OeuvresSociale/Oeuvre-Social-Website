@@ -65,7 +65,7 @@ const MeetingEditForm = ({ meeting, onMeetingFinish, onCancel }) => {
         </label>
         <input type="file" id="pdfUpload" accept=".pdf" onChange={handleFileChange} />
       </div>
-      <div className="buttons">
+      <div className="buttons1">
         <button className="cancel3" onClick={handleCancel}>Annuler</button>
         <button className="valid" onClick={handleFinishMeeting}>Valider</button>
       </div>
