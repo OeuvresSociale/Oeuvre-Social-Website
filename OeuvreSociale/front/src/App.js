@@ -45,7 +45,7 @@ const App = () => {
     
     
     //console.log("role:",getRole);
-    //setRole('admin');
+    setRole('admin');
      //setRole('employee');
   }, []);
 
