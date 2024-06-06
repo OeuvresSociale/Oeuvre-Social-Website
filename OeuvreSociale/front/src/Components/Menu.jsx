@@ -5,14 +5,11 @@ import '../Styles/menu.css';
 const Menu = ({ components }) => {
   const location = useLocation();
   const [activeItem, setActiveItem] = useState('');
+  const path = location.pathname;
 
   useEffect(() => {
-    const path = location.pathname;
-    if (path.includes('/tables')) {
       setActiveItem('demands');
-    } else if (path.includes('/loan')) {
-      setActiveItem('loan');
-    }
+   
   }, [location.pathname]);
 
  
@@ -27,14 +24,14 @@ const Menu = ({ components }) => {
     <div >
       <div className="menu">
         <Link
-          to="/tables"
+          to={path}
           className={`menu-item ${activeItem === 'demands' ? 'active' : ''}`}
           onClick={() => handleClick('demands')}
         >
           Demands
         </Link>
         <Link
-          to="/tables"
+          to={path}
           className={`menu-item ${activeItem === 'loan' ? 'active' : ''}`}
           onClick={() => handleClick('loan')}
         >

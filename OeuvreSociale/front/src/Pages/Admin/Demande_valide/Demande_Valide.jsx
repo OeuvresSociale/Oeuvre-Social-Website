@@ -4,7 +4,9 @@ import "../../../Styles//Admin/global/structureDuPage.css";
 import Header from "../../../Components/Header";
 import Sidebar from "../../../Components/Sidebar";
 import DemandValid_Table from "../../../Components/tabeles/DemandValid_Table.jsx";
-import Page_Header from "../../../Components/Admin/bar_menu/Page_Header.jsx"
+import LoanValid_Table from "../../../Components/tabeles/LoanValid_Tables.jsx";
+import Page_Header from "../../../Components/Admin/bar_menu/Page_Header.jsx";
+import Menu from "../../../Components/Menu.jsx"
 
 const DemandValid = () => {
   return (
@@ -14,9 +16,9 @@ const DemandValid = () => {
         <div className="dataContainer">
           <Header />
           <Page_Header title = "Demande Valide" subtitle="Table des demandes valider par les jurés"/>
-          <div className="componentContainer">
-            <DemandValid_Table />
-          </div>
+          
+          <Menu components={{ demands: DemandValid_Table , loan: LoanValid_Table }} />
+         
         </div>
       </div>
     </div>

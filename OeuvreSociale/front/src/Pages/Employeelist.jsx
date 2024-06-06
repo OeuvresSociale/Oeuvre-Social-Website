@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
 import EmployeeList_Table from "../Components/tabeles/employeeList_Table";
@@ -11,6 +11,14 @@ import "../Styles/Formulaire.css";
 
 const Employeelist = () => {
   const [showForm, setShowForm] = useState(false);
+  const [role, setRole] = useState(null);
+
+  useEffect(() => {
+    const getRole = localStorage.getItem('role');
+    // setRole(getRole);
+     setRole('president');
+    //setRole('admin');
+  }, []);
 
   const FormVisibility = () => {
     setShowForm((prevShowForm) => !prevShowForm);
@@ -27,9 +35,11 @@ const Employeelist = () => {
             subtitle="hnaya la liste t3 les employee sahbi"
           />
           <div>
+          {role === 'president' && (
             <Button variant="contained" color="primary" onClick={FormVisibility}>
-              <IoPersonAddOutline />
+                <IoPersonAddOutline />
             </Button>
+          )}
             {showForm && <Formulaire FormVisibility={FormVisibility} />}
           </div>
         </div>
