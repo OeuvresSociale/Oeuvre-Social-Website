@@ -56,10 +56,10 @@ const Valideoffres = () => {
     return (
         <div className="addoffrewrapper4">
              
-                 <Link to='/unvalideoffres/ajouteroffre'><div  className="addoffre">
+                 <Link to='/unvalideoffres/ajouteroffre' className="addoffre">
                    <button>Ajouter offre</button>
                     <FiPlusCircle />
-                </div></Link>
+                </Link>
            
            
   

@@ -13,11 +13,16 @@ const Confirmform = () => {
 
     
     const [inputText, setInputText] = useState('');
+    const [textInput, setTextInput] = useState("");
     const [previewWords, setPreviewWords] = useState([]);
     const [textInputprix, setTextInputprix] = useState("");
 
     const handleTextInputprixChange = (event) => {
       setTextInputprix(event.target.value);
+    };
+
+    const handleTextInputChange = (event) => {
+      setTextInput(event.target.value);
     };
   
     const handleInputChange = (event) => {
@@ -60,7 +65,17 @@ const Confirmform = () => {
                 
             </div>
             <div className="formdocs">
-            <span className="titlef"> titre</span>
+            <span className="titlef">
+              
+               <input
+            type="text"
+            id="textInput"
+            value={textInput}
+            onChange={handleTextInputChange}
+            placeholder="titre"
+          />
+          </span>
+            
             <div className="adddocs"><input
         type="text"
         value={inputText}
