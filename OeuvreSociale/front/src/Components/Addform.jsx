@@ -81,11 +81,7 @@ const Addform = () => {
                         {form.expand && (
                             <div className="docs">
                             <div className="docname"> Prix : {form.price}
-                            <div className="addicons">
-                                <Link to="/formulaire/modefyformtitle">
-                                    <MdOutlineModeEditOutline  />
-                                </Link>
-                            </div></div>
+                            </div>
                                 {form.docs.map((doc, index) => (
                                     <div key={index} className="docname">
                                         {doc}

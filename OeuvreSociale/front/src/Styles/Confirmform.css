@@ -80,13 +80,23 @@
 
 
 
+}.previewContainer input{
+    height: 90%;
+    width:92%;
+    outline: none;
+    border:none;
+    font-size: 18px;
+    margin-left: 2%;
+
+
+
 }
 .previewContainer {
     position: absolute;
     top:210px;
 
     display: flex;
-    flex-direction: column;
+   
     background-color: white;
     box-shadow:  rgba(0, 0, 0, 0.1);
     border-radius: 7px;

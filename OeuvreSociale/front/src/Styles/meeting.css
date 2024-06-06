@@ -154,8 +154,8 @@
   /* margin:5%; */
   
  
-  background-color: #148582;
-  border-radius: 40px;
+  background-color: #d2d0d0;
+  
   color: white;
 }
 
@@ -286,8 +286,13 @@ display: none;
 .buttons {
 display: flex;
 margin-left: 20%;
-gap:2%;
+gap:1%;
 }
+.buttons1 {
+  display: flex;
+  margin-left: 60%;
+  gap:2%;
+  }
 .buttons button {
   background-color:rgba(142, 202, 230, 0);
   border: 1px solid rgba(153, 153, 153, 1);
@@ -300,10 +305,29 @@ gap:2%;
 font-size: 15px;
  
 }
+.buttons1 button {
+  background-color:rgba(142, 202, 230, 0);
+  border: 1px solid rgba(153, 153, 153, 1);
+  color:rgba(153, 153, 153, 1);
+  padding: 10px 20px;
+  border-radius: 7px;
+  cursor: pointer;
+ 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+font-size: 15px;
+ 
+}
 .buttons button:focus {
   outline: none;
 }
 .buttons .valid{
+  color:rgba(255, 255, 255, 0.8);
+  background-color: rgba(19, 133, 130, 1);
+}
+.buttons1 button:focus {
+  outline: none;
+}
+.buttons1 .valid{
   color:rgba(255, 255, 255, 0.8);
   background-color: rgba(19, 133, 130, 1);
 }
