@@ -41,7 +41,7 @@ const userSchema = new schema ({
         type:String,
         required:true, 
         
-    },
+    }, 
     familysitution:{
         type:String,
         required:true,

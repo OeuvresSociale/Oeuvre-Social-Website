@@ -72,8 +72,8 @@ const getStatusColor = (status) => {
 //open Demande Recieved Details
 const handleDetailsClick = (params) => {
   const id = params.row.id; 
-  window.location.href = `/tables/demandetype/${id}`;//hada link t3 lpaga li fiha les details t3 demande bach yvaliderwela la
-
+  window.location.href = `../demandetype/${id}`;//hada link t3 lpaga li fiha les details t3 demande bach yvaliderwela la
+console.log("id:",id);  
 };
 
 // Declare the columns content
