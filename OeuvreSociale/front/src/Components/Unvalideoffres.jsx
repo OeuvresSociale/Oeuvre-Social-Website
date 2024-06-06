@@ -44,9 +44,11 @@ const Valideoffres = () => {
 
   const navigate = useNavigate();
 
+
   const handleCardClick = (id) => {
     navigate(`/unvalideoffres/unvalideoffrestype/${id}`);
   };
+
 
   return (
     <div className="addoffrewrapper4">

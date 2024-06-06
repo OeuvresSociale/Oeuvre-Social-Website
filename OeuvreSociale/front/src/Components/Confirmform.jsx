@@ -60,8 +60,9 @@ const Confirmform = () => {
         <div className="confirmwrapper">
             <Link to='/formulaire'> <div className="arrow"><BsArrowLeftCircle /></div> </Link>
             <div className="confirmform">
+                <Link to='/formulaire'>
                 {/* Removed unnecessary Link wrapper */}
-                <button onClick={handleConfirmForm}>Confirmer</button>
+                <button onClick={handleConfirmForm}>Confirmer</button></Link>
             </div>
             <div className="formdocs">
                 <span className="titlef"> {textInputValue}</span>

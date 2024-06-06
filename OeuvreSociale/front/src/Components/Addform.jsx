@@ -91,6 +91,15 @@ const Addform = () => {
                         )}
                     </div>
                 ))} 
+                {/* <div className="linkform"   >
+                           title
+                            <div className="addicons">
+                                <GoTrash onClick={() => {setOpenDeleteform(true)}} />
+                                <Link to="/formulaire/formulairedemande/modefyformulaire">
+                                    <MdOutlineModeEditOutline onClick={() => { setOpenModefy(true) }} />
+                                </Link>
+                            </div>
+                        </div> */}
                        
             </div>
             {selectedformularie && (

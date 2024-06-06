@@ -50,6 +50,17 @@
     transform: translateY(-20px);
     position: absolute;
  
+}
+.titlef input{
+    background-color: #EAEDEF;
+    color:#00194F;
+    font-size: 28px;
+    font-weight: 400;
+   width: 230px;
+    position: absolute;
+    outline: none;
+    border: none;
+ 
 }.adddocs{
     width:100%;
     height: 45px;
