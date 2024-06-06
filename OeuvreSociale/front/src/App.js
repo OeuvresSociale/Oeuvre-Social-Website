@@ -76,8 +76,8 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/employeelist" element={<Employeelist />} />
           <Route path="/employeelist/Addemployee" element={<Addemployee />} />
-          <Route path="/tables/demandetype/:id" element={<Demandetype />} />
           <Route path="/tables" element={<TableDemands />} />
+          <Route path="/tables/demandetype/:id" element={<Demandetype />} />
           <Route path="/tables/loantype/:id" element={<LoanType />} />
           <Route path="/Loan" element={<Loan />} />
           <Route path="/formulaire" element={<Addoffre />} />

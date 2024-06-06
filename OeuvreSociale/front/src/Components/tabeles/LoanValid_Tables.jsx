@@ -6,7 +6,7 @@ import ValidateDemandePopup from "../popups/ValidateDemandePopup";
 import "../../Styles/tables/DataGrid.css";
 import axios from "axios";
 
-const DemandValid_Table = () => {
+const LoanValid_Table = () => {
   const [openPopup, setOpenPopup] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null); // Store the selected row
 
@@ -25,18 +25,18 @@ const DemandValid_Table = () => {
 
   const [rows, setRows] = useState([{
     id: 1,
-    name: "Manel",
-    type: "Mariage",
-    date: "2024-02-20",
-    amount: 1000,
-    categorie: "sortant",
+    // name: "Manel",
+    // type: "Mariage",
+    // date: "2024-02-20",
+    // amount: 1000,
+    // categorie: "sortant",
   },]);
 
 useEffect(() => {
-getTrans_Data();
+getLoan_Data();
 }, []);
 
-const getTrans_Data = async () => {
+const getLoan_Data = async () => {
 try {
 
   const response = await axios.get("http://localhost:8000/api/Requestsapproved");
@@ -45,21 +45,20 @@ try {
   //Debugging the fetched Data
   console.log("The data passed are here:", data);
   // Map fetched data to match the structure of rows
-  const rowData = data.map((demandValidInfo) => ({
-    id: demandValidInfo._id,
+  const rowData = data.map((loanValidInfo) => ({
+    id: loanValidInfo._id,
 
-    // concerned: demandValidInfo.employeeId.firstName,
-    concerned: `${demandValidInfo.employeeId.familyName} ${demandValidInfo.employeeId.firstName}`,
-    type: demandValidInfo.requestTypeId.title,
-    date: new Date(demandValidInfo.creationDate).toLocaleDateString("en-GB", {
+    // concerned: loanValidInfo.employeeId.firstName,
+    concerned: `${loanValidInfo.employeeId.familyName} ${loanValidInfo.employeeId.firstName}`,
+    date: new Date(loanValidInfo.creationDate).toLocaleDateString("en-GB", {
       day: "2-digit",
       month: "2-digit",
       year: "numeric",
   }),
-    amount: demandValidInfo.requestTypeId.amount,
+    amount: loanValidInfo.requestTypeId.amount,
 
-    categorie: demandValidInfo.categorie,
-    files: demandValidInfo.files,
+    categorie: loanValidInfo.categorie,
+    files: loanValidInfo.files,
   }));
   // Update the state with the mapped data
   setRows(rowData);
@@ -70,7 +69,6 @@ try {
   //Declare columns content
   const columns = [
     { field: "concerned", headerName: "Concerné", width: 315 },
-    { field: "type", headerName: "Type", width: 315 },
     { field: "date", headerName: "Date d'envoi", width: 315 },
     { field: "amount", headerName: "Somme", width: 315 },
 
@@ -138,4 +136,4 @@ try {
   );
 };
 
-export default DemandValid_Table;
+export default LoanValid_Table;
