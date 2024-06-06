@@ -5,6 +5,8 @@ import MeetingForm from './MeetingForm';
 import MeetingEditForm from './MeetingEditForm';
 import { Link } from 'react-router-dom';
 import Page_Header from './Admin/bar_menu/Page_Header';
+import { GoTrash } from "react-icons/go";
+import DeletMeeting from "./Admin/Meeting/DeletMeeting"
 import axios from "axios";
 
 // testing
@@ -23,6 +25,7 @@ const GestionDesReunionsPage = () => {
   const [selectedMeeting, setSelectedMeeting] = useState(null);
   const [showMeetingEditForm, setShowMeetingEditForm] = useState(false);
   const [error, setError] = useState(null);
+  const [openDelete, setOpenDeleteform] = useState(false);
   useEffect(() => {
     const fetchRequests = async () => {
       try {
@@ -86,6 +89,11 @@ const GestionDesReunionsPage = () => {
     setShowMeetingEditForm(false); // Close  MeetingEditForm
   };
 
+  const handleTrashClick = (event, meeting) => {
+    event.stopPropagation();
+    setOpenDeleteform(true);
+  };
+
   return (
     <div className="gestion-des-reunions-page">
       <Link  to="/reunions/historique"  >
@@ -108,6 +116,7 @@ const GestionDesReunionsPage = () => {
                   year: "numeric",
                 })}</div>
               <div>{meeting.HeurDebut} - {meeting.HeurFin}</div>
+              <GoTrash style={{position:"absolute", right:"20px"}} onClick={(event) => handleTrashClick(event, meeting)} />
             </div>
           ))}
         </div>
@@ -129,6 +138,8 @@ const GestionDesReunionsPage = () => {
         onCancel={() => setShowMeetingEditForm(false)}
          /></div>
       )}
+
+{openDelete && <DeletMeeting closeDelete={setOpenDeleteform} />}
     </div>
   );
 };
