@@ -7,20 +7,20 @@ import "../../Styles/tables/DataGrid.css";
 
 function LoanRecever_Table() {
   const [rows, setRows] = useState([
-    {
-      id: 1,
-      name: "Widad",
-      type: "Mariage",
-      date: "2024-02-20",
-      Status: "En attente",
-    },
-    {
-      id: 2,
-      name: "Fatima",
-      type: "Naissance",
-      date: "2024-02-20",
-      Status: "Refuser",
-    },
+    // {
+    //   id: 1,
+    //   name: "Widad",
+    //   type: "Mariage",
+    //   date: "2024-02-20",
+    //   Status: "En attente",
+    // },
+    // {
+    //   id: 2,
+    //   name: "Fatima",
+    //   type: "Naissance",
+    //   date: "2024-02-20",
+    //   Status: "Refuser",
+    // },
   ]);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function LoanRecever_Table() {
     const id = localStorage.getItem('userId');
   console.log("User ID:", id);
     try {
-      const response = await axios.get(`http://localhost:8000/api/getMyRequests/${id}`);
+      const response = await axios.get(`http://localhost:8000/api/MyRequests/${id}`);
       const data = response.data;
       console.log("The data passed are here:", data);
       // Map fetched data to match the structure of rows

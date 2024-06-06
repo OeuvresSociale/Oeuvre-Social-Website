@@ -22,7 +22,7 @@ return (
     <div className="del">
      
 <div className="btnsd">
-<div className="vv">Voulez-vous vraiment supprimer{`${selectedEmployee.familyName} ${selectedEmployee.firstName}`} ?</div>  
+<div className="vv"> Voulez-vous vraiment supprimer  {`${selectedEmployee.familyName} ${selectedEmployee.firstName}`} ?</div>  
 <div className="bi">
 <button className="b1"   onClick={  ()=> closeDelete(false)}  >  Annuler </button>
  <button className="b2"    onClick={ handleDelete}  > Supprimer </button>

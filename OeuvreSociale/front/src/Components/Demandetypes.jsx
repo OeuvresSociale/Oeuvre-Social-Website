@@ -9,7 +9,6 @@ import axios from "axios";
 //info sur une demande cote admin ( traitement de demande)
 
 
- 
 const Demandetypes =()=>{ 
   const {id}=useParams();
   console.log(id); 

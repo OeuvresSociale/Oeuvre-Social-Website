@@ -13,11 +13,12 @@ import Page_Header from '../../Admin/bar_menu/Page_Header';
 
 function ContactForm() {
 
+
   const [formData, setFormData] = useState({
-    name: '',
-    title: '',
+    from: '', // email
+    subject: '',
     message: ''
-  });
+  }); 
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -56,11 +57,11 @@ function ContactForm() {
       
       <form onSubmit={handleSubmit}>
         <TextField
-          id="name"
-          label="Nom"
+          id="email"
+          label="email"
           variant="outlined"
           fullWidth
-          value={formData.name}
+          value={formData.email}
           onChange={handleChange}
           margin="normal"
           sx={{
@@ -87,11 +88,11 @@ function ContactForm() {
           }}
         />
         <TextField
-          id="title"
-          label="Titre"
+          id="subject"
+          label="subject"
           variant="outlined"
           fullWidth
-          value={formData.title}
+          value={formData.subject}
           onChange={handleChange}
           margin="normal"
           sx={{

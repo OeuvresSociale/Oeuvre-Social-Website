@@ -129,7 +129,7 @@ const Header = () => {
        <Link to="/profile/:id"> <button className="icon-button">
           <FaUserCircle className="icon" />
         </button></Link>
-        <button className="icon-button">
+        <button className="icon-button" onclick={()=>{localStorage.removeItem('userRole')}}>
           <FaSignOutAlt className="icon" />
         </button>
       </div>

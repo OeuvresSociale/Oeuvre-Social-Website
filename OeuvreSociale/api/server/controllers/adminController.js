@@ -405,9 +405,18 @@ async function resetPassword(req,res){
 **GET
 admin - LOG OUT
 */
-async function logout(req,res){
+async function logout(req, res) {
+    // Clear localStorage
+    localStorage.removeItem('userRole');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userSalary');
+    localStorage.removeItem('userEmail');
+
+    // Clear cookie
     res.clearCookie('token');
-    res.json({message:'logout successfuly'});   
+    
+    // Send response
+    res.json({ message: 'Logout successful' });
 }
 
 

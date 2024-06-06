@@ -2,6 +2,8 @@ const Employee = require("../models/user");
 const laonModel = require("../models/Laon");
 const laonRepayment = require("../models/loanRepaymen");
 const laonType = require("../models/LaonType");
+const notify = require("../models/notification");
+
 
 //Get all request for employee
 const getMyLaon = async (req, res) => {
@@ -88,6 +90,17 @@ const suiviLaon = async (req, res) => {
     const request = await laonModel.findById(req.params.id);
 
     try {
+      const { employeeId, state } = req.body;
+
+    // Validate required fields
+    if (!employeeId) {
+      return res.status(400).json({ error: "Employee ID is required" });
+    }
+
+    if (!state) {
+      return res.status(400).json({ error: "State is required" });
+    }
+
       const updatedRequest = await laonModel.findByIdAndUpdate(
         req.params.id,
         {
@@ -95,8 +108,18 @@ const suiviLaon = async (req, res) => {
         },
         { new: true }
       );
+      //notification  
+      const notification = new notify({
+        employeeId: employeeId,
+        title: "demande de pret",
+        message: `votre demande de pret est ${state}`
+      });
+
+      await notification.save();
+
       res.status(200).json(updatedRequest);
-      console.log("Request has been updated");
+      console.log("laon has been updated + notification is sent");
+     
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Internal server error" });

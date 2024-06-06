@@ -38,9 +38,11 @@ function Forms() {
 
   const handleSubmit = async () => {
     try {
+      const id = localStorage.getItem('userId');
+      console.log("User ID:", id);
       const formData = new FormData();
       formData.append("requestTypeId", selectedPopDetails._id);
-      formData.append("employeeId", "662b6d845103d0588235a182"); // Remplacez 'EMPLOYEE_ID' par l'ID réel de l'employé
+      formData.append("employeeId", id); // Remplacez 'EMPLOYEE_ID' par l'ID réel de l'employé
 
       // Ajoutez le type de demande aux données envoyées
 
@@ -104,7 +106,7 @@ function Forms() {
 
   return (
     <div className="formsrapper">
-      <h2 className="title">Types des demandes :</h2>
+      <h2 className="title">Types des demandes :</h2> 
       <div
         className="linkrapper"
         onClick={() => {
@@ -114,20 +116,20 @@ function Forms() {
         <div className="linktdem">Demande de prêt </div>
       </div>
       {/* Debut des elemnt statique.................................................................... */}
-      <div
+      {/* <div
         className="linkrapper"
         onClick={() => {
           setShowPop2(true);
         }}
-      >
-        <div className="linktdem">Demande de mariage </div>
+      > */}
+        {/* <div className="linktdem">Demande de mariage </div>
       </div>
       <div
         className="linkrapper"
         onClick={() => {
           setShowPop2(true);
-        }}
-      >
+        }} */}
+      {/* >
         <div className="linktdem">Demande de mort </div>
       </div>
       <div
@@ -137,7 +139,7 @@ function Forms() {
         }}
       >
         <div className="linktdem">Demande de nouveau né </div>
-      </div>
+      </div> */}
       {/* Fin des elemnt statique.................................................................... */}
       {links.map((link, index) => (
         <div

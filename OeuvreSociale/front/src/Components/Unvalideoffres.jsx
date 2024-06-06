@@ -1,103 +1,94 @@
 import React, { useState, useEffect } from "react";
 import '../Styles/Valideoffres.css';
 import { FiPlusCircle } from "react-icons/fi";
-import { GoTrash } from "react-icons/go";
-import { MdOutlineModeEditOutline } from "react-icons/md";
-import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 import { Link } from "react-router-dom";
-import { BsArrowLeftCircle } from "react-icons/bs";
+import Page_Header from './Admin/bar_menu/Page_Header';
 import Deleteoffre from './Deleteoffre';
 import Validateoffrepopup from './Validateoffrepopup';
 import Logo from "../Assets/Logo1.png";
-import Page_Header from './Admin/bar_menu/Page_Header'
-
-
 
 const Valideoffres = () => {
-    const [openDeleteoffre, setopenDeleteoffre] = useState(false);
-     const [openvalidateoffre, setopenvalidateoffre] = useState(false);
-   
-     const [unvalidatedOffers, setunValidatedOffers] = useState([]);
+  const [openDeleteoffre, setopenDeleteoffre] = useState(false);
+  const [openvalidateoffre, setopenvalidateoffre] = useState(false);
+  const [unvalidatedOffers, setunValidatedOffers] = useState([]);
+  const [selectedOffer, setSelectedOffer] = useState(null); // Add state for selected offer
 
-     useEffect(() => {
-         // Fetch validated offers from the backend when the component mounts
-         const fetchunValidatedOffers = async () => {
-             try {
-                 const response = await axios.get("http://localhost:8000/api/invisibleOffres");
-                 setunValidatedOffers(response.data); // Update state with fetched data
-                 console.log("response:",response.data)
-             } catch (error) {
-                 console.error("Error fetching validated offers:", error);
-             }
-         };
- 
-         fetchunValidatedOffers();
-     }, []); // Empty dependency array to fetch data only once when the component mounts
+  useEffect(() => {
+    const fetchunValidatedOffers = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/invisibleOffres");
+        setunValidatedOffers(response.data);
+        console.log("response:", response.data);
+      } catch (error) {
+        console.error("Error fetching unvalidated offers:", error);
+      }
+    };
 
-     const handleDeleteClick = (event) => {
-        event.stopPropagation();
-        setopenDeleteoffre(true);
-      };
+    fetchunValidatedOffers();
+  }, []);
+
+  const handleDeleteClick = (offer, event) => {
+    event.stopPropagation();
+    setSelectedOffer(offer);
+    setopenDeleteoffre(true);
+  };
     
-      const handleValidateClick = (event) => {
-        event.stopPropagation();
-        setopenvalidateoffre(true);
-      };
 
-      const navigate = useNavigate();
-
-  const handleCardClick = () => {
-    navigate(`/unvalideoffres/unvalideoffrestype`);
-   // navigate(`/unvalideoffres/unvalideoffrestype/${id}`);
+  const handleValidateClick = (offer, event) => {
+    event.stopPropagation();
+    setSelectedOffer(offer); // Set the selected offer
+    setopenvalidateoffre(true);
   };
 
- 
+  const navigate = useNavigate();
 
-    return (
-        <div className="addoffrewrapper4">
-             
-                 <Link to='/unvalideoffres/ajouteroffre' className="addoffre">
-                   <button>Ajouter offre</button>
-                    <FiPlusCircle />
-                </Link>
-           
-           
-  
 
-                <div className="vali7">   <Page_Header title="Offres non valides"  />
-                <div className="offrecrapv">
-                {unvalidatedOffers.map((offer, index) => ( <div onClick={handleCardClick} className="offrecv">
-                        <img src={Logo} alt="logo" className="offimg2" />
-                        <div className="titoff">{offer.title}</div>
-                        <div className="descoff">{offer.desc}</div>
+  const handleCardClick = (id) => {
+    navigate(`/unvalideoffres/unvalideoffrestype/${id}`);
+  };
 
-                        <div className="offbtns"><button onClick={handleDeleteClick} className="offdel">Supprimer</button>
-                        <button  className="offvalid" onClick={handleValidateClick}>Valider</button></div>
 
-                        
-
-                        
-                        </div>  ))}
-                       {/* <div onClick={handleCardClick} className="offrecv">
-                        <img src={Logo} alt="logo" className="offimg2" />
-                        <div className="titoff">offer.title</div>
-                        <div className="descoff">offer.desc</div>
-                        <div className="offbtns"><button onClick={handleDeleteClick} className="offdel">Supprimer</button>
-                        <button  className="offvalid" onClick={handleValidateClick}>Valider</button></div>
-
-                        
-                        </div> */}
-                     </div>
-
-                </div>
-                {openDeleteoffre && <Deleteoffre closeDeleteoffre={setopenDeleteoffre}  />}
-                 {openvalidateoffre && <Validateoffrepopup closeValidateoffre={setopenvalidateoffre}  />}
+  return (
+    <div className="addoffrewrapper4">
+      <Link to='/unvalideoffres/ajouteroffre'>
+        <div className="addoffre">
+          <button>Ajouter offre</button>
+          <FiPlusCircle />
         </div>
+      </Link>
 
-           
-      
-    );
+      <div className="vali7">
+        <Page_Header title="Offres non valides" />
+        <div className="offrecrapv">
+          {unvalidatedOffers.map((offer) => (
+            <div key={offer._id} onClick={() => handleCardClick(offer._id)} className="offrecv">
+              <img src={Logo} alt="logo" className="offimg2" />
+              <div className="titoff">{offer.title}</div>
+              <div className="descoff">{offer.desc}</div>
+              <div className="offbtns">
+                {/* <button onClick={handleDeleteClick} className="offdel">Supprimer</button> */}
+                <button onClick={(event) => handleDeleteClick(offer, event)} className="offdel">Supprimer</button>
+
+                <button className="offvalid" onClick={(event) => handleValidateClick(offer, event)}>Valider</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      {openDeleteoffre && selectedOffer && (
+         <Deleteoffre 
+         closeDeleteoffre={setopenDeleteoffre}  
+         offer={selectedOffer}
+         />)}
+      {openvalidateoffre && selectedOffer && (
+        <Validateoffrepopup 
+          closeValidateoffre={setopenvalidateoffre} 
+          offer={selectedOffer} // Pass the selected offer to the popup
+        />)}
+    </div>
+  );
 };
 
 export default Valideoffres;

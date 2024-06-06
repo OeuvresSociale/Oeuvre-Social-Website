@@ -6,7 +6,7 @@ const controller =require('../controllers/adminController');
 const {uploadImage,getImage} =require('../controllers/img');
 const notification =require('../controllers/notification');
 const {Auth ,localVariables} = require('../middleware/auth.js');//middelware for authentication
-const {verifyRole} = require ('../middleware/roles.js');
+const {verifyRole} = require ('../middleware/roles.js');    
 //END POINTS for admin interface - for now it is for bith admin and employee
 
    

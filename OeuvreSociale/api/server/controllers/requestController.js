@@ -1,10 +1,11 @@
 const Request = require("../models/request");
 const Employee = require("../models/user");
 const TypeRequest = require("../models/typeRequest");
-const path = require("path");
+const path = require("path"); 
 const fs = require("fs");
 const asyncWrapper = require("../middleware/asyncWrapper");
 const { Console } = require("console");
+const notify = require("../models/notification");
 
 //Get all request for employee
 const getMyRequests = async (req, res) => {
@@ -14,7 +15,7 @@ const getMyRequests = async (req, res) => {
   const skipRequests = (page - 1) * RequestsPerPage;
   const filtre = req.query.filtre || "";
   
-  try {
+  try { 
     const Requests = await Request.find(
       {
         employeeId: req.params.employeeId,
@@ -113,7 +114,7 @@ const getRequest = async (req, res) => {
     res.status(500).json({ message: "Server error", error: err.message });
   }
 };
-
+// to get loan
 const laonModel = require("../models/Laon");
 const getReq = async (req, res) => {
   try {
@@ -200,27 +201,52 @@ const updateMyRequest = async (req, res) => {
 
 const suiviRequest = async (req, res) => {
   try {
+    const { employeeId, state } = req.body;
+
+    // Validate required fields
+    if (!employeeId) {
+      return res.status(400).json({ error: "Employee ID is required" });
+    }
+
+    if (!state) {
+      return res.status(400).json({ error: "State is required" });
+    }
+
     const request = await Request.findById(req.params.id);
-    //authentication pour president et vice !!!!!!!!!!
+    if (!request) {
+      return res.status(404).json("This request does not exist");
+    }
 
     try {
       const updatedRequest = await Request.findByIdAndUpdate(
         req.params.id,
-        {
-          $set: req.body, //only new state date answer and motif
-        },
+        { $set: req.body }, // only new state, date, answer, and motif
         { new: true }
       );
+  //notification
+      const notification = new notify({
+        employeeId: employeeId,
+        title: "demande",
+        message: `votre demande de pret est ${state}`
+      });
+
+      await notification.save(); 
+
       res.status(200).json(updatedRequest);
-      console.log("Request has been updated");
+      console.log("Request has been updated + notification is sent");
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Internal server error" });
     }
-  } catch {
-    res.status(401).json("this request is not existed");
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
   }
 };
+
+
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //function to display the files
