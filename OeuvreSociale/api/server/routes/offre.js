@@ -4,13 +4,15 @@ const router=Router();
  const {getOffres,addOffre,deleteOffre,updateOffre,
     validOffre,
     visibleOffres,
-    invisibleOffres}=require('../controllers/offreController');
-
+    invisibleOffres}=require('../controllers/offreController'); 
+  
 router.get("/offres",getOffres);
-router.post("/offre",addOffre);  
+router.post("/offre",addOffre);   
 router.put("/offre/:id",updateOffre);
 router.delete("/offre/:id",deleteOffre);
 router.put("/validOffre/:id",validOffre);
+
+
 router.get("/visibleOffres",visibleOffres);
 router.get("/invisibleOffres",invisibleOffres);
 

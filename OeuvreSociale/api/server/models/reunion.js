@@ -8,15 +8,35 @@ const reunionSchema = new mongoose.Schema({
     desc: {  
         type: String,  
         required: false, 
-    },
-    dateDebut:{ 
+    }, 
+    date:{ 
         type: Date,
         required: true
     },
-    dateFin:{ 
-        type: Date,
-        required: true
+    HeurDebut:{ 
+        type: String,
+        required: true,
+        validate: {
+          validator: function(v) {
+            return /\b([01]?[0-9]|2[0-3]):[0-5][0-9]\b/.test(v); // Validates "HH:mm" format
+          },
+          message: props => `${props.value} is not a valid time format!`
+        } 
     },
+    HeurFin:{ 
+      type: String,
+        required: true,
+        validate: {
+          validator: function(v) {
+            return /\b([01]?[0-9]|2[0-3]):[0-5][0-9]\b/.test(v); // Validates "HH:mm" format
+          },
+          message: props => `${props.value} is not a valid time format!`
+        }
+  },
+     historique:{
+        type: Boolean,
+        default:false
+  },
     files: {
         type: [ 
           {

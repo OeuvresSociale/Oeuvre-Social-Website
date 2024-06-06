@@ -8,11 +8,13 @@ import Logo from "../Assets/Logo1.png";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaBell, FaUserCircle, FaSignOutAlt } from "react-icons/fa";
+import Notification from "./Notification"
 
 import axios from 'axios';
 
 const Header = () => {
   const [searchValue, setSearchValue] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
   
 
@@ -26,25 +28,7 @@ const Header = () => {
   };
 
   
-  const [notificationMessage, setNotificationMessage] = useState("");
-
-  const notify = async () => {
-    try {
-      // Make a POST request to your backend API endpoint
-      const response = await axios.post('/api/send-notification', {
-        message: "Your notification message here" // You can pass any data you want to send to the backend
-      });
-
-      // Handle the response if needed
-      console.log(response.data); // Assuming your backend returns a response
-      // Display a success toast if the notification is sent successfully
-      toast.success('Notification sent successfully');
-    } catch (error) {
-      // Display an error toast if there's an error sending the notification
-      toast.error('Failed to send notification');
-      console.error('Error sending notification:', error);
-    }
-  };
+ 
 
   const location = useLocation();
 
@@ -140,17 +124,18 @@ const Header = () => {
       
       <div className="header-right">
         <button className="icon-button">
-          <FaBell className="icon" onClick={notify}  />
+          <FaBell className="icon" onClick={() => { setShowModal(!showModal); }}  />
         </button>
        <Link to="/profile/:id"> <button className="icon-button">
           <FaUserCircle className="icon" />
         </button></Link>
-        <button className="icon-button">
+        <button className="icon-button" onclick={()=>{localStorage.removeItem('userRole')}}>
           <FaSignOutAlt className="icon" />
         </button>
       </div>
 
-      <ToastContainer />
+    
+      {showModal && <Notification  closeModel={setShowModal}/>}
    
     </div>
   );

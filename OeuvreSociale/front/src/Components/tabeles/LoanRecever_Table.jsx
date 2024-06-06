@@ -67,10 +67,10 @@ function LoanRecever_Table() {
     }
   };
 
-  //open Demande Recieved Details
+  // Open Demande Recieved Details
   const handleDetailsClick = (params) => {
     const id = params.row.id;
-    window.location.href = `/tables/loantype/${id}`; //hada link t3 lpaga li fiha les details t3 demande bach yvaliderwela la
+    window.location.href = `/tables/loantype/${id}`; // Navigate to the details page
   };
 
   // Declare the columns content

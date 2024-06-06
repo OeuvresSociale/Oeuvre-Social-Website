@@ -40,10 +40,13 @@ const App = () => {
   const [role, setRole] = useState(null);
 
   useEffect(() => {
-    const getRole = localStorage.getItem('role');
-    //setRole(getRole);
-    setRole('admin');
-    // setRole('employee');
+    const getRole = localStorage.getItem('userRole');
+    setRole(getRole);
+    
+    
+    //console.log("role:",getRole);
+    //setRole('admin');
+     //setRole('employee');
   }, []);
 
   const GeneralRoute = () => {
@@ -59,7 +62,7 @@ const App = () => {
       );
     }
 
-    if (role === 'employee') {
+    if (role === 'employe') {
       return (
         <Routes>
           <Route path="/FormularTab" element={<FormularTab />} />
@@ -98,7 +101,7 @@ const App = () => {
           <Route path="/demandevalid" element={<Demande_Valid />} />
           <Route path="/reunions" element={<Reunionpage />} />
           <Route path="/reunions/historique" element={<Historique />} />
-          <Route path="/reunions/historique/listreunion" element={<LastYearsMeeting />} />
+          <Route path="/reunions/historique/listreunion/:year" element={<LastYearsMeeting />} />
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="*" element={<Navigate to="/dashboard" />} />
         </Routes>

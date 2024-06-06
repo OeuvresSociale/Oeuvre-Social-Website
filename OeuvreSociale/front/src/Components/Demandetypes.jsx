@@ -3,7 +3,6 @@ import "../Styles/Demandetypes.css";
 import { Link, useParams } from "react-router-dom";
 import Motif from "./Motif";
 import { PiFilePdfLight } from "react-icons/pi";
-import { BsArrowLeftCircle } from "react-icons/bs";
 import axios from "axios";
 
 //info sur une demande cote admin ( traitement de demande)
@@ -65,7 +64,7 @@ const [idRequest, setIdRequest] = useState(null);
   const handleGreenClick =async () => {
     try {
       const response = await axios.put(`http://localhost:8000/api/Requests/${request._id}`, {
-        state:"Approuvée",
+        state:"Approuvée", motif: ""
       });
       setbordercolor("green");
       setshowbuttons(false);
@@ -87,9 +86,9 @@ const [idRequest, setIdRequest] = useState(null);
       className="demandetype"
     >
       <div className="return">
-      <Link  to="/tables"  >
-           <div className="arrow2"><BsArrowLeftCircle /></div>
-            </Link>
+        <Link to="/tables">
+          <button>Return</button>
+        </Link>
       </div>
 
       <div className="td">{request.requestTypeId.title}</div>
@@ -168,23 +167,13 @@ const [idRequest, setIdRequest] = useState(null);
       </div>
       {showbuttons && (
         <div className="dtbtns">
-          <button
-            className="refuse"
-            onClick={() => {
-              setOpenMotif(true);
-             
-            }}
-          >
-            Réfuser
-          </button>
-          <button className="accepte" onClick={handleGreenClick}>
-            Accepter
-          </button>
+          <button className="refuse" onClick={() => {setOpenMotif(true);}}> Réfuser </button>
+          <button className="accepte" onClick={handleGreenClick}> Accepter </button>
         </div>
       )}
 
       {openMotif && (
-        <Motif closeMotif={setOpenMotif} handleRedClick={handleRedClick} Request={request} />
+        <Motif closeMotif={setOpenMotif} handleRedClick={handleRedClick} Request={request} context="Demande"/>
       )}
     </div>
   );

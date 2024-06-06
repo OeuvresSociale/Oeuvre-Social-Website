@@ -1,5 +1,7 @@
 const offreModel = require('../models/offres');
 const {uploadImage,getImage} =require('../controllers/img');
+const notify = require("../models/notification");
+const employee= require("../models/user");
 
 
 const addOffre = async (req, res) => {
@@ -34,16 +36,20 @@ const addOffre = async (req, res) => {
 //delete offre
 const deleteOffre = async (req, res) => {
     //verify if this offre exist
-  const existingOffre = await offre.findById(req.params.id);
+  const existingOffre = await offreModel.findById(req.params.id);
   if (!existingOffre) {
-    res.status(401).json("this offre  not existed");
+    res.status(401).json("this offre not existed");
   } else {
     try {
-      await offre.findByIdAndDelete(req.params.id);
+
+      await offreModel.findByIdAndDelete(req.params.id);
       res.status(200).json("offre has been deleted");
+      console.log("offre has been deleted");
     } catch (err) {
-      res.status(500).json(err);
+      console.error(err); // Log the error to the console
+      res.status(500).json({ error: "An error occurred while deleting the offer." });
     }
+    
   }
 };
 
@@ -89,19 +95,36 @@ const updateOffre = async (req, res) => {
   };
 
   const validOffre = async (req, res) => {
-    try {    
-      const updatedOffre= await offreModel.findByIdAndUpdate(
+    try {
+      const updatedOffre = await offreModel.findByIdAndUpdate(
         req.params.id,
-        {visible: true },
+        { visible: true },
         { new: true }
       );
+  
+      // Fetch all employees
+      const employees = await employee.find({}, '_id'); 
+  
+      // Create a notification for each employee
+      const notifications = employees.map(employee => ({
+        employeeId: employee._id,
+        title: "Offre",
+        message: "Nouveau offre est ajouté"
+      }));
+  
+      // Save all notifications
+      await notify.insertMany(notifications);
+  
       res.status(200).json(updatedOffre);
-      console.log("offre has been updated");
+      console.log("Offre has been updated and notifications sent");
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Internal server error" });
     }
-};
+  };
+  
+  module.exports = validOffre;
+  
 
 const visibleOffres = async (req, res) => {
   try {

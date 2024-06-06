@@ -15,8 +15,8 @@ const Transaction = () => {
   useEffect(() => {
     const getRole = localStorage.getItem('role');
     // setRole(getRole);
-    //setRole('president');
-    setRole('admin');
+    setRole('president');
+    //setRole('admin');
   }, []);
 
   const FormVisibility = () => {

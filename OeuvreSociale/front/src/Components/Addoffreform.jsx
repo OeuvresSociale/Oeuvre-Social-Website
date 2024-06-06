@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate } from "react-router-dom";
 import { MdOutlineImage } from "react-icons/md";
 import { GoTrash } from "react-icons/go";
 import axios from "axios";
@@ -14,6 +14,7 @@ const Addoffreform = () => {
 
   const [image, setImage] = useState(null);
   const fileInputRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -58,11 +59,13 @@ const Addoffreform = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
+    navigate('/unvalideoffres');
     try {
     await axios.post("http://localhost:8000/api/offre", input, {
     //  headers: {
     //    "Content-Type": "multipart/form-data"
     //  }
+
 
     });
 
@@ -75,6 +78,7 @@ const Addoffreform = () => {
       });
       setImage(null);
       console.log("input",input)
+      
     } catch (error) {
       console.error("Error:", error);
       // Handle error
@@ -88,7 +92,7 @@ const Addoffreform = () => {
           {" "}
           <button className="mlrefuse">Annuler</button>
         </Link>
-        <Link to="/unvalideoffres">
+        <Link to="/unvalideoffres" >
         <button className="mlaccepte" onClick={handleClick}>
           Créer
         </button>  </Link>

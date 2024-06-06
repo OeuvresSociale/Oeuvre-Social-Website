@@ -41,6 +41,7 @@ const validRequest = async (req, res) => {
         updatedRequest.employeeId.familyName,
       Amount: updatedRequest.requestTypeId.amount,
       categorie: "outcome",
+      creationDate: Date.now(), 
       type: "demande",
       files: req.files.map((file) => ({
         fileName: file.filename, // Use the filename as fileId
@@ -122,18 +123,18 @@ const getValid = async (req, res) => {
 };
 // get all trnsaction
 const getValids = async (req, res) => {
-  const page = req.query.page || 1;
-  const RequestPerPage = 10;
-  const skipRequests = (page - 1) * RequestPerPage;
+  // const page = req.query.page || 1; 
+  // const RequestPerPage = 10;
+  // const skipRequests = (page - 1) * RequestPerPage;
   try {
     const request = await transaction
       .find() //findById(req.params.id)
       .sort({ creationDate: -1 })
-      .skip(skipRequests)
-      .limit(RequestPerPage);
+      // .skip(skipRequests)
+      // .limit(RequestPerPage);
     res.status(200).json(request);
   } catch (err) {
-    // Handle errors
+    // Handle errors 
     res.status(500).json(err);
   }
 };
@@ -216,7 +217,6 @@ const processRepaymentsMonthly = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
-
 // update transaction
 const updateTransaction = async (req, res) => {
   try {
@@ -691,6 +691,7 @@ const createbilan = async (req, res) => {
         return res.status(404).send("File not found");
       }
       // Serve the file
+      
       res.sendFile(filePath);
     })
     .catch((err) => {
@@ -698,7 +699,7 @@ const createbilan = async (req, res) => {
       res.status(500).send("Error generating the PDF");
     });
 };
-=======
+
 //////////////////////////////////////////////////////////////
 // const calculateMonthlyOutcome = async (req, res) => {
 //   try {

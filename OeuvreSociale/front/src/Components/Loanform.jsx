@@ -12,7 +12,7 @@ const Loanform = () => {
     maxMonth: "",
     maxPourcentage: "",
     desc: "",
-  });
+  }); 
 
   useEffect(() => {
     const fetchLoanData = async () => {
