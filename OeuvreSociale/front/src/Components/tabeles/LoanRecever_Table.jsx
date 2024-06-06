@@ -3,25 +3,12 @@ import axios from "axios";
 import { DataGrid } from "@mui/x-data-grid";
 import InfoIcon from "@mui/icons-material/Info";
 import { IconButton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import "../../Styles/tables/DataGrid.css";
 
 function LoanRecever_Table() {
-  const [rows, setRows] = useState([
-    {
-      id: 1,
-      name: "Widad",
-      type: "Mariage",
-      date: "2024-02-20",
-      Status: "En attente",
-    },
-    {
-      id: 2,
-      name: "Fatima",
-      type: "Naissance",
-      date: "2024-02-20",
-      Status: "Refuser",
-    },
-  ]);
+  const [rows, setRows] = useState([]);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
     getLoanReceived_data();
@@ -70,7 +57,7 @@ function LoanRecever_Table() {
   // Open Demande Recieved Details
   const handleDetailsClick = (params) => {
     const id = params.row.id;
-    window.location.href = `/tables/loantype/${id}`; // Navigate to the details page
+    navigate(`/tables/loantype/${id}`); // Use navigate to redirect to the details page
   };
 
   // Declare the columns content
@@ -105,6 +92,8 @@ function LoanRecever_Table() {
           autoHeight
           rows={rows}
           columns={columns}
+          pagination
+          rowsPerPageOptions={[10]} // Set options for rows per page
           sx={{
             textAlign: "center",
             color: "#00194f",

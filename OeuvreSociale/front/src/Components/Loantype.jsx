@@ -55,13 +55,14 @@ const Loantype = () => {
     setbordercolor('red');
     setshowbuttons(false);
     setpadding(120);
-  };
+  }; 
 
   const handleGreenClick = async () => {
     try {
       const response = await axios.put(`http://localhost:8000/api/LaonRequest/${loan._id}`, {
         state: "Approuvée",
-        motif: ""
+        motif: "",
+        employeeId:loan.employeeId
       });
 
       setbordercolor("green");

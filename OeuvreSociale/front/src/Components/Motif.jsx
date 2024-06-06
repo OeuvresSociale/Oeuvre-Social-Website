@@ -8,7 +8,7 @@ const Motif=({closeMotif , handleRedClick ,context, Request,loan})=>{
       if (context === "Loan") {
         // Handle refusal action for Demande page
          try {
-           const response = await axios.put(`http://localhost:8000/api/LaonRequest/${loan._id}`, { state:"Rejetée", motif: text });
+           const response = await axios.put(`http://localhost:8000/api/LaonRequest/${loan._id}`, { state:"Rejetée", motif: text, employeeId:loan.employeeId });
             handleRedClick();
             // Close the motif
             closeMotif(false);
