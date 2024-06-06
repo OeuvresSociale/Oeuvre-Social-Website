@@ -193,33 +193,42 @@ const Transactions_Table = () => {
   }, []);
 
   const getTrans_Data = async () => {
+    const formatNumberWithCommas = (number) => {
+      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
+    
+  
     try {
       const response = await axios.get("http://localhost:8000/api/RequestyAll");
       const data = response.data;
       // Debugging the fetched Data
       console.log("The data passed are here:", data);
       // Map fetched data to match the structure of rows
-      const rowData = data.map((transaction) => ({
-        id: transaction._id,
-        name: transaction.name,
-        type: transaction.type,
-        creationDate: new Date(transaction.creationDate).toLocaleDateString("en-GB", {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric",
-        }),
-        Amount: transaction.Amount,
-        categorie: transaction.categorie,
-        files: transaction.files,
-        debit: transaction.categorie === "outcome" ? transaction.Amount : null,
-        credit: transaction.categorie === "income" ? transaction.Amount : null,
-      }));
+      const rowData = data.map((transaction) => {
+        const amountFormatted = formatNumberWithCommas(transaction.Amount);
+        return {
+          id: transaction._id,
+          name: transaction.name,
+          type: transaction.type,
+          creationDate: new Date(transaction.creationDate).toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+          }),
+          Amount: amountFormatted,
+          categorie: transaction.categorie,
+          files: transaction.files,
+          debit: transaction.categorie === "outcome" ? amountFormatted : null,
+          credit: transaction.categorie === "income" ? amountFormatted : null,
+        };
+      });
       // Update the state with the mapped data
       setRows(rowData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+  
 
   // Handle Functions
 

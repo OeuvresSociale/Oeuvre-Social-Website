@@ -37,6 +37,9 @@ getTrans_Data();
 }, []);
 
 const getTrans_Data = async () => {
+  const formatNumberWithCommas = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
 try {
 
   const response = await axios.get("http://localhost:8000/api/Requestsapproved");
@@ -45,7 +48,9 @@ try {
   //Debugging the fetched Data
   console.log("The data passed are here:", data);
   // Map fetched data to match the structure of rows
-  const rowData = data.map((demandValidInfo) => ({
+  const rowData = data.map((demandValidInfo) => {
+    const amountFormatted = formatNumberWithCommas(demandValidInfo.requestTypeId.amount);
+    return {
     id: demandValidInfo._id,
 
     // concerned: demandValidInfo.employeeId.firstName,
@@ -55,12 +60,13 @@ try {
       day: "2-digit",
       month: "2-digit",
       year: "numeric",
-  }),
-    amount: demandValidInfo.requestTypeId.amount,
+  }), 
+    amount: amountFormatted,
 
     categorie: demandValidInfo.categorie,
     files: demandValidInfo.files,
-  }));
+  };
+  });
   // Update the state with the mapped data
   setRows(rowData);
 } catch (error) {

@@ -3,12 +3,12 @@ import '../../../Styles/Addform.css';
 import Page_Header from "../bar_menu/Page_Header";
 import MeetingEditForm from "../../MeetingEditForm"
 import axios from "axios";
-
+import { useParams } from "react-router-dom";
 
 
 
 const Addform = () => {
- 
+  const { year } = useParams();
     const [meetings, setMeetings] = useState([]);
     const [selectedMeeting, setSelectedMeeting] = useState(null);
     const [showMeetingEditForm, setShowMeetingEditForm] = useState(false);
@@ -18,19 +18,19 @@ const Addform = () => {
       setShowMeetingEditForm(true); // Open MeetingEditForm
     };
 
-  useEffect(() => {
-    // Fetch data from the backend
-    const fetchMeetings = async () => {
-      try {
-        const response = await axios.get('https://api.example.com/meetings');
-        setMeetings(response.data);
-      } catch (error) {
-        console.error("Error fetching meetings:", error);
-      }
-    };
-
-    fetchMeetings();
-  }, []);
+    useEffect(() => {
+      const fetchMeetingsByYear = async () => {
+        try {
+          const response = await axios.get(`http://localhost:8000/api/meets`);
+          const filteredMeetings = response.data.filter(meeting => new Date(meeting.date).getFullYear() === parseInt(year));
+          setMeetings(filteredMeetings);
+        } catch (error) {
+          console.error("Error fetching meetings by year:", error);
+        }
+      };
+    
+      fetchMeetingsByYear();
+    }, [year]); // Include year in the dependency array
     
 
     return (
@@ -43,12 +43,12 @@ const Addform = () => {
           <div key={meeting.id} className="linkwrapper" onClick={() => handleMeetingEdit(meeting)}>
             <div className="linktodem">{meeting.title}</div>
             <div className="linktodem">{new Date(meeting.date).toLocaleDateString()}</div>
-            <div className="linktodem">{meeting.timeStart} - {meeting.timeEnd}</div>
+            <div className="linktodem">{meeting.HeurDebut} - {meeting.HeurFin}</div>
           </div>
         ))}
            
                  
-                   {/*---------------------- static exemple  ----------------*/}
+                   {/* ---------------------- static exemple  ----------------
                         <div className="linkwrapper"  >
                         <div className="linktodem"> reunion 1 </div><div className="linktodem"> date </div><div className="linktodem">heure </div>
                         </div>
@@ -60,18 +60,17 @@ const Addform = () => {
                         </div>
                         
                        {/*---------------------- static exemple  ----------------*/}
-                       
+                      
                     
-                        </div>
+                      </div>
                         {showMeetingEditForm && (
-          <div className='formtitlewrapper'>
-        <MeetingEditForm meeting={selectedMeeting} 
-        onCancel={() => setShowMeetingEditForm(false)}
-         /></div>
-      )}
-            </div>
-           
-       
+                          <div className='formtitlewrapper'>
+                        <MeetingEditForm meeting={selectedMeeting} 
+                        onCancel={() => setShowMeetingEditForm(false)}
+                        /></div>
+                      )}
+                    </div>
+   
     );
 };
 

@@ -133,7 +133,7 @@ const getValids = async (req, res) => {
       .limit(RequestPerPage);
     res.status(200).json(request);
   } catch (err) {
-    // Handle errors
+    // Handle errors 
     res.status(500).json(err);
   }
 };
@@ -216,7 +216,6 @@ const processRepaymentsMonthly = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
-
 // update transaction
 const updateTransaction = async (req, res) => {
   try {
@@ -691,6 +690,7 @@ const createbilan = async (req, res) => {
         return res.status(404).send("File not found");
       }
       // Serve the file
+      
       res.sendFile(filePath);
     })
     .catch((err) => {
@@ -698,7 +698,7 @@ const createbilan = async (req, res) => {
       res.status(500).send("Error generating the PDF");
     });
 };
-=======
+
 //////////////////////////////////////////////////////////////
 // const calculateMonthlyOutcome = async (req, res) => {
 //   try {

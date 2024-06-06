@@ -8,7 +8,7 @@ const notification =require('../controllers/notification');
 const bcrypt =require('bcrypt'); 
 const jwt = require('jsonwebtoken'); 
 const jwtSecret = process.env.JWT_SECRET;
-const dotenv =require("dotenv").config();
+const dotenv =require("dotenv").config(); 
 const otpGenerator =require('otp-generator');
 
 
