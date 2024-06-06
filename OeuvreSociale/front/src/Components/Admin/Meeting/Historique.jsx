@@ -1,19 +1,16 @@
-import React ,{useState , useEffect}from "react";
+import React, { useState, useEffect } from "react";
 import '../../../Styles/Formuls.css';
 import { Link } from 'react-router-dom';
 import Page_Header from "../bar_menu/Page_Header";
 import axios from "axios";
 
-
-const Formuls =() =>{
-
+const Formuls = () => {
   const [meetingYears, setMeetingYears] = useState([]);
 
   useEffect(() => {
-    // Fetch data from the backend
     const fetchMeetings = async () => {
       try {
-        const response = await axios.get('https://api.example.com/meetings');
+        const response = await axios.get('http://localhost:8000/api/meet-by-year');
         setMeetingYears(response.data);
       } catch (error) {
         console.error("Error fetching meetings:", error);
@@ -22,42 +19,34 @@ const Formuls =() =>{
 
     fetchMeetings();
   }, []);
-  
-return(
-<div className="formulsra">
+ {/*---------------------- static exemple  ----------------*/}
 
-<Page_Header title="Historique" subtitle="Les réunions des années passées"/>   
-<div  className="formulsrapper">
+//  <Link  to="/reunions/historique/listreunion" className="linkwrapper" >
+//  <div className="linktodem"> 2023</div>
 
-{meetingYears.map((meeting) => (
+//    </Link>  
+//    <Link  to="/reunions/historique/listreunion" className="linkwrapper" >
+//  <div className="linktodem"> 2022</div>
 
+//    </Link>  
+//    <Link  to="/reunions/historique/listreunion" className="linkwrapper" >
+//  <div className="linktodem"> 2021</div>
 
-
-
-  <Link  to="/reunions/historique/listreunion" className="linkwrapper" key={meetingYears.id}  >
-    <div className="linktodem">{meetingYears.name}</div>    
-
-</Link>        ))}
-
-   {/*---------------------- static exemple  ----------------*/}
-
-   <Link  to="/reunions/historique/listreunion" className="linkwrapper" >
-  <div className="linktodem"> 2023</div>
-
-    </Link>  
-    <Link  to="/reunions/historique/listreunion" className="linkwrapper" >
-  <div className="linktodem"> 2022</div>
-
-    </Link>  
-    <Link  to="/reunions/historique/listreunion" className="linkwrapper" >
-  <div className="linktodem"> 2021</div>
-
-    </Link>  
-    
-      {/*---------------------- static exemple  ----------------*/}
-
-</div>
-</div>
-);
+//    </Link>  
+   
+     {/*---------------------- static exemple  ----------------*/}
+  return (
+    <div className="formulsra">
+      <Page_Header title="Historique" subtitle="Les réunions des années passées"/>
+      <div className="formulsrapper">
+        {Object.keys(meetingYears).map(year => (
+          <Link to={`/reunions/historique/listreunion/${year}`} className="linkwrapper" key={year}>
+            <div className="linktodem">{year}</div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
 };
+
 export default Formuls;

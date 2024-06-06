@@ -26,10 +26,12 @@ function LoanRecever_Table() {
   useEffect(() => {
     getEmployeeDemande_data();
   }, []);
-
+ 
   const getEmployeeDemande_data = async () => {
+    const id = localStorage.getItem('userId');
+  console.log("User ID:", id);
     try {
-      const response = await axios.get("http://localhost:8000/api/Requests");
+      const response = await axios.get(`http://localhost:8000/api/getMyRequests/${id}`);
       const data = response.data;
       console.log("The data passed are here:", data);
       // Map fetched data to match the structure of rows

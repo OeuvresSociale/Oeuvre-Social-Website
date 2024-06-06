@@ -5,6 +5,7 @@ import MeetingForm from './MeetingForm';
 import MeetingEditForm from './MeetingEditForm';
 import { Link } from 'react-router-dom';
 import Page_Header from './Admin/bar_menu/Page_Header';
+import axios from "axios";
 
 // testing
 const testMeetings = [
@@ -21,10 +22,31 @@ const GestionDesReunionsPage = () => {
   const [showMeetingForm, setShowMeetingForm] = useState(false);
   const [selectedMeeting, setSelectedMeeting] = useState(null);
   const [showMeetingEditForm, setShowMeetingEditForm] = useState(false);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    const fetchRequests = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/meets`, {
+          responseType: "json",
+          responseEncoding: "utf8",
+        }); 
+        // const filteredMeetings = response.data.filter(meeting => !meeting.historique); // Exclude meetings with historique set to true
+        // setMeetings(filteredMeetings);
+        setMeetings(response.data);
+        console.log("response:", response);
+      } catch (error) {
+        console.error("Error fetching requests:", error);
+        setError(error);
+     
+      }
+    };
+
+    fetchRequests();
+  }, []); // Fetch employees whenever searchValue changes
 
   useEffect(() => {
     setMeetings(testMeetings); 
-  }, []);
+  }, []); 
 
   const handleDayClick = (value) => {
     const today = new Date();
@@ -49,6 +71,7 @@ const GestionDesReunionsPage = () => {
   const handleMeetingEdit = (meeting) => {
     setSelectedMeeting(meeting);
     setShowMeetingEditForm(true); // Open MeetingEditForm
+    
   };
 
   const handleMeetingFinish = (meetingId, pdfDoc) => {
@@ -79,8 +102,12 @@ const GestionDesReunionsPage = () => {
           {meetings.map(meeting => (
             <div key={meeting.id} className="meeting-item" onClick={() => handleMeetingEdit(meeting)}>
               <div>{meeting.title}</div>
-             <div>{meeting && meeting.date.toDateString()}</div>
-              <div>{meeting.timeStart} - {meeting.timeEnd}</div>
+             <div>{meeting && new Date(meeting.date).toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                })}</div>
+              <div>{meeting.HeurDebut} - {meeting.HeurFin}</div>
             </div>
           ))}
         </div>

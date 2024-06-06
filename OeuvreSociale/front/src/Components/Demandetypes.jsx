@@ -181,10 +181,10 @@ const [idRequest, setIdRequest] = useState(null);
             Accepter
           </button>
         </div>
-      )}
+      )} 
 
       {openMotif && (
-        <Motif closeMotif={setOpenMotif} handleRedClick={handleRedClick} Request={request} />
+        <Motif closeMotif={setOpenMotif} handleRedClick={handleRedClick} Request={request} context="Demande"/>
       )}
     </div>
   );
