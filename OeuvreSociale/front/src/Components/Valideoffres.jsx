@@ -10,7 +10,7 @@ import Logo from "../Assets/Logo1.png";
 import Page_Header from "./Admin/bar_menu/Page_Header";
 
 
-const Valideoffres = () => { 
+const Valideoffres = () => {
 
 
     const [validatedOffers, setValidatedOffers] = useState([]);
@@ -40,9 +40,9 @@ const Valideoffres = () => {
                 <div className="vali7">   <Page_Header title="Offres "  />
                 <div className="offrecrapv">
                 {validatedOffers.map((offer, index) => (
-                       <Link to={`/off/${offer._id}`} key={index} className="offrecv">
+                       <Link to={`/offre/${offer._id}`} key={index} className="offrecv">
                             <img src={Logo} alt="logo" className="offimg3" />
-                             <div className="titoff">{offer.title}</div>
+                            <div className="titoff">{offer.title}</div>
                             <div className="descoff">{offer.desc}</div>
                         </Link>
                    ))}

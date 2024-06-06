@@ -1,4 +1,4 @@
-import React ,{useState,useEffect}from "react";
+import React, { useState, useEffect } from "react";
 import '../Styles/Loantype.css';
 import { Link } from 'react-router-dom';
 import Motif from "./Motif";
@@ -7,75 +7,73 @@ import { useParams } from 'react-router-dom';
 import { BsArrowLeftCircle } from "react-icons/bs";
 import axios from 'axios';
 
+const Loantype = () => {
+  const [openMotif, setOpenMotif] = useState(false);
+  const [bordercolor, setbordercolor] = useState('white');
+  const [showbuttons, setshowbuttons] = useState(true);
+  const [padding, setpadding] = useState('0');
 
-const Loantype =()=>{
-   const[openMotif,setOpenMotif]=useState(false);
-   const[bordercolor,setbordercolor]=useState('white');
-   const[showbuttons,setshowbuttons]=useState(true);
-   const[padding,setpadding]=useState('0');
-
-   const { id } = useParams();
-   console.log("id:",id);
-   const [loan, setRequest] = useState({
+  const { id } = useParams();
+  console.log("id:", id);
+  const [loan, setRequest] = useState({
+    _id: "",
+    purpose: "",
+    amount: "",
+    duration: "",
+    complete: "",
+    employeeId: {
       _id: "",
-      purpose:"",
-      amount: "",
-      duration: "",
-      complete: "",
-      employeeId: {
-         _id: "",
-         idEmployee: "",
-         familyName: "",
-         firstName: "",
-         email: "",
-         phoneNumber: "",
-         dateStartJob: "",
-         monthlySalary: "",
-         familysitution: "",
-       },
-      requestTypeId: {
-        title: "",
-        _id: ""
-      }, 
-     
-    });
+      idEmployee: "",
+      familyName: "",
+      firstName: "",
+      email: "",
+      phoneNumber: "",
+      dateStartJob: "",
+      monthlySalary: "",
+      familysitution: "",
+    },
+    requestTypeId: {
+      title: "",
+      _id: ""
+    },
+  });
 
-     useEffect(() => {
-       const fetchRequestDetails = async () => {
-         try {
-           const response = await axios.get(`http://localhost:8000/api/Req/${id}`);
-           setRequest(response.data);
-           console.log("response:",response.data);
-         } catch (error) {
-           console.error("Error fetching request details:", error);
-         }
-       };
-       fetchRequestDetails();
-     }, []);
-
-
-     const handleRedClick = () => {
-      setbordercolor('red');
-      setshowbuttons(false);
-      setpadding(120);
+  useEffect(() => {
+    const fetchRequestDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/Req/${id}`);
+        setRequest(response.data);
+        console.log("response:", response.data);
+      } catch (error) {
+        console.error("Error fetching request details:", error);
+      }
     };
- 
-  const handleGreenClick =async () => {
+    fetchRequestDetails();
+  }, [id]);
+
+  const handleRedClick = () => {
+    setbordercolor('red');
+    setshowbuttons(false);
+    setpadding(120);
+  };
+
+  const handleGreenClick = async () => {
     try {
       const response = await axios.put(`http://localhost:8000/api/LaonRequest/${loan._id}`, {
-        state:"Approuvée", motif: ""
+        state: "Approuvée",
+        motif: ""
       });
-        
+
       setbordercolor("green");
       setshowbuttons(false);
       setpadding(120);
     } catch (error) {
-     
       console.error("Error accepting request:", error);
     }
   };
 
-   console.log("loan:",loan);
+  console.log("loan:", loan);
+
    return(
 <div style={{ borderColor: bordercolor, borderStyle: 'solid',borderWidth:'1px' ,paddingBottom:padding}} className= 'demandetype'>
        <div className="return">

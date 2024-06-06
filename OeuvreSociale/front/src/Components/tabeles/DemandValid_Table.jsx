@@ -24,7 +24,7 @@ const DemandValid_Table = () => {
   };
 
   const [rows, setRows] = useState([{
-    id: 1,
+   id: 1,
     // name: "Manel",
     // type: "Mariage",
     // date: "2024-02-20",
@@ -34,7 +34,7 @@ const DemandValid_Table = () => {
 
 useEffect(() => {
 getTrans_Data();
-}, []);
+}, [rows]);
 
 const getTrans_Data = async () => {
   const formatNumberWithCommas = (number) => {
@@ -56,7 +56,7 @@ try {
     // concerned: demandValidInfo.employeeId.firstName,
     concerned: `${demandValidInfo.employeeId.familyName} ${demandValidInfo.employeeId.firstName}`,
     type: demandValidInfo.requestTypeId.title,
-    date: new Date(demandValidInfo.creationDate).toLocaleDateString("en-GB", {
+    creationDate: new Date(demandValidInfo.answerDate).toLocaleDateString("en-GB", {
       day: "2-digit",
       month: "2-digit",
       year: "numeric",
@@ -77,7 +77,7 @@ try {
   const columns = [
     { field: "concerned", headerName: "Concerné", width: 315 },
     { field: "type", headerName: "Type", width: 315 },
-    { field: "date", headerName: "Date d'envoi", width: 315 },
+    { field: "creationDate", headerName: "Date d'envoi", width: 315 },
     { field: "amount", headerName: "Somme", width: 315 },
 
     {
