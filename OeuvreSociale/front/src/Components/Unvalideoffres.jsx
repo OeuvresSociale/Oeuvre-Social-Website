@@ -57,9 +57,13 @@ const Valideoffres = () => {
     setOpenValidateoffre(true);
   };
 
+
+  const navigate = useNavigate();
+
   const handleCardClick = (id) => {
     navigate(`/unvalideoffres/unvalideoffrestype/${id}`);
   };
+
 
   return (
     <div>
