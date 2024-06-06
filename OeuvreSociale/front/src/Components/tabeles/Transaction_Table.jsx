@@ -193,42 +193,33 @@ const Transactions_Table = () => {
   }, []);
 
   const getTrans_Data = async () => {
-    const formatNumberWithCommas = (number) => {
-      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    };
-    
-  
     try {
       const response = await axios.get("http://localhost:8000/api/RequestyAll");
       const data = response.data;
       // Debugging the fetched Data
       console.log("The data passed are here:", data);
       // Map fetched data to match the structure of rows
-      const rowData = data.map((transaction) => {
-        const amountFormatted = formatNumberWithCommas(transaction.Amount);
-        return {
-          id: transaction._id,
-          name: transaction.name,
-          type: transaction.type,
-          creationDate: new Date(transaction.creationDate).toLocaleDateString("en-GB", {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric",
-          }),
-          Amount: amountFormatted,
-          categorie: transaction.categorie,
-          files: transaction.files,
-          debit: transaction.categorie === "outcome" ? amountFormatted : null,
-          credit: transaction.categorie === "income" ? amountFormatted : null,
-        };
-      });
+      const rowData = data.map((transaction) => ({
+        id: transaction._id,
+        name: transaction.name,
+        type: transaction.type,
+        creationDate: new Date(transaction.creationDate).toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        }),
+        Amount: transaction.Amount,
+        categorie: transaction.categorie,
+        files: transaction.files,
+        debit: transaction.categorie === "outcome" ? transaction.Amount : null,
+        credit: transaction.categorie === "income" ? transaction.Amount : null,
+      }));
       // Update the state with the mapped data
       setRows(rowData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
-  
 
   // Handle Functions
 
@@ -287,19 +278,19 @@ const Transactions_Table = () => {
       field: 'pdf',
       headerName: 'PDF',
       width: 140,
-      // renderCell: (params) => {
-      //   const transactionId = params.row.id;
-      //   const fileId = params.row.files[0]?._id; // Suppose you have a file ID
-      //   const link = `http://localhost:8000/api/transactions/${transactionId}/${fileId}`;
+      renderCell: (params) => {
+        const transactionId = params.row.id;
+        const fileId = params.row.files[0]?._id; // Suppose you have a file ID
+        const link = `http://localhost:8000/api/transactions/${transactionId}/${fileId}`;
 
-      //   return (
-      //     <a href={link} target="_blank" rel="noopener noreferrer">
-      //       <Avatar>
-      //         <PictureAsPdf />
-      //       </Avatar>
-      //     </a>
-      //   );
-      // },
+        return (
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            <Avatar>
+              <PictureAsPdf />
+            </Avatar>
+          </a>
+        );
+      },
     },
     {
       field: "edit",
@@ -315,7 +306,7 @@ const Transactions_Table = () => {
 
   return (
     <div style={{ width: "100%" }}>
-      <div style={{ height: "auto", width: "100%" }}>
+      <div style={{ height: 400, width: "100%" }}>
         <DataGrid
           autoHeight
           rows={rows}

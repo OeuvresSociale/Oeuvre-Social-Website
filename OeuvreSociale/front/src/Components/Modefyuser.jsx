@@ -27,7 +27,7 @@ const Modefyuser = ({ closeModefy, selectedEmployee }) => {
         idEmployee: selectedEmployee.idEmployee,
         firstName: selectedEmployee.firstName,
         familyName: selectedEmployee.familyName,
-        email: selectedEmployee.email,
+        email: selectedEmployee.email, 
         phoneNumber: selectedEmployee.phoneNumber,
         bankAccount: selectedEmployee.bankAccount,
         monthlySalary: selectedEmployee.monthlySalary,
@@ -35,7 +35,7 @@ const Modefyuser = ({ closeModefy, selectedEmployee }) => {
         role: selectedEmployee.role,
         sexe: selectedEmployee.sexe,
         familysitution: selectedEmployee.familysitution,
-        numberOfChildren: selectedEmployee.numberOfChildren || ''
+        numberOfChildren: selectedEmployee.numberOfChild || ''
       });
     }
   }, [selectedEmployee]);

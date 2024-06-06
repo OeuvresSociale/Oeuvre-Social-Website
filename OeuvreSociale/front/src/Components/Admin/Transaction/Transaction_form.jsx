@@ -8,7 +8,7 @@ const Transaction_form = ({FormVisibility}) => {
   const [formData, setFormData] = useState({
     name: "",
     type: "",
-    date: "",
+    creationDate: "",
     Amount: "",
     categorie: "",
     files: null,
@@ -31,7 +31,7 @@ const Transaction_form = ({FormVisibility}) => {
     setFormData({
       name: "",
       type: "",
-      date: "",
+      creationDate: "",
       Amount: "",
       categorie: "",
       files: null,
@@ -114,9 +114,9 @@ const Transaction_form = ({FormVisibility}) => {
         <Grid item xs={12}>
           <TextField
             label="Date"
-            name="date"
+            name="creationDate"
             type="date"
-            value={formData.date}
+            value={formData.creationDate}
             onChange={handleChange}
             variant="outlined"
             fullWidth

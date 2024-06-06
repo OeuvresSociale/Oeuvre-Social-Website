@@ -29,18 +29,20 @@ const Addloandemande = ({ closeit }) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
     };
-// 66376c27f785202cb7475cca
+
     const handleSubmit = async () => {
         try {
+            const id = localStorage.getItem('userId');
+            console.log("User ID:", id);
             const response = await axios.post("http://localhost:8000/api/LaonRequest", {
-                employeeId: "66376c27f785202cb7475cca", // Replace with actual employee ID
+                employeeId: id, // Replace with actual employee ID
                 amount: formData.amount,
                 duration: formData.duration,
                 purpose: formData.purpose,
                 requestTypeId: loanType._id // Use the fetched loan type ID
             });
  if (response.data.message) {
-                alert(response.data.message); // Display success message in alert
+                alert("demande passed successfully, we will answer you later in email"); // Display success message in alert
             }
         } catch (error) {
             if (error.response && error.response.data.error) {

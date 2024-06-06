@@ -39,12 +39,16 @@ const addMeet = async (req, res) => {
     const members = await getMember(); // Returns array of emails
 
     console.log("members:", members);
-
+    const date =  new Date(savedMeet.date).toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
     // Construct the email body dynamically using savedMeet data
     const emailBody = {
       to: members.join(', '),
       subject: savedMeet.title,
-      message: savedMeet.desc
+      message: `vous avez une reunion le ${date} du ${savedMeet.HeurDebut} a ${savedMeet.HeurFin} pour ${savedMeet.desc}`
     };
 
     // Send email notification

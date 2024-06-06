@@ -4,6 +4,9 @@ import Page_Header from "../bar_menu/Page_Header";
 import MeetingEditForm from "../../MeetingEditForm"
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Avatar, IconButton } from "@mui/material";
+import { Edit, PictureAsPdf } from "@mui/icons-material"; 
 
 
 
@@ -44,6 +47,13 @@ const Addform = () => {
             <div className="linktodem">{meeting.title}</div>
             <div className="linktodem">{new Date(meeting.date).toLocaleDateString()}</div>
             <div className="linktodem">{meeting.HeurDebut} - {meeting.HeurFin}</div>
+            <div>
+              {/* <a href={link} target="_blank" rel="noopener noreferrer"> */}
+            <Avatar>
+              <PictureAsPdf />
+            </Avatar>
+          {/* </a> */}
+          </div>
           </div>
         ))}
            

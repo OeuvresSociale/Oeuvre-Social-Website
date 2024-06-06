@@ -218,9 +218,10 @@ const suiviRequest = async (req, res) => {
     }
 
     try {
-      const updatedRequest = await Request.findByIdAndUpdate(
+      const updatedRequest = await Request.findByIdAndUpdate( 
         req.params.id,
-        { $set: req.body }, // only new state, date, answer, and motif
+        { $set: req.body },
+        {answerDate:Date.now}, // only new state, date, answer, and motif
         { new: true }
       );
   //notification
