@@ -64,7 +64,7 @@ const [idRequest, setIdRequest] = useState(null);
   const handleGreenClick =async () => {
     try {
       const response = await axios.put(`http://localhost:8000/api/Requests/${request._id}`, {
-        state:"Approuvée", motif: ""
+        state:"Approuvée", employeeId:request.employeeId,
       });
       setbordercolor("green");
       setshowbuttons(false);
@@ -172,9 +172,10 @@ const [idRequest, setIdRequest] = useState(null);
         </div>
       )}
 
-      {openMotif && (
+      {/* {openMotif && (
         <Motif closeMotif={setOpenMotif} handleRedClick={handleRedClick} Request={request} context="Demande"/>
-      )}
+      )} */}
+       {openMotif && <Motif  closeMotif={setOpenMotif} handleRedClick={handleRedClick} Request={request} context="Demande"/>}
     </div>
   );
 };
