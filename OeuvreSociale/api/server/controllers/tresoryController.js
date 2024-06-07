@@ -9,7 +9,7 @@ const path = require("path");
 const fs = require("fs");
 const { updateBudget } = require("./budgetController.js");
 const notify = require("../models/notification.js");
-
+const reunion = require("../models/reunion");
 // valide the request
 const validRequest = async (req, res) => {
   try {
@@ -92,6 +92,7 @@ const validLaon = async (req, res) => {
         " " + 
         updatedRequest.employeeId.familyName,
       Amount: updatedRequest.amount,
+      creationDate: Date.now(),
       categorie: "outcome",
       type: "loan",
       files: req.files.map((file) => ({
@@ -481,27 +482,35 @@ const calculateOfferTransactions = async (startDate, endDate) => {
 const PDFDocument = require("pdfkit");
 
 const createbilan = async (req, res) => {
-  // const { startDate, endDate } = req.body;
+  const { startDate, endDate } = req.body;
 
-  // if ( !startDate || !endDate ) {
-  //   return res.status(400).send("Invalid request body");
-  // }
+  if ( !startDate || !endDate ) {
+    return res.status(400).send("Invalid request body");
+  }
 
-  // // Convertir les dates de début et de fin en objets Date
-  // const start = new Date(startDate);
-  // const end = new Date(endDate);
-  const start = new Date("2024-01-01");
-  const end = new Date("2024-06-10");
+  // Convertir les dates de début et de fin en objets Date
+  const start = new Date(startDate);
+  const end = new Date(endDate);
 
-  const schoolLogoPath = path.join(__dirname, "../src", "esilogo.png");
-  const companyLogoPath = path.join(__dirname, "../src", "logo.png");
+
+  const schoolLogoPath = path.join(__dirname, "../src", "logoEsi.png");
+  
 
   // Calculer les flux de trésorerie
   const cashFlows = await calculateCashFlows(start, end);
   const activities = {
     // offers: await calculateOfferTransactions(start, end),
-    offers: 20,
-    meetings: 5,
+    offers:  await Offre.countDocuments({
+      visible: true,
+      dateDebut: { $gte: new Date(startDate) },
+      dateFin: { $lte: new Date(endDate) },
+    }),
+    meetings:await reunion.countDocuments({
+      date: {
+        $gte: new Date(startDate),
+        $lte: new Date(endDate),
+      },
+    }),
   };
   const fileName = "bilan.pdf";
   // Vérifier la validité des dates
@@ -521,7 +530,7 @@ const createbilan = async (req, res) => {
     doc.pipe(writeStream);
 
     // Insérer les logos de l'école et de l'entreprise
-    doc.image(schoolLogoPath, { width: 70, align: "left" });
+    doc.image(schoolLogoPath, { width: 480 , align: "center" });
     doc.moveUp();
     //doc.image(companyLogoPath, { width: 70, align: "right" });
     doc.moveDown();
@@ -704,6 +713,7 @@ const createbilan = async (req, res) => {
       // Serve the file
       
       res.sendFile(filePath);
+      console.log("bilan done successfuly")
     })
     .catch((err) => {
       console.error("Error generating the PDF:", err);

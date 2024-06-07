@@ -27,7 +27,7 @@ const Valideoffres = () => {
     };
 
     fetchunValidatedOffers();
-  }, []); // Pass an empty array to run this effect only once
+  }, [unvalidatedOffers]); // Pass an empty array to run this effect only once
 
   const handleDeleteClick = (offer, event) => {
     event.stopPropagation();

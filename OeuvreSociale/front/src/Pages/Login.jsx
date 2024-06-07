@@ -30,6 +30,7 @@ const Login = () => {
       localStorage.setItem('userSalary', data.salary);
       localStorage.setItem('userEmail', data.useremail);
       console.log("role:",data.role);
+      window.location.reload()
 ////////////////////////////////////
 
     } catch (error) {
@@ -52,7 +53,7 @@ const Login = () => {
               type="email"
               onChange={handleInputChange}
               value={formData.email}
-              placeholder="Username"
+              placeholder="email"
               id="email"
               name="email"
               required

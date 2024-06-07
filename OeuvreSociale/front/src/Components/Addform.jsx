@@ -28,7 +28,7 @@ const Addform = () => {
         };
 
         fetchFormularies();
-    }, [formularies]);
+    }, []);
 
     const toggleExpand = (id) => {
         setFormularies((prevFormularies) =>
@@ -81,7 +81,11 @@ const Addform = () => {
                         {form.expand && (
                             <div className="docs">
                             <div className="docname"> Prix : {form.price}
-                            </div>
+                            <div className="addicons">
+                                <Link to="/formulaire/modefyformtitle">
+                                    <MdOutlineModeEditOutline  />
+                                </Link>
+                            </div></div>
                                 {form.docs.map((doc, index) => (
                                     <div key={index} className="docname">
                                         {doc}
@@ -91,15 +95,6 @@ const Addform = () => {
                         )}
                     </div>
                 ))} 
-                {/* <div className="linkform"   >
-                           title
-                            <div className="addicons">
-                                <GoTrash onClick={() => {setOpenDeleteform(true)}} />
-                                <Link to="/formulaire/formulairedemande/modefyformulaire">
-                                    <MdOutlineModeEditOutline onClick={() => { setOpenModefy(true) }} />
-                                </Link>
-                            </div>
-                        </div> */}
                        
             </div>
             {selectedformularie && (
@@ -113,4 +108,3 @@ const Addform = () => {
 };
 
 export default Addform;
-

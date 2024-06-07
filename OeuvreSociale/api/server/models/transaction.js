@@ -15,7 +15,7 @@ const transactionSchema = new schema({
   }, 
   type: {
     type: String,
-    enum: ["demande", "loan", "annonce", "Repayment", "autre"],
+    enum: ["demande", "loan", "annonce", "repayment", "autre"],
   },
   categorie: {
     type: String,

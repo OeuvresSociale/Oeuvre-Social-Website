@@ -99,16 +99,16 @@ try {
     { field: "email", headerName: "Email", width: 200 },
     { field: "salaire", headerName: "Salaire", width: 200 },
     { field: "role", headerName: "Role", width: 200 },
-    {
-      field: "Details",
-      headerName: "Details",
-      width: 140,
-      renderCell: (params) => (
-        <IconButton onClick={() => handleDetails(params.row.id)}>
-          <InfoIcon />
-        </IconButton>
-      ),
-    },
+    // {
+    //   field: "Details",
+    //   headerName: "Details",
+    //   width: 140,
+    //   renderCell: (params) => (
+    //     <IconButton onClick={() => handleDetails(params.row.id)}>
+    //       <InfoIcon />
+    //     </IconButton>
+    //   ),
+    // },
     {
       field: "edit",
       headerName: "Edit",

@@ -8,6 +8,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Typography, Grid } from "@mui/material";
 import { InsertDriveFile } from "@mui/icons-material";
 import axios from "axios";
+import "../../Styles/Formulaire.css";
 
 const ModifyRowPopup = ({
   open,
@@ -18,7 +19,7 @@ const ModifyRowPopup = ({
   pdf, // PDF content stored in a variable
 }) => {
   const [formData, setFormData] = useState({ ...editableRowData });
-
+console.log('data:',editableRowData)
   useEffect(() => {
     setFormData({ ...editableRowData });
   }, [editableRowData]);
@@ -39,7 +40,7 @@ const ModifyRowPopup = ({
   const handleSave = () => {
     // Send formData to backend
     axios
-      .put("http://localhost:8000/api/RequestyAll", formData)
+      .put(`http://localhost:8000/api/updateTransaction/${1}`, formData)
       .then((response) => {
         // Handle success if needed
         handleSaveEdit(formData);
@@ -49,13 +50,15 @@ const ModifyRowPopup = ({
         console.error("Error saving data:", error);
       });
   };
-
+  // justify-self: center;
+  // display: flex;
+  // flex-direction: column;
+  
+  // justify-content: center;
+  // align-items: center;
+  // height: auto;
   return (
-    <Modal
-      open={open}
-      onClose={handleCancelEdit}
-    
-    >
+    <Modal open={open} onClose={handleCancelEdit}>
       <Box
         sx={{
           position: "absolute",
@@ -66,131 +69,179 @@ const ModifyRowPopup = ({
           boxShadow: 24,
           p: 4,
           width: "auto",
-          border:"none",
-          borderRadius:"10px",
+          border: "none",
+          borderRadius: "10px",
+          gap: "25px",
+          display:"flex",
+          flexDirection:"column",
+          justifyContent:"center",
+
+
         }}
       >
-        <Typography
-          variant="h4"
-          component="h4"
-          sx={{
-            textAlign: "left",
-            mt: 2,
-            mb: 3,
-            color: "#00194f",
-            margin: "10px",
-          }}
-        >
-          Modification de ligne:
-        </Typography>
-        <TextField
-          label="Concerné"
-          value={editableRowData?.name || ""}
-          onChange={(e) =>
-            setEditableRowData({
-              ...editableRowData,
-              name: e.target.value,
-            })
-          }
-        />
-        <TextField
-          label="Type"
-          value={editableRowData?.type || ""}
-          onChange={(e) =>
-            setEditableRowData({
-              ...editableRowData,
-              type: e.target.value,
-            })
-          }
-        />
-        <TextField
-          label="Date d'envoi"
-          type="date"
-          value={editableRowData?.date || ""}
-          onChange={(e) =>
-            setEditableRowData({
-              ...editableRowData,
-              date: e.target.value,
-            })
-          }
-        />
-        <TextField
-          label="Somme"
-          type="number"
-          value={editableRowData?.Amount || ""}
-          onChange={(e) =>
-            setEditableRowData({
-              ...editableRowData,
-              Amount: e.target.value,
-            })
-          }
-        />
-        <Select
-          label="categorie"
-          value={editableRowData?.categorie || ""}
-          onChange={(e) =>
-            setEditableRowData({
-              ...editableRowData,
-              categorie: e.target.value,
-            })
-          }
-        >
-          <MenuItem value="sortant">Sortant</MenuItem>
-          <MenuItem value="entrant">Entrant</MenuItem>
-        </Select>
-        {pdf && (
-          <Grid item xs={12}>
-            {/* Display the existing PDF */}
-            <iframe title="pdfViewer" src={pdf} width="100%" height="500px" />
-          </Grid>
-        )}
-        <Grid item xs={12}>
-          {/* Allow user to upload additional PDF */}
-          <div className="pdf-field">
-            <label className="file-label">
-              <input
-                type="file"
-                accept=".pdf"
-                name="file"
-                onChange={(e) => {
+        
+          <div className="f1">
+            <div style={{ width: "100%" }}>
+              <div>
+                <Typography
+                  variant="h4"
+                  component="h4"
+                  sx={{
+                    textAlign: "left",
+                    color: "#00194f",
+                  }}
+                >
+                  Modifier la transaction:
+                </Typography>
+              </div>
+            </div>
+          </div>
+          <div className="f1">
+            <div style={{ width: "33%" }}>
+              <TextField
+              fullWidth
+                label="Concerné"
+                value={editableRowData?.name || ""}
+                onChange={(e) =>
                   setEditableRowData({
                     ...editableRowData,
-                    files: e.target.files[0],
-                  });
-                }}
-                className="file-input"
+                    name: e.target.value,
+                  })
+                }
               />
-              <span className="file-icon">
-                <InsertDriveFile />
-              </span>
-              <span className="file-text">Importer un autre PDF</span>
-            </label>
+            </div>
+            <div style={{ width: "33%" }}>
+              <Select
+              fullWidth
+                label="Type"
+                value={editableRowData?.type || ""}
+                onChange={(e) =>
+                  setEditableRowData({
+                    ...editableRowData,
+                    type: e.target.value,
+                  })
+                }
+              >
+                <MenuItem value="demande">Demande</MenuItem>
+                <MenuItem value="loan">Prêt</MenuItem>
+                <MenuItem value="annonce">Offre</MenuItem>
+                <MenuItem value="repayment">Repayment</MenuItem>
+                <MenuItem value="autre">Autre</MenuItem>
+              </Select>
+            </div>
+            <div style={{ width: "33%" }}>
+              <TextField
+              fullWidth
+                label="Date d'envoi"
+                type="date"
+                value={editableRowData?.creationDate || ""}
+                onChange={(e) =>
+                  setEditableRowData({
+                    ...editableRowData,
+                    creationDate: e.target.value,
+                  })
+                }
+              />
+            </div>
           </div>
-        </Grid>
-        <Grid item xs={12} className="popup_button">
-          <Grid container justifyContent="flex-end" spacing={2}>
-            <Grid item>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={handleCancelEdit}
+          <div className="f1">
+            <div style={{ width: "50%" }}>
+              <TextField
+              fullWidth
+                label="Somme"
+                type="number"
+                value={editableRowData?.Amount || ""}
+                onChange={(e) =>
+                  setEditableRowData({
+                    ...editableRowData,
+                    Amount: e.target.value,
+                  })
+                }
+              />
+            </div>
+            <div style={{ width: "50%" }}>
+              <Select
+              fullWidth
+                label="categorie"
+                value={editableRowData?.categorie || ""}
+                onChange={(e) =>
+                  setEditableRowData({
+                    ...editableRowData,
+                    categorie: e.target.value,
+                  })
+                }
               >
-                Annuler
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleSaveEdit}
-              >
-                Enregistrer
-              </Button>
-            </Grid>
-          </Grid>
-        </Grid>
+                <MenuItem value="outcome">Sortant</MenuItem>
+                <MenuItem value="income">Entrant</MenuItem>
+              </Select>
+            </div>
+          </div>
+          <div className="f1">
+            <div style={{ width: "100%" }}>
+              {pdf && (
+                <Grid item xs={12}>
+                  {/* Display the existing PDF */}
+                  <iframe
+                    title="pdfViewer"
+                    src={pdf}
+                    width="100%"
+                    height="500px"
+                  />
+                </Grid>
+              )}
+              <Grid item xs={12}>
+                {/* Allow user to upload additional PDF */}
+                <div className="pdf-field">
+                  <label className="file-label">
+                    <input
+                      type="file"
+                      accept=".pdf"
+                      name="file"
+                      onChange={(e) => {
+                        setEditableRowData({
+                          ...editableRowData,
+                          files: e.target.files[0],
+                        });
+                      }}
+                      className="file-input"
+                    />
+                    <span className="file-icon">
+                      <InsertDriveFile />
+                    </span>
+                    <span className="file-text">Importer un autre PDF</span>
+                  </label>
+                </div>
+              </Grid>
+            </div>
+          </div>
+          <div className="f1">
+            <div style={{ width: "100%" }}>
+              <Grid item xs={12} className="popup_button">
+                <Grid container justifyContent="flex-end" spacing={2}>
+                  <Grid item>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={handleCancelEdit}
+                    >
+                      Annuler
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={handleSaveEdit}
+                    >
+                      Enregistrer
+                    </Button>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </div>
+          </div>
+        
       </Box>
     </Modal>
   );
 };
 
 export default ModifyRowPopup;
-

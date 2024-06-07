@@ -190,7 +190,7 @@ const Transactions_Table = () => {
 
   useEffect(() => {
     getTrans_Data();
-  }, []);
+  }, [rows]);
 
   const getTrans_Data = async () => {
     try {
