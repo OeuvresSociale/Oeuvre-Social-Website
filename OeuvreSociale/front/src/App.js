@@ -42,9 +42,12 @@ const App = () => {
   useEffect(() => {
     const getRole = localStorage.getItem('userRole');
     setRole(getRole);
-    // For testing purposes
-    // setRole('admin');
-    // setRole('employee');
+    
+    //console.log("role:",getRole);
+    //setRole('admin');
+     //setRole('employee');
+
+
   }, []);
 
   const GeneralRoute = () => {
@@ -68,6 +71,7 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/offre/:id" element={<OffreType />} />
           <Route path="*" element={<Navigate to="/FormularTab" />} />
         </Routes>
       );

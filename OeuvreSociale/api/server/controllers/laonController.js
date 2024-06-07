@@ -205,8 +205,12 @@ const createLaonRequest = async (req, res) => {
       message: `We will retrieve ${repaymentAmountPerMonth} from your account for ${durée} months.`,
     };
 
-    const request = new laonModel(req.body);
-    await request.save();
+    const request = new laonModel({
+      ...req.body, // Include all fields from req.body
+      reimburse: repaymentAmountPerMonth // Add the reimburse field
+  });
+  
+  await request.save();
 
     res.status(200).json(result);
   } catch (error) {
@@ -238,11 +242,38 @@ const createLaonRequest = async (req, res) => {
 //     res.status(500).json(err);
 //   }
 // };
+
+const getapprovedLoan = async (req, res) => {
+ 
+  try {
+    const approvedRequests = await laonModel.find({
+      state: "Approuvée",
+      validated: "false",
+    })
+      .populate("requestTypeId", "title")
+      .populate("employeeId", "familyName firstName")
+      .sort({ creationDate: -1 })
+ 
+
+    if (!approvedRequests || approvedRequests.length === 0) {
+      return res.status(404).json("There are no approved requests here");
+    }
+
+    res.status(200).json(approvedRequests);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+ 
+
+
 module.exports = {
   createLaonRequest,
   getMyLaon,
   getallLaon,
   getLaon,
   suiviLaon,
+  getapprovedLoan
   // getReq
 };

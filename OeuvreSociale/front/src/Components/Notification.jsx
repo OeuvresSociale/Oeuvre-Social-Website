@@ -6,18 +6,28 @@ const AdminProfileModal = () => {
  
 
   const [notifications, setNotifications] = useState([]);
+ 
+  
+  const id = localStorage.getItem('userId');
+console.log("User ID:", id);
 
-  useEffect(() => {
-    // Replace the URL with your actual endpoint
-    axios.get("https://your-backend-endpoint.com/notifications")
-      .then((response) => {
-        // Assuming the response.data is an array of notifications
-        setNotifications(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching notifications:", error);
-      });
-  }, []);
+useEffect(() => {
+  const fetchNotifications = async () => {
+    if (!id) return; // Exit if id is not available
+
+    try {
+      const response = await axios.post("http://localhost:8000/api/getNotification", { employeeId: id });
+      setNotifications(response.data);
+
+      console.log("getNotification:", response.data);
+    } catch (error) {
+      console.error('Error fetching notifications:', error);
+    }
+  };
+
+  fetchNotifications();
+}, [id]); // Add id to the dependency array
+
 
   return (
   
@@ -26,8 +36,16 @@ const AdminProfileModal = () => {
           <div className="moodal-content">
           {notifications.map((notification, index) => (
           <div key={index} className="notif">
-            {notification.message}
-            <div className="notifh">{notification.creationDate}</div>
+             <div>{notification.title}</div>
+           <div>{notification.message}</div> 
+            <div className="notifh">{new Date(notification.creationDate).toLocaleDateString(
+                      "en-GB",
+                      {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                      }
+                    )}</div>
           </div>
         ))}
 

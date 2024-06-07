@@ -30,11 +30,13 @@ const upload = require("../middleware/multer"); // Import your multer configurat
 const asyncWrapper = require("../middleware/asyncWrapper");
 
 //tresury
+
 router.put(
   "/Requestvalide/:id",
   upload.array("files"),
   asyncWrapper(validRequest)
 );
+
 router.put("/Loanvalide/:id", upload.array("files"), asyncWrapper(validLaon));
 router.get("/Requesty/:id", getValid); // get one valid request
 

@@ -12,7 +12,7 @@ router.delete("/employee/:id",deleteEmployee);
 
 router.put("/addPic/:id",profilePic);
 
-router.get("/getNotification/:employeeId",Notification);
+router.post("/getNotification",Notification);
 router.get("/getAppNotification",Notifications);
 
 

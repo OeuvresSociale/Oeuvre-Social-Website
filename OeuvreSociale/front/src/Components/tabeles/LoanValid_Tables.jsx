@@ -1,139 +1,91 @@
-import React, { useState, useEffect } from "react";
-import { DataGrid } from "@mui/x-data-grid";
-import { IconButton } from "@mui/material";
-import { CheckCircle } from "@mui/icons-material";
-import ValidateDemandePopup from "../popups/ValidateDemandePopup";
-import "../../Styles/tables/DataGrid.css";
-import axios from "axios";
+  import React, { useState, useEffect } from "react";
+  import { DataGrid } from "@mui/x-data-grid";
+  import { IconButton } from "@mui/material";
+  import { CheckCircle } from "@mui/icons-material";
+  import ValidateDemandePopup from "../popups/ValidateDemandePopup";
+  import "../../Styles/tables/DataGrid.css";
+  import axios from "axios";
 
-const LoanValid_Table = () => {
-  const [openPopup, setOpenPopup] = useState(false);
-  const [selectedRow, setSelectedRow] = useState(null); // Store the selected row
+  const LoanValid_Table = () => {
+    const [openPopup, setOpenPopup] = useState(false);
+    const [selectedRow, setSelectedRow] = useState(null);
+    const [rows, setRows] = useState([]);
 
-  // Handles functions
+    const handleClosePopup = () => {
+      setOpenPopup(false);
+    };
 
-  const handleClosePopup = () => {
-    setOpenPopup(false);
-  };
+    const handleValidateRow = (row) => {
+      setSelectedRow(row);
+      setOpenPopup(true);
+    };
 
-  const handleValidateRow = (row) => {
-    // Store the selected row
-    setSelectedRow(row);
-    // Open the popup
-    setOpenPopup(true);
-  };
+    useEffect(() => {
+      getLoan_Data();
+    }, []);
 
-  const [rows, setRows] = useState([{
-    id: 1,
-    // name: "Manel",
-    // type: "Mariage",
-    // date: "2024-02-20",
-    // amount: 1000,
-    // categorie: "sortant",
-  },]);
+    const getLoan_Data = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/Laonapproved");
+        const data = response.data;
+        console.log("Laonapproved:",data)
+        const rowData = data.map((loanValidInfo) => ({
+          id: loanValidInfo._id,
+          concerned: `${loanValidInfo.employeeId.familyName} ${loanValidInfo.employeeId.firstName}`,
+          date: new Date(loanValidInfo.creationDate).toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+          }),
+          amount: loanValidInfo.amount,
+          categorie: loanValidInfo.categorie,
+          files: loanValidInfo.files,
+        }));
+        setRows(rowData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
-useEffect(() => {
-getLoan_Data();
-}, []);
+    const columns = [
+      { field: "concerned", headerName: "Concerné", width: 315 },
+      { field: "date", headerName: "Date d'envoi", width: 315 },
+      { field: "amount", headerName: "Somme", width: 315 },
+      {
+        field: "validation",
+        headerName: "Validation",
+        width: 250,
+        renderCell: (params) => (
+          <IconButton onClick={() => handleValidateRow(params.row)}>
+            <CheckCircle color="primary" />
+          </IconButton>
+        ),
+      },
+    ];
 
-const getLoan_Data = async () => {
-try {
-
-  const response = await axios.get("http://localhost:8000/api/Requestsapproved");
-
-  const data = response.data;
-  //Debugging the fetched Data
-  console.log("The data passed are here:", data);
-  // Map fetched data to match the structure of rows
-  const rowData = data.map((loanValidInfo) => ({
-    id: loanValidInfo._id,
-
-    // concerned: loanValidInfo.employeeId.firstName,
-    concerned: `${loanValidInfo.employeeId.familyName} ${loanValidInfo.employeeId.firstName}`,
-    date: new Date(loanValidInfo.creationDate).toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-  }),
-    amount: loanValidInfo.requestTypeId.amount,
-
-    categorie: loanValidInfo.categorie,
-    files: loanValidInfo.files,
-  }));
-  // Update the state with the mapped data
-  setRows(rowData);
-} catch (error) {
-  console.error("Error fetching data:", error);
-}
-};
-  //Declare columns content
-  const columns = [
-    { field: "concerned", headerName: "Concerné", width: 315 },
-    { field: "date", headerName: "Date d'envoi", width: 315 },
-    { field: "amount", headerName: "Somme", width: 315 },
-
-    {
-      field: "validation",
-      headerName: "Validation",
-      width: 250,
-      renderCell: (params) => (
-        <IconButton onClick={() => handleValidateRow(params.row)}>
-          <CheckCircle color="#999999" />
-        </IconButton>
-      ),
-    },
-  ];
-
-  // const rows = [
-  //   {
-  //     id: 1,
-  //     concerned: "Manel",
-  //     type: "Mariage",
-  //     date: "2024-02-20",
-  //     amount: 1000,
-  //     validated: true,
-  //   },
-  //   {
-  //     id: 2,
-  //     concerned: "Manl",
-  //     type: "Mariage",
-  //     date: "2024-02-20",
-  //     amount: 1000,
-  //     validated: false,
-  //   },
-  //   {
-  //     id: 3,
-  //     concerned: "Manel",
-  //     type: "Marge",
-  //     date: "2024-02-20",
-  //     amount: 1000,
-  //     validated: true,
-  //   },
-  // ];
-
-  return (
-    <div style={{ width: "100%" }}>
-      <div style={{ height: "auto", width: "100%" }}>
-        <DataGrid
-          autoHeight
-          rows={rows}
-          columns={columns}
-          sx={{
-            textAlign: "center",
-            color: "#00194f",
-            border: "none",
-            padding: "30px",
-            fontSize: "15px",
-          }}
+    return (
+      <div style={{ width: "100%" }}>
+        <div style={{ height: "auto", width: "100%" }}>
+          <DataGrid
+            autoHeight
+            rows={rows}
+            columns={columns}
+            sx={{
+              textAlign: "center",
+              color: "#00194f",
+              border: "none",
+              padding: "30px",
+              fontSize: "15px",
+            }}
+          />
+        </div>
+        <ValidateDemandePopup
+          openPopup={openPopup}
+          handleClosePopup={handleClosePopup}
+          selectedRow={selectedRow}
         />
       </div>
-      <ValidateDemandePopup
-        openPopup={openPopup}
-        handleClosePopup={handleClosePopup}
-        selectedRow={selectedRow}
-      />
-    </div>
-  );
-};
+    );
+  };
 
-export default LoanValid_Table;
+  export default LoanValid_Table;

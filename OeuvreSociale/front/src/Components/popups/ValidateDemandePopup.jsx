@@ -96,7 +96,7 @@ const ValidateDemandePopup = ({ openPopup, handleClosePopup, selectedRow }) => {
             <div className="pdf-field">
               <label className="file-label">
                 <input
-                  type="file"
+                  type="file" 
                   accept=".pdf"
                   name="file"
                   onChange={handlePdfChange}

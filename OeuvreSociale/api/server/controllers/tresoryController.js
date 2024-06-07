@@ -8,6 +8,7 @@ const Budget = require("../models/budget.js");
 const path = require("path");
 const fs = require("fs");
 const { updateBudget } = require("./budgetController.js");
+const notify = require("../models/notification.js");
 
 // valide the request
 const validRequest = async (req, res) => {
@@ -72,7 +73,7 @@ const validLaon = async (req, res) => {
     ).populate({
       path: "employeeId",
       model: "user",
-      select: "firstName familyName",
+      select: "employeeId firstName familyName",
     });
 
     if (!updatedRequest) {
@@ -88,7 +89,7 @@ const validLaon = async (req, res) => {
       // requestId: updatedRequest._id,
       name:
         updatedRequest.employeeId.firstName +
-        " " +
+        " " + 
         updatedRequest.employeeId.familyName,
       Amount: updatedRequest.amount,
       categorie: "outcome",
@@ -102,6 +103,16 @@ const validLaon = async (req, res) => {
     //updating budget
     updateBudget(newOutcome);
     // Send success response
+
+     //notification  
+     const notification = new notify({
+      employeeId: updatedRequest.employeeId,
+      title: "demande de pret",
+      message: `We will retrieve ${updatedRequest.reimburse} from your account for ${updatedRequest.duration} months.`,
+    });
+
+    await notification.save();
+    
     return res
       .status(200)
       .json({ message: "Request updated and moved successfully" });
