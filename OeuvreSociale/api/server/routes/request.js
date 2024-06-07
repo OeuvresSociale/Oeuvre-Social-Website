@@ -24,7 +24,7 @@ const router = express.Router();
 
 // type request
 router.get("/Requests", getallRequests); //
-router.get("/Request/:id", getRequest); //   
+router.get("/Request/:id", getRequest); //    
 router.get("/Req/:id", getReq); // get one loan
 router.get("/off/:id", getOffre); // get one offre
 router.get("/MyRequests/:employeeId", getMyRequests); //
@@ -32,6 +32,7 @@ router.post("/Requests", upload.array("files"), asyncWrapper(createRequest));
 router.put("/Requests/:id", suiviRequest); //
 router.get("/:requestId/:fileId", getFileById); //to display the file
 router.get("/Requestsapproved", getapprovedRequests);
+ 
 //Loan request routes
 router.post("/LaonRequest", laon.createLaonRequest);
 router.get("/LaonRequest", laon.getallLaon); //

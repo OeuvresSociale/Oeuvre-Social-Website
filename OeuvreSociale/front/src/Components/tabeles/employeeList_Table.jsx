@@ -35,7 +35,7 @@ function EmployeeListTable() {
 
   useEffect(() => {
     getEmployeeData();
-  }, []);
+  }, [rows]);
 
   const getEmployeeData = async () => {
     try {
@@ -44,6 +44,7 @@ function EmployeeListTable() {
       console.log("The data passed are here:", data);
 
       const rowData = data.map((employeeInfo) => ({
+        _id: employeeInfo._id,
         id: employeeInfo.idEmployee,
         name: `${employeeInfo.familyName} ${employeeInfo.firstName}`,
         email: employeeInfo.email,
@@ -57,14 +58,16 @@ function EmployeeListTable() {
     }
   };
 
-  const fetchEmployeeDetails = async (employeeId) => {
-    try {
-      const response = await axios.get(`http://localhost:8000/api/employees/${employeeId}`);
-      setSelectedEmployee(response.data);
-    } catch (error) {
-      console.error('Error fetching employee details:', error);
-    }
-  };
+ const fetchEmployeeDetails = async (employeeId) => {
+try {
+  const response = await axios.get(`http://localhost:8000/api/employees/${employeeId}`
+ // , { responseType: 'json', responseEncoding: 'utf8' }
+  );
+  setSelectedEmployee(response.data); // Assuming data is an object containing details of the selected employee
+} catch (error) {
+  console.error('Error fetching employee details:', error);
+}
+}
 
   const handleDetails = (id) => {
     fetchEmployeeDetails(id);
@@ -75,15 +78,20 @@ function EmployeeListTable() {
     const editableRow = rows.find((row) => row.id === rowId);
     if (editableRow) {
       setEditableRowData(editableRow);
-      fetchEmployeeDetails(rowId);
+      fetchEmployeeDetails(editableRow._id);
       setOpenModefy(true);
     }
   };
 
-  const handleDelete = (id) => {
-    fetchEmployeeDetails(id);
-    setOpenDelete(true);
-  };
+  const handleDelete = (rowId) => {
+    setEditableRowId(rowId);
+    const editableRow = rows.find((row) => row.id === rowId);
+    if (editableRow) {
+      setEditableRowData(editableRow);
+      fetchEmployeeDetails(editableRow._id);
+      setOpenDelete(true);
+    };
+  }
 
   const columns = [
     { field: "id", headerName: "ID", width: 200 },
@@ -117,7 +125,7 @@ function EmployeeListTable() {
    
 
     <div style={{ width: "100%" }}>
-      <div style={{ height: 400, width: "100%" }}>
+      <div style={{ height: "auto", width: "100%" }}>
         <DataGrid
           autoHeight
           rows={rows}
@@ -131,6 +139,7 @@ function EmployeeListTable() {
           }}
         />
       </div>
+      {console.log(selectedEmployee)}
       {openModefy && <Modefyuser closeModefy={setOpenModefy} selectedEmployee={selectedEmployee} />}
       {openDelete && <Deleteuser closeDelete={setOpenDelete} selectedEmployee={selectedEmployee} />}
     </div>

@@ -12,13 +12,13 @@ import { SiGooglemaps } from "react-icons/si";
 import Page_Header from '../../Admin/bar_menu/Page_Header';
 
 function ContactForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    title: '',
-    message: ''
-  });
 
-  
+
+  const [formData, setFormData] = useState({
+    from: '', // email
+    subject: '',
+    message: ''
+  }); 
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -31,10 +31,10 @@ function ContactForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://your-backend-api-endpoint/contact', formData);
-      alert("Message envoyé avec succès!");
+      const response = await axios.post('http://localhost:8000/api/receiveEmail', formData);
+      alert("email envoyé avec succès!");
     } catch (error) {
-      alert("Erreur lors de l\'envoi du message.");
+      alert("Erreur lors de l\'envoi du email.");
     }
   };
 
@@ -57,11 +57,11 @@ function ContactForm() {
       
       <form onSubmit={handleSubmit}>
         <TextField
-          id="name"
-          label="Nom"
+          id="email"
+          label="email"
           variant="outlined"
           fullWidth
-          value={formData.name}
+          value={formData.email}
           onChange={handleChange}
           margin="normal"
           sx={{
@@ -88,11 +88,11 @@ function ContactForm() {
           }}
         />
         <TextField
-          id="title"
-          label="Titre"
+          id="subject"
+          label="subject"
           variant="outlined"
           fullWidth
-          value={formData.title}
+          value={formData.subject}
           onChange={handleChange}
           margin="normal"
           sx={{

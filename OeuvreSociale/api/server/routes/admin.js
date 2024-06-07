@@ -6,7 +6,7 @@ const controller =require('../controllers/adminController');
 const {uploadImage,getImage} =require('../controllers/img');
 const notification =require('../controllers/notification');
 const {Auth ,localVariables} = require('../middleware/auth.js');//middelware for authentication
-const {verifyRole} = require ('../middleware/roles.js');
+const {verifyRole} = require ('../middleware/roles.js');    
 //END POINTS for admin interface - for now it is for bith admin and employee
 
    
@@ -17,6 +17,7 @@ router.route('/register').post(controller.register);
 router.route('/login').post(controller.login);  // login in app
 // router.route('/sendEmail').post(Auth,verifyRole('president'),notification.sendEmail); 
 router.route('/sendEmail').post(notification.sendEmail); 
+router.route('/receiveEmail').post(notification.receiveEmail); 
 router.route('/forgotPassword').post(controller.forgotPassword); 
 //router.route('/notification').post(controller.notification);
 router.route('/uploadImage').post(uploadImage);

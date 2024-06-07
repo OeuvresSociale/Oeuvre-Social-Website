@@ -16,7 +16,11 @@ const Transaction = () => {
     const getRole = localStorage.getItem('role');
     // setRole(getRole);
     setRole('president');
+<<<<<<< HEAD
    // setRole('admin');
+=======
+    //setRole('admin');
+>>>>>>> origin/Manel
   }, []);
 
   const FormVisibility = () => {

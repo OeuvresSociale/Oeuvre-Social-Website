@@ -45,11 +45,10 @@ const App = () => {
     const getRole = localStorage.getItem('userRole');
     setRole(getRole);
     
+    
     //console.log("role:",getRole);
     //setRole('admin');
      //setRole('employee');
-
-
   }, []);
   useEffect(() => {
     if (role) {
@@ -69,7 +68,8 @@ const App = () => {
         </Routes>
       );
     }
-if (role === 'employe') {
+
+    if (role === 'employe') {
       return (
         <Routes>
           <Route path="/FormularTab" element={<FormularTab />} />

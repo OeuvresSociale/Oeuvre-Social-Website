@@ -13,7 +13,17 @@ const Confirmform = () => {
 
     
     const [inputText, setInputText] = useState('');
+    const [textInput, setTextInput] = useState("");
     const [previewWords, setPreviewWords] = useState([]);
+    const [textInputprix, setTextInputprix] = useState("");
+
+    const handleTextInputprixChange = (event) => {
+      setTextInputprix(event.target.value);
+    };
+
+    const handleTextInputChange = (event) => {
+      setTextInput(event.target.value);
+    };
   
     const handleInputChange = (event) => {
       setInputText(event.target.value);
@@ -55,7 +65,17 @@ const Confirmform = () => {
                 
             </div>
             <div className="formdocs">
-            <span className="titlef"> titre</span>
+            <span className="titlef">
+              
+               <input
+            type="text"
+            id="textInput"
+            value={textInput}
+            onChange={handleTextInputChange}
+            placeholder="titre"
+          />
+          </span>
+            
             <div className="adddocs"><input
         type="text"
         value={inputText}
@@ -67,7 +87,7 @@ const Confirmform = () => {
            
                
             </div>
-            <div className="previewContainer">
+            <div className="previewContainer2">
         {previewWords.map((word, index) => (
           <div key={index} className="wordBox">
             {word} <GoTrash onClick={() => handleDeleteWord(index)}  />
@@ -75,6 +95,13 @@ const Confirmform = () => {
         ))}
         
       </div>
+      <div  className="previewContainer"> Prix :<input
+            type="text"
+            id="textInputprix"
+            value={textInputprix}
+            onChange={handleTextInputprixChange}
+            placeholder=" Entrer le nouveau Prix"
+          /> </div>
            
         </div>
     );

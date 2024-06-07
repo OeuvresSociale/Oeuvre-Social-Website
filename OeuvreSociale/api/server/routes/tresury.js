@@ -38,7 +38,7 @@ router.post("/process-repayments", processRepaymentsMonthly); //incomes from the
 router.post("/initialize-budget", initializeBudget); //to initialize our budget
 router.get("/currentAmount", getCurrentAmount); //to get the current budget
 
-router.get("/RequestyAll", getValids); //outcome collection , get all trnsactions
+router.get("/RequestyAll", getValids); //outcome collection , get all transactions
 
 router.put("/updateTransaction/:id", updateTransaction);
 router.delete("/deleteTransaction/:id", deleteTransaction);
