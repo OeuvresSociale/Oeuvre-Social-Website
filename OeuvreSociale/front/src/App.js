@@ -45,7 +45,7 @@ const App = () => {
     
     
     //console.log("role:",getRole);
-    setRole('admin');
+    //setRole('admin');
      //setRole('employee');
   }, []);
 
@@ -70,6 +70,7 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/offre/:id" element={<OffreType />} />
           <Route path="*" element={<Navigate to="/FormularTab" />} />
         </Routes>
       );

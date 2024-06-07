@@ -29,7 +29,7 @@ const asyncWrapper = require("../middleware/asyncWrapper");
 
 
 //tresury
-router.put("/Requestvalide/:id",upload.array("files"),asyncWrapper(validRequest));
+router.put("/Requestvalide/:id",upload.array("files"),asyncWrapper(validRequest));// valider request
 router.put("/Loanvalide/:id", upload.array("files"), asyncWrapper(validLaon));
 router.get("/Requesty/:id", getValid); // get one valid request
 

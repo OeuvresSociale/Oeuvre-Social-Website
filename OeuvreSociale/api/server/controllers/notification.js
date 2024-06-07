@@ -111,27 +111,35 @@ async function sendEmail(req,res){
             }
         }
         
- 
+// notification for specific employee 
+async function Notification(req, res) {
+  try {
+    const { employeeId } = req.body;
 
-        const Notification = async (employeeId) => {
-          try {
-            const notification = await notify.findOne({ employeeId });
-            if (notification) {
-              console.log(notification);
-              return notification;
-            } else {
-              console.log("Notification not found");
-              return null;
-            }
-          } catch (error) {
-            console.error("Error retrieving notification:", error);
-            return null;
-          }
-        };
-        
-        
-        
+   
+    const notifications = await notify
+      .find({ employeeId }) 
+      .sort({ creationDate: -1 })
+      .select("title message creationDate")
+      .limit(10) // Limit to 10 notifications
+      .lean();
 
+    if (notifications.length > 0) {
+      console.log(notifications);
+      return res.status(200).json(notifications);
+    } else {
+      console.log("No notifications found for employeeId:", employeeId);
+      return res.status(404).json({ message: "No notifications found" });
+    }
+  } catch (error) {
+    console.error("Error retrieving notifications:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+        
+        
+        
+// all from db
 async function Notifications (req,res){
   try {
     const notification = await notify.find();
@@ -141,6 +149,9 @@ async function Notifications (req,res){
     res.status(500).json(err);
   }
 }
+
+
+
 module.exports={
     sendEmail,
     receiveEmail,

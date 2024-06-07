@@ -30,8 +30,8 @@ router.route('/verifyOTP').post(localVariables,controller.verifyOTP);   //verify
 router.route('/createResetSession').get(controller.createResetSession);  //reset all the variables
 router.route('/logout').get(controller.logout)
 //router.route('/getImage/:id').get(controlle.getImage)
-
-
+  
+  
 /**PUT METHODS */
 router.route('/updateUser').put(controller.updateUser);   //update user profile
 router.route('/resetPassword/:id').put(controller.resetPassword);   //use to reset a password

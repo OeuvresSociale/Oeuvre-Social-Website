@@ -406,12 +406,12 @@ async function resetPassword(req,res){
 admin - LOG OUT
 */
 async function logout(req, res) {
-    // Clear localStorage
-    localStorage.removeItem('userRole');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('userSalary');
-    localStorage.removeItem('userEmail');
-
+    // // Clear localStorage
+    // localStorage.removeItem('userRole');
+    // localStorage.removeItem('userId');
+    // localStorage.removeItem('userSalary');
+    // localStorage.removeItem('userEmail');
+ 
     // Clear cookie
     res.clearCookie('token');
     

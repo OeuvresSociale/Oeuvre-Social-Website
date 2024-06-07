@@ -228,7 +228,7 @@ const suiviRequest = async (req, res) => {
       const notification = new notify({
         employeeId: employeeId,
         title: "demande",
-        message: `votre demande de pret est ${state}`
+        message: `votre demande est ${state}`
       });
 
       await notification.save(); 
@@ -280,9 +280,7 @@ async function getFileById(req, res) {
 
 /////////////////////////////:::::::::::::::::::::::
 const getapprovedRequests = async (req, res) => {
-  const { page = 1, limit = 10 } = req.query; // Get page and limit from query params, default to page 1 and limit 10
-  const skipRequests = (page - 1) * limit;
-
+ 
   try {
     const approvedRequests = await Request.find({
       state: "Approuvée",
@@ -291,8 +289,7 @@ const getapprovedRequests = async (req, res) => {
       .populate("requestTypeId", "title amount")
       .populate("employeeId", "familyName firstName")
       .sort({ creationDate: -1 })
-      .skip(skipRequests)
-      .limit(parseInt(limit));
+
 
     if (!approvedRequests || approvedRequests.length === 0) {
       return res.status(404).json("There are no approved requests here");

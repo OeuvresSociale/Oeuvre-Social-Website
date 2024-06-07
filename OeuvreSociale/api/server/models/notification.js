@@ -11,11 +11,11 @@ const notificationSchema = new schema({
     type: String,
     required: true,
   },
-  employeeId: {
+  employeeId: {    
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
     required: true,
-  },
+  }, 
   creationDate: {
     type: Date,
     default: Date.now,

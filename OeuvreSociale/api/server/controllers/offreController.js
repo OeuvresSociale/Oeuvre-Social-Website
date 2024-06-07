@@ -123,7 +123,7 @@ const updateOffre = async (req, res) => {
     }
   };
   
-  module.exports = validOffre;
+ 
   
 
 const visibleOffres = async (req, res) => {

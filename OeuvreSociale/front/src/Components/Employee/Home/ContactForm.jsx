@@ -57,11 +57,11 @@ function ContactForm() {
       
       <form onSubmit={handleSubmit}>
         <TextField
-          id="email"
-          label="email"
+          id="from"
+          label="Email"
           variant="outlined"
           fullWidth
-          value={formData.email}
+          value={formData.from}
           onChange={handleChange}
           margin="normal"
           sx={{

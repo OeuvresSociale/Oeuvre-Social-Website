@@ -1,4 +1,4 @@
-import react , { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import { IoNotificationsOutline } from "react-icons/io5";
 import { BsSearch } from "react-icons/bs";
 import "../Styles/Header.css";
@@ -9,15 +9,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaBell, FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 import Notification from "./Notification"
-
 import axios from 'axios';
+
 
 const Header = () => {
   const [searchValue, setSearchValue] = useState('');
   const [showModal, setShowModal] = useState(false);
-
-  
-
+    
   const handleChange = (event) => {
     setSearchValue(event.target.value);
   };
@@ -27,7 +25,30 @@ const Header = () => {
     setSearchValue( searchValue);
   };
 
-  
+
+const handleLogout = async () => {
+  try {
+    const response = await axios.get("http://localhost:8000/api/logout", {
+      withCredentials: true, // Include cookies in the request
+    });
+    console.log("logout",response)
+    if (response.status === 200) {
+      // Logout successful 
+      // Clear localStorage
+      localStorage.removeItem('userRole');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('userSalary');
+      localStorage.removeItem('userEmail');
+      // Redirect to login page or perform any other action
+    } else {
+      // Logout failed
+      console.error("Logout failed");
+    }
+  } catch (error) {
+    console.error("Error logging out:", error);
+  }
+};
+
  
 
   const location = useLocation();
@@ -129,14 +150,16 @@ const Header = () => {
        <Link to="/profile/:id"> <button className="icon-button">
           <FaUserCircle className="icon" />
         </button></Link>
-        <button className="icon-button" onclick={()=>{localStorage.removeItem('userRole')}}>
+        <button className="icon-button" onClick={handleLogout}>
           <FaSignOutAlt className="icon" />
         </button>
+       
+
       </div>
 
     
       {showModal && <Notification  closeModel={setShowModal}/>}
-   
+      {/* {notifications.length > 0 && <Notification notifications={notifications} closeModel={setShowModal} />} */}
     </div>
   );
 };

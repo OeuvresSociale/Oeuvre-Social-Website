@@ -39,6 +39,7 @@ router.get("/LaonRequest", laon.getallLaon); //
 router.get("/oneLaonRequest/:id", laon.getLaon); //
 router.get("/LaonRequesty/:employeeId", laon.getMyLaon); //
 router.put("/LaonRequest/:id", laon.suiviLaon); //
+router.get("/Laonapproved",laon.getapprovedLoan);
 
 //repayment request routes
 router.get("/repayments", getallRepayment);
