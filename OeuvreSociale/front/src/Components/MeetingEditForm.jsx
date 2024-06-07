@@ -22,7 +22,7 @@ const MeetingEditForm = ({ meeting, onMeetingFinish, onCancel }) => {
     formData.append('pdfDoc', pdfDoc);
 
     try {
-      const response = await axios.put(`http://localhost:8000/api/addPv/${meeting._id}`, formData, {
+      const response = await axios.put(`http://localhost:8000/api/meetPv/${meeting._id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
