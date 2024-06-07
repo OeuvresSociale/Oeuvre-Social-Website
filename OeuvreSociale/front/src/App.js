@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate,useNavigate } from "react-router-dom";
 import Addemployee from "./Pages/Addemployee.jsx";
 import Employeelist from "./Pages/Employeelist.jsx";
 import Addoffre from "./Pages/Addoffre.jsx";
@@ -49,6 +49,7 @@ const App = () => {
 
 
   }, []);
+  
 
   const GeneralRoute = () => {
     if (!role) {
@@ -63,7 +64,8 @@ const App = () => {
       );
     }
 
-    if (role === 'employe') {
+
+if (role === 'employe') {
       return (
         <Routes>
           <Route path="/FormularTab" element={<FormularTab />} />
@@ -114,6 +116,7 @@ const App = () => {
   return (
     <BrowserRouter>
       {GeneralRoute()}
+
     </BrowserRouter>
   );
 };

@@ -39,6 +39,7 @@ const handleLogout = async () => {
       localStorage.removeItem('userId');
       localStorage.removeItem('userSalary');
       localStorage.removeItem('userEmail');
+      window.location.reload();
       // Redirect to login page or perform any other action
     } else {
       // Logout failed

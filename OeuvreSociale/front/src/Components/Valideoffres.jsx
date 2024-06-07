@@ -28,7 +28,7 @@ const Valideoffres = () => {
         };
 
         fetchValidatedOffers();
-    }, []); // Empty dependency array to fetch data only once when the component mounts
+    }, [validatedOffers]); // Empty dependency array to fetch data only once when the component mounts
 
     // Get current date
   const currentDate = new Date();

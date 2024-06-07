@@ -128,8 +128,7 @@ const deleteEmployee = async (req, res) => {
 const getEmployeepage = async (req, res) => {
   //current page
   const page = req.query.page || 1;
-  const EmployeesPerPage = 10;
-  const skipEmployees = (page - 1) * EmployeesPerPage;
+ 
 const search=req.query.search || "";
   try {
     const Employees = await Employee.find({
@@ -141,8 +140,7 @@ const search=req.query.search || "";
       ],
     })
       .select("idEmployee familyName firstName email role monthlySalary")
-      .skip(skipEmployees)
-      .limit(EmployeesPerPage);
+     
     res.status(200).json(Employees);
   } catch (error) {
     res.status(404).json({ message: error.message });

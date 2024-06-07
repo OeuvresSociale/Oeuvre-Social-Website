@@ -2,7 +2,7 @@
   import { DataGrid } from "@mui/x-data-grid";
   import { IconButton } from "@mui/material";
   import { CheckCircle } from "@mui/icons-material";
-  import ValidateDemandePopup from "../popups/ValidateDemandePopup";
+  import ValidLoanPopup from "../popups/ValidLoanPopup";
   import "../../Styles/tables/DataGrid.css";
   import axios from "axios";
 
@@ -22,7 +22,7 @@
 
     useEffect(() => {
       getLoan_Data();
-    }, []);
+    },[rows]);
 
     const getLoan_Data = async () => {
       try {
@@ -32,7 +32,7 @@
         const rowData = data.map((loanValidInfo) => ({
           id: loanValidInfo._id,
           concerned: `${loanValidInfo.employeeId.familyName} ${loanValidInfo.employeeId.firstName}`,
-          date: new Date(loanValidInfo.creationDate).toLocaleDateString("en-GB", {
+          creationDate: new Date(loanValidInfo.creationDate).toLocaleDateString("en-GB", {
             day: "2-digit",
             month: "2-digit",
             year: "numeric",
@@ -49,7 +49,7 @@
 
     const columns = [
       { field: "concerned", headerName: "Concerné", width: 315 },
-      { field: "date", headerName: "Date d'envoi", width: 315 },
+      { field: "creationDate", headerName: "Date d'envoi", width: 315 },
       { field: "amount", headerName: "Somme", width: 315 },
       {
         field: "validation",
@@ -79,7 +79,7 @@
             }}
           />
         </div>
-        <ValidateDemandePopup
+        <ValidLoanPopup
           openPopup={openPopup}
           handleClosePopup={handleClosePopup}
           selectedRow={selectedRow}

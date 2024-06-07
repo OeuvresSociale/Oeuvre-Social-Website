@@ -211,21 +211,21 @@ const DashBoard = () => {
             <div className="st">
               <div className="somme4">Demands</div>
             </div>
-            <div className="npr8">20,000,000</div>
+            <div className="npr8">20,000</div>
           </div>
 
           <div className="somme8">
             <div className="st">
               <div className="somme4">Prets</div>
             </div>
-            <div className="npr8">20,000,000</div>
+            <div className="npr8">10,000</div>
           </div>
 
           <div className="somme8">
             <div className="st">
               <div className="somme4">Offres</div>
             </div>
-            <div className="npr8">20,000,000</div>
+            <div className="npr8">23,000</div>
           </div>
         </div>
         

@@ -28,16 +28,16 @@ const {
 } = require("../controllers/budgetController.js");
 const upload = require("../middleware/multer"); // Import your multer configuration
 const asyncWrapper = require("../middleware/asyncWrapper");
-
+   
 //tresury
 
 router.put(
   "/Requestvalide/:id",
-  upload.array("files"),
+  upload.array("files"), 
   asyncWrapper(validRequest)
 );
 
-router.put("/Loanvalide/:id", upload.array("files"), asyncWrapper(validLaon));
+router.put("/Loanvalide/:id", upload.array("files"), asyncWrapper(validLaon));//valider loan
 router.get("/Requesty/:id", getValid); // get one valid request
 
 router.post(

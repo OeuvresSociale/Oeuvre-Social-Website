@@ -25,7 +25,7 @@ function LoanRecever_Table() {
 
   useEffect(() => {
     getEmployeeDemande_data();
-  }, []);
+  }, [rows]);
  
   const getEmployeeDemande_data = async () => {
     const id = localStorage.getItem('userId');
