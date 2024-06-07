@@ -36,7 +36,7 @@ const userData = props.dataP;
 console.log("userData",userData);
 console.log("id:",userData._id);
 
-//generate new otp
+//generate new OTP
 const handlePasswordSubmit =async (e) => {
   // Here you would check if the entered password is correct
  
@@ -50,7 +50,7 @@ const handlePasswordSubmit =async (e) => {
 
    catch(error){setError(error.response.data);
    }
-   console.log("otp:",OTP);
+   console.log("OTP:",OTP);
    
    // Proceed to the next step (OTP verification)
  };
@@ -60,32 +60,32 @@ const handlePasswordSubmit =async (e) => {
 const [showOTPModal, setShowOTPModal] = useState(false);
 
 const handleOTPInputChange = (e, index) => {
-  const newOTP = [...otp];
+  const newOTP = [...OTP];
   newOTP[index] = e.target.value;
   setOTP(newOTP.join(''));
 };
 const handleOTPKeyDown = (e, index) => {
-  if (e.key === 'Backspace' && index > 0 && !otp[index]) {
-    const newOTP = [...otp];
+  if (e.key === 'Backspace' && index > 0 && !OTP[index]) {
+    const newOTP = [...OTP];
     newOTP[index - 1] = '';
     setOTP(newOTP.join(''));
-    const prevInput = document.getElementById(`otpInput${index - 1}`);
+    const prevInput = document.getElementById(`OTPInput${index - 1}`);
     prevInput && prevInput.focus();
   } else if (e.key.length === 1 && index < 5) {
-    const nextInput = document.getElementById(`otpInput${index + 1}`);
+    const nextInput = document.getElementById(`OTPInput${index + 1}`);
     nextInput && nextInput.focus();
   }
 };
 const handleOTPFocus = (e, index) => {
-  const otpValue = e.target.value;
-  if (otpValue) {
-    const newOTP = [...otp];
+  const OTPValue = e.target.value;
+  if (OTPValue) {
+    const newOTP = [...OTP];
     newOTP[index] = '';
     setOTP(newOTP.join(''));
   }
 };
 
-// verify otp validation
+// verify OTP validation
 const handleOTPSubmit =async (e) => {
   // Here you would check if the entered OTP is correct
   e.preventDefault();//not refreshing the page 
@@ -212,18 +212,18 @@ const handleNewPasswordSubmit = async(e) => {
     {showOTPModal && (
   <div className='formtitlewrapper'>
     <div className="modal">
-      <h3 className='otptitle'> Enter OTP Sent to Your Email</h3>
-      <div className="otpInputWrapper">
+      <h3 className='OTPtitle'> Enter OTP Sent to Your Email</h3>
+      <div className="OTPInputWrapper">
         {[...Array(6)].map((_, index) => (
           <input
             key={index}
             type="text"
             maxLength={1}
-            value={otp[index] || ''}
+            value={OTP[index] || ''}
             onChange={(e) => handleOTPInputChange(e, index)}
             onKeyDown={(e) => handleOTPKeyDown(e, index)}
             onFocus={(e) => handleOTPFocus(e, index)}
-            id={`otpInput${index}`} // Unique identifier for each input
+            id={`OTPInput${index}`} // Unique identifier for each input
           />
         ))}
       </div>

@@ -1,9 +1,10 @@
+
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate,useNavigate } from "react-router-dom";
 import Addemployee from "./Pages/Addemployee.jsx";
 import Employeelist from "./Pages/Employeelist.jsx";
 import Addoffre from "./Pages/Addoffre.jsx";
-import Demandetype from "./Pages/Demandetype.jsx";
+import Demandetype from "./Pages/Demandetype.jsx"; // Correct import
 import Formul from "./Pages/Formul.jsx";
 import Confirmformul from "./Pages/Confirmformul.jsx";
 import Login from "./Pages/Login.jsx";
@@ -38,13 +39,23 @@ import LastYearsMeeting from "./Pages/Admin/Meeting/LastYearsMeeting.jsx";
 
 const App = () => {
   const [role, setRole] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const getRole = localStorage.getItem('role');
-    //setRole(getRole);
-    setRole('admin');
-    // setRole('employee');
+    const getRole = localStorage.getItem('userRole');
+    setRole(getRole);
+    
+    //console.log("role:",getRole);
+    //setRole('admin');
+     //setRole('employee');
+
+
   }, []);
+  useEffect(() => {
+    if (role) {
+      navigate(role === 'employe' ?  '/FormularTab':'/dashboard' );
+    }
+  }, [role, navigate]);
 
   const GeneralRoute = () => {
     if (!role) {
@@ -58,8 +69,7 @@ const App = () => {
         </Routes>
       );
     }
-
-    if (role === 'employee') {
+if (role === 'employe') {
       return (
         <Routes>
           <Route path="/FormularTab" element={<FormularTab />} />
@@ -67,6 +77,7 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/offre/:id" element={<OffreType />} />
           <Route path="*" element={<Navigate to="/FormularTab" />} />
         </Routes>
       );
@@ -98,7 +109,7 @@ const App = () => {
           <Route path="/demandevalid" element={<Demande_Valid />} />
           <Route path="/reunions" element={<Reunionpage />} />
           <Route path="/reunions/historique" element={<Historique />} />
-          <Route path="/reunions/historique/listreunion" element={<LastYearsMeeting />} />
+          <Route path="/reunions/historique/listreunion/:year" element={<LastYearsMeeting />} />
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="*" element={<Navigate to="/dashboard" />} />
         </Routes>

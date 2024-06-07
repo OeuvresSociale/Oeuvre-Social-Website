@@ -29,19 +29,27 @@ const Employeelist = () => {
       <Sidebar />
       <div className="dataContainer">
         <Header />
+        
         <div>
+        <div className="flex-container">
           <Page_Header
             title="Liste des Employees"
-            subtitle="hnaya la liste t3 les employee sahbi"
+            subtitle="Gestion des employee"
           />
-          <div>
-          {role === 'president' && (
-            <Button variant="contained" color="primary" onClick={FormVisibility}>
-                <IoPersonAddOutline />
-            </Button>
-          )}
+            <div className="BTN">
+              {role === 'president' && (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={FormVisibility}
+                >
+                  <IoPersonAddOutline /> 
+                </Button>
+              )}
+            </div>
+        </div>
             {showForm && <Formulaire FormVisibility={FormVisibility} />}
-          </div>
+         
         </div>
         <div className="componentContainer">
           <EmployeeList_Table />

@@ -58,6 +58,21 @@ const Formulaire = ({ FormVisibility }) => {
     try {
       await axios.post("http://localhost:8000/api/register", inputs);
       setSuccess("Employee registered successfully!");
+      setInputs({
+        idEmployee: "",
+        familyName: "",
+        firstName: "",
+        email: "",
+        phoneNumber: "",
+        sexe: "",
+        familysitution: "",
+        numberOfChild: "",
+        bankAccount: "",
+        monthlySalary: "",
+        dateStartJob: "",
+        password: "",
+        role: "",
+      });
     } catch (error) {
       const errorMessage =
         error.response && error.response.data

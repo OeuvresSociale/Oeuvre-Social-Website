@@ -15,8 +15,8 @@ const Transaction = () => {
   useEffect(() => {
     const getRole = localStorage.getItem('role');
     // setRole(getRole);
-    //setRole('president');
-    setRole('admin');
+    setRole('president');
+   // setRole('admin');
   }, []);
 
   const FormVisibility = () => {
@@ -29,12 +29,28 @@ const Transaction = () => {
         <Sidebar />
         <div className="dataContainer">
           <Header />
-          <Page_Header title="Table de Transaction" subtitle="WIWIWI" />
-          {role === 'president' && (
-            <Button variant="contained" color="primary" onClick={FormVisibility}>
-              <AddCircleOutlineIcon />
-            </Button>
-          )}
+          <div className="flex-container">
+            <Page_Header title="Table de Transaction" subtitle="Sous titre" />
+            <div className="BTN">
+              {role === 'president' && (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={FormVisibility}
+                >
+                  <AddCircleOutlineIcon />
+                </Button>
+              )}
+               <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={FormVisibility}
+                >
+                  <AddCircleOutlineIcon />
+                </Button>
+            </div>
+            
+          </div>
           {showForm && <Transaction_form FormVisibility={FormVisibility} />}
           <div className="componentContainer">
             <Transaction_Table />

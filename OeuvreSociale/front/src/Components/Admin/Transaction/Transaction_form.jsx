@@ -3,6 +3,7 @@ import { Grid, TextField, Button, Typography } from "@mui/material";
 import { InsertDriveFile } from "@mui/icons-material";
 import axios from "axios";
 import "./Transaction_form.css";
+import "../../../Styles/Formulaire.css"
 
 const Transaction_form = ({FormVisibility}) => {
   const [formData, setFormData] = useState({
@@ -101,15 +102,26 @@ const Transaction_form = ({FormVisibility}) => {
           />
         </Grid>
         <Grid item xs={12}>
+        
           <TextField
+           select
             label="Type"
             name="type"
             value={formData.type}
             onChange={handleChange}
             variant="outlined"
             fullWidth
+            SelectProps={{
+              native: true,
+            }}
             required
-          />
+          >
+             <option value=""></option>
+            <option value="demande">Demande</option>
+            <option value="loan">Prêt</option>
+            <option value="annonce">Offre</option>
+            <option value="repayment">Repayment</option>
+          </TextField>
         </Grid>
         <Grid item xs={12}>
           <TextField
