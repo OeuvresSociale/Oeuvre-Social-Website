@@ -30,7 +30,12 @@ const Valideoffres = () => {
         fetchValidatedOffers();
     }, []); // Empty dependency array to fetch data only once when the component mounts
 
-   
+    // Get current date
+  const currentDate = new Date();
+
+  // Filter the offers to include only those that haven't finished
+  const filteredOffers = validatedOffers.filter(offer => new Date(offer.dateFin) > currentDate);
+
 
     return (
         <div className="addoffrewrapper4">
@@ -39,7 +44,7 @@ const Valideoffres = () => {
 
                 <div className="vali7">   <Page_Header title="Offres "  />
                 <div className="offrecrapv">
-                {validatedOffers.map((offer, index) => (
+                {filteredOffers.map((offer, index) => (
                        <Link to={`/offre/${offer._id}`} key={index} className="offrecv">
                             <img src={Logo} alt="logo" className="offimg3" />
                             <div className="titoff">{offer.title}</div>

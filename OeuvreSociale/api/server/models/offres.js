@@ -27,10 +27,24 @@ const offreSchema = new mongoose.Schema({
         required: true
     },
     visible:{
-    type:Boolean,  
-    default:false
-    }
+        type: Boolean,    
+        default: false
+    },
+    // dead:{ // stop appearing for both employee and admin
+    //     type: Boolean,  
+    //     default: false
+    // }
 });
+
+// Add a virtual property to compute isDead based on dateFin
+// offreSchema.virtual('isVisible').get(function() {
+//     const now = new Date();
+//     return this.dateFin < now;
+// });
+
+// // Ensure virtual fields are serialized
+// offreSchema.set('toJSON', { virtuals: true });
+// offreSchema.set('toObject', { virtuals: true });
 
 const offreModel = mongoose.model('offre', offreSchema);
 
