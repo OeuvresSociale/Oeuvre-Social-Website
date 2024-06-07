@@ -33,9 +33,11 @@ const GestionDesReunionsPage = () => {
           responseType: "json",
           responseEncoding: "utf8",
         }); 
-        // const filteredMeetings = response.data.filter(meeting => !meeting.historique); // Exclude meetings with historique set to true
-        // setMeetings(filteredMeetings);
-        setMeetings(response.data);
+         // Filter out meetings with historique set to true
+        const filteredMeetings = response.data.filter(meeting => !meeting.historique);
+        
+        setMeetings(filteredMeetings);
+        
         console.log("response:", response);
       } catch (error) {
         console.error("Error fetching requests:", error);
@@ -45,7 +47,7 @@ const GestionDesReunionsPage = () => {
     };
 
     fetchRequests();
-  }, []); // Fetch employees whenever searchValue changes
+  }, [meetings]); // Fetch employees whenever searchValue changes
 
   useEffect(() => {
     setMeetings(testMeetings); 

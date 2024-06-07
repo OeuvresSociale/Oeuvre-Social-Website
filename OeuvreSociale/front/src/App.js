@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Addemployee from "./Pages/Addemployee.jsx";
 import Employeelist from "./Pages/Employeelist.jsx";
 import Addoffre from "./Pages/Addoffre.jsx";
-import Demandetype from "./Pages/Demandetype.jsx";
+import Demandetype from "./Pages/Demandetype.jsx"; // Correct import
 import Formul from "./Pages/Formul.jsx";
 import Confirmformul from "./Pages/Confirmformul.jsx";
 import Login from "./Pages/Login.jsx";
@@ -43,10 +43,11 @@ const App = () => {
     const getRole = localStorage.getItem('userRole');
     setRole(getRole);
     
-    
     //console.log("role:",getRole);
     //setRole('admin');
      //setRole('employee');
+
+
   }, []);
 
   const GeneralRoute = () => {
@@ -113,7 +114,6 @@ const App = () => {
   return (
     <BrowserRouter>
       {GeneralRoute()}
-
     </BrowserRouter>
   );
 };

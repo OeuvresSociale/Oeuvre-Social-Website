@@ -31,9 +31,9 @@ const Confirmform = () => {
   
     const handleKeyDown = (event) => {
       if (event.key === 'Enter' && inputText.trim() !== '') {
-        event.preventDefault(); 
+        event.preventDefault();
         setPreviewWords((prevWords) => [...prevWords, inputText]);
-        setInputText(''); 
+        setInputText('');
       }
     };
 
@@ -47,7 +47,7 @@ const Confirmform = () => {
          
           words: previewWords,
         };
-        const response = await axios.post('http://localhost:8000/api/typesRequest', formData);
+        const response = await axios.put(`http://localhost:8000/api/typesRequest/663482c38ff1878ec8d763c2`, formData);
         console.log('Form confirmed:', response.data);
        
       } catch (error) {

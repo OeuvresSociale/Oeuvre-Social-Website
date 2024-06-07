@@ -47,12 +47,13 @@ const Addform = () => {
             <div className="linktodem">{meeting.title}</div>
             <div className="linktodem">{new Date(meeting.date).toLocaleDateString()}</div>
             <div className="linktodem">{meeting.HeurDebut} - {meeting.HeurFin}</div>
-            <div>
-              {/* <a href={link} target="_blank" rel="noopener noreferrer"> */}
+                <div>
+                  
+            <a href={`http://localhost:8000/api/meet-by-year/meet/${meeting._id}/${meeting.files[0]?._id}`} target="_blank" rel="noopener noreferrer">
             <Avatar>
               <PictureAsPdf />
             </Avatar>
-          {/* </a> */}
+          </a>
           </div>
           </div>
         ))}
